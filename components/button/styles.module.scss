@@ -1,0 +1,194 @@
+@import "styles/colors";
+.button {
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: center;
+  color: $color-primary-light;
+  padding: 12px 18px;
+}
+.button-primary-orange {
+  background: $color-accent-orange;
+}
+.button-primary-orange:hover {
+  background: $color-hover-orange;
+}
+.button-primary-orange:disabled {
+  background: $color-accent-orange;
+  opacity: 50%;
+}
+.button-primary-green {
+  background: $color-accent-green;
+}
+.button-primary-green:hover {
+  background: $color-hover-green;
+}
+.button-primary-green:disabled {
+  background: $color-accent-green;
+  opacity: 50%;
+}
+.button-primary-blue {
+  background: $color-accent-blue;
+}
+.button-primary-blue:hover {
+  background: $color-hover-blue;
+}
+.button-primary-blue:disabled {
+  background: $color-accent-blue;
+  opacity: 50%;
+}
+.button-primary-purple {
+  background: $color-accent-purple;
+}
+.button-primary-purple:hover {
+  background: $color-hover-purple;
+}
+.button-primary-purple:disabled {
+  background: $color-accent-purple;
+  opacity: 50%;
+}
+.button-primary-dark {
+  background: $color-primary-dark;
+}
+.button-primary-dark:hover {
+  background: $color-primary-light;
+  color: $color-primary-dark;
+}
+.button-primary-dark:disabled {
+  background: $color-secondary-lightGrey;
+}
+.button-secondary-purple {
+  padding: 10px;
+  font-size: 12px;
+  background-color: $color-accent-purple;
+}
+.button-secondary-purple:hover {
+  background: $color-hover-purple;
+}
+.button-secondary-purple:disabled {
+  background-color: $color-accent-purple;
+  opacity: 50%;
+}
+.button-secondary-green {
+  padding: 10px;
+  font-size: 12px;
+  background: $color-accent-green;
+}
+.button-secondary-green:hover {
+  background: $color-hover-green;
+}
+.button-secondary-green:disabled {
+  background: $color-accent-green;
+  opacity: 50%;
+}
+.button-secondary-blue {
+  padding: 10px;
+  font-size: 12px;
+  background: $color-accent-blue;
+}
+.button-secondary-blue:hover {
+  background: $color-hover-blue;
+}
+.button-secondary-blue:disabled {
+  background: $color-accent-blue;
+  opacity: 50%;
+}
+.button-secondary-orange{
+  padding: 10px;
+  font-size: 12px;
+  background: $color-accent-orange;
+}
+.button-secondary-orange:hover {
+  background: $color-hover-orange;
+}
+.button-secondary-orange:disabled {
+  background: $color-accent-orange;
+  opacity: 50%;
+}
+.button-info-green{
+  padding: 12px;
+  font-size: 12px;
+  background: $color-accent-green;
+}
+.button-info-green:hover {
+  background: $color-hover-green;
+}
+.button-info-green:disabled {
+  background: $color-accent-green;
+  opacity: 50%;
+}
+.button-info-blue {
+  padding: 12px;
+  font-size: 12px;
+  background: $color-accent-blue;
+}
+.button-info-blue:hover {
+  background: $color-hover-blue;
+}
+.button-info-blue:disabled {
+  background: $color-accent-blue;
+  opacity: 50%;
+}
+.button-info-orange {
+  padding: 12px;
+  font-size: 12px;
+  background: $color-accent-orange;
+}
+.button-info-orange:hover {
+  background: $color-hover-orange;
+}
+.button-info-orange:disabled {
+  background: $color-accent-orange;
+  opacity: 50%;
+}
+.button-info-purple {
+  padding: 12px;
+  font-size: 12px;
+  background-color: $color-accent-purple;
+}
+.button-info-purple:hover {
+  background: $color-hover-purple;
+}
+.button-info-purple:disabled {
+  background-color: $color-accent-purple;
+  opacity: 50%;
+}
+.button-info-yellow {
+  padding: 12px;
+  font-size: 12px;
+  background: $color-accent-yellow;
+}
+.button-info-yellow:hover {
+  background: $color-hover-yellow;
+}
+.button-info-yellow:disabled {
+  background: $color-accent-yellow;
+  opacity: 50%;
+}
+.button-info-red {
+  padding: 12px;
+  font-size: 12px;
+  background: $color-accent-red;
+}
+.button-info-red:hover {
+  background: $color-hover-red;
+}
+.button-info-red:disabled {
+  background: $color-accent-red;
+  opacity: 50%;
+}
+.button-info2-dark {
+  padding: 14px 90px;
+  font-size: 10px;
+  background: $color-primary-dark;
+}
+.button-info2-dark:hover {
+  background: $color-primary-light;
+  color: $color-primary-dark;
+}
+.button-info2-dark:disabled {
+  background: $color-secondary-lightGrey;
+}
