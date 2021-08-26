@@ -8,6 +8,10 @@
   vertical-align: center;
   letter-spacing: 0.3px;
   color: $color-primary-light;
+  cursor: pointer;
+}
+.button:disabled {
+  cursor: default;
 }
 .button--size-medium {
   padding: 12px;
@@ -26,48 +30,40 @@
   background: $color-accent-orange;
   &:hover {
     background: $color-hover-orange;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-orange;
     opacity: 50%;
-    cursor: default;
   }
 }
 .button-main-green {
   background: $color-accent-green;
   &:hover {
     background: $color-hover-green;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-green;
     opacity: 50%;
-    cursor: default;
   }
 }
 .button-main-blue {
   background: $color-accent-blue;
   &:hover {
     background: $color-hover-blue;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-blue;
     opacity: 50%;
-    cursor: default;
   }
 }
 .button-main-lilac {
   background: $color-accent-purple;
   &:hover {
     background: $color-hover-purple;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-purple;
     opacity: 50%;
-    cursor: default;
   }
 }
 .button-main-black {
@@ -75,34 +71,28 @@
   &:hover {
     background: $color-primary-light;
     color: $color-primary-dark;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-secondary-lightGrey;
-    cursor: default;
   }
 }
 .button-main-red {
   background: $color-accent-red;
   &:hover {
     background: $color-hover-red;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-red;
     opacity: 50%;
-    cursor: default;
   }
 }
 .button-main-yellow {
   background: $color-accent-yellow;
   &:hover {
     background: $color-hover-yellow;
-    cursor: pointer;
   }
   &:disabled {
     background: $color-accent-yellow;
     opacity: 50%;
-    cursor: default;
   }
 }
