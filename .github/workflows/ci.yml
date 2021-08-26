@@ -10,6 +10,18 @@ jobs:
   test_pull_request:
     name: Test pull request
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - name: Setup repo
         uses: actions/checkout@v2
@@ -22,3 +34,7 @@ jobs:
         run: npm ci
       - name: Run eslint and build project
         run: npm run build
+      - name: Run migrations
+        run: node_modules/.bin/sequelize db:migrate
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
