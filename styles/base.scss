@@ -2,8 +2,9 @@
 
 @font-face {
   font-family: 'Mulish';
-  src: url("../public/fonts/Mulish-Regular.woff"),
-  url("../public/fonts/Mulish-Regular.woff");
+  src: local('Mulish'), local('Mulish-Regular'), 
+    url("../public/fonts/Mulish-Regular.woff2"),
+    url("../public/fonts/Mulish-Regular.woff");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
@@ -11,8 +12,9 @@
 
 @font-face {
   font-family: 'Mulish';
-  src: url("../public/fonts/Mulish-SemiBold.woff"),
-    url("../public/fonts/Mulish-SemiBold.woff2");
+  src: local('Mulish'), local('Mulish-SemiBold'),
+    url("../public/fonts/Mulish-SemiBold.woff2"),
+    url("../public/fonts/Mulish-SemiBold.woff");
   font-weight: 600;
   font-display: swap;
   font-style: normal;
@@ -20,8 +22,9 @@
 
 @font-face {
   font-family: 'Mulish';
-  src: url("../public/fonts/Mulish-Bold.woff"),
-    url("../public/fonts/Mulish-Bold.woff2");
+  src: local('Mulish'), local('Mulish-Bold'),
+    url("../public/fonts/Mulish-Bold.woff2"),
+    url("../public/fonts/Mulish-Bold.woff");
   font-weight: 700;
   font-display: swap;
   font-style: normal;
@@ -29,8 +32,9 @@
 
 @font-face {
   font-family: 'Mulish';
-  src: url("../public/fonts/Mulish-ExtraBold.woff"),
-    url("../public/fonts/Mulish-ExtraBold.woff2");
+  src: local('Mulish'), local('Mulish-ExtraBold'),
+    url("../public/fonts/Mulish-ExtraBold.woff2"),
+    url("../public/fonts/Mulish-ExtraBold.woff");
   font-weight: 800;
   font-display: swap;
   font-style: normal;
