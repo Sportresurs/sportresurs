@@ -1,0 +1,49 @@
+@import 'styles/colors';
+
+.input-label {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Montserrat';
+}
+
+.margin-top-7 {
+    margin-top: 7px;
+}
+
+.custom-input {
+  min-width: 286px;
+  height: 40px;
+  padding: 11px 13.5px 12px 13.5px;
+  font-size: 14px;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  background-color: $color-primary-light;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+
+  &::placeholder {
+    color: $color-secondary-darkGrey;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-form-blue;
+
+    &::placeholder {
+      color: $color-primary-dark;
+    }
+  }
+}
+
+.input-error {
+  border: 1px solid $color-form-red;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-form-red;
+  }
+
+  &::placeholder {
+    color: $color-primary-dark;
+  }
+}
