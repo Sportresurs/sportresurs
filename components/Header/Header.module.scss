@@ -1,1 +1,107 @@
 @import '../../styles/shared.scss';
+
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: $color-primary-dark;
+}
+
+.nav {
+    display: flex;
+    width: 1440px;
+    margin: 0 auto;
+    padding-left: 50px;
+    padding-right: 18px;
+}
+
+.btn_menu {
+    display: none;
+    @extend %button;
+}
+
+.nav__logo {
+    margin-right: 30px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+}
+
+.backdrop {
+    width: 100%;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: $color-primary-dark;
+}
+
+.nav__list {
+    @extend %list;
+
+    display: flex;
+}
+
+.nav__item {
+    margin-right: 47px;
+    color: $color-primary-light;
+
+    &:first-child {
+        margin-right: 39px;
+    }
+
+    &:nth-child(1):hover {
+        color: $color-accent-blue;
+    }
+
+    &:nth-child(2):hover {
+        color: $color-accent-green;
+    }
+
+    &:nth-child(3):hover {
+        color: $color-accent-orange;
+    }
+
+    &:nth-child(4):hover {
+        color: $color-accent-yellow;
+    }
+
+    &:nth-child(5):hover {
+        color: $color-accent-red;
+    }
+}
+
+.nav__link {
+    display: inline-block;
+    padding-top: 23px;
+    padding-bottom: 23px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.125;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn_contact {
+    @extend %button;
+    width: 145px;
+    height: 38px;
+    padding: 10px;
+
+    background-color: $color-accent-purple;
+    border-radius: 3px;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+
+    color: $color-primary-light;
+
+    &:hover {
+        background-color: $color-hover-purple;
+    }
+}
