@@ -1,9 +1,26 @@
 @import 'styles/colors';
 
-.input-label {
-  font-size: 14px;
-  font-weight: 500;
+.input-container {
   font-family: 'Montserrat';
+  font-size: 14px;
+  color: $color-primary-dark;
+}
+
+.error-icon {
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%; 
+  background-image: url('../../public/svg/input_error.svg');
+}
+
+.input-label {
+  position: relative;
+  font-weight: 500;
 }
 
 .margin-top-7 {
@@ -14,8 +31,6 @@
   min-width: 286px;
   height: 40px;
   padding: 11px 13.5px 12px 13.5px;
-  font-size: 14px;
-  font-family: 'Montserrat';
   font-weight: 400;
   background-color: $color-primary-light;
   border: 1px solid $color-secondary-mediumGrey;
@@ -37,6 +52,7 @@
 
 .input-error {
   border: 1px solid $color-form-red;
+  padding: 11px 45px 12px 13.5px;
 
   &:focus {
     outline: none;
