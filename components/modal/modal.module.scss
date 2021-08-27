@@ -1,0 +1,29 @@
+.modal {
+  position: fixed;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background: rgba(0,0,0, 0.5);
+  .active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.modal_content {
+  padding: 25px;
+  background: white;
+  border-radius: 16px;
+  width: 540px;
+  height: 400px;
+  position: relative;
+}
+.btn_close {
+  border: none;
+  background: white;
+  position: absolute;
+  top: 19px;
+  right: 19px;
+}
