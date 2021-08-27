@@ -1,0 +1,30 @@
+@import "styles/colors";
+.modal {
+  position: fixed;
+  top:0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background: $color-modal-darkened;
+  .active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.modal_content {
+  background: $color-primary-light;
+  border-radius: 3px;
+  width: 540px;
+  height: 688px;
+  position: relative;
+}
+.btn_close {
+  border: none;
+  background: $color-primary-light;
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  cursor: pointer;
+}
