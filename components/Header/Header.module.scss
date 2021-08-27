@@ -13,21 +13,56 @@
     margin: 0 auto;
     padding-left: 50px;
     padding-right: 18px;
+
+    @include for-size(mobile) {
+        width: 375px;
+        padding-left: 18px;
+    }
 }
 
 .btn_menu {
     display: none;
     @extend %button;
+
+    @include for-size(mobile) {
+        display: block;
+        width: 34px;
+        height: 23px;
+        margin-top: 18px;
+        margin-right: 83px;
+    }
 }
 
 .nav__logo {
     margin-right: 30px;
     padding-top: 23px;
     padding-bottom: 23px;
+
+    @include for-size(mobile) {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
 }
 
 .backdrop {
     width: 100%;
+
+    @include for-size(mobile) {
+        height: 100vh;
+        position: absolute;
+        top: 54px;
+        left: 0px;
+        background-color: rgba(21, 2, 35, 0.3);
+        opacity: 0;
+
+        pointer-events: none;
+        transition: opacity 300ms;
+
+        &.isOpen {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
 }
 
 .box {
@@ -37,12 +72,32 @@
     align-items: center;
 
     background-color: $color-primary-dark;
+
+    @include for-size(mobile) {
+        flex-direction: column;
+        width: 189px;
+        padding-top: 21px;
+        padding-left: 18px;
+        padding-right: 26px;
+        padding-bottom: 24px;
+
+        transform: translateX(-189px);
+        transition: all 300ms;
+
+        .backdrop.isOpen & {
+            transform: translateX(0);
+        }
+    }
 }
 
 .nav__list {
     @extend %list;
 
     display: flex;
+
+    @include for-size(mobile) {
+        flex-direction: column;
+    }
 }
 
 .nav__item {
@@ -72,6 +127,15 @@
     &:nth-child(5):hover {
         color: $color-accent-red;
     }
+
+    @include for-size(mobile) {
+        width: 100%;
+        margin-bottom: 24px;
+
+        &:first-child {
+            margin-bottom: 39px;
+        }
+    }
 }
 
 .nav__link {
@@ -84,6 +148,15 @@
     line-height: 1.125;
     text-transform: uppercase;
     letter-spacing: 1px;
+
+    @include for-size(mobile) {
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        font-size: 14px;
+        line-height: 1.258;
+    }
 }
 
 .btn_contact {
