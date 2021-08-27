@@ -1,3 +1,4 @@
+@import "styles/colors";
 .modal {
   position: fixed;
   top:0;
@@ -5,7 +6,8 @@
   right: 0;
   left: 0;
   display: none;
-  background: rgba(0,0,0, 0.5);
+  background: $color-primary-dark;
+  opacity: 0.3;
   .active {
     display: flex;
     justify-content: center;
@@ -13,17 +15,17 @@
   }
 }
 .modal_content {
-  padding: 25px;
-  background: white;
-  border-radius: 16px;
+  background: $color-primary-light;
+  border-radius: 3px;
   width: 540px;
-  height: 400px;
+  height: 688px;
   position: relative;
 }
 .btn_close {
   border: none;
-  background: white;
+  background: $color-primary-light;
   position: absolute;
   top: 19px;
   right: 19px;
+  cursor: pointer;
 }

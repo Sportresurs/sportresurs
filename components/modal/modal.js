@@ -2,10 +2,11 @@ import React, {useEffect} from 'react'
 import styles from './modal.module.scss'
 import classNames from "classnames"
 
+const ESC_KEYCODE = 27
 const Modal = ({children, visible, onClose}) => {
   useEffect(() => {
-    const  handleWindowKeydown = (e) => {
-      if (e.keyCode === 27){
+    const handleWindowKeydown = (e) => {
+      if (e.keyCode === ESC_KEYCODE){
         handleClose()
       }
     }
