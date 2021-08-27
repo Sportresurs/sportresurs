@@ -20,18 +20,13 @@
 }
 
 .input-label {
+  display: block;
+  margin-bottom: 7px;
   font-weight: 500;
-  
-  &:nth-child(1) {
-    &::after {
-      content: '';
-      display: inline-block;
-      margin-top: 32px;
-    }
-  }
 }
 
 .custom-input {
+  display: block;
   min-width: 286px;
   height: 40px;
   padding: 11px 13.5px 12px 13.5px;

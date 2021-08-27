@@ -17,13 +17,10 @@ const Input = ({ value, changeValue, isError = false, label, placeholder }) => {
 
   return (
     <div className={styles["input-container"]}>
-      {label
-      ? <label className={styles["input-label"]}>
-          {label}
-          <br />
-          {renderInputField()}
-        </label>
-      : renderInputField()}
+      {label && <label className={styles["input-label"]}>
+        {label}
+      </label>}
+      {renderInputField()}
     </div>
   );
 };
