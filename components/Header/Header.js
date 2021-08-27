@@ -1,16 +1,29 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.scss";
 
 export default function Header() {
+  const [menuActive, setMenuActive] = useState(false);
+
+  const menuOpen = `${styles.backdrop} ${styles.isOpen}`;
+
+  const handleMenuActive = () => {
+    setMenuActive(!menuActive);
+  };
+
+  const handleMenuActiveFalse = () => {
+    setMenuActive(false);
+  };
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <button className={styles.btn_menu}>
+        <button className={styles.btn_menu} onClick={handleMenuActive}>
           <Image src="/btnMenu.svg" alt="menu" width={34} height={23}></Image>
         </button>
         <Link href="">
-          <a className={styles.nav__logo}>
+          <a className={styles.nav__logo} onClick={handleMenuActiveFalse}>
             <Image
               src="/logoHead.svg"
               alt="logo"
@@ -20,7 +33,10 @@ export default function Header() {
           </a>
         </Link>
 
-        <div className={styles.backdrop}>
+        <div
+          className={menuActive ? menuOpen : styles.backdrop}
+          onClick={handleMenuActiveFalse}
+        >
           <div className={styles.box}>
             <ul className={styles.nav__list}>
               <li className={styles.nav__item}>
