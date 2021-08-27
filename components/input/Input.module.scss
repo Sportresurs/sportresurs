@@ -1,6 +1,7 @@
 @import 'styles/colors';
 
 .input-container {
+  position: relative;
   font-family: 'Montserrat';
   font-size: 14px;
   color: $color-primary-dark;
@@ -8,8 +9,8 @@
 
 .error-icon {
   position: absolute;
-  top: 35px;
-  right: 15px;
+  bottom: 13px;
+  left: 257px;
   width: 15px;
   height: 15px;
   background-repeat: no-repeat;
@@ -19,12 +20,15 @@
 }
 
 .input-label {
-  position: relative;
   font-weight: 500;
-}
-
-.margin-top-7 {
-    margin-top: 7px;
+  
+  &:nth-child(1) {
+    &::after {
+      content: '';
+      display: inline-block;
+      margin-top: 32px;
+    }
+  }
 }
 
 .custom-input {
