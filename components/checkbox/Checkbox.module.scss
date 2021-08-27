@@ -14,7 +14,6 @@
 .checkbox-label {
   display: inline-flex;
   align-items: center;
-  user-select: none;
 
   &:hover {
     cursor: pointer;
@@ -31,7 +30,7 @@
 .checkbox-label-chacked {
   display: inline-flex;
   align-items: center;
-  user-select: none;
+  cursor: pointer;
 
   &:hover {
     cursor: pointer;
@@ -52,14 +51,9 @@
   opacity: 0;
 }
 
-.checkbox-text {
-  position: relative;
-  bottom: 5px;
-  color: $color-secondary-darkGrey;
-  font-size: 12px;
-}
-
 .checkbox-container {
     position: relative;
     height: 32px;
+    color: $color-secondary-darkGrey;
+    font-size: 12px;
 }

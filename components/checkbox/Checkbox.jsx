@@ -13,8 +13,8 @@ const Checkbox = ({ text = '', state = false, changeState }) => {
             className={styles["checkbox-input"]}
             type="checkbox"
           />
+          {text}
         </label>
-        <span className={styles["checkbox-text"]}>{text}</span>
       </div>
   );
 };
