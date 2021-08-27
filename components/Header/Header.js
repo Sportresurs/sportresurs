@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import IconBtnMenu from "../../public/svg/btnMenu.svg";
+import IconLogoHead from "../../public/svg/logoHead.svg";
 import styles from "./Header.module.scss";
 
 export default function Header() {
@@ -20,16 +22,11 @@ export default function Header() {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <button className={styles.btn_menu} onClick={handleMenuActive}>
-          <Image src="/btnMenu.svg" alt="menu" width={34} height={23}></Image>
+          <IconBtnMenu />
         </button>
         <Link href="">
           <a className={styles.nav__logo} onClick={handleMenuActiveFalse}>
-            <Image
-              src="/logoHead.svg"
-              alt="logo"
-              width={105}
-              height={15}
-            ></Image>
+            <IconLogoHead />
           </a>
         </Link>
 

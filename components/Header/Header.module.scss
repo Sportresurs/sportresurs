@@ -96,6 +96,7 @@
     display: flex;
 
     @include for-size(mobile) {
+        width: 100%;
         flex-direction: column;
     }
 }
@@ -129,10 +130,14 @@
     }
 
     @include for-size(mobile) {
-        width: 100%;
         margin-bottom: 24px;
+        margin-right: 0;
 
         &:first-child {
+            margin-right: 0;
+        }
+
+        &:last-child {
             margin-bottom: 39px;
         }
     }
@@ -150,6 +155,7 @@
     letter-spacing: 1px;
 
     @include for-size(mobile) {
+        
         width: 100%;
         padding-top: 15px;
         padding-bottom: 15px;
