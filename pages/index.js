@@ -1,3 +1,11 @@
+import Spinner from "../components/Spinner";
+import Rating from "../components/Rating";
+
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <Spinner />
+      <Rating />
+    </>
+  );
 }
