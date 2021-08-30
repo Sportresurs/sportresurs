@@ -13,7 +13,7 @@ export default function Footer() {
         <div className={s.logo}>
           <div className={s.logoDesktop}>
             <Link href={"/"}>
-              <a>
+              <a className={s.logoLink}>
                 <Logo />
               </a>
             </Link>
@@ -21,7 +21,7 @@ export default function Footer() {
 
           <div className={s.logoMobile}>
             <Link href={"/"}>
-              <a>
+              <a className={s.logoLink}>
                 <LogoMobile />
               </a>
             </Link>
