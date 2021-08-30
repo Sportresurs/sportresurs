@@ -10,12 +10,12 @@ const Modal = ({ children, visible, onClose }) => {
   useEffect(() => {
     const handleWindowKeydown = (e) => {
       if (e.keyCode === ESC_KEYCODE) {
-        onClose();
+        handleClose();
       }
     };
     window.addEventListener("keydown", handleWindowKeydown);
     return () => window.removeEventListener("keydown", handleWindowKeydown);
-  }, [visible, onClose]);
+  }, [visible, handleClose]);
 
   const wrapperClasses = classNames(styles.modal, {
     [styles.active]: visible,
