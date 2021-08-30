@@ -9,3 +9,11 @@ const {
   IMAGE_FIT,
   IMAGE_WITHOUT_ENLARGEMENT,
 } = process.env;
+
+const width = Number.parseInt(IMAGE_WIDTH) || 1200;
+const height = Number.parseInt(IMAGE_HEIGHT) || 1200;
+const format = IMAGE_FORMAT || "jpeg";
+const quality = Number.parseInt(IMAGE_QUALITY) || 70;
+const chromaSubsampling = IMAGE_CHROMA_SUBSAMPLING || "4:4:4";
+const fit = IMAGE_FIT || "cover";
+const withoutEnlargement = IMAGE_WITHOUT_ENLARGEMENT === true || true;
