@@ -9,7 +9,7 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "error",
     "no-console": "error",
     "jsx-a11y/no-static-element-interactions": "warn",
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
