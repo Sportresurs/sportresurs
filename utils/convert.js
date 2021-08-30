@@ -1,0 +1,11 @@
+const sharp = require("sharp");
+
+const {
+  IMAGE_WIDTH,
+  IMAGE_HEIGHT,
+  IMAGE_FORMAT,
+  IMAGE_QUALITY,
+  IMAGE_CHROMA_SUBSAMPLING,
+  IMAGE_FIT,
+  IMAGE_WITHOUT_ENLARGEMENT,
+} = process.env;
