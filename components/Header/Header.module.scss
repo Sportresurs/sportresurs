@@ -9,18 +9,18 @@
 
 .nav {
     display: flex;
-    width: 1440px;
+    max-width: 1440px;
     margin: 0 auto;
     padding-left: 50px;
     padding-right: 18px;
 
     @include for-size(mobile) {
-        width: 375px;
+        max-width: 375px;
         padding-left: 18px;
     }
 }
 
-.btn_menu {
+.btnMenu {
     display: none;
     @extend %button;
 
@@ -33,7 +33,7 @@
     }
 }
 
-.nav__logo {
+.navLogo {
     margin-right: 30px;
     padding-top: 23px;
     padding-bottom: 23px;
@@ -90,7 +90,7 @@
     }
 }
 
-.nav__list {
+.navList {
     @extend %list;
 
     display: flex;
@@ -101,7 +101,7 @@
     }
 }
 
-.nav__item {
+.navItem {
     margin-right: 47px;
     color: $color-primary-light;
 
@@ -143,7 +143,7 @@
     }
 }
 
-.nav__link {
+.navLink {
     display: inline-block;
     padding-top: 23px;
     padding-bottom: 23px;
@@ -165,7 +165,7 @@
     }
 }
 
-.btn_contact {
+.btnContact {
     @extend %button;
     width: 145px;
     height: 38px;

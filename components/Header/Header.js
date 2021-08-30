@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import className from "classnames";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
-import styles from "./Header.module.scss";
+import s from "./Header.module.scss";
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
 
-  const menuOpen = `${styles.backdrop} ${styles.isOpen}`;
+  const combineClassName = className(s.backdrop, s.isOpen);
 
   const handleMenuActive = () => {
     setMenuActive(!menuActive);
@@ -19,54 +19,56 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <button className={styles.btn_menu} onClick={handleMenuActive}>
-          <IconBtnMenu />
-        </button>
-        <Link href="">
-          <a className={styles.nav__logo} onClick={handleMenuActiveFalse}>
-            <IconLogoHead />
-          </a>
-        </Link>
+    <>
+      <header className={s.header}>
+        <nav className={s.nav}>
+          <button className={s.btnMenu} onClick={handleMenuActive}>
+            <IconBtnMenu />
+          </button>
+          <Link href="">
+            <a className={s.navLogo} onClick={handleMenuActiveFalse}>
+              <IconLogoHead />
+            </a>
+          </Link>
 
-        <div
-          className={menuActive ? menuOpen : styles.backdrop}
-          onClick={handleMenuActiveFalse}
-        >
-          <div className={styles.box}>
-            <ul className={styles.nav__list}>
-              <li className={styles.nav__item}>
-                <Link href="">
-                  <a className={styles.nav__link}>майданчики</a>
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="">
-                  <a className={styles.nav__link}>карта</a>
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="">
-                  <a className={styles.nav__link}>про нас</a>
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="">
-                  <a className={styles.nav__link}>новини</a>
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="">
-                  <a className={styles.nav__link}>контакти</a>
-                </Link>
-              </li>
-            </ul>
+          <div
+            className={menuActive ? combineClassName : s.backdrop}
+            onClick={handleMenuActiveFalse}
+          >
+            <div className={s.box}>
+              <ul className={s.navList}>
+                <li className={s.navItem}>
+                  <Link href="">
+                    <a className={s.navLink}>майданчики</a>
+                  </Link>
+                </li>
+                <li className={s.navItem}>
+                  <Link href="">
+                    <a className={s.navLink}>карта</a>
+                  </Link>
+                </li>
+                <li className={s.navItem}>
+                  <Link href="">
+                    <a className={s.navLink}>про нас</a>
+                  </Link>
+                </li>
+                <li className={s.navItem}>
+                  <Link href="">
+                    <a className={s.navLink}>новини</a>
+                  </Link>
+                </li>
+                <li className={s.navItem}>
+                  <Link href="">
+                    <a className={s.navLink}>контакти</a>
+                  </Link>
+                </li>
+              </ul>
 
-            <button className={styles.btn_contact}>Зв’яжіться зі мною</button>
+              <button className={s.btnContact}>Зв’яжіться зі мною</button>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    </>
   );
 }
