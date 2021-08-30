@@ -1,7 +1,7 @@
 import s from "./Footer.module.scss";
 import Link from "next/link";
 import Logo from "../../public/svg/logo.svg";
-import LogoMobile from "../../public/svg/logogmobile.svg";
+import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
 import TwitterIcon from "../../public/svg/twitter.svg";
@@ -12,11 +12,19 @@ export default function Footer() {
       <div className={s.container}>
         <div className={s.logo}>
           <div className={s.logoDesktop}>
-            <Logo />
+            <Link href={"/"}>
+              <a>
+                <Logo />
+              </a>
+            </Link>
           </div>
 
           <div className={s.logoMobile}>
-            <LogoMobile />
+            <Link href={"/"}>
+              <a>
+                <LogoMobile />
+              </a>
+            </Link>
           </div>
         </div>
 
@@ -25,26 +33,26 @@ export default function Footer() {
           <ul className={s.footerSocialsList}>
             <li className={s.footerSocialsItem}>
               <a
-                className={s.footerSocialsItemLink}
+                className={(s.footerSocialsItemLink, s.facebook)}
                 href="https://www.facebook.com/"
               >
-                <FacebookIcon />
+                <FacebookIcon className={s.socialIcon} />
               </a>
             </li>
             <li className={s.footerSocialsItem}>
               <a
-                className={s.footerSocialsItemLink}
+                className={(s.footerSocialsItemLink, s.insta)}
                 href="https://www.instagram.com/"
               >
-                <InstaIcon />
+                <InstaIcon className={s.socialIcon} />
               </a>
             </li>
             <li className={s.footerSocialsItem}>
               <a
-                className={s.footerSocialsItemLink}
+                className={(s.footerSocialsItemLink, s.twitter)}
                 href="https://twitter.com/"
               >
-                <TwitterIcon />
+                <TwitterIcon className={s.socialIcon} />
               </a>
             </li>
           </ul>
