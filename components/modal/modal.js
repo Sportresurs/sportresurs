@@ -25,7 +25,7 @@ const Modal = ({ children, visible, onClose }) => {
     e.stopPropagation();
   };
   return visible ? (
-    <div className={wrapperClasses}>
+    <div className={wrapperClasses} onClick={handleClose}>
       <div className={styles.modal_content} onClick={handleContentClick}>
         <button className={styles.btn_close} onClick={handleClose}>
           X
