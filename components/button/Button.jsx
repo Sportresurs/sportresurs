@@ -42,6 +42,7 @@ Button.propTypes = {
     "yellow",
   ]).isRequired,
   size: PropTypes.oneOf([
+    "mobile",
     "small",
     "medium-dense",
     "medium",
