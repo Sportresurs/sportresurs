@@ -8,14 +8,27 @@
 }
 
 .nav {
+    position: relative;
     display: flex;
     max-width: 1440px;
     margin: 0 auto;
     padding-left: 50px;
     padding-right: 18px;
 
-    @include for-size(mobile) {
-        max-width: 375px;
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        max-width: 1023px;
+        padding-left: 18px;
+    }
+
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        flex-direction: column;
+        align-items:center;
+        padding-left: 18px;
+    }
+
+    @media screen and (max-width: 425px) {
+        justify-content: center;
+        max-width: 425px;
         padding-left: 18px;
     }
 }
@@ -24,12 +37,13 @@
     display: none;
     @extend %button;
 
-    @include for-size(mobile) {
+    @media screen and (max-width: 425px) {
+        position: absolute;
+        top: 18px;
+        left: 18px;
         display: block;
         width: 34px;
         height: 23px;
-        margin-top: 18px;
-        margin-right: 83px;
     }
 }
 
@@ -38,7 +52,21 @@
     padding-top: 23px;
     padding-bottom: 23px;
 
-    @include for-size(mobile) {
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        margin-right: 25px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        margin-right: 0;
+        margin-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+
+    @media screen and (max-width: 425px) {
+        margin-right: 0;
         padding-top: 18px;
         padding-bottom: 18px;
     }
@@ -47,7 +75,7 @@
 .backdrop {
     width: 100%;
 
-    @include for-size(mobile) {
+    @media screen and (max-width: 425px) {
         height: 100vh;
         position: absolute;
         top: 54px;
@@ -73,7 +101,11 @@
 
     background-color: $color-primary-dark;
 
-    @include for-size(mobile) {
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 425px) {
         flex-direction: column;
         width: 189px;
         padding-top: 21px;
@@ -94,8 +126,14 @@
     @extend %list;
 
     display: flex;
+    flex-wrap: wrap;
 
-    @include for-size(mobile) {
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 425px) {
         width: 100%;
         flex-direction: column;
     }
@@ -129,7 +167,26 @@
         color: $color-accent-red;
     }
 
-    @include for-size(mobile) {
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        &:first-child {
+            margin-right: 20px;
+        }
+        margin-right: 20px;
+    }
+
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        &:first-child {
+            margin-right: 25px;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        margin-right: 25px;
+    }
+
+    @media screen and (max-width: 425px) {
         margin-bottom: 24px;
         margin-right: 0;
 
@@ -147,15 +204,28 @@
     display: inline-block;
     padding-top: 23px;
     padding-bottom: 23px;
-
+ 
     font-size: 16px;
-    font-weight: 600;
     line-height: 1.125;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
 
-    @include for-size(mobile) {
-        
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        padding-top: 19px;
+        padding-bottom: 18px;
+        font-size: 14px;
+        line-height: 1.258;
+    }
+
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.258;
+    }
+
+    @media screen and (max-width: 425px) {
         width: 100%;
         padding-top: 15px;
         padding-bottom: 15px;
@@ -167,8 +237,7 @@
 
 .btnContact {
     @extend %button;
-    width: 145px;
-    height: 38px;
+    display: block;
     padding: 10px;
 
     background-color: $color-accent-purple;
@@ -182,5 +251,16 @@
 
     &:hover {
         background-color: $color-hover-purple;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+        padding: 7.5px;
+        font-size: 11px;
+    }
+
+    @media screen and (min-width: 426px) and (max-width: 767px) {
+        padding: 7.5px;
+        font-size: 11px;
+        margin-bottom: 10px;
     }
 }
