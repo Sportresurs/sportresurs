@@ -1,10 +1,10 @@
 import Rating from "@material-ui/lab/Rating";
-import s from "./Rating.module.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import s from "./Rating.module.scss";
 
 // Instruction - for color props use varibles from '../../styles/exportColorVar.module.scss
 // if you want to be able to change value dinamically send "readOnly" property with false,
@@ -33,7 +33,7 @@ export default function Ratings({
 
   return (
     <div className={s.rating}>
-      <p className={s.value} style={{ color: color }}>
+      <p className={s.value} style={{ color }}>
         {rating}
       </p>
       <Rating
