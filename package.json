@@ -10,7 +10,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@svgr/webpack": "^5.5.0",
+    "@zeit/next-sass": "^1.0.1",
     "classnames": "^2.3.1",
+    "css-loader": "^6.2.0",
     "dotenv-safe": "^8.2.0",
     "modern-normalize": "^1.1.0",
     "next": "11.1.0",
@@ -19,8 +25,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.38.1",
+    "sass-loader": "^12.1.0",
     "sequelize": "^6.6.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "style-loader": "^3.2.1"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
