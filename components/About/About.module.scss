@@ -1,10 +1,8 @@
 @import "../../styles/shared.scss";
 
-.aboutUs {
-  margin: 0px auto;
-}
 .container {
-  max-width: 1440;
+  margin: 0px auto;
+  max-width: 1440px;
   padding: 30px 18px;
 
   display: grid;
@@ -14,7 +12,7 @@
     " text "
     "video  ";
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 668px) {
     padding: 30px 70px;
     grid-template-columns: 57.21% 39.91%;
     grid-template-rows: 1fr;
@@ -37,8 +35,13 @@
   position: relative;
   height: 0;
   padding-top: 81%;
-  width: 100%;
+  max-width: 635px;
+  @media screen and (min-width: 1250px) and (max-width: 1439px) {
+    width: 635px;
+    justify-self: center;
+  }
 }
+
 .videoWrapper iframe {
   position: absolute;
   top: 0;
@@ -96,7 +99,7 @@
 
   color: $color-primary-dark;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 668px) {
     margin-bottom: 0;
   }
 }
