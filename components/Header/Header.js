@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Link from "next/link";
-import classNames from "classnames/bind";
+import cn from "classnames/bind";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import s from "./Header.module.scss";
 
+const cx = cn.bind(s);
+
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
-
-  const cx = classNames.bind(s);
 
   const handleMenuActive = () => {
     setMenuActive(!menuActive);
