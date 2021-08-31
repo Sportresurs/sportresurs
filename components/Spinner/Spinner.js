@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import PropTypes from "prop-types";
 
 // Instruction - for color props use varibles from '../../styles/exportColorVar.module.scss
 // awaiting size props to adjust the size of the spinner (by default as in the design)
@@ -25,3 +26,9 @@ export default function Spinner({
     />
   );
 }
+
+Spinner.propTypes = {
+  size: PropTypes.string,
+  thickness: PropTypes.number,
+  color: PropTypes.string,
+};
