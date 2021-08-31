@@ -1,5 +1,5 @@
-import s from "./Footer.module.scss";
 import Link from "next/link";
+import s from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
@@ -12,7 +12,7 @@ export default function Footer() {
       <div className={s.container}>
         <div className={s.logo}>
           <div className={s.logoDesktop}>
-            <Link href={"/"}>
+            <Link passHref={true} href={"/"}>
               <a className={s.logoLink}>
                 <Logo />
               </a>
