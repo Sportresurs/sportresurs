@@ -11,14 +11,14 @@ const Button =({
   as: RootComponent,
   ...rest
 }) => {
-  const combineClassName = classNames(
+  const combinedClassName = classNames(
     styles.button,
-    styles[`${variant}`],
-    styles[`${size}`],
+    styles[variant],
+    styles[size],
     className
   )
   return(
-    <RootComponent className={combineClassName} {...rest}>{children}</RootComponent>
+    <RootComponent className={combinedClassName} {...rest}>{children}</RootComponent>
   )
 }
 

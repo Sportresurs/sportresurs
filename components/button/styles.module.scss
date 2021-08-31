@@ -8,12 +8,13 @@
   color: $color-primary-light;
   cursor: pointer;
   font-style: normal;
+  display: inline-block;
 }
 .button:disabled {
   cursor: default;
 }
 .small {
-  padding: 12.2px 10px;
+  padding: 12px 10px;
   font-size: 12px;
   letter-spacing: 0.65px;
 }
@@ -28,7 +29,7 @@
   letter-spacing: 0.3px;
 }
 .large {
-  padding: 10.2px 28.8px;
+  padding: 10px 29px;
   font-size: 12px;
   letter-spacing: 0.3px;
 }
