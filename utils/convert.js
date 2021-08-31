@@ -18,7 +18,7 @@ const chromaSubsampling = IMAGE_CHROMA_SUBSAMPLING || "4:4:4";
 const fit = IMAGE_FIT || "cover";
 const withoutEnlargement = IMAGE_WITHOUT_ENLARGEMENT === true || true;
 
-function convertImgToBuffer(image) {
+function convertImg(image) {
   return sharp(image)
     .resize(width, height, {
       fit: fit,
@@ -34,4 +34,4 @@ function convertImgToBuffer(image) {
     .toBuffer();
 }
 
-module.exports = convertImgToBuffer;
+module.exports = convertImg;
