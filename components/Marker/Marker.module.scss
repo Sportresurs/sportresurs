@@ -1,0 +1,83 @@
+@import "../../styles/shared.scss";
+
+.btnMarker {
+    @extend %button;
+
+    position: relative;
+}
+
+.lilac {
+    fill: $color-accent-purple;
+    
+    .btnMarker:hover &{
+        fill: $color-hover-purple;
+    }
+}
+
+.red {    
+    fill: $color-accent-red;
+    
+    .btnMarker:hover & {
+        fill: $color-hover-red;
+    }
+}
+
+.blue {
+    fill: $color-accent-blue;
+    
+    .btnMarker:hover & {
+        fill: $color-hover-blue;
+    }
+}
+
+.yellow {
+    fill: $color-accent-yellow;
+    
+    .btnMarker:hover & {
+        fill: $color-hover-yellow;
+    }
+}
+
+.orange {
+    fill: $color-accent-orange;
+    
+    .btnMarker:hover & {
+        fill: $color-hover-orange;
+    }
+}
+
+.green {
+    fill: $color-accent-green;
+    
+    .btnMarker:hover & {
+        fill: $color-hover-green;
+    }
+}
+
+.black {
+    fill: $color-primary-dark;
+    
+    .btnMarker:hover & {
+        fill: $color-primary-light;
+    }
+}
+
+.icon {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    .btnMarker:hover &.blackColor>path {
+        fill: $color-primary-dark;
+    }
+}
+
+.iconS {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
