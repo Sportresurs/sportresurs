@@ -1,24 +1,25 @@
 const sharp = require("sharp");
+const config = require("./convert.config")
 
-const WIDTH = 1200;
-const HEIGHT = 1200;
-const FORMAT = "jpeg";
-const QUALITY = 70;
-const CHROMA_SUBSAMPLING = "4:4:4";
-const FIT = "cover";
-const WITHOUT_ENLARGEMENT = true;
+const width = config.get("imageWidth");
+const height = config.get("imageHeight");
+const format = config.get("imageFormat");
+const quality = config.get("imageQuality");
+const chromaSubsampling = config.get("imageChromaSubsampling");
+const fit = config.get("imageFit");
+const withoutEnlargement = config.get("imageWithoutEnlargement");
 
 function convertImg(image) {
   return sharp(image)
-    .resize(WIDTH, HEIGHT, {
-      fit: FIT,
-      withoutEnlargement: WITHOUT_ENLARGEMENT,
+    .resize(width, height, {
+      fit: fit,
+      withoutEnlargement: withoutEnlargement,
     })
     .sharpen()
-    .toFormat(FORMAT)
+    .toFormat(format)
     .jpeg({
-      quality: QUALITY,
-      chromaSubsampling: CHROMA_SUBSAMPLING,
+      quality: quality,
+      chromaSubsampling: chromaSubsampling,
     })
     .withMetadata()
     .toBuffer();
