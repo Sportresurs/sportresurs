@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import className from "classnames";
+import classNames from "classnames/bind";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import s from "./Header.module.scss";
@@ -8,7 +8,7 @@ import s from "./Header.module.scss";
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
 
-  const combineClassName = className(s.backdrop, s.isOpen);
+  const cx = classNames.bind(s);
 
   const handleMenuActive = () => {
     setMenuActive(!menuActive);
@@ -32,7 +32,9 @@ export default function Header() {
           </Link>
 
           <div
-            className={menuActive ? combineClassName : s.backdrop}
+            className={cx("backdrop", {
+              isOpen: menuActive,
+            })}
             onClick={handleMenuActiveFalse}
           >
             <div className={s.box}>
