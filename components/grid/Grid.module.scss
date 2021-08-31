@@ -23,13 +23,13 @@
     max-width: 95%;
     margin-left: 9%;
     margin-right: 9%;
-    grid-template-columns: repeat(68px, 9);
+    grid-template-columns: repeat(68px, 6);
     grid-gap: 25px;
   }
 
   @for $i from 5 through 12 {
     .grid-elem-sm-#{$i} {
-      grid-column: span 9;
+      grid-column: span 6;
     }
   }
 }

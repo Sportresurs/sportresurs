@@ -1,8 +1,8 @@
 import styles from './Grid.module.scss';
 
-const Col = ({ sm = 1, children }) => {
+const Col = ({ col = 1, children }) => {
     return (
-      <div className={styles[`grid-elem-sm-${sm}`]}>
+      <div className={styles[`grid-elem-sm-${col}`]}>
         {children}
       </div>
     );
