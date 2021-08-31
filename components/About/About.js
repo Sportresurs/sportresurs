@@ -8,7 +8,7 @@ export default function About() {
           <iframe
             width="635"
             height="512"
-            src="https://www.youtube.com/embed/AsIpkigHus0?showinfo=0"
+            src="https://www.youtube.com/embed/FEgNu7ZakOU?showinfo=0"
             title="sportresurs video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
