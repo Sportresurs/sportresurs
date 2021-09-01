@@ -31,40 +31,40 @@ const Marker = ({ typeOfCourt, bgColor }) => (
       />
     </svg>
 
-    {typeOfCourt === "Скейт-майданчик" && (
+    {typeOfCourt === "Skate" && (
       <SkateCourt
         className={cx("icon", {
-          blackColor: typeOfCourt === "Скейт-майданчик",
+          blackColor: typeOfCourt === "Skate",
         })}
       />
     )}
-    {typeOfCourt === "Спортивний" && <SportsCourt className={s.iconS} />}
-    {typeOfCourt === "Дитячий" && <ChildrenCourt className={s.icon} />}
-    {typeOfCourt === "Баскетбольний" && <BasketballCourt className={s.icon} />}
-    {typeOfCourt === "Тенісний" && <TenisCourt className={s.icon} />}
-    {typeOfCourt === "Футбольний" && <FootballCourt className={s.icon} />}
-    {typeOfCourt === "Бігові доріжки" && <TreadmillsCourt className={s.icon} />}
-    {typeOfCourt === "Стріт воркаут" && (
+    {typeOfCourt === "Sports" && <SportsCourt className={s.icon} />}
+    {typeOfCourt === "Child" && <ChildrenCourt className={s.icon} />}
+    {typeOfCourt === "Basketball" && <BasketballCourt className={s.icon} />}
+    {typeOfCourt === "Tennis" && <TenisCourt className={s.icon} />}
+    {typeOfCourt === "Football" && <FootballCourt className={s.icon} />}
+    {typeOfCourt === "Treadmills" && <TreadmillsCourt className={s.icon} />}
+    {typeOfCourt === "StreetWorkout" && (
       <StreetWorkoutCourt className={s.icon} />
     )}
   </button>
 );
 
 Marker.defaultProps = {
-  typeOfCourt: "Футбольний",
+  typeOfCourt: "Football",
   bgColor: "green",
 };
 
 Marker.propTypes = {
   typeOfCourt: PropTypes.oneOf([
-    "Скейт-майданчик",
-    "Спортивний",
-    "Дитячий",
-    "Баскетбольний",
-    "Тенісний",
-    "Футбольний",
-    "Бігові доріжки",
-    "Стріт воркаут",
+    "Skate",
+    "Sports",
+    "Child",
+    "Basketball",
+    "Tennis",
+    "Football",
+    "Treadmills",
+    "StreetWorkout",
   ]).isRequired,
   bgColor: PropTypes.oneOf([
     "lilac",
