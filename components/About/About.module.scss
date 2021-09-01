@@ -1,0 +1,105 @@
+@import "../../styles/shared.scss";
+
+.container {
+  margin: 0px auto;
+  max-width: 1440px;
+  padding: 30px 18px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr;
+  grid-template-areas:
+    " text "
+    "video  ";
+
+  @media screen and (min-width: 668px) {
+    padding: 30px 70px;
+    grid-template-columns: 57.21% 39.91%;
+    grid-template-rows: 1fr;
+    grid-template-areas: "video text ";
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    gap: 26px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 60px 165px;
+    gap: 32px;
+  }
+}
+
+.videoWrapper {
+  grid-area: video;
+  position: relative;
+  height: 0;
+  padding-top: 81%;
+  max-width: 635px;
+  @media screen and (min-width: 1250px) and (max-width: 1439px) {
+    width: 635px;
+    justify-self: center;
+  }
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.descriptions {
+  margin-top: auto;
+  margin-bottom: auto;
+  grid-area: text;
+}
+
+.about {
+  margin-bottom: 12px;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+
+  color: $color-primary-dark;
+}
+
+.mission {
+  margin-bottom: 18px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+
+  color: $color-accent-purple;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 136%;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 36px;
+    line-height: 56px;
+    margin-bottom: 40px;
+  }
+}
+
+.text {
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+
+  color: $color-primary-dark;
+
+  @media screen and (min-width: 668px) {
+    margin-bottom: 0;
+  }
+}
