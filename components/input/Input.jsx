@@ -1,4 +1,4 @@
-import  styles from './Input.module.scss';
+import styles from "./Input.module.scss";
 
 const Input = ({ value, changeValue, isError = false, label, placeholder }) => {
   const changeInputValue = (e) => changeValue(e.target.value);
@@ -8,7 +8,9 @@ const Input = ({ value, changeValue, isError = false, label, placeholder }) => {
       <input
         value={value}
         onChange={changeInputValue}
-        className={`${styles["custom-input"]} ${isError ? styles["input-error"] : ""}`}
+        className={`${styles["custom-input"]} ${
+          isError ? styles["input-error"] : ""
+        }`}
         placeholder={placeholder}
       />
       {isError && <i className={styles["error-icon"]} />}
@@ -17,9 +19,7 @@ const Input = ({ value, changeValue, isError = false, label, placeholder }) => {
 
   return (
     <div className={styles["input-container"]}>
-      {label && <label className={styles["input-label"]}>
-        {label}
-      </label>}
+      {label && <label className={styles["input-label"]}>{label}</label>}
       {renderInputField()}
     </div>
   );
