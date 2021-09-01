@@ -26,8 +26,8 @@ const Modal = ({ children, visible, onClose }) => {
   };
   return visible ? (
     <div className={wrapperClasses} onClick={handleClose}>
-      <div className={styles.modal_content} onClick={handleContentClick}>
-        <button className={styles.btn_close} onClick={handleClose}>
+      <div className={styles.modalContent} onClick={handleContentClick}>
+        <button className={styles.btnClose} onClick={handleClose}>
           X
         </button>
         {children}
