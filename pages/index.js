@@ -1,11 +1,13 @@
-import Header from "../components/Header/Header";
-import DefaultHead from "../components/DefaultHead/DefaultHead";
+import Footer from "../components/Footer";
+import Spinner from "../components/Spinner";
+import Rating from "../components/Rating";
 
 export default function Home() {
   return (
     <>
-      <DefaultHead />
-      <Header />
+      <Footer />
+      <Spinner />
+      <Rating />
     </>
   );
 }
