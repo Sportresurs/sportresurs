@@ -17,7 +17,7 @@ const Modal = ({ children, visible, onClose }) => {
     return () => window.removeEventListener("keydown", handleWindowKeydown);
   }, [visible, handleClose]);
 
-  const wrapperClasses = classNames(styles.modal, {
+  const wrapperClasses = classNames(styles.container, {
     [styles.active]: visible,
   });
 
@@ -25,12 +25,16 @@ const Modal = ({ children, visible, onClose }) => {
     e.stopPropagation();
   };
   return visible ? (
-    <div className={wrapperClasses} onClick={handleClose}>
-      <div className={styles.modalContent} onClick={handleContentClick}>
+    <div className={wrapperClasses} role="presentation" onClick={handleClose}>
+      <div
+        className={styles.modal}
+        role="presentation"
+        onClick={handleContentClick}
+      >
         <button className={styles.btnClose} onClick={handleClose}>
           X
         </button>
-        {children}
+        <div className={styles.modalContent}>{children}</div>
       </div>
     </div>
   ) : null;

@@ -19,12 +19,14 @@ const PlaygroundModalContent = ({ playground }) => {
   ];
   return (
     <div className={styles.wrapper}>
-      <Image className={styles.bgImage} src={playground.img} alt="" />
+      <div className={styles.imageContainer}>
+        <Image className={styles.bgImage} src={playground.img} alt="" />
+      </div>
       <div className={styles.contentWrapper}>
         <button className={styles.tagBtn}>Сихівський</button>
         <h1 className={styles.pgHeading}>Майданчик № {playground.id}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings color="#F2BA4C" />
+        <Ratings color="#F2BA4C" readOnly={true} />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow

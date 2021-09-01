@@ -1,22 +1,21 @@
 @import "styles/colors";
 .wrapper {
   display: flex;
-  height: 688px;
-  border-radius: 6px;
+  max-height: 100%;
+  border-radius: 3px;
   overflow: auto;
 }
+.imageContainer {
+  border-radius: 3px 3px 0 0 ;
+  flex: 1 1 50%;
+}
 .bgImage {
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
-  width: 540px;
-  height: 688px;
+  max-width: 100%;
 }
 .contentWrapper {
+  flex: 1 1 50%;
   box-sizing: border-box;
   padding: 24px 24px 74px 30px;
-  width: 100%;
-  max-width: 540px;
-  max-height: 688px;
 }
 .tagBtn {
   padding: 8px;
@@ -26,18 +25,16 @@
   color: $color-primary-light;
 }
 .pgHeading {
-  font-family: 'Mulish', sans-serif;
   font-size: 36px;
   font-weight: bold;
   line-height: 56px;
   letter-spacing: 0.2px;
-  color: black;
+  color: $color-primary-dark;
   margin: 0;
   padding-top: 12px;
 }
 .street {
   margin: 12px 0 0 0;
-  font-family: 'Mulish', sans-serif;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.3px;
@@ -52,7 +49,6 @@
 .contactBtn {
   margin-top: 70px;
   margin-bottom: 84px;
-
 }
 @media screen and (max-width: 950px) {
   .wrapper {
@@ -62,9 +58,6 @@
   .bgImage {
     width: 360px;
     height: 466px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 0;
   }
   .contentWrapper {
     padding: 0 12px 12px 12px;
@@ -84,5 +77,4 @@
     margin-top: 30px;
     margin-bottom: 36px;
   }
-
 }
