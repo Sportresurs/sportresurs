@@ -1,9 +1,9 @@
 @import "../node_modules/modern-normalize/modern-normalize.css";
-@import './shared.scss';
+@import "./shared.scss";
 
 @font-face {
-  font-family: 'Mulish';
-  src: local('Mulish'), local('Mulish-Regular'), 
+  font-family: "Mulish";
+  src: local("Mulish"), local("Mulish-Regular"),
     url("../public/fonts/Mulish-Regular.woff2"),
     url("../public/fonts/Mulish-Regular.woff");
   font-weight: 400;
@@ -12,8 +12,8 @@
 }
 
 @font-face {
-  font-family: 'Mulish';
-  src: local('Mulish'), local('Mulish-SemiBold'),
+  font-family: "Mulish";
+  src: local("Mulish"), local("Mulish-SemiBold"),
     url("../public/fonts/Mulish-SemiBold.woff2"),
     url("../public/fonts/Mulish-SemiBold.woff");
   font-weight: 600;
@@ -22,8 +22,8 @@
 }
 
 @font-face {
-  font-family: 'Mulish';
-  src: local('Mulish'), local('Mulish-Bold'),
+  font-family: "Mulish";
+  src: local("Mulish"), local("Mulish-Bold"),
     url("../public/fonts/Mulish-Bold.woff2"),
     url("../public/fonts/Mulish-Bold.woff");
   font-weight: 700;
@@ -32,8 +32,8 @@
 }
 
 @font-face {
-  font-family: 'Mulish';
-  src: local('Mulish'), local('Mulish-ExtraBold'),
+  font-family: "Mulish";
+  src: local("Mulish"), local("Mulish-ExtraBold"),
     url("../public/fonts/Mulish-ExtraBold.woff2"),
     url("../public/fonts/Mulish-ExtraBold.woff");
   font-weight: 800;
@@ -42,35 +42,37 @@
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  src: local('Montserrat'), local('Montserrat-Regular'),
+  font-family: "Montserrat";
+  src: local("Montserrat"), local("Montserrat-Regular"),
     url("../public/fonts/Montserrat-Regular.ttf");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 
-
 @font-face {
-  font-family: 'Montserrat';
-  src: local('Montserrat'), local('Montserrat-Medium'),
+  font-family: "Montserrat";
+  src: local("Montserrat"), local("Montserrat-Medium"),
     url("../public/fonts/Montserrat-Medium.ttf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
 
-
 body {
   background-color: $color-secondary-yellowish;
   color: $color-primary-dark;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: 100%;
+}
+
+button:focus {
+  outline: 0;
 }
 
 h1,
@@ -90,4 +92,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-

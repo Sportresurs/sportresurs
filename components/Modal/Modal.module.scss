@@ -45,7 +45,12 @@
   cursor: pointer;
   top: 20px;
   right: 20px;
-  background: inherit;
+  background: transparent;
+  @media screen and (max-width: 950px) {
+    top: 17px;
+    right: 17px;
+    z-index: 2;
+  }
 }
 .circle {
   @media screen and (max-width: 950px) {
@@ -54,15 +59,8 @@
     height: 35px;
     top: 30px;
     right: 24px;
-    padding-top:5px;
+    padding-top: 5px;
     background: rgba(255, 255, 255, 0.6);
-    z-index: 2;
-  }
-}
-.square {
-  @media screen and (max-width: 950px) {
-    top: 17px;
-    right: 17px;
     z-index: 2;
   }
 }

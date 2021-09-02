@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import CloseMark from "../../public/svg/closeModal.svg";
 import styles from "./Modal.module.scss";
@@ -12,7 +13,7 @@ const CloseIcon = ({ onClick, type }) => {
     </button>
   );
 };
-const Modal = ({ children, visible, onClose, buttonIcon }) => {
+const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -45,11 +46,22 @@ const Modal = ({ children, visible, onClose, buttonIcon }) => {
         role="presentation"
         onClick={handleContentClick}
       >
-        <CloseIcon onClick={handleClose} buttonIcon={buttonIcon} />
+        <CloseIcon onClick={handleClose} type={closeIconMobileVariant} />
         <div className={styles.modalContent}>{children}</div>
       </div>
     </div>
   ) : null;
 };
 
+Modal.propTypes = {
+  type: PropTypes.oneOf(["circle", ""]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  visible: PropTypes.bool,
+};
+CloseIcon.propTypes = {
+  type: PropTypes.oneOf(["circle", ""]),
+};
 export default Modal;
