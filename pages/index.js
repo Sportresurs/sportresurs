@@ -1,14 +1,11 @@
-import Footer from "../components/Footer";
-import Spinner from "../components/Spinner";
-import Rating from "../components/Rating";
 import About from "../components/About";
+import TopCourts from "../components/TopCourts";
+import data from "../utils/testData/testArrs";
 
 export default function Home() {
   return (
     <>
-      <Footer />
-      <Spinner />
-      <Rating />
+      <TopCourts courtList={data.topCourts} />
       <About />
     </>
   );
