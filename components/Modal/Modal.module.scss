@@ -39,22 +39,30 @@
   max-height: 100%;
   overflow: auto;
 }
-.btnClose {
+.closeButton {
   border: none;
-  border-radius: 50%;
-  background: $color-primary-light;
   position: absolute;
-  top: 19px;
-  right: 19px;
   cursor: pointer;
+  top: 20px;
+  right: 20px;
+  background: inherit;
+}
+.circle {
   @media screen and (max-width: 950px) {
-    width: 30px;
-    height: 30px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
     top: 30px;
     right: 24px;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding-top:5px;
     background: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+  }
+}
+.square {
+  @media screen and (max-width: 950px) {
+    top: 17px;
+    right: 17px;
     z-index: 2;
   }
 }

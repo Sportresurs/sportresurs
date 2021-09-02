@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./playgroundModalContent.module.scss";
+import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import Button from "../Button";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";

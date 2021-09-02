@@ -1,10 +1,18 @@
 import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
 import CloseMark from "../../public/svg/closeModal.svg";
-import styles from "./modal.module.scss";
+import styles from "./Modal.module.scss";
 
 const ESC_KEYCODE = 27;
-const Modal = ({ children, visible, onClose }) => {
+const CloseIcon = ({ onClick, type }) => {
+  const wrapperIconClasses = classNames(styles.closeButton, styles[type]);
+  return (
+    <button className={wrapperIconClasses} onClick={onClick}>
+      <CloseMark />
+    </button>
+  );
+};
+const Modal = ({ children, visible, onClose, buttonIcon }) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -27,7 +35,6 @@ const Modal = ({ children, visible, onClose }) => {
   const wrapperClasses = classNames(styles.container, {
     [styles.active]: visible,
   });
-
   const handleContentClick = (e) => {
     e.stopPropagation();
   };
@@ -38,9 +45,7 @@ const Modal = ({ children, visible, onClose }) => {
         role="presentation"
         onClick={handleContentClick}
       >
-        <button className={styles.btnClose} onClick={handleClose}>
-          <CloseMark />
-        </button>
+        <CloseIcon onClick={handleClose} buttonIcon={buttonIcon} />
         <div className={styles.modalContent}>{children}</div>
       </div>
     </div>
