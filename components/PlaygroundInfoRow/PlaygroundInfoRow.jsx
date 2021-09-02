@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./playgroundInfoRow.module.scss";
+import styles from "./styles.module.scss";
 
 const PlaygroundInfoRow = ({ label, value }) => (
   <p className={styles.text}>

@@ -1,16 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
 import CloseMark from "../../public/svg/closeModal.svg";
-import styles from "./modal.module.scss";
+import styles from "./styles.module.scss";
 
 const ESC_KEYCODE = 27;
 const Modal = ({ children, visible, onClose }) => {
-  if (visible) {
-    document.body.style.overflow = "hidden";
-  }
   const handleClose = useCallback(() => {
     onClose();
-    document.body.style.overflow = "";
   }, [onClose]);
   useEffect(() => {
     const handleWindowKeydown = (e) => {
@@ -18,8 +14,14 @@ const Modal = ({ children, visible, onClose }) => {
         handleClose();
       }
     };
+    if (visible) {
+      document.body.style.overflow = "hidden";
+    }
     window.addEventListener("keydown", handleWindowKeydown);
-    return () => window.removeEventListener("keydown", handleWindowKeydown);
+    return function cleanup() {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleWindowKeydown);
+    };
   }, [visible, handleClose]);
 
   const wrapperClasses = classNames(styles.container, {
