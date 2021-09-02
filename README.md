@@ -52,3 +52,17 @@ We use `eslint` static code analyzer with a custom set of rules to ensure approp
 
 You need to install a pre-commit hook, to execute `eslint` checks automatically on every commit. 
 Run `npm run prepare` to install husky pre-commit hook properly.
+
+## Error tracking
+
+We use [Sentry](https://sentry.io/) for error tracking.
+
+To capture API Routes errors, you need to wrap your route handlers with Sentry function:
+
+`import { withSentry } from "@sentry/nextjs";
+
+const handler = async (req, res) => {
+    res.status(200).json({ name: "John Doe" });
+};
+
+export default withSentry(handler);`
