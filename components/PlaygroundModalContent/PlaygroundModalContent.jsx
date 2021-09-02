@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styles from "./playgroundModalContent.module.scss";
 import Ratings from "../Rating";
 import Button from "../Button";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
@@ -9,7 +9,6 @@ const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
     { label: "Тип майданчика", field: "type" },
     { label: "Призначення", field: "purpose" },
-    { label: "Рік відкриття", field: "year" },
     { label: "Метраж", field: "area" },
     { label: "Покриття", field: "covering" },
     { label: "Доступ", field: "access" },
@@ -28,7 +27,7 @@ const PlaygroundModalContent = ({ playground }) => {
         />
       </div>
       <div className={styles.contentWrapper}>
-        <button className={styles.tagBtn}>Сихівський</button>
+        <button className={styles.tagBtn}>{playground.district}</button>
         <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
         <Ratings color="#F2BA4C" readOnly={true} />

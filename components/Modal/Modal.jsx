@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
 import CloseMark from "../../public/svg/closeModal.svg";
-import styles from "./styles.module.scss";
+import styles from "./modal.module.scss";
 
 const ESC_KEYCODE = 27;
 const Modal = ({ children, visible, onClose }) => {

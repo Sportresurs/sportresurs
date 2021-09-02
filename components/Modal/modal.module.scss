@@ -1,17 +1,23 @@
 @import "styles/colors";
 .container {
   position: fixed;
-  top:0;
+  top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   display: none;
   background: $color-modal-darkened;
+  @media screen and (max-width: 950px) {
+    padding: 12px 17px 32px;
+  }
 }
 .container.active {
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 950px) {
+    align-items: flex-start;
+  }
 }
 .modal {
   display: flex;
@@ -25,6 +31,7 @@
   @media screen and (max-width: 950px) {
     max-width: 100%;
     border-radius: 0;
+    padding: 18px 12px 0;
   }
 }
 .modalContent {
@@ -43,8 +50,8 @@
   @media screen and (max-width: 950px) {
     width: 30px;
     height: 30px;
-    top: 12px;
-    right: 12px;
+    top: 30px;
+    right: 24px;
     padding-top: 3px;
     padding-bottom: 3px;
     background: rgba(255, 255, 255, 0.6);

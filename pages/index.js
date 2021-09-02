@@ -14,9 +14,9 @@ export default function Home() {
   const playground = {
     id: 1,
     address: "Тернопільська, 13а, Львів",
+    district: "Сихівський",
     type: "спортивний",
     purpose: "не зазначено",
-    year: "2014",
     area: "1630 м. кв.",
     covering: "штучна трава",
     access: "безкоштовний",

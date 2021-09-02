@@ -15,7 +15,7 @@
 .contentWrapper {
   flex: 1 1 50%;
   box-sizing: border-box;
-  padding: 24px 24px 0px;
+  padding: 24px 24px 0;
 }
 .tagBtn {
   padding: 8px;
@@ -48,20 +48,20 @@
 }
 @media screen and (max-width: 950px) {
   .wrapper {
-    height: 1049px;
+    height: 100%;
     flex-direction: column;
   }
   .bgImage {
-    width: 360px;
-    height: 466px;
+    width: 100%;
+    height: 100%;
   }
   .contentWrapper {
-    padding: 0 12px 12px;
+    padding: 0;
   }
   .tagBtn {
     position: absolute;
     top: 12px;
-    left: 0;
+    left: 6px;
   }
   .street {
     margin-bottom: 12px;
