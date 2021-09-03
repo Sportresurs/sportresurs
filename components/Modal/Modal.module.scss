@@ -6,12 +6,12 @@
   right: 0;
   left: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
   z-index: 2;
+  padding: 85px 17px 17px;
   background: $color-modal-darkened;
   @media screen and (max-width: 950px) {
-    padding: 60px 17px 32px;
+    padding-top: 66px;
     align-items: flex-start;
   }
 }
