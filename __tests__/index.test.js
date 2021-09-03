@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import Home from "../pages/index";
 
 describe("Home", () => {
-  it("renders about us", () => {
+  it("About Us section on Home page renders correctly", () => {
     render(<Home />);
 
     const aboutUsHeading = screen.getByText("Про нас");
