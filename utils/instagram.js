@@ -14,30 +14,43 @@ const COMBINED_PARAMS = PARAMS.join("&");
 
 const INSTAGRAM_URL = `https://www.instagram.com/graphql/query/?${COMBINED_PARAMS}`;
 
+const lastReq = {
+  news: [],
+  time: 0,
+};
+
 const getNewsFromInstagram = async () => {
-  const { data } = await axios.get(INSTAGRAM_URL);
+  const timeReq = Date.now();
+  if (lastReq.time + 900000 > timeReq) {
+    return lastReq.news;
+  }
 
-  const newsFromInstagram =
-    data.data.user.edge_owner_to_timeline_media.edges.map(({ node }) => {
-      const {
-        id,
-        shortcode,
-        edge_media_to_caption: { edges },
-      } = node;
+  try {
+    const { data } = await axios.get(INSTAGRAM_URL);
 
-      const imgUrl = node.display_url;
+    const newsFromInstagram =
+      data.data.user.edge_owner_to_timeline_media.edges.map(({ node }) => {
+        const {
+          id,
+          shortcode,
+          edge_media_to_caption: { edges },
+        } = node;
 
-      const { text } = edges[0].node;
+        return {
+          id,
+          imgUrl: node.display_url,
+          url: `https://www.instagram.com/p/${shortcode}/`,
+          text: edges[0].node.text,
+        };
+      });
 
-      return {
-        id,
-        imgUrl,
-        url: `https://www.instagram.com/p/${shortcode}/`,
-        text,
-      };
-    });
+    lastReq.news = newsFromInstagram;
+    lastReq.time = timeReq;
 
-  return newsFromInstagram;
+    return newsFromInstagram;
+  } catch (_err) {
+    return lastReq.news;
+  }
 };
 
 export default getNewsFromInstagram;
