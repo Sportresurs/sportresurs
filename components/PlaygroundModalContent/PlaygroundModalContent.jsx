@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Image from "next/image";
 import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
@@ -50,6 +51,15 @@ const PlaygroundModalContent = ({ playground }) => {
       </div>
     </div>
   );
+};
+
+PlaygroundModalContent.propTypes = {
+  playground: PropTypes.object,
+};
+PlaygroundInfoRow.propTypes = {
+  key: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export default PlaygroundModalContent;

@@ -5,18 +5,12 @@
   bottom: 0;
   right: 0;
   left: 0;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: $color-modal-darkened;
   @media screen and (max-width: 950px) {
     padding: 12px 17px 32px;
-  }
-}
-.container.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  @media screen and (max-width: 950px) {
-    align-items: flex-start;
   }
 }
 .modal {
@@ -54,13 +48,46 @@
 }
 .circle {
   @media screen and (max-width: 950px) {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     top: 30px;
     right: 24px;
-    padding-top: 5px;
     background: rgba(255, 255, 255, 0.6);
     z-index: 2;
+  }
+}
+.enter {
+  background: rgba(0,0,0, 0);
+  .modal {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+.enterActive {
+  background: $color-modal-darkened;
+  transition: all 200ms;
+  .modal {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 200ms;
+  }
+}
+.exit {
+  .modal {
+    opacity: 1;
+    transition: all 200ms;
+  }
+}
+.exitActive {
+  background: rgba(0,0,0, 0);
+  .modal {
+    opacity: 0;
+    transform: scale(0.1);
+    transition: all 200ms;
   }
 }
