@@ -60,15 +60,15 @@ We use [Sentry](https://sentry.io/) for error tracking.
 To capture API Routes errors, you need to wrap your route handlers with Sentry function:
 
 `import { withSentry } from "@sentry/nextjs";
-
 const handler = async (req, res) => {
     res.status(200).json({ name: "John Doe" });
 };
-
 export default withSentry(handler);`
 
 ## Testing
 
 We use Jest for testing.
+
 Run `npm run test` command to run Jest in watch mode.
+
 Run `npm run jest` command to run all tests.
