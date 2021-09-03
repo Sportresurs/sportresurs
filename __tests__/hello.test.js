@@ -2,12 +2,9 @@ import { createMocks } from "node-mocks-http";
 import handle from "../pages/api/hello";
 
 describe("/api/hello", () => {
-  test("returns a message with John Doe", async () => {
+  test("/api/hello endpoint should return a message containing 'John Doe'", async () => {
     const { req, res } = createMocks({
       method: "GET",
-      query: {
-        animal: "dog",
-      },
     });
 
     await handle(req, res);
