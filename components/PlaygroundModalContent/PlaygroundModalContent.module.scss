@@ -1,9 +1,7 @@
 @import "styles/colors";
 .wrapper {
   display: flex;
-  max-height: 100%;
   border-radius: 3px;
-  overflow: auto;
 }
 .imageContainer {
   border-radius: 3px 3px 0 0;
@@ -16,13 +14,6 @@
   flex: 1 1 50%;
   box-sizing: border-box;
   padding: 24px 24px 0;
-}
-.tagBtn {
-  padding: 8px;
-  background: $color-accent-orange;
-  border: none;
-  border: 3px;
-  color: $color-primary-light;
 }
 .heading {
   font-size: 36px;

@@ -5,6 +5,7 @@ import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import Button from "../Button";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
+import Tag from "../Tag";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -28,7 +29,12 @@ const PlaygroundModalContent = ({ playground }) => {
         />
       </div>
       <div className={styles.contentWrapper}>
-        <button className={styles.tagBtn}>{playground.district}</button>
+        <div className={styles.tagBtn}>
+          <Tag
+            color={playground.districtColor}
+            text={playground.district}
+          />
+        </div>
         <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
         <Ratings color="#F2BA4C" readOnly={true} />

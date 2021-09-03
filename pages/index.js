@@ -2,7 +2,7 @@ import { useState } from "react";
 import image from "../components/PlaygroundModalContent/images/image.png";
 import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
-import About from '../components/About';
+import About from "../components/About";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -15,6 +15,7 @@ export default function Home() {
   const playground = {
     id: 1,
     address: "Тернопільська, 13а, Львів",
+    districtColor: 'yellow',
     district: "Сихівський",
     type: "спортивний",
     purpose: "не зазначено",
