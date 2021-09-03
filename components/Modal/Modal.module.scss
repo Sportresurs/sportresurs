@@ -21,11 +21,10 @@
   max-width: 1080px;
   max-height: 100%;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
   @media screen and (max-width: 950px) {
     max-width: 100%;
     border-radius: 0;
-    padding: 18px 12px 0;
   }
 }
 .modalContent {

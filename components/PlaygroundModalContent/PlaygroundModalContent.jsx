@@ -56,10 +56,5 @@ const PlaygroundModalContent = ({ playground }) => {
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
 };
-PlaygroundInfoRow.propTypes = {
-  key: PropTypes.string,
-  label: PropTypes.string,
-  value: PropTypes.string,
-};
 
 export default PlaygroundModalContent;
