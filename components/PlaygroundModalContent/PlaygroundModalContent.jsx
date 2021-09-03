@@ -30,10 +30,7 @@ const PlaygroundModalContent = ({ playground }) => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag
-            color={playground.districtColor}
-            text={playground.district}
-          />
+          <Tag color={playground.districtColor} text={playground.district} />
         </div>
         <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
         <p className={styles.street}>вул. {playground.address}</p>

@@ -15,7 +15,7 @@ export default function Home() {
   const playground = {
     id: 1,
     address: "Тернопільська, 13а, Львів",
-    districtColor: 'yellow',
+    districtColor: "yellow",
     district: "Сихівський",
     type: "спортивний",
     purpose: "не зазначено",
