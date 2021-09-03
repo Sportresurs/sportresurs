@@ -1,5 +1,4 @@
 import Rating from "@material-ui/lab/Rating";
-import { makeStyles } from "@material-ui/core/styles";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import { useState } from "react";
@@ -28,24 +27,14 @@ export default function Ratings({
       .hex;
   const matchedColor = colorFinder(color);
 
-  const useStyles = makeStyles({
-    root: {
-      color: matchedColor,
-    },
-    emptyStar: {
-      color: matchedColor,
-    },
-  });
-
-  const classes = useStyles();
-
   return (
     <div className={s.rating}>
       <p className={s.value} style={{ color: matchedColor }}>
-        {rating}
+        {rating.toFixed(1)}
       </p>
       <Rating
-        className={classes?.root}
+        style={{ color: matchedColor }}
+        className={s.rate}
         name="rating"
         value={Number(rating)}
         max={5}
@@ -57,7 +46,7 @@ export default function Ratings({
         emptyIcon={
           <StarBorderRoundedIcon
             fontSize="inherit"
-            className={classes?.emptyStar}
+            style={{ color: matchedColor }}
           />
         }
       />
