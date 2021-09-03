@@ -48,7 +48,11 @@ const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
         exitActive: styles.exitActive,
       }}
     >
-      <div className={styles.container} role="presentation" onClick={handleClose}>
+      <div
+        className={styles.container}
+        role="presentation"
+        onClick={handleClose}
+      >
         <div
           className={styles.modal}
           role="presentation"
