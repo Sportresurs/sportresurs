@@ -41,6 +41,8 @@ jobs:
         run: npm run lint:ci
       - name: Build project
         run: npm run build
+      - name: Run Jest tests
+        run: npm run jest
       - name: Run migrations
         run: node_modules/.bin/sequelize db:migrate
         env:
