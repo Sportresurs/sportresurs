@@ -66,3 +66,9 @@ const handler = async (req, res) => {
 };
 
 export default withSentry(handler);`
+
+## Testing
+
+We use Jest for testing.
+Run `npm run test` command to run Jest in watch mode.
+Run `npm run jest` command to run all tests.
