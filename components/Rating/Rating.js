@@ -1,12 +1,11 @@
 import Rating from "@material-ui/lab/Rating";
-import { makeStyles } from "@material-ui/core/styles";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import s from "./Rating.module.scss";
+import dataCompare from "../../utils/testData/testArrs";
 
-// Instruction - for color props use varibles from '../../styles/exportColorVar.module.scss
 // if you want to be able to change value dinamically send "readOnly" property with false,
 // in opposite case send true
 
@@ -14,30 +13,28 @@ export default function Ratings({
   value = 3.5,
   precision = 0.5,
   readOnly = false,
-  color = "#150223",
+  color = "black",
 }) {
   const [rating, setRating] = useState(value);
+
   const handleRatingChange = (e) => {
     setRating(e.target.value);
   };
 
-  const useStyles = makeStyles(() => ({
-    root: {
-      color,
-    },
-    emptyStar: {
-      color,
-    },
-  }));
-  const classes = useStyles();
+  // allow rating to use static colors which is used in Button and Tags
+  const colorFinder = (colorToMatch) =>
+    dataCompare.colorDescription.find((item) => item.color === colorToMatch)
+      .hex;
+  const matchedColor = colorFinder(color);
 
   return (
     <div className={s.rating}>
-      <p className={s.value} style={{ color }}>
-        {rating}
+      <p className={s.value} style={{ color: matchedColor }}>
+        {rating.toFixed(1)}
       </p>
       <Rating
-        className={classes.root}
+        style={{ color: matchedColor }}
+        className={s.rate}
         name="rating"
         value={Number(rating)}
         max={5}
@@ -49,7 +46,7 @@ export default function Ratings({
         emptyIcon={
           <StarBorderRoundedIcon
             fontSize="inherit"
-            className={classes.emptyStar}
+            style={{ color: matchedColor }}
           />
         }
       />
@@ -61,5 +58,13 @@ Ratings.propTypes = {
   value: PropTypes.number,
   precision: PropTypes.number,
   readOnly: PropTypes.bool,
-  color: PropTypes.string,
+  color: PropTypes.oneOf([
+    "orange",
+    "green",
+    "blue",
+    "lilac",
+    "black",
+    "red",
+    "yellow",
+  ]).isRequired,
 };

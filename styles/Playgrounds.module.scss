@@ -1,0 +1,91 @@
+@import "./shared.scss";
+.courts {
+  margin-top: 19px;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
+    margin: 25px 0;
+  }
+  @media screen and (min-width: 1440px) {
+    margin: 30px 0;
+  }
+}
+
+.playgrounds {
+  position: relative;
+  overflow: hidden;
+}
+
+.leftBg {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    position: fixed;
+    top: 314px;
+    right: -135px;
+    transform: rotate(-3.5deg);
+    width: 378px;
+    height: 605px;
+    background-image: url("../public/background/basketBg.png");
+    z-index: -1;
+  }
+}
+
+.rightBg {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+    position: fixed;
+    top: -40px;
+    left: -140px;
+    transform: rotate(-168.21deg);
+    width: 420px;
+    height: 631px;
+    background-image: url("../public/background/footballBg.png");
+    z-index: -1;
+  }
+}
+
+.title {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+
+  color: $color-primary-dark;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 36px;
+    text-transform: none;
+  }
+}
+.list {
+  padding: 0;
+
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    margin: -13px;
+  }
+}
+
+.listItem {
+  margin-bottom: 18px;
+
+  @media screen and (min-width: 768px) {
+    margin: 13px;
+  }
+}
