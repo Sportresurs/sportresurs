@@ -1,8 +1,10 @@
 import { useState } from "react";
+import About from "../components/About";
 import image from "../components/PlaygroundModalContent/images/image.png";
 import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
-import About from "../components/About";
+import TopCourts from "../components/TopCourts";
+import data from "../utils/testData/testArrs";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -30,6 +32,7 @@ export default function Home() {
   };
   return (
     <>
+      <TopCourts courtList={data.topCourts} />
       <Button variant="green" size="large" onClick={handleOpen}>
         Open
       </Button>
