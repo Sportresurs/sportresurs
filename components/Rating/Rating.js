@@ -1,7 +1,7 @@
 import Rating from "@material-ui/lab/Rating";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
-import { useState } from "react";
+import { useMemo } from "react";
 import PropTypes from "prop-types";
 import s from "./Rating.module.scss";
 import dataCompare from "../../utils/testData/testArrs";
@@ -14,40 +14,35 @@ export default function Ratings({
   precision = 0.5,
   readOnly = false,
   color = "black",
+  onChange,
 }) {
-  const [rating, setRating] = useState(value);
-
-  const handleRatingChange = (e) => {
-    setRating(e.target.value);
-  };
-
   // allow rating to use static colors which is used in Button and Tags
-  const colorFinder = (colorToMatch) =>
-    dataCompare.colorDescription.find((item) => item.color === colorToMatch)
-      .hex;
-  const matchedColor = colorFinder(color);
+  function colorFinder(colorToMatch) {
+    const matchedColor = dataCompare.colorDescription.find(
+      (item) => item.color === colorToMatch
+    ).hex;
+    return { color: matchedColor };
+  }
+  const hexColor = useMemo(() => colorFinder(color), [color]);
 
   return (
     <div className={s.rating}>
-      <p className={s.value} style={{ color: matchedColor }}>
-        {rating.toFixed(1)}
+      <p className={s.value} style={hexColor}>
+        {Number(value).toFixed(1)}
       </p>
       <Rating
-        style={{ color: matchedColor }}
+        style={hexColor}
         className={s.rate}
         name="rating"
-        value={Number(rating)}
+        value={Number(value)}
         max={5}
         precision={precision}
         readOnly={readOnly}
-        onChange={handleRatingChange}
+        onChange={onChange}
         size={"small"}
         icon={<StarRoundedIcon fontSize="inherit" />}
         emptyIcon={
-          <StarBorderRoundedIcon
-            fontSize="inherit"
-            style={{ color: matchedColor }}
-          />
+          <StarBorderRoundedIcon fontSize="inherit" style={hexColor} />
         }
       />
     </div>
@@ -67,4 +62,5 @@ Ratings.propTypes = {
     "red",
     "yellow",
   ]).isRequired,
+  onChange: PropTypes.func,
 };
