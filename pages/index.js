@@ -1,5 +1,5 @@
-import About from "../components/About";
 import { useState } from "react";
+import About from "../components/About";
 import image from "../components/PlaygroundModalContent/images/image.png";
 import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
