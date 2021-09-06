@@ -32,7 +32,7 @@ export default function Home() {
     img: image,
   };
 
-  //ThanksModal handler
+  // ThanksModal handler
   const [isThankModalOpen, setIsThankModalOpen] = useState(false);
   const handleToggleModal = () => {
     setIsThankModalOpen(!isThankModalOpen);
