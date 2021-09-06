@@ -20,8 +20,8 @@ const lastReq = {
 };
 
 const getNewsFromInstagram = async () => {
-  const timeReq = Date.now();
-  if (lastReq.time + 900000 > timeReq) {
+  const timeNow = Date.now();
+  if (lastReq.time + 900000 > timeNow) {
     return lastReq.news;
   }
 
@@ -45,11 +45,12 @@ const getNewsFromInstagram = async () => {
       });
 
     lastReq.news = newsFromInstagram;
-    lastReq.time = timeReq;
+    lastReq.time = timeNow;
 
     return newsFromInstagram;
   } catch (_err) {
-    return lastReq.news;
+    console.error(_err);
+    throw new Error(_err);
   }
 };
 
