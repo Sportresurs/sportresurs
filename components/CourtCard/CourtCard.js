@@ -3,7 +3,7 @@ import Image from "next/image";
 import cn from "classnames";
 import s from "./CourtCard.module.scss";
 import Rating from "../Rating";
-import Button from "../button";
+import Button from "../Button";
 import Tag from "../Tag";
 import placeholderImg from "../../public/img/court-placeholder.jpg";
 import colorMatch from "../../utils/testData/testArrs";
