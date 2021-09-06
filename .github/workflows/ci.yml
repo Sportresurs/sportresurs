@@ -10,6 +10,11 @@ jobs:
   test_pull_request:
     name: Test pull request
     runs-on: ubuntu-latest
+    env:
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     services:
       postgres:
         image: postgres
@@ -36,6 +41,8 @@ jobs:
         run: npm run lint:ci
       - name: Build project
         run: npm run build
+      - name: Run Jest tests
+        run: npm run jest
       - name: Run migrations
         run: node_modules/.bin/sequelize db:migrate
         env:
