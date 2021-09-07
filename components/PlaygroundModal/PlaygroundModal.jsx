@@ -4,7 +4,12 @@ import PlaygroundModalContent from "../PlaygroundModalContent";
 import Modal from "../Modal";
 
 const PlaygroundModal = ({ visible, onClose, playground }) => (
-  <Modal visible={visible} onClose={onClose} closeIconMobileVariant="circle">
+  <Modal
+    variant="playground"
+    visible={visible}
+    onClose={onClose}
+    closeIconMobileVariant="circle"
+  >
     <PlaygroundModalContent playground={playground} />
   </Modal>
 );

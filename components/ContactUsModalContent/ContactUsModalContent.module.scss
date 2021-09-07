@@ -1,0 +1,70 @@
+@import "styles/colors";
+.wrapper {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.contentWrapper {
+  flex: 1 1 100%;
+  padding: 71px 136px;
+  z-index: 2;
+}
+.heading {
+  max-width: 322px;
+  font-size: 24px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
+  color: $color-primary-dark;
+  padding-bottom: 6px;
+}
+.info {
+  max-width: 262px;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+  color: $color-secondary-darkGrey;
+  padding-bottom: 6px;
+}
+.form {
+  max-width: 356px;
+  input,
+  textarea {
+    margin-top: 18px;
+    width: 100%;
+  }
+}
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+.submit {
+  margin: 36px 0 0;
+}
+.imageWrapper {
+  position: absolute;
+  top: 394px;
+  left: 398px;
+}
+.errorMsg {
+  padding-top: 2px;
+  color: $color-form-red;
+}
+@media screen and (max-width: 950px) {
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+  }
+  .contentWrapper {
+    padding: 36px 18px;
+  }
+  .imageWrapper {
+    display: none;
+  }
+  .heading {
+    font-size: 18px;
+  }
+  .info {
+    max-width: 100%;
+  }
+}

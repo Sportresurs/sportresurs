@@ -1,17 +1,16 @@
 import styles from "./Input.module.scss";
 
-const Input = ({ value, changeValue, isError = false, label, placeholder }) => {
-  const changeInputValue = (e) => changeValue(e.target.value);
+const Input = ({ value, isError = false, label, placeholder, ...rest }) => {
 
   const renderInputField = () => (
     <>
       <input
         value={value}
-        onChange={changeInputValue}
         className={`${styles["custom-input"]} ${
           isError ? styles["input-error"] : ""
         }`}
         placeholder={placeholder}
+        {...rest}
       />
       {isError && <i className={styles["error-icon"]} />}
     </>

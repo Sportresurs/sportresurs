@@ -14,7 +14,13 @@ const CloseIcon = ({ onClick, type }) => {
     </button>
   );
 };
-const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
+const Modal = ({
+  variant,
+  children,
+  visible,
+  onClose,
+  closeIconMobileVariant,
+}) => {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -54,7 +60,7 @@ const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
         onClick={handleClose}
       >
         <div
-          className={styles.modal}
+          className={styles[variant]}
           role="presentation"
           onClick={handleContentClick}
         >

@@ -16,12 +16,40 @@
     align-items: flex-start;
   }
 }
-.modal {
+.large {
   display: flex;
   background: $color-primary-light;
   border-radius: 3px;
   width: 100%;
   max-width: 1080px;
+  max-height: 100%;
+  position: relative;
+  overflow: hidden;
+  @media screen and (max-width: 950px) {
+    max-width: 100%;
+    border-radius: 3px;
+  }
+}
+.medium {
+  display: flex;
+  background: $color-secondary-yellowish;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 628px;
+  max-height: 100%;
+  position: relative;
+  overflow: hidden;
+  @media screen and (max-width: 950px) {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+}
+.small {
+  display: flex;
+  background: $color-secondary-yellowish;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 440px;
   max-height: 100%;
   position: relative;
   overflow: hidden;
@@ -42,7 +70,7 @@
   top: 20px;
   right: 20px;
   background: transparent;
-  z-index: 2;
+  z-index: 3;
   @media screen and (max-width: 950px) {
     top: 17px;
     right: 17px;
@@ -63,8 +91,8 @@
   }
 }
 .enter {
-  background: rgba(0,0,0, 0);
-  .modal {
+  background: rgba(0, 0, 0, 0);
+  .playground,.contact,.thanks {
     opacity: 0;
     transform: scale(0.5);
   }
@@ -72,21 +100,21 @@
 .enterActive {
   background: $color-modal-darkened;
   transition: all 200ms;
-  .modal {
+  .playground,.contact,.thanks {
     opacity: 1;
     transform: translateX(0);
     transition: all 200ms;
   }
 }
 .exit {
-  .modal {
+  .playground,.contact,.thanks {
     opacity: 1;
     transition: all 200ms;
   }
 }
 .exitActive {
-  background: rgba(0,0,0, 0);
-  .modal {
+  background: rgba(0, 0, 0, 0);
+  .playground,.contact,.thanks {
     opacity: 0;
     transform: scale(0.1);
     transition: all 200ms;
