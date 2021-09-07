@@ -19,6 +19,10 @@ const lastReq = {
   time: 0,
 };
 
+const sendErrorToSentry = async (err) => {
+  throw err;
+};
+
 const getNewsFromInstagram = async () => {
   const timeNow = Date.now();
   if (lastReq.time + 900000 > timeNow) {
@@ -49,8 +53,8 @@ const getNewsFromInstagram = async () => {
 
     return newsFromInstagram;
   } catch (_err) {
-    console.error(_err);
-    throw new Error(_err);
+    sendErrorToSentry(_err);
+    return lastReq.news;
   }
 };
 
