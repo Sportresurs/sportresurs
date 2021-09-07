@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
-import Button from "../Button";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
+import ContactUsButton from "../ContactUsButton";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -34,7 +34,7 @@ const PlaygroundModalContent = ({ playground }) => {
         </div>
         <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings color="#F2BA4C" readOnly={true} />
+        <Ratings color="yellow" readOnly={true} />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow
@@ -44,13 +44,7 @@ const PlaygroundModalContent = ({ playground }) => {
             />
           ))}
         </div>
-        <Button
-          variant="lilac"
-          size="medium-dense"
-          className={styles.contactBtn}
-        >
-          Зв’яжіться зі мною
-        </Button>
+        <ContactUsButton />
       </div>
     </div>
   );

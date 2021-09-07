@@ -5,7 +5,7 @@ import Modal from "../Modal";
 
 const PlaygroundModal = ({ visible, onClose, playground }) => (
   <Modal
-    variant="playground"
+    variant="large"
     visible={visible}
     onClose={onClose}
     closeIconMobileVariant="circle"
