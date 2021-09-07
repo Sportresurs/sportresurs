@@ -2,6 +2,7 @@ import s from "../styles/Playgrounds.module.scss";
 import CourtCard from "../components/CourtCard";
 import { Grid } from "../components/grid/Grid";
 import data from "../utils/testData/testArrs";
+import Background from "../components/Background";
 
 export default function Playgrounds() {
   return (
@@ -16,9 +17,7 @@ export default function Playgrounds() {
               </li>
             ))}
           </ul>
-
-          <div className={s.leftBg}></div>
-          <div className={s.rightBg}></div>
+          <Background variant="playgroundsPage" />
         </Grid>
       </section>
     </main>

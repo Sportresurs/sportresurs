@@ -16,37 +16,6 @@
   overflow: hidden;
 }
 
-.leftBg {
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    position: fixed;
-    top: 314px;
-    right: -135px;
-    transform: rotate(-3.5deg);
-    width: 378px;
-    height: 605px;
-    background-image: url("../public/background/basketBg.png");
-    z-index: -1;
-  }
-}
-
-.rightBg {
-  display: none;
-  @media screen and (min-width: 768px) {
-    display: block;
-    position: fixed;
-    top: -40px;
-    left: -140px;
-    transform: rotate(-168.21deg);
-    width: 420px;
-    height: 631px;
-    background-image: url("../public/background/footballBg.png");
-    z-index: -1;
-  }
-}
-
 .title {
   font-weight: 800;
   font-size: 18px;
