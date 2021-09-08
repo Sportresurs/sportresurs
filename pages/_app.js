@@ -8,5 +8,10 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default Sentry.withErrorBoundary(MyApp, {
-  fallback: <p>Something broken</p>,
+  fallback: (
+    <p>
+      Йой! На цій сторінці сталася помилка. Обновіть сторінку або зверніться до{" "}
+      <a href="mailto:rostzelik@gmail.com">підтримки</a>.
+    </p>
+  ),
 });
