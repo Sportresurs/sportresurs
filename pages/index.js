@@ -5,6 +5,7 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
+import News from "../components/News";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -42,6 +43,7 @@ export default function Home() {
         playground={playground}
       />
       <About />
+      <News />
     </>
   );
 }
