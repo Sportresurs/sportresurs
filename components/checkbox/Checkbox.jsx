@@ -14,7 +14,7 @@ const Checkbox = ({ text = "", state = false, changeState }) => {
           state ? styles["checkbox-label-chacked"] : styles["checkbox-label"]
         }
       >
-        <input className={styles["checkbox-input"]} type="checkbox" />
+        <input className={styles["checkbox-Input"]} type="checkbox" />
         {text}
       </label>
     </div>

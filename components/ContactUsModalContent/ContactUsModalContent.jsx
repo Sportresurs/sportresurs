@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
-import Input from "../input/Input";
+import Input from "../Input/Input";
 import Button from "../Button";
 import styles from "./ContactUsModalContent.module.scss";
 import BasketballIcon from "../../public/assets/images/basketball.svg";
