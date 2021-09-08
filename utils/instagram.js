@@ -1,8 +1,10 @@
 import axios from "axios";
+import * as Sentry from "@sentry/nextjs";
 
 const LIMIT_POSTS = 15;
 const INSTAGRAM_PAGE_ID = 46497980119;
 const QUERY_HASH = "472f257a40c653c64c666ce877d59d2b";
+const MINUTES_15 = 900000;
 
 const PARAMS = [
   `query_hash=${QUERY_HASH}`,
@@ -19,13 +21,9 @@ const lastReq = {
   time: 0,
 };
 
-const sendErrorToSentry = async (err) => {
-  throw err;
-};
-
 const getNewsFromInstagram = async () => {
   const timeNow = Date.now();
-  if (lastReq.time + 900000 > timeNow) {
+  if (lastReq.time + MINUTES_15 > timeNow) {
     return lastReq.news;
   }
 
@@ -52,8 +50,10 @@ const getNewsFromInstagram = async () => {
     lastReq.time = timeNow;
 
     return newsFromInstagram;
-  } catch (_err) {
-    sendErrorToSentry(_err);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+    Sentry.captureException(err);
     return lastReq.news;
   }
 };
