@@ -15,7 +15,7 @@ const ContactUsModalContent = ({ onClose }) => {
       const result = await customerService.contactRequest(values);
       alert(result);
     } catch (e) {
-      alert(e.message());
+      alert(e.message);
     } finally {
       setLoading(false);
       onClose();
