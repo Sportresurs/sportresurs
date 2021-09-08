@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import Layout from "../components/layout";
 import "../styles/base.scss";
 
@@ -6,4 +7,6 @@ function MyApp({ Component, pageProps }) {
   return getLayout(<Component {...pageProps} />);
 }
 
-export default MyApp;
+export default Sentry.withErrorBoundary(MyApp, {
+  fallback: <p>Something broken</p>,
+});
