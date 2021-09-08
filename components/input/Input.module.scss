@@ -4,6 +4,7 @@
   position: relative;
   font-size: 14px;
   color: $color-primary-dark;
+  max-width: 356px;
 }
 
 .errorIcon {
@@ -11,9 +12,15 @@
   top:12px;
   right: 18px;
 }
-
 .inputLabel {
   display: block;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+.errorMsg {
+  font-family: "Montserrat";
+  font-size: 12px;
+  line-height: 15px;
   padding-top: 2px;
   color: $color-form-red;
 }
@@ -41,14 +48,13 @@
     }
   }
 }
-.small {
+.input {
   height: 42px;
 }
-.large {
+.textarea {
   height: 237px;
   resize: none;
 }
-
 .inputError {
   border: 1px solid $color-form-red;
   padding: 11px 45px 12px 13.5px;

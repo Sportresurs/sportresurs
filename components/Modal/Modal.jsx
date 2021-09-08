@@ -21,7 +21,7 @@ const Modal = ({
   onClose,
   closeIconMobileVariant,
 }) => {
-  const variantClassName = classNames(styles.modal, styles[variant]);
+  const contentClassName = classNames(styles.modal, styles[variant]);
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -61,7 +61,7 @@ const Modal = ({
         onClick={handleClose}
       >
         <div
-          className={variantClassName}
+          className={contentClassName}
           role="presentation"
           onClick={handleContentClick}
         >

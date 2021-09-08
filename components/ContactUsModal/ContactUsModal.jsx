@@ -6,9 +6,9 @@ import ContactUsModalContent from "../ContactUsModalContent";
 const ContactUsModal = ({ visible, onClose }) => (
   <Modal
     variant="medium"
+    closeIconMobileVariant="circle"
     visible={visible}
     onClose={onClose}
-    closeIconMobileVariant="circle"
   >
     <ContactUsModalContent onClose={onClose} />
   </Modal>

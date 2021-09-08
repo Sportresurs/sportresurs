@@ -27,7 +27,6 @@
   }
 }
 .large {
-  background: $color-primary-light;
   border-radius: 3px;
   max-width: 1080px;
   @media screen and (max-width: 950px) {
@@ -35,7 +34,6 @@
   }
 }
 .medium {
-  background: $color-secondary-yellowish;
   border-radius: 6px;
   max-width: 628px;
   @media screen and (max-width: 950px) {
@@ -43,7 +41,6 @@
   }
 }
 .small {
-  background: $color-secondary-yellowish;
   border-radius: 6px;
   max-width: 440px;
   @media screen and (max-width: 950px) {
@@ -84,7 +81,7 @@
 }
 .enter {
   background: rgba(0, 0, 0, 0);
-  .large,.medium,.small {
+  .modal {
     opacity: 0;
     transform: scale(0.5);
   }
@@ -92,21 +89,21 @@
 .enterActive {
   background: $color-modal-darkened;
   transition: all 200ms;
-  .large,.medium,.small {
+  .modal {
     opacity: 1;
     transform: translateX(0);
     transition: all 200ms;
   }
 }
 .exit {
-  .large,.medium,.small {
+  .modal {
     opacity: 1;
     transition: all 200ms;
   }
 }
 .exitActive {
   background: rgba(0, 0, 0, 0);
-  .large,.medium,.small {
+  .modal {
     opacity: 0;
     transform: scale(0.1);
     transition: all 200ms;

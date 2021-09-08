@@ -6,26 +6,26 @@ import ErrorIcon from "../../public/svg/input_error.svg";
 
 const Input = ({
   as: RootComponent,
-  size,
   value,
   isError = false,
   label,
+  errorMsg,
   placeholder,
   ...rest
 }) => {
-  const wrapperClassName = classNames(styles.customInput, styles[size], {
+  const inputClassName = classNames(styles.customInput, styles[RootComponent], {
     [styles.inputError]: isError,
   });
   const renderInputField = () => (
     <>
       <RootComponent
         value={value}
-        className={wrapperClassName}
+        className={inputClassName}
         placeholder={placeholder}
         {...rest}
       />
       {isError && (
-        <div alt="" className={styles.errorIcon}>
+        <div className={styles.errorIcon}>
           <ErrorIcon></ErrorIcon>
         </div>
       )}
@@ -34,8 +34,9 @@ const Input = ({
 
   return (
     <div className={styles.wrapper}>
-      {renderInputField()}
       {label && <label className={styles.inputLabel}>{label}</label>}
+      {renderInputField()}
+      {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
     </div>
   );
 };
@@ -47,7 +48,6 @@ Input.defaultProps = {
 
 Input.propTypes = {
   as: PropTypes.oneOf(["input", "textarea"]).isRequired,
-  size: PropTypes.oneOf(["small", "large"]).isRequired,
   placeholder: PropTypes.string,
   isError: PropTypes.bool,
   label: PropTypes.oneOfType([
