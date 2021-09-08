@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
+import { CSSTransition } from "react-transition-group";
+import Portal from "../Portal";
 import CloseMark from "../../public/svg/closeModal.svg";
 import styles from "./Modal.module.scss";
 
@@ -44,32 +45,34 @@ const Modal = ({
     e.stopPropagation();
   };
   return (
-    <CSSTransition
-      in={visible}
-      unmountOnExit
-      timeout={200}
-      classNames={{
-        enter: styles.enter,
-        enterActive: styles.enterActive,
-        exit: styles.exit,
-        exitActive: styles.exitActive,
-      }}
-    >
-      <div
-        className={styles.container}
-        role="presentation"
-        onClick={handleClose}
+    <Portal>
+      <CSSTransition
+        in={visible}
+        unmountOnExit
+        timeout={200}
+        classNames={{
+          enter: styles.enter,
+          enterActive: styles.enterActive,
+          exit: styles.exit,
+          exitActive: styles.exitActive,
+        }}
       >
         <div
-          className={contentClassName}
+          className={styles.container}
           role="presentation"
-          onClick={handleContentClick}
+          onClick={handleClose}
         >
-          <CloseIcon onClick={handleClose} type={closeIconMobileVariant} />
-          <div className={styles.modalContent}>{children}</div>
+          <div
+            className={contentClassName}
+            role="presentation"
+            onClick={handleContentClick}
+          >
+            <CloseIcon onClick={handleClose} type={closeIconMobileVariant} />
+            <div className={styles.modalContent}>{children}</div>
+          </div>
         </div>
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+    </Portal>
   );
 };
 

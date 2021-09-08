@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import styles from "./Button.module.scss";
+import Spinner from "../Spinner";
 
 const Button = ({
   children,
   variant,
   size,
   className,
+  isLoading,
   as: RootComponent,
   ...rest
 }) => {
@@ -19,7 +21,7 @@ const Button = ({
   );
   return (
     <RootComponent className={combinedClassName} {...rest}>
-      {children}
+      {isLoading ? <Spinner /> : children}
     </RootComponent>
   );
 };
@@ -49,6 +51,7 @@ Button.propTypes = {
     "large",
     "enormous",
   ]).isRequired,
+  isLoading: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

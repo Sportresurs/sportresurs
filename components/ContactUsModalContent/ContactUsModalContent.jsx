@@ -3,10 +3,9 @@ import { Formik } from "formik";
 import Input from "../input/Input";
 import Button from "../Button";
 import styles from "./ContactUsModalContent.module.scss";
-import Basketball from "../../public/assets/images/basketball.svg";
+import BasketballIcon from "../../public/assets/images/basketball.svg";
 import validation from "./CustomValidationSchema";
 import customerService from "../../api/customerService";
-import Spiner from "../Spinner";
 
 const ContactUsModalContent = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
@@ -15,10 +14,9 @@ const ContactUsModalContent = ({ onClose }) => {
     try {
       const result = await customerService(values);
       alert(result);
-      setLoading(false);
-      onClose();
     } catch (e) {
       alert(e.message());
+    } finally {
       setLoading(false);
       onClose();
     }
@@ -45,7 +43,7 @@ const ContactUsModalContent = ({ onClose }) => {
                 className={styles.formGroup}
                 placeholder="Ім’я"
                 name="name"
-                errorMsg={
+                errorMessage={
                   formik.errors.name &&
                   formik.touched.name && <p>{formik.errors.name}</p>
                 }
@@ -55,7 +53,7 @@ const ContactUsModalContent = ({ onClose }) => {
                 className={styles.formGroup}
                 placeholder="Номер телефон"
                 name="phone"
-                errorMsg={
+                errorMessage={
                   formik.errors.phone &&
                   formik.touched.phone && <p>{formik.errors.phone}</p>
                 }
@@ -66,7 +64,7 @@ const ContactUsModalContent = ({ onClose }) => {
                 as="textarea"
                 placeholder="Деталі"
                 name="details"
-                errorMsg={
+                errorMessage={
                   formik.errors.details &&
                   formik.touched.details && <p>{formik.errors.details}</p>
                 }
@@ -78,8 +76,9 @@ const ContactUsModalContent = ({ onClose }) => {
                   variant="black"
                   size="medium"
                   className={styles.submit}
+                  isLoading={loading}
                 >
-                  {loading ? <Spiner /> : "Надіслати"}
+                  Надіслати
                 </Button>
               </div>
             </form>
@@ -87,7 +86,7 @@ const ContactUsModalContent = ({ onClose }) => {
         </Formik>
       </div>
       <div className={styles.imageWrapper}>
-        <Basketball></Basketball>
+        <BasketballIcon></BasketballIcon>
       </div>
     </div>
   );

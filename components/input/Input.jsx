@@ -8,7 +8,7 @@ const Input = ({
   as: RootComponent,
   value,
   label,
-  errorMsg,
+  errorMessage,
   placeholder,
   className,
   ...rest
@@ -17,7 +17,7 @@ const Input = ({
     styles.customInput,
     styles[RootComponent],
     {
-      [styles.inputError]: errorMsg,
+      [styles.inputError]: errorMessage,
     },
     className
   );
@@ -29,7 +29,7 @@ const Input = ({
         placeholder={placeholder}
         {...rest}
       />
-      {errorMsg && (
+      {errorMessage && (
         <div className={styles.errorIcon}>
           <ErrorIcon></ErrorIcon>
         </div>
@@ -41,7 +41,7 @@ const Input = ({
     <div className={styles.wrapper}>
       {label && <label className={styles.inputLabel}>{label}</label>}
       {renderInputField()}
-      {errorMsg && <div className={styles.errorMsg}>{errorMsg}</div>}
+      {errorMessage && <div className={styles.errorMsg}>{errorMessage}</div>}
     </div>
   );
 };

@@ -2,14 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Modal from "../Modal";
 import ContactUsModalContent from "../ContactUsModalContent";
-import Portal from "../Portal";
 
 const ContactUsModal = ({ visible, onClose }) => (
-  <Portal>
-    <Modal variant="medium" visible={visible} onClose={onClose}>
-      <ContactUsModalContent onClose={onClose} />
-    </Modal>
-  </Portal>
+  <Modal variant="medium" visible={visible} onClose={onClose}>
+    <ContactUsModalContent onClose={onClose} />
+  </Modal>
 );
 
 ContactUsModal.propTypes = {
