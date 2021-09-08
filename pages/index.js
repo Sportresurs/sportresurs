@@ -5,6 +5,9 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
+import Background from "../components/Background";
+import { Grid } from "../components/grid/Grid";
+import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -31,17 +34,22 @@ export default function Home() {
     img: image,
   };
   return (
-    <>
-      <TopCourts courtList={data.topCourts} />
-      <Button variant="green" size="large" onClick={handleOpen}>
-        Open
-      </Button>
-      <PlaygroundModal
-        visible={modal}
-        onClose={handleClose}
-        playground={playground}
-      />
-      <About />
-    </>
+    <div className={styles.hide}>
+      <div className={styles.wrapper}>
+        <Background variant="homePage" />
+        <Grid>
+          <TopCourts courtList={data.topCourts} />
+          <Button variant="green" size="large" onClick={handleOpen}>
+            Open
+          </Button>
+          <PlaygroundModal
+            visible={modal}
+            onClose={handleClose}
+            playground={playground}
+          />
+          <About />
+        </Grid>
+      </div>
+    </div>
   );
 }

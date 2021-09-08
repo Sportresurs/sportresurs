@@ -1,22 +1,26 @@
 @import "./shared.scss";
+
 .courts {
-  margin-top: 19px;
-  padding: 0;
+  padding-bottom: 19px;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
-    margin: 25px 0;
+    padding-bottom: 24px;
   }
+
   @media screen and (min-width: 1440px) {
-    margin: 30px 0;
+    padding-bottom: 30px;
   }
 }
 
-.playgrounds {
+.wrapper {
+  margin: 0 auto;
+  max-width: 1440px;
   position: relative;
-  overflow: hidden;
 }
 
 .title {
+  margin-top: 19px;
   font-weight: 800;
   font-size: 18px;
   line-height: 18px;
@@ -26,10 +30,12 @@
   color: $color-primary-dark;
 
   @media screen and (min-width: 768px) {
+    margin-top: 24px;
     font-size: 24px;
     line-height: 24px;
   }
   @media screen and (min-width: 1440px) {
+    margin-top: 30px;
     font-weight: 700;
     font-size: 36px;
     line-height: 36px;

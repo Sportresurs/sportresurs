@@ -6,20 +6,22 @@ import Background from "../components/Background";
 
 export default function Playgrounds() {
   return (
-    <main className={s.playgrounds}>
+    <>
       <section className={s.courts}>
-        <Grid>
-          <h1 className={s.title}>Майданчики</h1>
-          <ul className={s.list}>
-            {data.playgroundsList.map((court) => (
-              <li key={court.id} className={s.listItem}>
-                <CourtCard courtInfo={court} variant="courtList" />
-              </li>
-            ))}
-          </ul>
+        <div className={s.wrapper}>
           <Background variant="playgroundsPage" />
-        </Grid>
+          <Grid>
+            <h1 className={s.title}>Майданчики</h1>
+            <ul className={s.list}>
+              {data.playgroundsList.map((court) => (
+                <li key={court.id} className={s.listItem}>
+                  <CourtCard courtInfo={court} variant="courtList" />
+                </li>
+              ))}
+            </ul>
+          </Grid>
+        </div>
       </section>
-    </main>
+    </>
   );
 }
