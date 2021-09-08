@@ -1,7 +1,7 @@
 @import "styles/colors";
 
 @mixin beforeMixin {
-  content: '';
+  content: "";
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -12,6 +12,7 @@
 }
 
 .checkbox-label {
+  width: 100%;
   display: inline-flex;
   align-items: center;
 
@@ -28,6 +29,7 @@
 }
 
 .checkbox-label-chacked {
+  width: 100%;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -35,13 +37,13 @@
   &:hover {
     cursor: pointer;
   }
-  
+
   &::before {
     @include beforeMixin;
     border: none;
-    background-size: 60% 60%;  
+    background-size: 60% 60%;
     background-color: $color-form-blue;
-    background-image: url("../../public/svg/checkbox.svg");
+    background-image: url("../../public/checked.png");
   }
 }
 
@@ -52,8 +54,9 @@
 }
 
 .checkbox-container {
-    position: relative;
-    height: 32px;
-    color: $color-secondary-darkGrey;
-    font-size: 12px;
+  width: 100%;
+  position: relative;
+  height: 32px;
+  color: $color-secondary-darkGrey;
+  font-size: 12px;
 }

@@ -259,10 +259,40 @@ const playgroundsList = [
   },
 ];
 
+const districts = [
+  { label: "Шевченківський", value: "Шевченківський" },
+  { label: "Франківський", value: "Франківський" },
+  { label: "Личаківський", value: "Личаківський" },
+  { label: "Залізничний", value: "Залізничний" },
+  { label: "Сихівський", value: "Сихівський" },
+  { label: "Галицький", value: "Галицький" },
+  { label: "Інший", value: "Інший" },
+  /*   "Шевченківський",
+  "Франківський",
+  "Личаківський",
+  "Залізничний",
+  "Сихівський",
+  "Галицький",
+  "Інший", */
+];
+
+const courtsType = [
+  "Спортивний",
+  "Дитячий",
+  "Баскетбольний",
+  "Тенісний",
+  "Футбольний",
+  "Стріт воркаут",
+  "Скейт-майданчик",
+  "Бігові доріжки",
+];
+
 export default {
   colorDescription,
   courtInfo,
   districtColors,
   topCourts,
   playgroundsList,
+  districts,
+  courtsType,
 };

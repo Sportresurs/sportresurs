@@ -5,6 +5,7 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
+import MultiSelect from "../components/MultiSelect/MultiSelect";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -30,8 +31,22 @@ export default function Home() {
       "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
     img: image,
   };
+
+  // for multi select testing
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
     <>
+      <MultiSelect
+        data={data.districts}
+        value={selectedOption}
+        handleChange={handleChange}
+        type="район"
+      />
       <TopCourts courtList={data.topCourts} />
       <Button variant="green" size="large" onClick={handleOpen}>
         Open
