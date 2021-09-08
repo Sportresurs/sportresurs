@@ -5,9 +5,7 @@ import Error from "../../public/svg/input_error.svg";
 const Input = ({ value, isError = false, label, placeholder, ...rest }) => {
   const combinedClassName = classNames(
     styles.customInput,
-    (
-      isError ? styles.inputError : ""
-    )
+    isError ? styles.inputError : ""
   );
 
   const renderInputField = () => (
