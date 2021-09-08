@@ -13,14 +13,10 @@ const Input = ({
   className,
   ...rest
 }) => {
-  const inputClassName = classNames(
-    styles.customInput,
-    styles[RootComponent],
-    {
-      [styles.inputError]: errorMessage,
-    },
-    className
-  );
+  const inputClassName = classNames(styles.customInput, styles[RootComponent], {
+    [styles.inputError]: errorMessage,
+  });
+  const inputWrapperClassName = classNames(styles.wrapper, className);
   const renderInputField = () => (
     <>
       <RootComponent
@@ -38,7 +34,7 @@ const Input = ({
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={inputWrapperClassName}>
       {label && <label className={styles.inputLabel}>{label}</label>}
       {renderInputField()}
       {errorMessage && <div className={styles.errorMsg}>{errorMessage}</div>}
@@ -58,7 +54,6 @@ Input.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  className: PropTypes.string,
 };
 
 export default Input;

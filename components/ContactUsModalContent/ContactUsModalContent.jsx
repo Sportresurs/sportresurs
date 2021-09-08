@@ -12,7 +12,7 @@ const ContactUsModalContent = ({ onClose }) => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const result = await customerService(values);
+      const result = await customerService.contactRequest(values);
       alert(result);
     } catch (e) {
       alert(e.message());
@@ -21,6 +21,8 @@ const ContactUsModalContent = ({ onClose }) => {
       onClose();
     }
   };
+  const getFormikErrorByField = (formik, fieldName) =>
+    (formik.touched[fieldName] && formik.errors[fieldName]) || "";
   return (
     <div className={styles.wrapper}>
       <div className={styles.contentWrapper}>
@@ -43,20 +45,14 @@ const ContactUsModalContent = ({ onClose }) => {
                 className={styles.formGroup}
                 placeholder="Ім’я"
                 name="name"
-                errorMessage={
-                  formik.errors.name &&
-                  formik.touched.name && <p>{formik.errors.name}</p>
-                }
+                errorMessage={getFormikErrorByField(formik, `name`)}
                 {...formik.getFieldProps("name")}
               />
               <Input
                 className={styles.formGroup}
                 placeholder="Номер телефон"
                 name="phone"
-                errorMessage={
-                  formik.errors.phone &&
-                  formik.touched.phone && <p>{formik.errors.phone}</p>
-                }
+                errorMessage={getFormikErrorByField(formik, `phone`)}
                 {...formik.getFieldProps("phone")}
               />
               <Input
@@ -64,10 +60,7 @@ const ContactUsModalContent = ({ onClose }) => {
                 as="textarea"
                 placeholder="Деталі"
                 name="details"
-                errorMessage={
-                  formik.errors.details &&
-                  formik.touched.details && <p>{formik.errors.details}</p>
-                }
+                errorMessage={getFormikErrorByField(formik, `details`)}
                 {...formik.getFieldProps("details")}
               />
               <div className={styles.buttonWrapper}>
