@@ -29,12 +29,12 @@ This project for ЛКП «Спортресурс» helps to share information ab
 
 We are using Heroku for all the deployments. You can safely deploy to [staging-server](https://sportresurs-staging.herokuapp.com/) for QA-engineers to be able to test completed tasks.
 
-All merged pull-requests to the `develop` branch automatically deploy to [staging-server](https://sportresurs-staging.herokuapp.com/).
+All merged pull-requests to the `develop` branch automatically deploy to [staging-server](https://sportresurs-staging.herokuapp.com/). <br />
 All merged pull-requests to the `main` branch automatically deploy to [production-server](https://sportresurs.herokuapp.com/).
 
 ## Commit strategy
 
-We use [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows) workflow as our commit strategy.
+We use [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows) workflow as our commit strategy. <br />
 We create feature branches out of `develop` with names likes feature/31 where a number is a task number from the Trello board.
 
 Commit message should contain a brief description.
@@ -50,8 +50,16 @@ You should check your open pull-requests at least once a day and in case if any 
 
 We use `eslint` static code analyzer with a custom set of rules to ensure appropriate code style.
 
-You need to install a pre-commit hook, to execute `eslint` checks automatically on every commit. 
+You need to install a pre-commit hook, to execute `eslint` checks automatically on every commit. <br/>
 Run `npm run prepare` to install husky pre-commit hook properly.
+
+### Style conventions
+
+1. We are using `PropTypes` for all our components that have props.
+2. All components folders must be named in CamelCase. 
+3. All components must be exported with index.js file inside component folder. 
+4. We are using upperCase for class naming in our CSS modules.
+5. We do not shrink the names of imports. Examples: "styles", not "s". "classNames", not "cn", etc...
 
 ## Error tracking
 
