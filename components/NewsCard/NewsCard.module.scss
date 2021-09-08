@@ -1,0 +1,49 @@
+@import "../../styles/shared.scss";
+
+.card {
+  position: relative;
+  border-radius: 3px;
+  float: left;
+}
+
+.info {
+  position: absolute;
+  width: 350px;
+  height: 36px;
+  left: 0px;
+  top: 308px;
+  border-radius: 0px 0px 3px 3px;
+  padding: 14px 41px 14px 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: $color-primary-light;
+  @media screen and (max-width: 1150px) {
+    width: 250px;
+  }
+}
+
+.info:hover {
+  position: absolute;
+  height: 254px;
+  top: 90px;
+  -webkit-line-clamp: 100;
+  padding-top: 30px;
+  transition: 0.5s;
+}
+
+.newsList {
+  width: 350px;
+  height: 344px;
+  @media screen and (max-width: 1150px) {
+    width: 250px;
+    height: 333px;
+  }
+}
