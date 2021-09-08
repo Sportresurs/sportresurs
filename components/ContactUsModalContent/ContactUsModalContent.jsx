@@ -10,6 +10,19 @@ import Spiner from "../Spinner";
 
 const ContactUsModalContent = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const result = await customerService(values);
+      alert(result);
+      setLoading(false);
+      onClose();
+    } catch (e) {
+      alert(e.message());
+      setLoading(false);
+      onClose();
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.contentWrapper}>
@@ -24,20 +37,14 @@ const ContactUsModalContent = ({ onClose }) => {
             details: "",
           }}
           validationSchema={validation}
-          onSubmit={async (values) => {
-            setLoading(true);
-            const result = await customerService(values);
-            alert(result);
-            setLoading(false);
-            onClose();
-          }}
+          onSubmit={handleSubmit}
         >
           {(formik) => (
-            <form className={styles.formGroup} onSubmit={formik.handleSubmit}>
+            <form className={styles.form} onSubmit={formik.handleSubmit}>
               <Input
+                className={styles.formGroup}
                 placeholder="Ім’я"
                 name="name"
-                isError={formik.touched.name && formik.errors.name}
                 errorMsg={
                   formik.errors.name &&
                   formik.touched.name && <p>{formik.errors.name}</p>
@@ -45,9 +52,9 @@ const ContactUsModalContent = ({ onClose }) => {
                 {...formik.getFieldProps("name")}
               />
               <Input
+                className={styles.formGroup}
                 placeholder="Номер телефон"
                 name="phone"
-                isError={formik.touched.phone && formik.errors.phone}
                 errorMsg={
                   formik.errors.phone &&
                   formik.touched.phone && <p>{formik.errors.phone}</p>
@@ -55,10 +62,10 @@ const ContactUsModalContent = ({ onClose }) => {
                 {...formik.getFieldProps("phone")}
               />
               <Input
+                className={styles.formGroup}
                 as="textarea"
                 placeholder="Деталі"
                 name="details"
-                isError={formik.touched.details && formik.errors.details}
                 errorMsg={
                   formik.errors.details &&
                   formik.touched.details && <p>{formik.errors.details}</p>
@@ -72,7 +79,7 @@ const ContactUsModalContent = ({ onClose }) => {
                   size="medium"
                   className={styles.submit}
                 >
-                  {loading ? <Spiner /> : <p>Надіслати</p>}
+                  {loading ? <Spiner /> : "Надіслати"}
                 </Button>
               </div>
             </form>

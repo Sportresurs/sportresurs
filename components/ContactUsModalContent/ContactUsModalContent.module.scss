@@ -25,13 +25,13 @@
   color: $color-secondary-darkGrey;
   padding-bottom: 6px;
 }
-.formGroup  {
+.form {
   position: relative;
   z-index: 2;
-  input, textarea:nth-of-type(n){
-    margin-top: 18px;
-    width: 100%;
-  }
+}
+.formGroup {
+  margin-top: 18px;
+  width: 100%;
 }
 .buttonWrapper {
   text-align: center;
@@ -43,13 +43,13 @@
   position: absolute;
   right: 0;
   bottom: 0;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 950px) {
   .wrapper {
     height: 100%;
     width: 100%;
-    flex-direction: column;
   }
   .contentWrapper {
     padding: 36px 18px;
@@ -61,6 +61,5 @@
     font-size: 18px;
   }
   .info {
-    max-width: 100%;
   }
 }

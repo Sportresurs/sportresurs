@@ -7,15 +7,20 @@ import ErrorIcon from "../../public/svg/input_error.svg";
 const Input = ({
   as: RootComponent,
   value,
-  isError = false,
   label,
   errorMsg,
   placeholder,
+  className,
   ...rest
 }) => {
-  const inputClassName = classNames(styles.customInput, styles[RootComponent], {
-    [styles.inputError]: isError,
-  });
+  const inputClassName = classNames(
+    styles.customInput,
+    styles[RootComponent],
+    {
+      [styles.inputError]: errorMsg,
+    },
+    className
+  );
   const renderInputField = () => (
     <>
       <RootComponent
@@ -24,7 +29,7 @@ const Input = ({
         placeholder={placeholder}
         {...rest}
       />
-      {isError && (
+      {errorMsg && (
         <div className={styles.errorIcon}>
           <ErrorIcon></ErrorIcon>
         </div>
@@ -43,7 +48,6 @@ const Input = ({
 
 Input.defaultProps = {
   as: "input",
-  size: ["small", "large"],
 };
 
 Input.propTypes = {

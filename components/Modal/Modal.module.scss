@@ -29,21 +29,19 @@
 .large {
   border-radius: 3px;
   max-width: 1080px;
-  @media screen and (max-width: 950px) {
-    border-radius: 3px;
-  }
 }
 .medium {
   border-radius: 6px;
   max-width: 628px;
   @media screen and (max-width: 950px) {
-    border-radius: 6px;
+    max-width: 342px;
   }
 }
 .small {
   border-radius: 6px;
   max-width: 440px;
   @media screen and (max-width: 950px) {
+    max-width: 339px;
     border-radius: 3px;
   }
 }
