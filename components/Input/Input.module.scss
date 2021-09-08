@@ -1,25 +1,25 @@
 @import 'styles/colors';
 
-.input-container {
+.inputContainer {
   position: relative;
   font-family: 'Montserrat';
   font-size: 14px;
   color: $color-primary-dark;
 }
 
-.error-icon {
+.errorIcon {
   position: absolute;
   bottom: 10px;
   right: 15px;
 }
 
-.input-label {
+.inputLabel {
   display: block;
   margin-bottom: 7px;
   font-weight: 500;
 }
 
-.custom-input {
+.customInput {
   display: block;
   min-width: 286px;
   width: 100%;
@@ -44,7 +44,7 @@
   }
 }
 
-.input-error {
+.inputError {
   border: 1px solid $color-form-red;
   padding: 11px 45px 12px 13.5px;
 
