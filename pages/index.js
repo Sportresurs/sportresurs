@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <>
       <ContactUsButton />
+      <div id="portal" />
       <About />
     </>
   );
