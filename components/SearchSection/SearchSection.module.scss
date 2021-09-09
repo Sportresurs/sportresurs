@@ -1,0 +1,212 @@
+@import "../../styles/shared.scss";
+
+.section {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.box {
+    max-width: 860px;
+}
+
+.title {
+    display: inline-block;
+    margin-bottom: 32px;
+
+    color: $color-primary-dark;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.27;
+    letter-spacing: 0.2px;
+
+    @media screen and (max-width: 1065px) {
+        font-size: 37px;
+        line-height: 1.4;
+    }
+
+    @media screen and (max-width: 900px) {
+        font-size: 29px;
+        line-height: 1.5;
+    }
+    
+    @media screen and (max-width: 800px) {
+        margin-bottom: 18px;
+
+        font-size: 26px;
+        line-height: 1.6;
+    }
+
+    @media screen and (max-width: 660px) {
+        font-size: 20px;
+        line-height: 1.75;
+    }
+
+    @media screen and (max-width: 480px) {
+        font-size: 16px;
+        line-height: 2.08;
+    }
+
+    @media screen and (max-width: 374px) {
+        font-size: 14px;
+        line-height: 2.15;
+        letter-spacing: 0;
+    }
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: 800px) {
+        margin-bottom: 18px;
+    }
+}
+
+.inputBox {
+    position: relative;
+    width: 100%;
+    margin-right: 30px;
+
+    @media screen and (max-width: 800px) {
+        max-width: 750px;
+        margin-right: 0;
+    }
+}
+
+.input {
+    width: 100%;
+    max-width: 657px;
+    padding: 11px 18px;
+
+    font-size: 12px;
+    line-height: 1.66;
+
+    border: 1px solid $color-secondary-mediumGrey;
+    border-radius: 3px;
+    background-color: $color-primary-light;
+    outline: none;
+
+    &::placeholder {
+        color: $color-secondary-darkGrey;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+    }
+
+    @media screen and (max-width: 800px) {
+        max-width: 750px;
+        padding: 11px 12px;
+        margin-right: 0;
+
+        font-size: 14px;
+        line-height: 1.43;
+
+        border: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.fromBtnClose {
+    @extend %button;
+    position: absolute;
+    top: 15px;
+    right: 12px;
+}
+
+.fromBtnCloseIcon {
+    display: block;
+}
+
+.formBtn {
+    @extend %button;
+    display: inline-block;
+    padding: 12px 18px; 
+    max-height: 42px;
+    max-width: 175px;
+    width: 100%;
+
+    background-color: $color-primary-dark;
+    border-radius: 3px;
+    transition: background-color 200ms;
+
+     @media screen and (min-width: 801px) {
+         &:hover {
+             padding: 11px 17px;
+             background-color: $color-primary-light;
+             border: 1px solid $color-primary-dark;
+         }
+     }
+
+    @media screen and (max-width: 800px) {
+        max-width: 42px;
+        padding: 10px;
+        border-radius: 0px 3px 3px 0px;
+    }
+}
+
+.formBtnContent {
+    display: inline-block;
+    color: $color-primary-light;
+    font-size: 14px;
+    line-height: 1.29;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: color 200ms;
+
+    .formBtn:hover & {
+        color: $color-primary-dark;
+    }
+
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+}
+
+.formBtnIcon {
+
+    .formBtn:hover & > path{
+        fill: $color-accent-green;
+    }
+
+    @media screen and (min-width: 801px) {
+        display: none;
+    }
+}
+
+.btnList {
+    @extend %list;
+
+    display: flex;
+
+    @media screen and (max-width: 425px) {
+        justify-content: space-between;
+    }
+}
+
+.btnItem {
+    margin-right: 30px;
+    &:last-child {
+        margin-right: 0;
+    }
+
+    @media screen and (max-width: 425px) {
+        margin-right: 0;
+    }
+}
+
+.btnContent {
+
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
+}
+
+.btnIcon {
+    display: block;
+
+    @media screen and (min-width: 801px) {
+        display: none;
+    }
+}
