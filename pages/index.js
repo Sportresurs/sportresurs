@@ -6,6 +6,7 @@ import ThanksModal from "../components/ThanksModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
+import ContactUsButton from "../components/ContactUsButton";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -48,6 +49,8 @@ export default function Home() {
         onClose={handleClose}
         playground={playground}
       />
+      <ContactUsButton />
+      <div id="portal" />
       <About />
       <Button variant="lilac" size="large" onClick={handleToggleModal}>
         Open ThanksModal

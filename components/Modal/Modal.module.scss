@@ -18,15 +18,30 @@
 }
 .modal {
   display: flex;
-  background: $color-primary-light;
-  border-radius: 3px;
   width: 100%;
-  max-width: 1080px;
   max-height: 100%;
   position: relative;
   overflow: hidden;
   @media screen and (max-width: 950px) {
     max-width: 100%;
+  }
+}
+.large {
+  border-radius: 3px;
+  max-width: 1080px;
+}
+.medium {
+  border-radius: 6px;
+  max-width: 628px;
+  @media screen and (max-width: 950px) {
+    max-width: 342px;
+  }
+}
+.small {
+  border-radius: 6px;
+  max-width: 440px;
+  @media screen and (max-width: 950px) {
+    max-width: 339px;
     border-radius: 3px;
   }
 }
@@ -42,7 +57,7 @@
   top: 20px;
   right: 20px;
   background: transparent;
-  z-index: 2;
+  z-index: 3;
   @media screen and (max-width: 950px) {
     top: 17px;
     right: 17px;
@@ -63,7 +78,7 @@
   }
 }
 .enter {
-  background: rgba(0,0,0, 0);
+  background: rgba(0, 0, 0, 0);
   .modal {
     opacity: 0;
     transform: scale(0.5);
@@ -85,7 +100,7 @@
   }
 }
 .exitActive {
-  background: rgba(0,0,0, 0);
+  background: rgba(0, 0, 0, 0);
   .modal {
     opacity: 0;
     transform: scale(0.1);
