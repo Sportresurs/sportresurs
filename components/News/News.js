@@ -1,26 +1,17 @@
-import s from "./News.module.scss";
+import styles from "./News.module.scss";
 import NewsCard from "../NewsCard";
-import { Grid } from "../grid/Grid";
 
-export default function News() {
+export default function News({ news }) {
   return (
-    <Grid>
-      <section className={s.newsList}>
-        <h2 className={s.title}>Новини</h2>
-        <div className={s.container}>
-          <ul className={s.list}>
-            <li>
-              <NewsCard />
-            </li>
-            <li>
-              <NewsCard />
-            </li>
-            <li>
-              <NewsCard />
-            </li>
-          </ul>
-        </div>
-      </section>
-    </Grid>
+    <>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>Новини</h2>
+      </div>
+      <div className={styles.container}>
+        <NewsCard data={news[0]} />;
+        <NewsCard data={news[1]} />;
+        <NewsCard data={news[2]} />;
+      </div>
+    </>
   );
 }
