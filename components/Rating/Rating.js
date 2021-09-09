@@ -20,8 +20,13 @@ export default function Ratings({
   function colorFinder(colorToMatch) {
     const matchedColor = dataCompare.colorDescription.find(
       (item) => item.color === colorToMatch
-    ).hex;
-    return { color: matchedColor };
+    );
+
+    if (!matchedColor) {
+      return { color: "#150223" };
+    }
+
+    return { color: matchedColor.hex };
   }
   const hexColor = useMemo(() => colorFinder(color), [color]);
 
