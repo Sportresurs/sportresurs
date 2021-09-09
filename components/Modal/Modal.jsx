@@ -19,6 +19,8 @@ const Modal = ({
   variant,
   children,
   visible,
+  active,
+  isActive,
   onClose,
   closeIconMobileVariant,
 }) => {
@@ -32,11 +34,12 @@ const Modal = ({
         handleClose();
       }
     };
-    if (visible) {
+    if (visible && active) {
       document.body.style.overflow = "hidden";
     }
     window.addEventListener("keydown", handleWindowKeydown);
     return function cleanup() {
+      isActive();
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleWindowKeydown);
     };

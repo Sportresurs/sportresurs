@@ -44,7 +44,9 @@ const PlaygroundModalContent = ({ playground }) => {
             />
           ))}
         </div>
-        <ContactUsButton />
+        <div className={styles.contactBtn}>
+          <ContactUsButton />
+        </div>
       </div>
     </div>
   );
