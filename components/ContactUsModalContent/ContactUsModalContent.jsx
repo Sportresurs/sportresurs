@@ -12,10 +12,7 @@ const ContactUsModalContent = ({ onClose }) => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const result = await customerService.contactRequest(values);
-      return <p>{result}</p>;
-    } catch (e) {
-      return <p>{e.message}</p>;
+      await customerService.contactRequest(values);
     } finally {
       setLoading(false);
       onClose();
