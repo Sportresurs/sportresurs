@@ -4,7 +4,6 @@ import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
-import TwitterIcon from "../../public/svg/twitter.svg";
 
 export default function Footer() {
   return (
@@ -34,7 +33,9 @@ export default function Footer() {
             <li className={s.footerSocialsItem}>
               <a
                 className={(s.footerSocialsItemLink, s.facebook)}
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/lkpsportresurs/"
+                target="_blank"
+                rel="noreferrer"
               >
                 <FacebookIcon className={s.socialIcon} />
               </a>
@@ -42,17 +43,11 @@ export default function Footer() {
             <li className={s.footerSocialsItem}>
               <a
                 className={(s.footerSocialsItemLink, s.insta)}
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/sport_resurs/?hl=en"
+                target="_blank"
+                rel="noreferrer"
               >
                 <InstaIcon className={s.socialIcon} />
-              </a>
-            </li>
-            <li className={s.footerSocialsItem}>
-              <a
-                className={(s.footerSocialsItemLink, s.twitter)}
-                href="https://twitter.com/"
-              >
-                <TwitterIcon className={s.socialIcon} />
               </a>
             </li>
           </ul>
@@ -65,7 +60,7 @@ export default function Footer() {
               <ul className={`${s.footerCourtsList} ${s.footerCourtsListLeft}`}>
                 <li className={s.footerCourtsLink}>
                   <Link href={"/"}>
-                    <a>Спортивний</a>
+                    <a>Волейбольний</a>
                   </Link>
                 </li>
                 <li className={s.footerCourtsLink}>
@@ -75,12 +70,12 @@ export default function Footer() {
                 </li>
                 <li className={s.footerCourtsLink}>
                   <Link href={"/"}>
-                    <a>Стріт воркаут</a>
+                    <a>Футбольний</a>
                   </Link>
                 </li>
                 <li className={s.footerCourtsLink}>
                   <Link href={"/"}>
-                    <a>Скейт-майданчик</a>
+                    <a>Гімнастичний</a>
                   </Link>
                 </li>
               </ul>
@@ -99,12 +94,7 @@ export default function Footer() {
                 </li>
                 <li className={s.footerCourtsLink}>
                   <Link href={"/"}>
-                    <a>Футбольний з штучним покриттям </a>
-                  </Link>
-                </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Бігові доріжки</a>
+                    <a>Гандбольний </a>
                   </Link>
                 </li>
               </ul>
@@ -123,7 +113,10 @@ export default function Footer() {
         </div>
 
         <div className={s.legal}>
-          <p>@2021. Сайт розроблено KeenEthics . Усі права захищені</p>
+          <p>
+            @2021. Усі права захищені. Сайт розроблено
+            <a href="https://keenethics.com/">KeenEthics</a>
+          </p>
         </div>
       </div>
     </footer>
