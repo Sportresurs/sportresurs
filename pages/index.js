@@ -44,21 +44,21 @@ export default function Home() {
     <div className={styles.background}>
       <Grid>
         <TopCourts courtList={data.topCourts} />
-      <Button variant="green" size="large" onClick={handleOpen}>
-        Open
-      </Button>
-      <PlaygroundModal
-        visible={modal}
-        onClose={handleClose}
-        playground={playground}
-      />
-      <ContactUsButton />
-      <div id="portal" />
-      <About />
-      <Button variant="lilac" size="large" onClick={handleToggleModal}>
-        Open ThanksModal
-      </Button>
-      <ThanksModal isShow={isThankModalOpen} onClose={handleToggleModal} />
+        <Button variant="green" size="large" onClick={handleOpen}>
+          Open
+        </Button>
+        <PlaygroundModal
+          visible={modal}
+          onClose={handleClose}
+          playground={playground}
+        />
+        <ContactUsButton />
+        <div id="portal" />
+        <About />
+        <Button variant="lilac" size="large" onClick={handleToggleModal}>
+          Open ThanksModal
+        </Button>
+        <ThanksModal isShow={isThankModalOpen} onClose={handleToggleModal} />
       </Grid>
     </div>
   );
