@@ -76,7 +76,12 @@ const Modal = ({
   );
 };
 
+Modal.defaultProps = {
+  variant: "medium",
+};
+
 Modal.propTypes = {
+  variant: PropTypes.oneOf(["large", ",medium", "small"]),
   type: PropTypes.oneOf(["circle", ""]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

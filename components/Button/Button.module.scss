@@ -10,8 +10,14 @@
   font-style: normal;
   display: inline-block;
 }
+.button:hover {
+  transition: all 200ms;
+}
 .button:disabled {
   cursor: default;
+}
+.loading {
+  pointer-events: none;
 }
 .mobile {
   padding: 12px 20px;
@@ -84,6 +90,7 @@
 }
 .black {
   background: $color-primary-dark;
+  border: 1px solid $color-primary-dark;
   &:hover {
     background: $color-primary-light;
     color: $color-primary-dark;
