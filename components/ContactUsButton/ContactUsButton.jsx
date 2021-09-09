@@ -3,7 +3,7 @@ import Button from "../Button";
 import ContactUsModal from "../ContactUsModal";
 import ThanksModal from "../ThanksModal";
 
-const ContactUsButton = ({ shouldLockScreen }) => {
+const ContactUsButton = () => {
   const [modal, setModal] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const handleOpen = () => {
@@ -24,7 +24,7 @@ const ContactUsButton = ({ shouldLockScreen }) => {
         Зв’яжіться зі мною
       </Button>
       <ContactUsModal
-        shouldLockScreen={shouldLockScreen}
+        shouldLockScreen={false}
         visible={modal}
         onClose={handleClose}
         onSuccessOpen={handleSuccessOpen}

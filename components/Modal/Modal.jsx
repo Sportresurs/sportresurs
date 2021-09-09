@@ -38,10 +38,12 @@ const Modal = ({
     }
     window.addEventListener("keydown", handleWindowKeydown);
     return function cleanup() {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleWindowKeydown);
+      if (shouldLockScreen) {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleWindowKeydown);
+      }
     };
-  }, [visible, shouldLockScreen, handleClose]);
+  }, [visible, handleClose]);
   const handleContentClick = (e) => {
     e.stopPropagation();
   };
