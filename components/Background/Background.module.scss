@@ -6,12 +6,19 @@
   @media screen and (min-width: 768px) {
     display: block;
     position: fixed;
-    top: -40px;
-    left: -140px;
+    top: 25px;
+    left: calc(50% - 650px);
     transform: rotate(-168.21deg);
     width: 420px;
     height: 631px;
     z-index: -1;
+    background-image: url("../../public/svg/footballBgLilac.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (min-width: 1150px) {
+    left: calc(50% - 870px);
   }
 }
 
@@ -21,12 +28,18 @@
   @media screen and (min-width: 768px) {
     display: block;
     position: fixed;
-    top: 314px;
-    right: -135px;
+    top: 380px;
+    right: calc(50% - 650px);
     transform: rotate(-3.5deg);
     width: 378px;
     height: 605px;
     z-index: -1;
+    background-image: url("../../public/svg/basketBg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  @media screen and (min-width: 1150px) {
+    right: calc(50% - 870px);
   }
 }
 
@@ -37,11 +50,14 @@
     display: block;
     position: absolute;
     top: 404px;
-    left: -155px;
+    left: -200px;
     transform: rotate(15.28deg);
-    width: 476px;
-    height: 828px;
+    width: 400px;
+    height: 730px;
     z-index: -1;
+    background-image: url("../../public/svg/basketBgGreen.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
@@ -52,15 +68,18 @@
     display: block;
     position: absolute;
     top: -80px;
-    right: -355px;
+    right: -250px;
     transform: rotate(-27.21deg);
     width: 468px;
-    height: 844px;
+    height: 700px;
     z-index: -1;
+    background-image: url("../../public/svg/basketBg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
-.homeBottomLeftBasketBg {
+.homeBottomLeftTenisBg {
   display: none;
 
   @media screen and (min-width: 768px) {
@@ -72,6 +91,9 @@
     width: 303px;
     height: 651px;
     z-index: -1;
+    background-image: url("../../public/svg/tenisBg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
@@ -87,6 +109,9 @@
     width: 430px;
     height: 674px;
     z-index: -1;
+    background-image: url("../../public/svg/footballBg.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
@@ -102,5 +127,8 @@
     width: 207px;
     height: 444px;
     z-index: -1;
+    background-image: url("../../public/svg/tenisBgGreen.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }

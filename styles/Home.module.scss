@@ -7,6 +7,10 @@
 .wrapper {
   margin: 0 auto;
   max-width: 1440px;
-  height: 1813px;
   position: relative;
+
+  //for testing purposes
+  @media screen and (min-width: 768px) {
+    min-height: 1813px;
+  }
 }
