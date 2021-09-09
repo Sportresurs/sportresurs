@@ -1,9 +1,16 @@
 @import "../../styles/shared.scss";
 
+.aboutUs {
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 60px;
+  }
+}
+
 .container {
   margin: 0px auto;
   max-width: 1440px;
-  padding: 30px 18px;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -13,7 +20,6 @@
     "video  ";
 
   @media screen and (min-width: 668px) {
-    padding: 30px 70px;
     grid-template-columns: 57.21% 39.91%;
     grid-template-rows: 1fr;
     grid-template-areas: "video text ";
@@ -25,7 +31,6 @@
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 60px 165px;
     gap: 32px;
   }
 }
