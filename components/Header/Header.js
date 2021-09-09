@@ -26,7 +26,7 @@ export default function Header() {
           <button className={styles.btnMenu} onClick={handleMenuActive}>
             <IconBtnMenu />
           </button>
-          <Link href="">
+          <Link href="/">
             <a className={styles.navLogo} onClick={handleMenuActiveFalse}>
               <IconLogoHead />
             </a>
@@ -41,7 +41,7 @@ export default function Header() {
             <div className={styles.box}>
               <ul className={styles.navList}>
                 <li className={styles.navItem}>
-                  <Link href="">
+                  <Link href="/playgrounds">
                     <a className={styles.navLink}>майданчики</a>
                   </Link>
                 </li>
