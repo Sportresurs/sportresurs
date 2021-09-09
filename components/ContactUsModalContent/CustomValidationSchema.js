@@ -3,7 +3,7 @@ import * as Yup from "yup";
 const validationSchema = Yup.object({
   name: Yup.string()
     .max(20, "Колличество символов не должно превышать 20")
-    .matches(/^[A-Za-z ]*$/, "Пожалуйста, введите валидное имя")
+    .matches(/^[A-Za-zА-Яа-яЁё]*$/, "Пожалуйста, введите валидное имя")
     .required("Поле обязательно к заполнению"),
   phone: Yup.string()
     .matches(

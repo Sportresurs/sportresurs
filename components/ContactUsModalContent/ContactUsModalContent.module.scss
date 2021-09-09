@@ -36,6 +36,9 @@
 }
 .submit {
   margin-top: 36px;
+  :hover {
+    pointer-events: none;
+  }
 }
 .imageWrapper {
   position: absolute;

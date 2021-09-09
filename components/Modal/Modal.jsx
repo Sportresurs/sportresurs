@@ -6,6 +6,7 @@ import Portal from "../Portal";
 import CloseMark from "../../public/svg/closeModal.svg";
 import styles from "./Modal.module.scss";
 
+
 const ESC_KEYCODE = 27;
 const CloseIcon = ({ onClick, type }) => {
   const wrapperIconClasses = classNames(styles.closeButton, styles[type]);
@@ -76,8 +77,13 @@ const Modal = ({
   );
 };
 
+Modal.defaultProps = {
+  variant: "medium",
+};
+
 Modal.propTypes = {
   type: PropTypes.oneOf(["circle", ""]),
+  variant: PropTypes.oneOf(["large", "medium", "small"]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
