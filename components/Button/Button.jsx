@@ -17,6 +17,9 @@ const Button = ({
     styles.button,
     styles[variant],
     styles[size],
+    {
+      [styles.loading]: isLoading,
+    },
     className
   );
   return (
