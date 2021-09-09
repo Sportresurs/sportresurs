@@ -6,7 +6,6 @@ import Portal from "../Portal";
 import CloseMark from "../../public/svg/closeModal.svg";
 import styles from "./Modal.module.scss";
 
-
 const ESC_KEYCODE = 27;
 const CloseIcon = ({ onClick, type }) => {
   const wrapperIconClasses = classNames(styles.closeButton, styles[type]);
