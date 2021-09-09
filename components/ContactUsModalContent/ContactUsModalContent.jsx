@@ -7,13 +7,13 @@ import BasketballIcon from "../../public/assets/images/basketball.svg";
 import validation from "./CustomValidationSchema";
 import customerService from "../../api/customerService";
 
-const ContactUsModalContent = ({ onClose, onSuccessOpen }) => {
+const ContactUsModalContent = ({ onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
       await customerService.contactRequest(values);
-      onSuccessOpen();
+      onSuccess();
     } finally {
       setLoading(false);
       onClose();

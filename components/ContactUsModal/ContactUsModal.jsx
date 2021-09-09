@@ -11,7 +11,7 @@ const ContactUsModal = ({ visible, onClose, onSuccess, shouldLockScreen }) => (
     onClose={onClose}
   >
     <ContactUsModalContent
-      onSuccessOpen={onSuccess}
+      onSuccess={onSuccess}
       visible={visible}
       onClose={onClose}
     />
