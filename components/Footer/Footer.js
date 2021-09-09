@@ -5,6 +5,29 @@ import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
 
+const socialLinks = [
+  {
+    className: ["footerSocialsItemLink facebook"],
+    link: "https://www.facebook.com/lkpsportresurs/",
+    icon: <FacebookIcon className={s.socialIcon} />,
+  },
+  {
+    className: ["footerSocialsItemLink insta"],
+    link: "https://www.instagram.com/sport_resurs/?hl=en",
+    icon: <InstaIcon className={s.socialIcon} />,
+  },
+];
+
+const courtsLink = [
+  { link: "/", name: "Волейбольний" },
+  { link: "/", name: "Дитячий" },
+  { link: "/", name: "Футбольний" },
+  { link: "/", name: "Гімнастичний" },
+  { link: "/", name: "Баскетбольний" },
+  { link: "/", name: "Тенісний" },
+  { link: "/", name: "Гандбольний" },
+];
+
 export default function Footer() {
   return (
     <footer className={s.footer}>
@@ -30,75 +53,34 @@ export default function Footer() {
         <div className={s.footerSocials}>
           <p className={s.footerSocialsText}>Наші соціальні мережі:</p>
           <ul className={s.footerSocialsList}>
-            <li className={s.footerSocialsItem}>
-              <a
-                className={(s.footerSocialsItemLink, s.facebook)}
-                href="https://www.facebook.com/lkpsportresurs/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FacebookIcon className={s.socialIcon} />
-              </a>
-            </li>
-            <li className={s.footerSocialsItem}>
-              <a
-                className={(s.footerSocialsItemLink, s.insta)}
-                href="https://www.instagram.com/sport_resurs/?hl=en"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <InstaIcon className={s.socialIcon} />
-              </a>
-            </li>
+            {socialLinks.map((item) => (
+              <li key={item.link} className={s.footerSocialsItem}>
+                <a
+                  className={item.className}
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {item.icon}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div className={s.flexWrapper}>
           <div className={s.footerCourts}>
             <h3 className={s.footerCourtsTitle}>Майданчики</h3>
-            <div className={s.footerCourtsWrapper}>
-              <ul className={`${s.footerCourtsList} ${s.footerCourtsListLeft}`}>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Волейбольний</a>
+
+            <ul className={s.footerCourtsList}>
+              {courtsLink.map((item) => (
+                <li key={item.name} className={s.footerCourtsLink}>
+                  <Link href={item.link}>
+                    <a>{item.name}</a>
                   </Link>
                 </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Дитячий</a>
-                  </Link>
-                </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Футбольний</a>
-                  </Link>
-                </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Гімнастичний</a>
-                  </Link>
-                </li>
-              </ul>
-              <ul
-                className={`${s.footerCourtsList} ${s.footerCourtsListRight}`}
-              >
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Баскетбольний</a>
-                  </Link>
-                </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Тенісний </a>
-                  </Link>
-                </li>
-                <li className={s.footerCourtsLink}>
-                  <Link href={"/"}>
-                    <a>Гандбольний </a>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
           </div>
           <div className={s.footerContacts}>
             <h3 className={s.footerContactsTitle}>Контакти</h3>
@@ -115,7 +97,9 @@ export default function Footer() {
         <div className={s.legal}>
           <p>
             @2021. Усі права захищені. Сайт розроблено
-            <a href="https://keenethics.com/">KeenEthics</a>
+            <a href="https://keenethics.com/" target="_blank" rel="noreferrer">
+              KeenEthics
+            </a>
           </p>
         </div>
       </div>
