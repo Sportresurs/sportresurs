@@ -54,13 +54,13 @@
   border: none;
   position: absolute;
   cursor: pointer;
-  top: 17px;
-  right: 17px;
+  top: 20px;
+  right: 20px;
   background: transparent;
   z-index: 3;
   @media screen and (max-width: 950px) {
     top: 17px;
-    right: 17px;
+    right: 10px;
   }
 }
 .circle {
