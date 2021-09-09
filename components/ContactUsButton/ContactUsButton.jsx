@@ -12,7 +12,7 @@ const ContactUsButton = () => {
   };
   return (
     <>
-      <Button variant="lilac" size="small" onClick={handleOpen}>
+      <Button variant="lilac" size="small" onClose onClick={handleOpen}>
         Зв’яжіться зі мною
       </Button>
       <ContactUsModal visible={modal} onClose={handleClose} />
