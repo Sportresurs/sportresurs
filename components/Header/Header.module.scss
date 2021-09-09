@@ -152,6 +152,8 @@
     margin-right: 47px;
     color: $color-primary-light;
 
+    transition: color 200ms;
+
     &:first-child {
         margin-right: 39px;
     }
@@ -242,35 +244,5 @@
 
         font-size: 14px;
         line-height: 1.258;
-    }
-}
-
-.btnContact {
-    @extend %button;
-    display: block;
-    padding: 10px;
-
-    background-color: $color-accent-purple;
-    border-radius: 3px;
-
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.5;
-
-    color: $color-primary-light;
-
-    &:hover {
-        background-color: $color-hover-purple;
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 1023px) {
-        padding: 7.5px;
-        font-size: 11px;
-    }
-
-    @media screen and (min-width: 426px) and (max-width: 767px) {
-        padding: 7.5px;
-        font-size: 11px;
-        margin-bottom: 10px;
     }
 }
