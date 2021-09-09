@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Link from "next/link";
-import cn from "classnames/bind";
+import className from "classnames/bind";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
-import s from "./Header.module.scss";
+import styles from "./Header.module.scss";
 import ContactUsButton from "../ContactUsButton";
 
-const cx = cn.bind(s);
+const cx = className.bind(styles);
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
@@ -21,13 +21,13 @@ export default function Header() {
 
   return (
     <>
-      <header className={s.header}>
-        <nav className={s.nav}>
-          <button className={s.btnMenu} onClick={handleMenuActive}>
+      <header className={styles.header}>
+        <nav className={styles.nav}>
+          <button className={styles.btnMenu} onClick={handleMenuActive}>
             <IconBtnMenu />
           </button>
           <Link href="">
-            <a className={s.navLogo} onClick={handleMenuActiveFalse}>
+            <a className={styles.navLogo} onClick={handleMenuActiveFalse}>
               <IconLogoHead />
             </a>
           </Link>
@@ -38,31 +38,31 @@ export default function Header() {
             })}
             onClick={handleMenuActiveFalse}
           >
-            <div className={s.box}>
-              <ul className={s.navList}>
-                <li className={s.navItem}>
+            <div className={styles.box}>
+              <ul className={styles.navList}>
+                <li className={styles.navItem}>
                   <Link href="">
-                    <a className={s.navLink}>майданчики</a>
+                    <a className={styles.navLink}>майданчики</a>
                   </Link>
                 </li>
-                <li className={s.navItem}>
+                <li className={styles.navItem}>
                   <Link href="">
-                    <a className={s.navLink}>карта</a>
+                    <a className={styles.navLink}>карта</a>
                   </Link>
                 </li>
-                <li className={s.navItem}>
+                <li className={styles.navItem}>
                   <Link href="">
-                    <a className={s.navLink}>про нас</a>
+                    <a className={styles.navLink}>про нас</a>
                   </Link>
                 </li>
-                <li className={s.navItem}>
+                <li className={styles.navItem}>
                   <Link href="">
-                    <a className={s.navLink}>новини</a>
+                    <a className={styles.navLink}>новини</a>
                   </Link>
                 </li>
-                <li className={s.navItem}>
+                <li className={styles.navItem}>
                   <Link href="">
-                    <a className={s.navLink}>контакти</a>
+                    <a className={styles.navLink}>контакти</a>
                   </Link>
                 </li>
               </ul>
