@@ -1,49 +1,46 @@
 @import "../../styles/shared.scss";
 
 .card {
+  width: 350px;
+  height: 344px;
+  float: left;
+  margin: -50px 10px 10px 10px;
   position: relative;
   border-radius: 3px;
-  float: left;
+  cursor: pointer;
+  overflow: hidden;
+  @media screen and (max-width: 1150px) {
+        min-width: 250px;
+        min-height: 333px;
+      }
 }
 
 .info {
-  position: absolute;
-  width: 350px;
-  height: 36px;
-  left: 0px;
+  height: 256px;
   top: 308px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   border-radius: 0px 0px 3px 3px;
-  padding: 14px 41px 14px 12px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  font-family: Mulish;
-  font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 22px;
   letter-spacing: 0.2px;
   color: $color-primary-light;
-  @media screen and (max-width: 1150px) {
-    width: 250px;
-  }
-}
-
-.info:hover {
-  position: absolute;
-  height: 254px;
-  top: 90px;
-  -webkit-line-clamp: 100;
-  padding-top: 30px;
+  padding: 10px 7px 7px 6px;
   transition: 0.5s;
 }
 
-.newsList {
-  width: 350px;
-  height: 344px;
-  @media screen and (max-width: 1150px) {
-    width: 250px;
-    height: 333px;
-  }
+.info:hover {
+  transform: translateY(-208px);
+  -webkit-line-clamp: 100;
+  padding-top: 30px;
+}
+
+.image {
+  border-radius: 3px;
 }
