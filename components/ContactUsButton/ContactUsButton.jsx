@@ -27,7 +27,7 @@ const ContactUsButton = ({ shouldLockScreen }) => {
         shouldLockScreen={shouldLockScreen}
         visible={modal}
         onClose={handleClose}
-        onSuccessOpen={handleSuccessOpen}
+        onSuccess={handleSuccessOpen}
       />
       <ThanksModal
         shouldLockScreen={false}

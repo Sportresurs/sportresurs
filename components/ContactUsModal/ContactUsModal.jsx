@@ -3,12 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "../Modal";
 import ContactUsModalContent from "../ContactUsModalContent";
 
-const ContactUsModal = ({
-  visible,
-  onClose,
-  onSuccessOpen,
-  shouldLockScreen,
-}) => (
+const ContactUsModal = ({ visible, onClose, onSuccess, shouldLockScreen }) => (
   <Modal
     shouldLockScreen={shouldLockScreen}
     variant="medium"
@@ -16,7 +11,7 @@ const ContactUsModal = ({
     onClose={onClose}
   >
     <ContactUsModalContent
-      onSuccessOpen={onSuccessOpen}
+      onSuccessOpen={onSuccess}
       visible={visible}
       onClose={onClose}
     />
