@@ -4,6 +4,7 @@ import cn from "classnames/bind";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import s from "./Header.module.scss";
+import ContactUsButton from "../ContactUsButton";
 
 const cx = cn.bind(s);
 
@@ -66,7 +67,7 @@ export default function Header() {
                 </li>
               </ul>
 
-              <button className={s.btnContact}>Зв’яжіться зі мною</button>
+              <ContactUsButton />
             </div>
           </div>
         </nav>
