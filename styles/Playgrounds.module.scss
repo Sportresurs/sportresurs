@@ -1,6 +1,17 @@
 @import "./shared.scss";
 
+.background {
+  @media screen and (min-width: 1440px) {
+    background-position: calc(50% + 20px) -60px;
+    background-image: url("../public/svg/playgroundsBg.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
 .courts {
+  margin: 0 auto;
+  max-width: 1440px;
   padding-bottom: 19px;
 
   @media screen and (min-width: 768px) {

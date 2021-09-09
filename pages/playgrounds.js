@@ -2,13 +2,11 @@ import s from "../styles/Playgrounds.module.scss";
 import CourtCard from "../components/CourtCard";
 import { Grid } from "../components/grid/Grid";
 import data from "../utils/testData/testArrs";
-import Background from "../components/Background";
 
 export default function Playgrounds() {
   return (
-    <>
+    <div className={s.background}>
       <section className={s.courts}>
-        <Background variant="playgroundsPage" />
         <Grid>
           <h1 className={s.title}>Майданчики</h1>
           <ul className={s.list}>
@@ -20,6 +18,6 @@ export default function Playgrounds() {
           </ul>
         </Grid>
       </section>
-    </>
+    </div>
   );
 }

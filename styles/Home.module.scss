@@ -1,16 +1,12 @@
 @import "./shared.scss";
 
-.hide {
-  overflow: hidden;
-}
+.background {
+  //temporary
+  height: 1813px;
 
-.wrapper {
-  margin: 0 auto;
-  max-width: 1440px;
-  position: relative;
-
-  //for testing purposes
-  @media screen and (min-width: 768px) {
-    min-height: 1813px;
+  @media screen and (min-width: 1440px) {
+    background-image: url("../public/svg/homePageBg.svg");
+    background-position: calc(50% + 20px) -60px;
+    background-repeat: repeat-y;
   }
 }
