@@ -67,7 +67,7 @@ export default function Header() {
                 </li>
               </ul>
 
-              <ContactUsButton />
+              <ContactUsButton shouldLockScreen={true} />
             </div>
           </div>
         </nav>

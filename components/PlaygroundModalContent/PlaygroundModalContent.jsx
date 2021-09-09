@@ -45,7 +45,7 @@ const PlaygroundModalContent = ({ playground }) => {
           ))}
         </div>
         <div className={styles.contactBtn}>
-          <ContactUsButton shouldLockScreen />
+          <ContactUsButton shouldLockScreen={false} />
         </div>
       </div>
     </div>
