@@ -6,7 +6,7 @@ import ThumbUpIcon from "../../public/svg/thumbUp.svg";
 
 export default function ThanksModal({ isShow, variant = "client", onClose }) {
   return (
-    <Modal visible={isShow} onClose={onClose}>
+    <Modal variant="small" visible={isShow} onClose={onClose}>
       <div className={s.modal}>
         <ThumbUpIcon className={s.icon} />
         <h3 className={s.title}>Готово!</h3>
