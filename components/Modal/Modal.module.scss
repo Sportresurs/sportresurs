@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  z-index: 2;
+  z-index: 10;
   padding: 85px 17px 17px;
   background: $color-modal-darkened;
   @media screen and (max-width: 950px) {

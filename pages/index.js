@@ -47,7 +47,6 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
-        <div id="portal" />
         <About />
       </Grid>
     </div>

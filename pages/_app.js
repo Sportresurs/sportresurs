@@ -4,7 +4,12 @@ import "../styles/base.scss";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <>
+      <div id="portal"></div>
+      {getLayout(<Component {...pageProps} />)}
+    </>
+  );
 }
 
 export default Sentry.withErrorBoundary(MyApp, {
