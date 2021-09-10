@@ -66,10 +66,10 @@
 .circle {
   @media screen and (max-width: 950px) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     svg {
-      z-index: 4;
       width: 12px;
       height: 12px;
     }
