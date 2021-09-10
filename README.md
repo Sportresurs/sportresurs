@@ -75,3 +75,12 @@ We use Jest for testing.
 
 Run `npm run test` command to run Jest in watch mode. <br/>
 Run `npm run jest` command to run all tests.
+
+## Setup emails
+
+This approach requires a valid email address (Gmail).
+On your email account, you will need to give access to login
+from third-party applications [account.google](https://myaccount.google.com/lesssecureapps?)
+Also, this approach has limitations (500 emails per day / at a time).
+If the mail got into the "SPAM" section, you need to indicate the sender as "verified"
+After you indicate that this is a verified sender, email will stop getting into "SPAM"
