@@ -7,12 +7,12 @@ import InstaIcon from "../../public/svg/insta.svg";
 
 const socialLinks = [
   {
-    className: ["footerSocialsItemLink facebook"],
+    className: "footerSocialsItemLink facebook",
     link: "https://www.facebook.com/lkpsportresurs/",
     icon: <FacebookIcon className={s.socialIcon} />,
   },
   {
-    className: ["footerSocialsItemLink insta"],
+    className: "footerSocialsItemLink insta",
     link: "https://www.instagram.com/sport_resurs/?hl=en",
     icon: <InstaIcon className={s.socialIcon} />,
   },
