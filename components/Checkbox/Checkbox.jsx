@@ -4,7 +4,7 @@ import styles from "./Checkbox.module.scss";
 
 const Checkbox = ({ text, state, changeState }) => {
   const checkboxClassName = classNames({
-    [styles.checkboxChacked]: state,
+    [styles.checkboxChecked]: state,
     [styles.checkbox]: !state,
   });
 
