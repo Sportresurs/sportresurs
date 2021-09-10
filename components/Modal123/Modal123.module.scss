@@ -1,0 +1,41 @@
+@import '../../styles/shared.scss';
+
+.modal {
+    max-width: 1110px;
+    width: 100%;  
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 351px;
+    height: 344px;
+    background-color: rgb(58, 194, 99);
+    border: 2px solid black;
+    
+}
+
+.title {
+    display: block;
+    font-size: 40px;
+    
+}
+
+/* .boxImg {
+    display: block;
+    max-width: 350px;
+    width: 100%;
+    height: 100%;
+
+    
+}
+
+.img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+} */

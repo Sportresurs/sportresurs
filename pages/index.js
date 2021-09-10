@@ -9,6 +9,7 @@ import data from "../utils/testData/testArrs";
 import { Grid } from "../components/grid/Grid";
 import styles from "../styles/Home.module.scss";
 import ContactUsButton from "../components/ContactUsButton";
+import Modal123 from "../components/Modal123";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -59,6 +60,7 @@ export default function Home() {
           Open ThanksModal
         </Button>
         <ThanksModal isShow={isThankModalOpen} onClose={handleToggleModal} />
+        <Modal123 />
       </Grid>
     </div>
   );
