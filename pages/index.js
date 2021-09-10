@@ -2,13 +2,11 @@ import { useState } from "react";
 import About from "../components/About";
 import image from "../components/PlaygroundModalContent/images/image.png";
 import PlaygroundModal from "../components/PlaygroundModal";
-import ThanksModal from "../components/ThanksModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/grid/Grid";
 import styles from "../styles/Home.module.scss";
-import ContactUsButton from "../components/ContactUsButton";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -35,30 +33,21 @@ export default function Home() {
     img: image,
   };
 
-  // ThanksModal handler
-  const [isThankModalOpen, setIsThankModalOpen] = useState(false);
-  const handleToggleModal = () => {
-    setIsThankModalOpen(!isThankModalOpen);
-  };
   return (
     <div className={styles.background}>
       <Grid>
         <TopCourts courtList={data.topCourts} />
-        <Button variant="green" size="large" onClick={handleOpen}>
-          Open
-        </Button>
+        <div>
+          <Button variant="green" size="large" onClick={handleOpen}>
+            Открыть модальное окно
+          </Button>
+        </div>
         <PlaygroundModal
           visible={modal}
           onClose={handleClose}
           playground={playground}
         />
-        <ContactUsButton />
-        <div id="portal" />
         <About />
-        <Button variant="lilac" size="large" onClick={handleToggleModal}>
-          Open ThanksModal
-        </Button>
-        <ThanksModal isShow={isThankModalOpen} onClose={handleToggleModal} />
       </Grid>
     </div>
   );
