@@ -1,13 +1,6 @@
 import nodemailer from "nodemailer";
 import * as Sentry from "@sentry/nextjs";
 
-// This approach requires a valid email address (Gmail).
-// On your email account, you will need to give access to login
-// from third-party applications https://myaccount.google.com/lesssecureapps?
-// Also, this approach has limitations (500 emails per day / at a time).
-// If the mail got into the "SPAM" section, you need to indicate the sender as "verified"
-// After you indicate that this is a verified sender, email will stop getting into "SPAM"
-
 const { EMAIL_LOGIN, EMAIL_PASS, RECIPIENT_EMAIL } = process.env;
 
 const transporter = nodemailer.createTransport({
