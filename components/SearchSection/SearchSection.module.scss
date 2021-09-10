@@ -123,9 +123,7 @@
     @extend %button;
     display: inline-block;
     padding: 12px 18px; 
-    max-height: 42px;
-    max-width: 175px;
-    width: 100%;
+    white-space: nowrap;
 
     background-color: $color-primary-dark;
     border-radius: 3px;
@@ -165,6 +163,7 @@
 }
 
 .formBtnIcon {
+    display: block;
 
     .formBtn:hover & > path{
         fill: $color-accent-green;

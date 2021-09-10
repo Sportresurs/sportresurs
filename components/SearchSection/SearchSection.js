@@ -16,7 +16,7 @@ export default function SearchSection() {
     setValue(e.target.value);
   };
 
-  const hendleClearSearch = () => {
+  const handleInputClear = () => {
     setValue("");
   };
 
@@ -39,7 +39,7 @@ export default function SearchSection() {
                 <button
                   className={styles.fromBtnClose}
                   type="button"
-                  onClick={hendleClearSearch}
+                  onClick={handleInputClear}
                 >
                   <Close className={styles.fromBtnCloseIcon}></Close>
                 </button>
