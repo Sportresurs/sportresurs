@@ -64,7 +64,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {<Icon />}
+                  {<Icon className={styles.socialIcon} />}
                 </a>
               </li>
             ))}
