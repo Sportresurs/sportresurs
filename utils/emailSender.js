@@ -41,7 +41,7 @@ const emailSender = (name, phoneNumber, details) => {
     console.error(err, message);
     Sentry.captureException(err);
     Sentry.captureMessage(
-      `Повідомлення з форми зворотнього зв'язку яке не вдалося надіслати\n${message}`
+      `Повідомлення з форми зворотнього зв'язку яке не вдалося надіслати${message}`
     );
   }
 };
