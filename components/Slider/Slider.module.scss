@@ -1,0 +1,190 @@
+@import '../../styles/shared.scss';
+
+.arrow {
+    @extend %button;
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+
+    transform: translateY(-50%);
+    opacity: 0.8;
+    z-index: 10;
+
+    &.hidden {
+        display: none;
+    }
+
+    &.next {
+        right: 24px;
+    }
+
+    &.prev {
+        left: 24px;
+        transform: translateY(-50%) rotate(-180deg);
+    }
+
+    @media screen and (max-width: 767px) {
+        &.next {
+            right: 12px;
+        }
+
+        &.prev {
+            left: 12px;
+        }
+    }
+}
+
+.dotsBar {
+    display: flex;
+    justify-content: center;
+
+    & ul {
+        @extend %list;
+        display: flex
+    }
+
+    & ul li button {
+        @extend %button;
+    }
+
+    & ul .active {
+        color: red;
+    }
+
+}
+
+.dotsBar {
+    @extend %list;
+    display: inline-block;
+    margin: auto;
+    height: 10px;
+
+    margin-top: 30px;
+    text-align: center;
+
+    @media screen and (max-width: 767px) {
+        height: 7px;
+        margin-top: 18px;
+    }
+
+    &.modal {
+        position: absolute;
+        bottom: 13px;
+        left: 50%;
+        height: 7px;
+
+        transform: translateX(-50%);
+
+        @media screen and (max-width: 767px) {
+            position: absolute;
+            bottom: -18px;
+            height: 5px;
+        }
+    }
+
+
+}
+
+li {
+    .dotsBar & {
+        display: inline-block;
+        margin-right: 12px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 767px) {
+            margin-right: 20px;
+        }
+    }
+
+    .dotsBar.modal & {
+        margin-right: 21px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        @media screen and (max-width: 767px) {
+            margin-right: 12px;
+        }
+    }
+}
+
+button {
+    .dotsBar li & {
+        @extend %button;
+        display: block;
+        height: 10px;
+        width: 10px;
+
+        color: transparent;
+
+        border-radius: 5px;
+        background: $color-primary-dark;
+        opacity: 0.5;
+
+        transition: all 500ms;
+
+        @media screen and (max-width: 767px) {
+            height: 7px;
+            width: 7px;
+        }
+
+        &:hover,
+        &:focus {
+            background: $color-primary-dark;
+            opacity: 1;
+        }
+    }
+
+    .dotsBar.modal li & {
+        height: 7px;
+        width: 7px;
+
+        background: $color-primary-light;
+
+        transition: all 500ms;
+
+        @media screen and (max-width: 767px) {
+            height: 5px;
+            width: 5px;
+
+            background: $color-primary-dark;
+        }
+
+        &:hover,
+        &:focus {
+            background: $color-primary-light;
+            opacity: 1;
+
+            @media screen and (max-width: 767px) {
+                background: $color-primary-dark;
+            }
+        }
+    }
+}
+
+.dotsBar :global(li.slick-active) button {
+    width: 46px;
+    border-radius: 5px;
+    background-color: $color-primary-dark;
+    opacity: 1;
+
+    @media screen and (max-width: 767px) {
+        width: 39px;
+    }
+}
+
+.dotsBar.modal :global(li.slick-active) button {
+    width: 39px;
+    border-radius: 8px;
+    background-color: $color-primary-light;
+    opacity: 1;
+
+    @media screen and (max-width: 767px) {
+        background-color: $color-primary-dark;
+    }
+}

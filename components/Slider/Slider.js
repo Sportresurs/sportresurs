@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import classnames from "classnames/bind";
 import styles from "./Slider.module.scss";
 import Arrow from "../../public/svg/sliderArrow.svg";
@@ -65,7 +66,7 @@ const SlickSlider = ({
   );
 
   const settings = {
-    dotsClass: cx("dotsWrap", {
+    dotsClass: cx("dotsBar", {
       modal: isModal === true,
     }),
     dots: isDots,
@@ -94,6 +95,45 @@ const SlickSlider = ({
       <Slider {...settings}>{children}</Slider>
     </div> */
   );
+};
+
+SlickSlider.defaultProps = {
+  isDots: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  isInfinite: false,
+  speed: 500,
+  islazyLoad: true,
+  isSwipe: true,
+  isVariableWidth: false,
+  isArrows: true,
+  responsive: null,
+  isModal: false,
+  spaceBetween: 30,
+};
+
+SlickSlider.propTypes = {
+  isDots: PropTypes.oneOf([true, false]).isRequired,
+  slidesToShow: PropTypes.number.isRequired,
+  slidesToScroll: PropTypes.number.isRequired,
+  isInfinite: PropTypes.oneOf([true, false]).isRequired,
+  speed: PropTypes.number,
+  islazyLoad: PropTypes.oneOf([true, false]).isRequired,
+  isSwipe: PropTypes.oneOf([true, false]).isRequired,
+  isVariableWidth: PropTypes.oneOf([true, false]),
+  isArrows: PropTypes.oneOf([true, false]).isRequired,
+  isModal: PropTypes.oneOf([true, false]).isRequired,
+  spaceBetween: PropTypes.number,
+  responsive: PropTypes.arrayOf(
+    PropTypes.shape({
+      breakpoint: PropTypes.number.isRequired,
+      settings: PropTypes.object.isRequired,
+    })
+  ),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default SlickSlider;

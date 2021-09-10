@@ -41,7 +41,13 @@ const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 export default function Modal() {
   return (
     <div className={s.modal}>
-      <Slider spaceBetween={30} isModal={false} slidesToShow={3}>
+      <Slider
+        spaceBetween={30}
+        isModal={true}
+        slidesToShow={3}
+        isArrows={true}
+        slidesToScroll={1}
+      >
         {/* {photos.map((photo) => (
           <div key={photo.name} className={s.boxImg}>
             <img src={photo.url} alt={photo.name} className={s.img} />
