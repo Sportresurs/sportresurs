@@ -1,24 +1,19 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import Select, { components } from "react-select";
 import styles from "./MultiSelect.module.scss";
 import Checkbox from "../checkbox/Checkbox";
 
-const Option = (props) => {
-  const [selected, setSelected] = useState(props.isSelected);
-
-  return (
-    <div className={styles.optionVar}>
-      <components.Option {...props}>
-        <Checkbox
-          state={selected}
-          text={props.label}
-          changeState={setSelected}
-        />
-      </components.Option>
-    </div>
-  );
-};
+const Option = (props) => (
+  <div className={styles.optionVar}>
+    <components.Option {...props}>
+      <Checkbox
+        state={props.isSelected}
+        text={props.label}
+        changeState={() => null}
+      />
+    </components.Option>
+  </div>
+);
 
 export default function MultiSelect({
   data,
@@ -63,15 +58,13 @@ export default function MultiSelect({
 
       zIndex: 4,
     }),
-    option: (base, state) => ({
+    option: (base) => ({
       ...base,
       padding: "0",
       display: "flex",
       alignItems: "center",
 
-      backgroundColor: state.isSelected
-        ? { color: "#ffffff" }
-        : { color: "#ffffff" },
+      backgroundColor: "#ffffff",
     }),
   };
 
