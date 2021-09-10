@@ -1,22 +1,12 @@
 import Link from "next/link";
-import s from "./Footer.module.scss";
+import classNames from "classnames/bind";
+import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
 
-const socialLinks = [
-  {
-    className: "footerSocialsItemLink facebook",
-    link: "https://www.facebook.com/lkpsportresurs/",
-    icon: <FacebookIcon className={s.socialIcon} />,
-  },
-  {
-    className: "footerSocialsItemLink insta",
-    link: "https://www.instagram.com/sport_resurs/?hl=en",
-    icon: <InstaIcon className={s.socialIcon} />,
-  },
-];
+const cx = classNames.bind(styles);
 
 const courtsLink = [
   { link: "/", name: "Волейбольний" },
@@ -28,53 +18,66 @@ const courtsLink = [
   { link: "/", name: "Гандбольний" },
 ];
 
+const socialLinks = [
+  {
+    className: cx("footerSocialsItemLink", "facebook"),
+    link: "https://www.facebook.com/lkpsportresurs/",
+    icon: FacebookIcon,
+  },
+  {
+    className: cx("footerSocialsItemLink", "insta"),
+    link: "https://www.instagram.com/sport_resurs/?hl=en",
+    icon: InstaIcon,
+  },
+];
+
 export default function Footer() {
   return (
-    <footer className={s.footer}>
-      <div className={s.container}>
-        <div className={s.logo}>
-          <div className={s.logoDesktop}>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <div className={styles.logoDesktop}>
             <Link passHref={true} href={"/"}>
-              <a className={s.logoLink}>
+              <a className={styles.logoLink}>
                 <Logo />
               </a>
             </Link>
           </div>
 
-          <div className={s.logoMobile}>
+          <div className={styles.logoMobile}>
             <Link href={"/"}>
-              <a className={s.logoLink}>
+              <a className={styles.logoLink}>
                 <LogoMobile />
               </a>
             </Link>
           </div>
         </div>
 
-        <div className={s.footerSocials}>
-          <p className={s.footerSocialsText}>Наші соціальні мережі:</p>
-          <ul className={s.footerSocialsList}>
-            {socialLinks.map((item) => (
-              <li key={item.link} className={s.footerSocialsItem}>
+        <div className={styles.footerSocials}>
+          <p className={styles.footerSocialsText}>Наші соціальні мережі:</p>
+          <ul className={styles.footerSocialsList}>
+            {socialLinks.map(({ link, className, icon: Icon }) => (
+              <li key={link} className={styles.footerSocialsItem}>
                 <a
-                  className={item.className}
-                  href={item.link}
+                  className={className}
+                  href={link}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {item.icon}
+                  {<Icon />}
                 </a>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className={s.flexWrapper}>
-          <div className={s.footerCourts}>
-            <h3 className={s.footerCourtsTitle}>Майданчики</h3>
+        <div className={styles.flexWrapper}>
+          <div className={styles.footerCourts}>
+            <h3 className={styles.footerCourtsTitle}>Майданчики</h3>
 
-            <ul className={s.footerCourtsList}>
+            <ul className={styles.footerCourtsList}>
               {courtsLink.map((item) => (
-                <li key={item.name} className={s.footerCourtsLink}>
+                <li key={item.name} className={styles.footerCourtsLink}>
                   <Link href={item.link}>
                     <a>{item.name}</a>
                   </Link>
@@ -82,19 +85,19 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div className={s.footerContacts}>
-            <h3 className={s.footerContactsTitle}>Контакти</h3>
-            <address className={s.footerContactsAddress}>
+          <div className={styles.footerContacts}>
+            <h3 className={styles.footerContactsTitle}>Контакти</h3>
+            <address className={styles.footerContactsAddress}>
               <p>79008, Львів,</p>
               <p>пл. Ринок, 1, каб. 516</p>
-              <a href="tel:+38012345678" className={s.footerTelephone}>
+              <a href="tel:+38012345678" className={styles.footerTelephone}>
                 +38012345678
               </a>
             </address>
           </div>
         </div>
 
-        <div className={s.legal}>
+        <div className={styles.legal}>
           <p>
             @2021. Усі права захищені. Сайт розроблено
             <a href="https://keenethics.com/" target="_blank" rel="noreferrer">
