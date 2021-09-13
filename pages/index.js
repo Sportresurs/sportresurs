@@ -5,7 +5,7 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
-import { Grid } from "../components/grid/Grid";
+import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
