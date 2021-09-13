@@ -1,6 +1,6 @@
 import s from "../styles/Playgrounds.module.scss";
 import CourtCard from "../components/CourtCard";
-import { Grid } from "../components/grid/Grid";
+import { Grid } from "../components/Grid/index";
 import data from "../utils/testData/testArrs";
 
 export default function Playgrounds() {
