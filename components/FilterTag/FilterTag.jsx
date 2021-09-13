@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import PropTypes from "prop-types";
 import styles from "./FilterTag.module.scss";
 import CloseIcon from "../../public/svg/closeFilterTag.svg";
 
@@ -17,5 +18,15 @@ const FilterTag = ({ text, onClick }) => (
     <CloseButton onClick={onClick} />
   </div>
 );
+
+FilterTag.defaultProps = {
+  text: "",
+  onClick: () => {},
+};
+
+FilterTag.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export default FilterTag;
