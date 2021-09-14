@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-/* import MagicSliderDots from "react-magic-slider-dots"; */
+import MagicSliderDots from "react-magic-slider-dots";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import classnames from "classnames/bind";
 import styles from "./Slider.module.scss";
 import Arrow from "../../public/svg/sliderArrow.svg";
-/* import useWindowSize from "./hook"; */
+import useWindowSize from "./hook";
 
 const cx = classnames.bind(styles);
 
@@ -44,10 +44,10 @@ const SlickSlider = ({
   responsive,
   margin,
   isModal,
-  /* arrayLength, */
+  arrayLength,
 }) => {
   const [indexImage, setIndexImage] = useState(0);
-  /* const size = useWindowSize();
+  const size = useWindowSize();
 
   let widthOfDot = 28.5;
   if (isModal && size.width > 767) {
@@ -61,7 +61,7 @@ const SlickSlider = ({
   }
   if (isModal === false && size.width < 768) {
     widthOfDot = 28.5;
-  } */
+  }
 
   const NextArrow = ({ onClick }) => (
     <button
@@ -104,16 +104,18 @@ const SlickSlider = ({
     prevArrow: <PrevArrow />,
     responsive,
     beforeChange: (current, next) => setIndexImage(next),
-    /* appendDots: (dots) => (
-      <div>
-        <MagicSliderDots
-          dots={dots}
-          numDotsToShow={arrayLength > 5 ? 5 : arrayLength}
-          dotWidth={widthOfDot}
-          dotContainerClassName={cx("dotsBar")}
-        />
-      </div>
-    ), */
+    appendDots(dots) {
+      return (
+        <div>
+          <MagicSliderDots
+            dots={dots}
+            numDotsToShow={arrayLength > 5 ? 5 : arrayLength}
+            dotWidth={widthOfDot}
+            dotContainerClassName={cx("dotsBar")}
+          />
+        </div>
+      );
+    },
   };
 
   return (

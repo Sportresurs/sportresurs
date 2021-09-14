@@ -12,7 +12,7 @@ export default function Modal() {
         slidesToScroll={1}
         isArrows={true}
         arrayLength={arr.length}
-        isModal={true}
+        isModal={false}
       >
         {arr.map((item) => (
           <li key={item} className={s.box}>
