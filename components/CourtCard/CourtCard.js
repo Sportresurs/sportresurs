@@ -2,11 +2,10 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import cn from "classnames";
 import s from "./CourtCard.module.scss";
-import Rating from "../Rating";
-import Button from "../Button";
 import Tag from "../Tag";
 import placeholderImg from "../../public/img/court-placeholder.jpg";
 import colorMatch from "../../utils/testData/testArrs";
+import CourtCardInfo from "../CourtCardInfo";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -34,15 +33,12 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           <p className={s.address}>{address}</p>
         </div>
         <div className={s.outer}>
-          <p className={s.courtNumber}>майданчик №{courtNumber}</p>
-          <p className={s.addressOuter}>{address}</p>
-          <div className={s.ratingOuter}>
-            <Rating readOnly={true} value={rating} color={color} />
-          </div>
-
-          <Button size={"small"} variant={color}>
-            Детальніше
-          </Button>
+          <CourtCardInfo
+            courtNumber={courtNumber}
+            address={address}
+            color={color}
+            rating={rating}
+          />
         </div>
       </div>
     </>

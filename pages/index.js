@@ -7,6 +7,7 @@ import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/grid/Grid";
 import styles from "../styles/Home.module.scss";
+import PlaygroundsList from "../components/PlaygroundsList";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -47,6 +48,7 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
+        <PlaygroundsList />
         <About />
       </Grid>
     </div>
