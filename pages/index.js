@@ -9,6 +9,7 @@ import data from "../utils/testData/testArrs";
 import { Grid } from "../components/grid/Grid";
 import styles from "../styles/Home.module.scss";
 import ContactUsButton from "../components/ContactUsButton";
+import Marker from "../components/Marker";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -42,6 +43,7 @@ export default function Home() {
   };
   return (
     <div className={styles.background}>
+      <Marker typeOfCourt="Basketball" bgColor="red" />
       <Grid>
         <TopCourts courtList={data.topCourts} />
         <Button variant="green" size="large" onClick={handleOpen}>
