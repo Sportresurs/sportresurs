@@ -29,15 +29,12 @@ This project for ЛКП «Спортресурс» helps to share information ab
 
 We are using Heroku for all the deployments. You can safely deploy to [staging-server](https://sportresurs-staging.herokuapp.com/) for QA-engineers to be able to test completed tasks.
 
-All merged pull-requests to the `develop` branch automatically deploy to [staging-server](https://sportresurs-staging.herokuapp.com/).
+All merged pull-requests to the `develop` branch automatically deploy to [staging-server](https://sportresurs-staging.herokuapp.com/). <br />
 All merged pull-requests to the `main` branch automatically deploy to [production-server](https://sportresurs.herokuapp.com/).
 
 ## Commit strategy
 
-We use [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows) workflow as our commit strategy.
-We create feature branches out of `develop` with names likes feature/31 where a number is a task number from the Trello board.
-
-Commit message should contain a brief description.
+We use [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows) workflow as our commit strategy. <br />
 
 Once the task is complete you should:
 
@@ -46,12 +43,43 @@ Once the task is complete you should:
 
 You should check your open pull-requests at least once a day and in case if any conflicts occur fix these conflicts.
 
+### Branch naming
+
+We create feature branches out of `develop` with names likes t-69-description, where description starts with capital letter verb. <br />
+For example: t-69-add-comments-to-pull-request. 
+
+### Commit naming
+
+We name our commits like T-ticket_number Description, where description starts with capital letter verb. <br />
+For example: T-69 Add comments to pull request
+
+### Pull request naming
+
+Pull requests should be named same as task title in Trello starting with task number. <br />
+For example: T-69 Review pull requests
+
+_Please note, we always use Present Simple. <br />
+For example: use "Add" instead of "added". <br />
+We do not use # symbol when referencing tickets, because GitHub references it like link to PR._
+
 ## Code style
 
 We use `eslint` static code analyzer with a custom set of rules to ensure appropriate code style.
 
-You need to install a pre-commit hook, to execute `eslint` checks automatically on every commit. 
+You need to install a pre-commit hook, to execute `eslint` checks automatically on every commit. <br/>
 Run `npm run prepare` to install husky pre-commit hook properly.
+
+
+### Style conventions
+
+1. We are using `PropTypes` for all our components that have props.
+2. All components folders must be named in CamelCase. 
+3. All components must be exported with index.js file inside component folder. 
+4. We are using upperCase for class naming in our CSS modules.
+5. We try to use full names for our variables and imports, and avoid using abbreviations. Examples: "styles", not "s". "classNames", not "cn", etc...
+6. We store images in /public folder with possible exception to svg react files.
+7. We use .js filetype exclusively for our components
+8. When naming bool variables, we use "is" or "should", for example `isUserClient`, `shouldPageRefresh`
 
 ## Error tracking
 
