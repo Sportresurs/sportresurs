@@ -50,7 +50,6 @@ const PlaygroundsList = () => {
         {playgrounds.map((playground) => (
           <li className={styles.listItem} key={playground.id}>
             <PlaygroundItem
-              onModalOpen={onModalOpen}
               playground={playground}
               isActive={activeItemId === playground.id}
               handleClick={() => {

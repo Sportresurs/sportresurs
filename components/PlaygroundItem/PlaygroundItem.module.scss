@@ -5,7 +5,7 @@
   background: $color-primary-light;
 }
 .activeWrapper {
-  left: 24px;
+  transform: translateX(24px);
 }
 .imageContainer {
   flex: 1 1 46%;
@@ -13,9 +13,6 @@
 }
 .imageWrapper {
   width: 100%;
-  > div {
-    position: unset;
-  }
   .bgImage {
     object-fit: cover;
     width: 100%;
