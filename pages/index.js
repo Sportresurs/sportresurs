@@ -44,6 +44,7 @@ export default function Home() {
   return (
     <div className={styles.background}>
       <Grid>
+        <Modal123 />
         <TopCourts courtList={data.topCourts} />
         <Button variant="green" size="large" onClick={handleOpen}>
           Open
@@ -60,7 +61,6 @@ export default function Home() {
           Open ThanksModal
         </Button>
         <ThanksModal isShow={isThankModalOpen} onClose={handleToggleModal} />
-        <Modal123 />
       </Grid>
     </div>
   );

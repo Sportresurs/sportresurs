@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+/* import MagicSliderDots from "react-magic-slider-dots"; */
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import classnames from "classnames/bind";
 import styles from "./Slider.module.scss";
 import Arrow from "../../public/svg/sliderArrow.svg";
+/* import useWindowSize from "./hook"; */
 
 const cx = classnames.bind(styles);
 
@@ -36,12 +38,30 @@ const SlickSlider = ({
   islazyLoad,
   isSwipe,
   isVariableWidth,
+  isAutoplay,
+  autoplaySpeed,
   isArrows,
   responsive,
-  spaceBetween,
+  margin,
   isModal,
+  /* arrayLength, */
 }) => {
   const [indexImage, setIndexImage] = useState(0);
+  /* const size = useWindowSize();
+
+  let widthOfDot = 28.5;
+  if (isModal && size.width > 767) {
+    widthOfDot = 28.5;
+  }
+  if (isModal && size.width < 768) {
+    widthOfDot = 20;
+  }
+  if (isModal === false && size.width > 767) {
+    widthOfDot = 32.5;
+  }
+  if (isModal === false && size.width < 768) {
+    widthOfDot = 28.5;
+  } */
 
   const NextArrow = ({ onClick }) => (
     <button
@@ -66,7 +86,7 @@ const SlickSlider = ({
   );
 
   const settings = {
-    dotsClass: cx("dotsBar", {
+    dotsClass: cx("dotsWrap", {
       modal: isModal === true,
     }),
     dots: isDots,
@@ -77,23 +97,29 @@ const SlickSlider = ({
     lazyLoad: islazyLoad,
     swipe: isSwipe,
     variableWidth: isVariableWidth,
+    autoplay: isAutoplay,
+    autoplaySpeed,
     arrows: isArrows,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    beforeChange: (current, next) => setIndexImage(next),
     responsive,
+    beforeChange: (current, next) => setIndexImage(next),
+    /* appendDots: (dots) => (
+      <div>
+        <MagicSliderDots
+          dots={dots}
+          numDotsToShow={arrayLength > 5 ? 5 : arrayLength}
+          dotWidth={widthOfDot}
+          dotContainerClassName={cx("dotsBar")}
+        />
+      </div>
+    ), */
   };
 
   return (
-    <SliderWrap margin={spaceBetween}>
-      <h2> Multiple items </h2>
+    <SliderWrap margin={margin}>
       <Slider {...settings}>{children}</Slider>
     </SliderWrap>
-
-    /* <div className={s.sliderBox}>
-      <h2> Multiple items </h2>
-      <Slider {...settings}>{children}</Slider>
-    </div> */
   );
 };
 
@@ -106,24 +132,28 @@ SlickSlider.defaultProps = {
   islazyLoad: true,
   isSwipe: true,
   isVariableWidth: false,
+  isAutoplay: false,
+  autoplaySpeed: 3000,
   isArrows: true,
   responsive: null,
   isModal: false,
-  spaceBetween: 30,
+  margin: 30,
 };
 
 SlickSlider.propTypes = {
-  isDots: PropTypes.oneOf([true, false]).isRequired,
+  isDots: PropTypes.oneOf([true, false]),
   slidesToShow: PropTypes.number.isRequired,
   slidesToScroll: PropTypes.number.isRequired,
-  isInfinite: PropTypes.oneOf([true, false]).isRequired,
+  isInfinite: PropTypes.oneOf([true, false]),
   speed: PropTypes.number,
-  islazyLoad: PropTypes.oneOf([true, false]).isRequired,
-  isSwipe: PropTypes.oneOf([true, false]).isRequired,
+  islazyLoad: PropTypes.oneOf([true, false]),
+  isSwipe: PropTypes.oneOf([true, false]),
   isVariableWidth: PropTypes.oneOf([true, false]),
+  isAutoplay: PropTypes.oneOf([true, false]),
+  autoplaySpeed: PropTypes.number,
   isArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
-  spaceBetween: PropTypes.number,
+  margin: PropTypes.number.isRequired,
   responsive: PropTypes.arrayOf(
     PropTypes.shape({
       breakpoint: PropTypes.number.isRequired,
