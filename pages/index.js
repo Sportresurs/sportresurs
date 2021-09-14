@@ -7,6 +7,7 @@ import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
+import SearchSection from "../components/SearchSection";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -36,6 +37,7 @@ export default function Home() {
   return (
     <div className={styles.background}>
       <Grid>
+        <SearchSection />
         <TopCourts courtList={data.topCourts} />
         <div>
           <Button variant="green" size="large" onClick={handleOpen}>

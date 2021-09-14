@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Button/Button";
-import { Grid } from "../grid/Grid";
+import { Grid } from "../Grid/Grid";
 import styles from "./SearchSection.module.scss";
 import SearchIcon from "../../public/svg/searchIcon.svg";
 import Basket from "../../public/svg/basketballIcon.svg";
