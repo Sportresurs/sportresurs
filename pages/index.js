@@ -7,6 +7,7 @@ import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
+import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
 
 export default function Home() {
@@ -49,6 +50,7 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
+        <PlaygroundsList />
         <About />
       </Grid>
     </div>

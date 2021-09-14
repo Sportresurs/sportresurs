@@ -81,32 +81,3 @@
   }
 }
 
-.courtNumber {
-  margin-bottom: 6px;
-  font-weight: 800;
-  font-size: 14px;
-  line-height: 18px;
-
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-
-  color: $color-primary-dark;
-}
-
-.addressOuter {
-  margin-bottom: 6px;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.3px;
-
-  color: $color-secondary-darkGrey;
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.ratingOuter {
-  margin-bottom: 12px;
-}
