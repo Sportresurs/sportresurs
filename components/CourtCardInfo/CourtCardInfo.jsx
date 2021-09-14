@@ -38,7 +38,7 @@ const CourtCardInfo = ({
           ))}
         </div>
       ) : null}
-      <Button size={"small"} variant={color}>
+      <Button size="small" variant={color}>
         Детальніше
       </Button>
     </>

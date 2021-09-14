@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import image from "../PlaygroundItem/images/image.png";
+import image from "../../public/img/playgroundItemImage.png";
 import PlaygroundItem from "../PlaygroundItem";
 import styles from "./PlaygroundsList.module.scss";
 
