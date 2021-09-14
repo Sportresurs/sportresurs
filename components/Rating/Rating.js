@@ -1,12 +1,11 @@
 import Rating from "@material-ui/lab/Rating";
-import { makeStyles } from "@material-ui/core/styles";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
-import { useState } from "react";
+import { useMemo } from "react";
 import PropTypes from "prop-types";
 import s from "./Rating.module.scss";
+import dataCompare from "../../utils/testData/testArrs";
 
-// Instruction - for color props use varibles from '../../styles/exportColorVar.module.scss
 // if you want to be able to change value dinamically send "readOnly" property with false,
 // in opposite case send true
 
@@ -14,43 +13,41 @@ export default function Ratings({
   value = 3.5,
   precision = 0.5,
   readOnly = false,
-  color = "#150223",
+  color = "black",
+  onChange,
 }) {
-  const [rating, setRating] = useState(value);
-  const handleRatingChange = (e) => {
-    setRating(e.target.value);
-  };
+  // allow rating to use static colors which is used in Button and Tags
+  function colorFinder(colorToMatch) {
+    const matchedColor = dataCompare.colorDescription.find(
+      (item) => item.color === colorToMatch
+    );
 
-  const useStyles = makeStyles(() => ({
-    root: {
-      color,
-    },
-    emptyStar: {
-      color,
-    },
-  }));
-  const classes = useStyles();
+    if (!matchedColor) {
+      return { color: "#150223" };
+    }
+
+    return { color: matchedColor.hex };
+  }
+  const hexColor = useMemo(() => colorFinder(color), [color]);
 
   return (
     <div className={s.rating}>
-      <p className={s.value} style={{ color }}>
-        {rating}
+      <p className={s.value} style={hexColor}>
+        {Number(value).toFixed(1)}
       </p>
       <Rating
-        className={classes.root}
+        style={hexColor}
+        className={s.rate}
         name="rating"
-        value={Number(rating)}
+        value={Number(value)}
         max={5}
         precision={precision}
         readOnly={readOnly}
-        onChange={handleRatingChange}
+        onChange={onChange}
         size={"small"}
         icon={<StarRoundedIcon fontSize="inherit" />}
         emptyIcon={
-          <StarBorderRoundedIcon
-            fontSize="inherit"
-            className={classes.emptyStar}
-          />
+          <StarBorderRoundedIcon fontSize="inherit" style={hexColor} />
         }
       />
     </div>
@@ -61,5 +58,14 @@ Ratings.propTypes = {
   value: PropTypes.number,
   precision: PropTypes.number,
   readOnly: PropTypes.bool,
-  color: PropTypes.string,
+  color: PropTypes.oneOf([
+    "orange",
+    "green",
+    "blue",
+    "lilac",
+    "black",
+    "red",
+    "yellow",
+  ]).isRequired,
+  onChange: PropTypes.func,
 };

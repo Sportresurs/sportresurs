@@ -1,0 +1,56 @@
+@import "../../styles/shared.scss";
+
+.topCourts {
+  margin: 30px 0 30px;
+  @media screen and (min-width: 1440px) {
+    margin-top: 60px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 15px;
+
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-primary-dark;
+
+  @media screen and (min-width: 647px) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: 1150px) {
+    margin-bottom: 19px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 36px;
+    letter-spacing: 0.2px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -10px;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  @media screen and (max-width: 1150px) {
+    max-width: 648px;
+  }
+}
+
+.listItem {
+  margin: 10px;
+}
