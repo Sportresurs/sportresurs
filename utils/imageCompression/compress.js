@@ -1,5 +1,5 @@
 const sharp = require("sharp");
-const config = require("./compress.config")
+const config = require("./compress.config");
 
 const width = config.get("imageWidth");
 const height = config.get("imageHeight");
@@ -16,11 +16,7 @@ function compressImg(image) {
       withoutEnlargement,
     })
     .sharpen()
-    .toFormat(format)
-    .jpeg({
-      quality,
-      chromaSubsampling,
-    })
+    .toFormat(format, { quality, chromaSubsampling })
     .withMetadata()
     .toBuffer();
 }
