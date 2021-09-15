@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Select, { components } from "react-select";
 import styles from "./MultiSelect.module.scss";
-import Checkbox from "../checkbox/Checkbox";
+import Checkbox from "../Checkbox/Checkbox";
 
 const Option = (props) => (
   <div className={styles.optionVar}>

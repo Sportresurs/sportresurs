@@ -10,16 +10,18 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+<<<<<<< HEAD:components/checkbox/Checkbox.module.scss
 
 .checkbox-label {
   width: 100%;
+=======
+.checkbox {
+>>>>>>> develop:components/Checkbox/Checkbox.module.scss
   display: inline-flex;
   align-items: center;
-
   &:hover {
     cursor: pointer;
   }
-
   &::before {
     @include beforeMixin;
     border: 1px solid $color-secondary-lightGrey;
@@ -27,17 +29,23 @@
     background-size: 50% 50%;
   }
 }
+<<<<<<< HEAD:components/checkbox/Checkbox.module.scss
 
 .checkbox-label-chacked {
   width: 100%;
+=======
+.checkboxChecked {
+>>>>>>> develop:components/Checkbox/Checkbox.module.scss
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-
   &:hover {
     cursor: pointer;
   }
+<<<<<<< HEAD:components/checkbox/Checkbox.module.scss
 
+=======
+>>>>>>> develop:components/Checkbox/Checkbox.module.scss
   &::before {
     @include beforeMixin;
     border: none;
@@ -46,6 +54,7 @@
     background-image: url("../../public/svg/checkbox.svg");
   }
 }
+<<<<<<< HEAD:components/checkbox/Checkbox.module.scss
 
 .checkbox-input {
   position: absolute;
@@ -59,4 +68,11 @@
   height: 32px;
   color: $color-secondary-darkGrey;
   font-size: 12px;
+=======
+.wrapper {
+    position: relative;
+    height: 32px;
+    color: $color-secondary-darkGrey;
+    font-size: 12px;
+>>>>>>> develop:components/Checkbox/Checkbox.module.scss
 }
