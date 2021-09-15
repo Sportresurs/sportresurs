@@ -10,6 +10,7 @@ module.exports = {
     https://jestjs.io/docs/webpack#mocking-css-modules */
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
 
+    "\\.svg": "<rootDir>/__mocks__/svgrMock.js",
     // Handle CSS imports (without CSS modules)
     "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
 

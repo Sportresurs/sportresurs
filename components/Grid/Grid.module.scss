@@ -1,11 +1,11 @@
 @for $i from 1 through 12 {
-  .grid-elem-sm-#{$i} {
+  .gridElemCol#{$i} {
     grid-column: span $i;
   }
 }
 
 @media (min-width: 1150px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
     max-width: 1110px;
@@ -17,7 +17,7 @@
 }
 
 @media (max-width: 1150px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
     max-width: 95%;
@@ -28,14 +28,14 @@
   }
 
   @for $i from 5 through 12 {
-    .grid-elem-sm-#{$i} {
+    .gridElemCol#{$i} {
       grid-column: span 6;
     }
   }
 }
 
 @media (max-width: 900px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
     max-width: 95%;
@@ -46,14 +46,14 @@
   }
 
   @for $i from 5 through 12 {
-    .grid-elem-sm-#{$i} {
+    .gridElemCol#{$i} {
       grid-column: span 6;
     }
   }
 }
 
 @media (max-width: 750px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
     max-width: 95%;
@@ -64,17 +64,17 @@
   }
 
   @for $i from 7 through 12 {
-    .grid-elem-sm-#{$i} {
+    .gridElemCol#{$i} {
       grid-column: span 6;
     }
   }
 }
 
 @media (max-width: 600px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
-    max-width: 85%;
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     grid-template-columns: repeat(68px, 4);
@@ -82,14 +82,14 @@
   }
 
   @for $i from 3 through 12 {
-    .grid-elem-sm-#{$i} {
+    .gridElemCol#{$i} {
       grid-column: span 4;
     }
   }
 }
 
 @media (max-width: 374px) {
-  .grid-container {
+  .gridContainer {
     box-sizing: border-box;
     display: grid;
     max-width: 338px;
@@ -100,7 +100,7 @@
   }
 
   @for $i from 5 through 12 {
-    .grid-elem-sm-#{$i} {
+    .gridElemCol#{$i} {
       grid-column: span 4;
     }
   }

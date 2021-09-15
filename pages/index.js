@@ -5,7 +5,10 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
-import MultiSelect from "../components/MultiSelect/MultiSelect";
+import { Grid } from "../components/grid";
+import styles from "../styles/Home.module.scss";
+import PlaygroundsList from "../components/PlaygroundsList";
+import SearchSection from "../components/SearchSection";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -32,31 +35,24 @@ export default function Home() {
     img: image,
   };
 
-  // for multi select testing
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleChange = (option) => {
-    setSelectedOption(option);
-  };
-
   return (
-    <>
-      <MultiSelect
-        data={data.districts}
-        value={selectedOption}
-        handleChange={handleChange}
-        type="район"
-      />
-      <TopCourts courtList={data.topCourts} />
-      <Button variant="green" size="large" onClick={handleOpen}>
-        Open
-      </Button>
-      <PlaygroundModal
-        visible={modal}
-        onClose={handleClose}
-        playground={playground}
-      />
-      <About />
-    </>
+    <div className={styles.background}>
+      <Grid>
+        <SearchSection />
+        <TopCourts courtList={data.topCourts} />
+        <div>
+          <Button variant="green" size="large" onClick={handleOpen}>
+            Открыть модальное окно
+          </Button>
+        </div>
+        <PlaygroundModal
+          visible={modal}
+          onClose={handleClose}
+          playground={playground}
+        />
+        <PlaygroundsList />
+        <About />
+      </Grid>
+    </div>
   );
 }
