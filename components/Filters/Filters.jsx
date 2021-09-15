@@ -29,10 +29,16 @@ const FilterButton = ({ counter, changeStatus }) => {
 };
 
 const FilterWindow = ({ counter, setFiltres, changeStatus }) => {
-  const [purposeOfAreas, setPurposeOfAreas] = useState([]);
-  const [districts, setDistricts] = useState([]);
+  const [purposeOfAreas, setPurposeOfAreas] = useState(null);
+  const [districts, setDistricts] = useState(null);
   const [rating, setRating] = useState(0);
 
+  const handleChange1 = (option) => {
+    setPurposeOfAreas(option);
+  };
+  const handleChange2 = (option) => {
+    setDistricts(option);
+  };
   const changeRatingValue = (e) => {
     setRating(Number(e.target.value));
   };
@@ -54,30 +60,30 @@ const FilterWindow = ({ counter, setFiltres, changeStatus }) => {
       <div className={styles.filterBody}>
         <MultiSelect
           value={purposeOfAreas}
-          handleChange={setPurposeOfAreas}
+          handleChange={handleChange1}
           type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
           data={[
-            "Спортивний",
-            "Дитячий",
-            "Баскетбольний",
-            "Тенісний",
-            "Футбольний",
-            "Стріт воркаут",
-            "Скейт-майданчик",
-            "Бігові доріжки",
+            { label: "Спортивний", value: "Спортивний" },
+            { label: "Дитячий", value: "Дитячий" },
+            { label: "Тенісний", value: "Тенісний" },
+            { label: "Футбольний", value: "Футбольний" },
+            { label: "Стріт воркаут", value: "Стріт воркаут" },
+            { label: "Скейт-майданчик", value: "Скейт-майданчик" },
+            { label: "Бігові доріжки", value: "Бігові доріжки" },
           ]}
         />
         <MultiSelect
           value={districts}
-          handleChange={setDistricts}
+          handleChange={handleChange2}
+          type="РАЙОН"
           data={[
-            "Галицький",
-            "Шевченківський",
-            "Франківський",
-            "Залізничний",
-            "Сихівський",
-            "Личаківський",
-            "Інший",
+            { label: "Шевченківський", value: "Шевченківський" },
+            { label: "Франківський", value: "Франківський" },
+            { label: "Личаківський", value: "Личаківський" },
+            { label: "Залізничний", value: "Залізничний" },
+            { label: "Сихівський", value: "Сихівський" },
+            { label: "Галицький", value: "Галицький" },
+            { label: "Інший", value: "Інший" },
           ]}
         />
         <div className={styles.filterBodyRating}>
@@ -98,12 +104,7 @@ const FilterWindow = ({ counter, setFiltres, changeStatus }) => {
 
 const Filters = () => {
   const [isOpen, changeStatus] = useState(false);
-  const [filtres, setFiltres] = useState([
-    "Галицький",
-    "Сихівський",
-    "Шевченківський",
-    "Франківський",
-  ]);
+  const [filtres, setFiltres] = useState([]);
 
   const tagClasses = classNames(styles.selectTag);
 
@@ -115,24 +116,32 @@ const Filters = () => {
     <div>
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Майданчики</h1>
-        <FilterButton counter={filtres.length} changeStatus={changeStatus} />
+        <FilterButton
+          counter={filtres.filter((item) => item !== 0).length}
+          changeStatus={changeStatus}
+        />
         {isOpen && (
           <FilterWindow
-            counter={filtres.length}
+            counter={filtres.filter((item) => item !== 0).length}
             setFiltres={setFiltres}
             changeStatus={changeStatus}
           />
         )}
       </div>
       <div>
-        {filtres.map((item) => (
-          <FilterTag
-            key={item}
-            className={tagClasses}
-            text={String(item)}
-            onClick={deleteTag(item)}
-          />
-        ))}
+        {filtres.map((item) => {
+          if (!item) {
+            return null;
+          }
+          return (
+            <FilterTag
+              key={item}
+              className={tagClasses}
+              text={String(item)}
+              onClick={deleteTag(item)}
+            />
+          );
+        })}
       </div>
     </div>
   );
