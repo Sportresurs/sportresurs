@@ -12,12 +12,15 @@ const CloseButton = ({ onClick }) => {
   );
 };
 
-const FilterTag = ({ text, onClick }) => (
-  <div className={styles.wrapper}>
-    {text}
-    <CloseButton onClick={onClick} />
-  </div>
-);
+const FilterTag = ({ text, onClick, className }) => {
+  const wrapperClasses = classNames(styles.wrapper, className);
+  return (
+    <div className={wrapperClasses}>
+      {text}
+      <CloseButton onClick={onClick} />
+    </div>
+  );
+};
 
 FilterTag.defaultProps = {
   text: "",
