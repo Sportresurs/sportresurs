@@ -7,7 +7,7 @@ import {
   colorAccentOrange,
   colorAccentYellow,
   colorAccentRed,
-} from "../../../styles/exportColorVars.module.scss";
+} from "../../styles/exportColorVars.module.scss";
 
 export default function useColorLoop() {
   const colors = useMemo(
@@ -23,5 +23,6 @@ export default function useColorLoop() {
     []
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback(() => colors.next().value, []);
 }
