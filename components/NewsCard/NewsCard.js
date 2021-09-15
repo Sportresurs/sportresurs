@@ -4,7 +4,7 @@ import styles from "./NewsCard.module.scss";
 
 export default function NewsCard({ newsData, color }) {
   return (
-    <Link href={newsData.url}>
+    <Link href={newsData.url} passHref>
       <div className={styles.card}>
         <Image
           src={newsData.imgUrl}
@@ -12,7 +12,7 @@ export default function NewsCard({ newsData, color }) {
           layout="fill"
           className={styles.image}
         />
-        <div className={styles.info} style={{background: color}}>
+        <div className={styles.info} style={{ background: color }}>
           {newsData.text}
         </div>
       </div>
