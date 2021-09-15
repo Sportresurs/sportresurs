@@ -30,7 +30,7 @@ const ContactUsButton = ({ shouldLockScreen }) => {
         onSuccess={handleSuccessOpen}
       />
       <ThanksModal
-        shouldLockScreen={false}
+        shouldLockScreen={shouldLockScreen}
         isShow={isSuccess}
         onClose={handleSuccessClose}
       />
