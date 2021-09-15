@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MagicSliderDots from "react-magic-slider-dots";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import classnames from "classnames/bind";
 import styles from "./Slider.module.scss";
@@ -12,22 +11,6 @@ import useWindowSize from "./hook";
 
 const cx = classnames.bind(styles);
 
-const SliderWrap = styled.div`
-  ${(props) =>
-    props.margin &&
-    `.slick-slider {
-    position: relative;
-    .slick-list {
-      margin: 0 -${props.margin / 2}px;
-      .slick-track {
-        .slick-slide > div {
-          padding: 0 ${props.margin / 2}px;
-        }
-      }
-    }
-  }`}
-`;
-
 const SlickSlider = ({
   children,
   isDots,
@@ -35,38 +18,49 @@ const SlickSlider = ({
   slidesToScroll,
   speed,
   isInfinite,
-  islazyLoad,
+  isLazyLoad,
   isSwipe,
   isVariableWidth,
   isAutoplay,
   autoplaySpeed,
   isArrows,
   responsive,
-  margin,
   isModal,
+  isArrowColorBlack,
   arrayLength,
 }) => {
   const [indexImage, setIndexImage] = useState(0);
   const size = useWindowSize();
 
-  let widthOfDot = 28.5;
-  if (isModal && size.width > 767) {
-    widthOfDot = 28.5;
+  function setWidthOfDot(isForModal, windowSize) {
+    let dotWidth = null;
+    if (isForModal && windowSize > 767) {
+      dotWidth = 28.5;
+    }
+    if (isForModal && windowSize < 768) {
+      dotWidth = 20;
+    }
+    if (isForModal === false && windowSize > 767) {
+      dotWidth = 32.5;
+    }
+    if (isForModal === false && windowSize < 768) {
+      dotWidth = 28.5;
+    }
+
+    return dotWidth;
   }
-  if (isModal && size.width < 768) {
-    widthOfDot = 20;
-  }
-  if (isModal === false && size.width > 767) {
-    widthOfDot = 32.5;
-  }
-  if (isModal === false && size.width < 768) {
-    widthOfDot = 28.5;
-  }
+
+  const widthOfDot = useMemo(
+    () => setWidthOfDot(isModal, size.width),
+    [isModal, size]
+  );
 
   const NextArrow = ({ onClick }) => (
     <button
       type="button"
-      className={classnames(styles.arrow, styles.next)}
+      className={cx("arrow", "next", {
+        black: isArrowColorBlack,
+      })}
       onClick={onClick}
     >
       <Arrow className={styles.arrowIcon} />
@@ -78,6 +72,7 @@ const SlickSlider = ({
       type="button"
       className={cx("arrow", "prev", {
         hidden: indexImage === 0,
+        black: isArrowColorBlack,
       })}
       onClick={onClick}
     >
@@ -94,7 +89,7 @@ const SlickSlider = ({
     slidesToScroll,
     speed,
     infinite: isInfinite,
-    lazyLoad: islazyLoad,
+    lazyLoad: isLazyLoad,
     swipe: isSwipe,
     variableWidth: isVariableWidth,
     autoplay: isAutoplay,
@@ -119,9 +114,9 @@ const SlickSlider = ({
   };
 
   return (
-    <SliderWrap margin={margin}>
+    <div className={styles.sliderWrap}>
       <Slider {...settings}>{children}</Slider>
-    </SliderWrap>
+    </div>
   );
 };
 
@@ -131,7 +126,7 @@ SlickSlider.defaultProps = {
   slidesToScroll: 1,
   isInfinite: false,
   speed: 500,
-  islazyLoad: true,
+  isLazyLoad: true,
   isSwipe: true,
   isVariableWidth: false,
   isAutoplay: false,
@@ -139,7 +134,7 @@ SlickSlider.defaultProps = {
   isArrows: true,
   responsive: null,
   isModal: false,
-  margin: 30,
+  isArrowColorBlack: false,
 };
 
 SlickSlider.propTypes = {
@@ -155,7 +150,8 @@ SlickSlider.propTypes = {
   autoplaySpeed: PropTypes.number,
   isArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
-  margin: PropTypes.number.isRequired,
+  isArrowColorBlack: PropTypes.oneOf([true, false]).isRequired,
+  arrayLength: PropTypes.number.isRequired,
   responsive: PropTypes.arrayOf(
     PropTypes.shape({
       breakpoint: PropTypes.number.isRequired,

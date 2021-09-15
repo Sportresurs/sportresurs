@@ -7,12 +7,12 @@ export default function Modal() {
   return (
     <div className={s.modal}>
       <Slider
-        margin={30}
         slidesToShow={1}
         slidesToScroll={1}
         isArrows={true}
         arrayLength={arr.length}
         isModal={false}
+        isArrowColorBlack={false}
       >
         {arr.map((item) => (
           <li key={item} className={s.box}>
