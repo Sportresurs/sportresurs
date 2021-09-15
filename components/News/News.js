@@ -1,6 +1,7 @@
 import styles from "./News.module.scss";
 import NewsCard from "../NewsCard";
 import useColorLoop from "../../utils/hooks/useColorLoop";
+import image from "../../public/img/court-placeholder.jpg";
 
 const news = [
   {
@@ -31,9 +32,9 @@ export default function News() {
         <h2 className={styles.title}>Новини</h2>
       </div>
       <div className={styles.container}>
-      {news.map((item) => {
-          return <NewsCard key={item.id} newsData={item} color={getColor()} />;
-        })}
+        {news.map((item) => (
+          <NewsCard key={item.id} newsData={item} color={getColor()} />
+        ))}
       </div>
     </>
   );
