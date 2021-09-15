@@ -9,6 +9,7 @@ const PlaygroundModal = ({ visible, onClose, playground }) => (
     visible={visible}
     onClose={onClose}
     closeIconMobileVariant="circle"
+    shouldLockScreen
   >
     <PlaygroundModalContent playground={playground} />
   </Modal>

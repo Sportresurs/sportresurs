@@ -4,9 +4,19 @@ import s from "./ThanksModal.module.scss";
 import Modal from "../Modal";
 import ThumbUpIcon from "../../public/svg/thumbUp.svg";
 
-export default function ThanksModal({ isShow, variant = "client", onClose }) {
+export default function ThanksModal({
+  isShow,
+  variant = "client",
+  onClose,
+  shouldLockScreen,
+}) {
   return (
-    <Modal visible={isShow} onClose={onClose}>
+    <Modal
+      shouldLockScreen={shouldLockScreen}
+      variant="small"
+      visible={isShow}
+      onClose={onClose}
+    >
       <div className={s.modal}>
         <ThumbUpIcon className={s.icon} />
         <h3 className={s.title}>Готово!</h3>
