@@ -6,14 +6,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      purpose: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+      title: {
+        type: Sequelize.STRING,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
