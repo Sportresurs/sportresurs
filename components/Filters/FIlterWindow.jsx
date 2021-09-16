@@ -18,14 +18,14 @@ const CloseFilterWindow = ({ changeStatus }) => {
 
 const FilterWindow = ({
   getNewAreas,
-  filtres,
+  filters,
   counter,
   setFiltres,
   changeStatus,
 }) => {
-  const [purposeOfAreas, setPurposeOfAreas] = useState(filtres.purposeOfAreas);
-  const [districts, setDistricts] = useState(filtres.districts);
-  const [rating, setRating] = useState(filtres.rating);
+  const [purposeOfAreas, setPurposeOfAreas] = useState(filters.purposeOfAreas);
+  const [districts, setDistricts] = useState(filters.districts);
+  const [rating, setRating] = useState(filters.rating);
 
   const handleChange1 = (option) => {
     setPurposeOfAreas(option);

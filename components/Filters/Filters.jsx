@@ -65,7 +65,7 @@ const Filters = ({ setAreas }) => {
         {isOpen && (
           <FilterWindow
             getNewAreas={getNewAreas}
-            filtres={filters}
+            filters={filters}
             counter={filters.array.filter((item) => item.value !== 0).length}
             setFiltres={setFiltres}
             changeStatus={changeStatus}
