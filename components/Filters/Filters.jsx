@@ -1,21 +1,10 @@
 import { useState } from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
-import CloseFilterWindowIcon from "../../public/svg/closeFilterWindow.svg";
 import FilterTag from "../FilterTag";
-import Rating from "../Rating";
-import Button from "../Button";
-import MultiSelect from "../MultiSelect/MultiSelect";
-
-const CloseFilterWindow = ({ changeStatus }) => {
-  const wrapperIconClasses = classNames(styles.closeWindowButton);
-  return (
-    <button className={wrapperIconClasses} onClick={() => changeStatus(false)}>
-      <CloseFilterWindowIcon />
-    </button>
-  );
-};
+import FilterWindow from "./FIlterWindow";
 
 const FilterButton = ({ counter, changeStatus }) => {
   const wrapperIconClasses = classNames(styles.filterButton);
@@ -28,88 +17,41 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const FilterWindow = ({ counter, setFiltres, changeStatus }) => {
-  const [purposeOfAreas, setPurposeOfAreas] = useState(null);
-  const [districts, setDistricts] = useState(null);
-  const [rating, setRating] = useState(0);
-
-  const handleChange1 = (option) => {
-    setPurposeOfAreas(option);
-  };
-  const handleChange2 = (option) => {
-    setDistricts(option);
-  };
-  const changeRatingValue = (e) => {
-    setRating(Number(e.target.value));
-  };
-
-  const applyFilters = () => {
-    setFiltres([...purposeOfAreas, ...districts, rating]);
-    changeStatus(false);
-  };
-
-  const classesButton = classNames(styles.buttonApply);
-
-  return (
-    <div className={styles.filterWindow}>
-      <div className={styles.filterHead}>
-        <CloseFilterWindow changeStatus={changeStatus} />
-        <span>Фільтри</span>
-        {counter > 0 ? counter : null}
-      </div>
-      <div className={styles.filterBody}>
-        <MultiSelect
-          value={purposeOfAreas}
-          handleChange={handleChange1}
-          type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
-          data={[
-            { label: "Спортивний", value: "Спортивний" },
-            { label: "Дитячий", value: "Дитячий" },
-            { label: "Тенісний", value: "Тенісний" },
-            { label: "Футбольний", value: "Футбольний" },
-            { label: "Стріт воркаут", value: "Стріт воркаут" },
-            { label: "Скейт-майданчик", value: "Скейт-майданчик" },
-            { label: "Бігові доріжки", value: "Бігові доріжки" },
-          ]}
-        />
-        <MultiSelect
-          value={districts}
-          handleChange={handleChange2}
-          type="РАЙОН"
-          data={[
-            { label: "Шевченківський", value: "Шевченківський" },
-            { label: "Франківський", value: "Франківський" },
-            { label: "Личаківський", value: "Личаківський" },
-            { label: "Залізничний", value: "Залізничний" },
-            { label: "Сихівський", value: "Сихівський" },
-            { label: "Галицький", value: "Галицький" },
-            { label: "Інший", value: "Інший" },
-          ]}
-        />
-        <div className={styles.filterBodyRating}>
-          <p>РЕЙТИНГ</p>
-          <Rating color="black" value={rating} onChange={changeRatingValue} />
-        </div>
-        <Button
-          onClick={applyFilters}
-          className={classesButton}
-          variant="black"
-        >
-          ЗАСТОСУВАТИ ФІЛЬТРИ
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-const Filters = () => {
+const Filters = ({ setAreas }) => {
   const [isOpen, changeStatus] = useState(false);
-  const [filtres, setFiltres] = useState([]);
+  const [filters, setFiltres] = useState({
+    purposeOfAreas: [],
+    districts: [],
+    rating: { value: 0 },
+    array: [],
+  });
 
   const tagClasses = classNames(styles.selectTag);
 
+  // eslint-disable-next-line no-shadow
+  const getNewAreas = (filtres) => {
+    // eslint-disable-next-line no-unused-vars
+    const normalizedValues = filtres.map((item) => item.value);
+    // Exsample: const data = axios.post(URL_API, { filters: normalizedValues });
+    setAreas();
+  };
+
   const deleteTag = (tag) => () => {
-    setFiltres((oldFilters) => oldFilters.filter((item) => item !== tag));
+    const newPurposeOfAreas = filters.purposeOfAreas.filter(
+      (item) => item.value !== tag.value
+    );
+    const newDistricts = filters.districts.filter(
+      (item) => item.value !== tag.value
+    );
+    const newRating = tag === filters.rating ? { value: 0 } : filters.rating;
+    const newArray = [...newPurposeOfAreas, ...newDistricts, newRating];
+    setFiltres({
+      purposeOfAreas: newPurposeOfAreas,
+      districts: newDistricts,
+      rating: newRating,
+      array: newArray,
+    });
+    getNewAreas(newArray);
   };
 
   return (
@@ -117,27 +59,29 @@ const Filters = () => {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Майданчики</h1>
         <FilterButton
-          counter={filtres.filter((item) => item !== 0).length}
+          counter={filters.array.filter((item) => item.value !== 0).length}
           changeStatus={changeStatus}
         />
         {isOpen && (
           <FilterWindow
-            counter={filtres.filter((item) => item !== 0).length}
+            getNewAreas={getNewAreas}
+            filtres={filters}
+            counter={filters.array.filter((item) => item.value !== 0).length}
             setFiltres={setFiltres}
             changeStatus={changeStatus}
           />
         )}
       </div>
       <div>
-        {filtres.map((item) => {
-          if (!item) {
+        {filters.array.map((item) => {
+          if (!item.value) {
             return null;
           }
           return (
             <FilterTag
-              key={item}
+              key={item.value}
               className={tagClasses}
-              text={String(item)}
+              text={item.value}
               onClick={deleteTag(item)}
             />
           );
@@ -145,6 +89,19 @@ const Filters = () => {
       </div>
     </div>
   );
+};
+
+FilterButton.propTypes = {
+  counte: PropTypes.number,
+  changeStatus: PropTypes.func,
+};
+
+Filters.defaultProps = {
+  setAreas: () => {},
+};
+
+Filters.propTypes = {
+  setAreas: PropTypes.func,
 };
 
 export default Filters;
