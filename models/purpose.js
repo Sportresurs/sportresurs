@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Purpose.init(
     {
-      purpose: DataTypes.ARRAY(DataTypes.STRING),
+      title: DataTypes.STRING,
     },
     {
       sequelize,
