@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 
 function SearchOnMap({
   setCoordinates,
-  onClick,
+  onToggle,
   isScriptLoaded,
   isScriptLoadSucceed,
 }) {
@@ -114,7 +114,7 @@ function SearchOnMap({
           <button
             className={styles.formBtnFilter}
             type="button"
-            onClick={onClick}
+            onClick={onToggle}
           >
             <FilterIcon className={styles.formBtnFilterIcon} />
           </button>
