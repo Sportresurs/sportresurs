@@ -9,7 +9,7 @@
 .container {
   @extend %container;
   padding: 41px 58px;
-
+  width: auto;
   display: grid;
   grid-template-columns: 341px minmax(490px, auto);
   grid-template-rows: repeat(2, 2fr) 20px;
@@ -19,31 +19,55 @@
     "socials courts "
     "legal legal ";
 
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (min-width: 320px) and (max-width: 374px) {
     width: 320px;
     padding: 12px 18px 25px 18px;
     grid-template-columns: 1fr;
     grid-template-rows: 50px auto 34px;
-    place-self: center;
     grid-template-areas:
       "logo"
       "courts"
       "socials";
   }
+
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 339px;
+    padding: 12px 0 25px 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 34px;
+    grid-template-areas:
+      "logo"
+      "courts"
+      "socials";
+  }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    padding: 25px 0;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px auto 40px auto;
+    grid-template-areas:
+      "logo"
+      "courts"
+      "socials"
+      "legal";
+  }
 }
 
 .logo {
   grid-area: logo;
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+  }
 }
 
 .logoDesktop {
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
   display: block;
 }
 .logoMobile {
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     display: block;
     margin-bottom: 24px;
   }
@@ -60,8 +84,13 @@
   display: flex;
   align-items: center;
 
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     margin-top: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+    margin-top: 25px;
   }
 }
 
@@ -116,23 +145,30 @@
   display: flex;
   align-items: flex-start;
 
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
+  }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
   }
 }
 
 .footerCourts {
-  margin-right: 50px;
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     margin-right: 0;
     margin-bottom: 24px;
   }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    margin-right: 80px;
+  }
+  @media screen and (min-width: 1000px) {
+    margin-right: 50px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-right: 130px;
+  }
 }
 
-.footerCourtsWrapper {
-  display: flex;
-  align-items: flex-start;
-}
 .footerCourtsTitle {
   margin-bottom: 16px;
   font-weight: 700;
@@ -142,31 +178,34 @@
 
 .footerCourtsList {
   @extend %list;
-  margin-right: 30px;
-}
-
-.footerCourtsListLeft {
-  @media screen and (min-width: 320px) and (max-width: 950px) {
-    margin-right: 30px;
-    white-space: nowrap;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+    align-items: stretch;
   }
-}
-.footerCourtsListRight {
-  margin-right: 0;
 }
 
 .footerCourtsLink {
+  margin-right: 30px;
+  display: inline-block;
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
   color: $color-secondary-yellowish;
 
+  &:nth-child(n + 5) {
+    margin-right: 0;
+  }
   &:hover,
   &:focus {
     color: $color-accent-blue;
   }
 
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     letter-spacing: -0.015em;
   }
@@ -174,6 +213,9 @@
 
 .footerContacts {
   margin-bottom: 24px;
+  @media screen and (min-width: 1050px) {
+    margin-right: 50px;
+  }
 }
 
 .footerContactsTitle {
@@ -209,7 +251,17 @@
   color: $color-primary-light;
   opacity: 0.7;
 
-  @media screen and (min-width: 320px) and (max-width: 950px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
+
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+    margin-top: 20px;
+  }
+}
+
+.legal a {
+  text-decoration: underline;
+  margin-left: 2px;
 }

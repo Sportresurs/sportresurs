@@ -15,6 +15,9 @@ jobs:
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      EMAIL_LOGIN: 
+      EMAIL_PASS: 
+      RECIPIENT_EMAIL: 
     services:
       postgres:
         image: postgres
