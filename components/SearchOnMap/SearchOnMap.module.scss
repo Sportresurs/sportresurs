@@ -1,0 +1,162 @@
+@import "../../styles/shared.scss";
+
+.form {
+    display: flex;
+    width: 100%;
+}
+
+.inputBox {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 54px 11px 12px;
+
+    font-size: 12px;
+    line-height: 1.66;
+
+    border: 1px solid $color-secondary-mediumGrey;
+    border-radius: 3px 0 0 3px;
+    background-color: $color-primary-light;
+    outline: none;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    @media screen and (max-width: 767px) {
+        padding: 10px 12px 10px 44px;
+        font-size: 14px;
+        line-height: 1.43;
+    }
+}
+
+.fromBtnClose {
+    @extend %button;
+    position: absolute;
+    top: 15px;
+    right: 12px;
+}
+
+.fromBtnCloseIcon {
+    display: block;
+}
+
+.formBtnFilter {
+    @extend %button;
+    position: absolute;
+    top: 11px;
+    right: 16px;
+
+    @media screen and (max-width: 767px) {
+        top: 11px;
+        left: 12px;
+    }
+}
+
+.formBtnFilterIcon {
+    display: block;
+}
+
+.formBtn {
+    @extend %button;
+    display: inline-block;
+    max-height: 42px;
+    padding: 10px 9px;
+    white-space: nowrap;
+
+    background-color: $color-primary-dark;
+    border-radius: 0px 2px 2px 0px;
+
+    
+}
+
+.formBtnIcon {
+    display: block;
+
+    .formBtn & > path {
+        transition: all 200ms;
+    }
+
+    .formBtn:hover & > path {
+        fill: $color-accent-green;
+    }
+}
+
+.autocomplete {
+    display: block;
+    position: absolute;
+    top: 42px;
+    width: 100%;
+    max-height: 251px;
+
+    background-color: $color-primary-light;
+    border: 1px solid $color-secondary-mediumGrey;
+    border-radius: 3px;
+
+    z-index: 3;
+
+    /* display: none;
+
+    &.active {
+        display: block;
+        position: absolute;
+        top: 43px;
+        width: 100%;
+        max-height: 245px;
+
+        background-color: $color-primary-light;
+        border: 1px solid $color-secondary-mediumGrey;
+        border-radius: 3px;
+
+        z-index: 3;
+
+        @media screen and (max-width: 800px) {
+            top: 42px;
+        }
+    } */
+}
+
+.autocompleteItem {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 12px;
+
+    cursor: pointer;
+
+    transition: all 200ms;
+
+    &:first-child {
+        padding: 12px 12px 6px 12px;
+    }
+
+    &.hover {
+        background-color: rgba($color-secondary-lightGrey, 0.3);
+    }
+}
+
+
+.autocompleteMainText {
+    margin-bottom: 3px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: $color-primary-dark;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.autocompleteSecondaryText {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    color: $color-secondary-darkGrey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

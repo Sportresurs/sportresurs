@@ -9,6 +9,7 @@ import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
 import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
+import Modal123 from "../components/Modal123";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -38,6 +39,7 @@ export default function Home() {
   return (
     <div className={styles.background}>
       <Grid>
+        <Modal123 />
         <SearchSection />
         <TopCourts courtList={data.topCourts} />
         <div>
