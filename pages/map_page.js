@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/MapPage.module.scss";
 import Map from "../components/Map";
-
+import placesInBounds from "../utils/placesInBounds";
 import data from "../utils/testData/courtDatabase";
 
-const API_KEY = "AIzaSyCQpQm5NpH4H9sGBd66F8UzhPuAsyFEZTA"; // should be replaced to Sportresource key
+const API_KEY = "AIzaSyCQpQm5NpH4H9sGBd66F8UzhPuAsyFEZTA"; // !! should be replaced to Sportresource key
 const DEFAULT_COORDS = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_BOUNDS = {
   sw: { lat: 49.83656742688311, lng: 24.02260123538207 },
@@ -13,44 +13,19 @@ const DEFAULT_BOUNDS = {
 const DEFAULT_ZOOM = 15;
 
 export default function MapPage() {
-  const [places /* , setPlaces */] = useState(data.courtsDataBase);
+  const [places /* setPlaces */] = useState(data.courtsDataBase); // need when DB will be ready
   const [coordinates, setCoordinates] = useState(DEFAULT_COORDS);
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS);
+  const [zoom, setZoom] = useState(null);
   const [childClicked, setChildClicked] = useState(null);
-
-  // commented to passESlint check
-
-  /*   const [isLoading, setIsLoading] = useState(false);
+  /*  const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState([]);
-  const [rate, setRate] = useState("");
+  const [rate, setRate] = useState(null);
   const [district, setDistrict] = useState([]); */
   const [filteredPlaces, setFilteredPlaces] = useState([]);
 
-  function placesInBoundary(locations, borders) {
-    if (borders.sw.lng < borders.ne.lng && borders.sw.lat < borders.ne.lat) {
-      return locations.filter(
-        (courts) =>
-          courts.longitude > borders.sw.lng &&
-          courts.longitude < borders.ne.lng &&
-          courts.latitude > borders.sw.lat &&
-          courts.latitude < borders.ne.lat
-      );
-    }
-    if (borders.sw.lng > borders.ne.lng && borders.sw.lat > borders.ne.lat) {
-      return locations.filter(
-        (courts) =>
-          courts.longitude < borders.sw.lng &&
-          courts.longitude > borders.ne.lng &&
-          courts.latitude < borders.sw.lat &&
-          courts.latitude > borders.ne.lat
-      );
-    }
-    return null;
-  }
-
   useEffect(() => {
-    setFilteredPlaces(placesInBoundary(places, bounds));
-    setChildClicked(null);
+    setFilteredPlaces(placesInBounds(places, bounds));
   }, [places, bounds, coordinates]);
 
   return (
@@ -76,6 +51,8 @@ export default function MapPage() {
           setCoordinates={setCoordinates}
           setBounds={setBounds}
           defaultZomm={DEFAULT_ZOOM}
+          zoom={zoom}
+          setZoom={setZoom}
           defaultCoords={DEFAULT_COORDS}
           coordinates={coordinates}
           places={filteredPlaces.length ? filteredPlaces : places}

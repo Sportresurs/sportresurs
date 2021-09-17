@@ -1,4 +1,5 @@
 import GoogleMapReact from "google-map-react";
+import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
 import Marker from "../Marker";
@@ -10,6 +11,8 @@ export default function Map({
   setCoordinates,
   setBounds,
   defaultZomm,
+  zoom,
+  setZoom,
   defaultCoords,
   coordinates,
   places,
@@ -56,12 +59,15 @@ export default function Map({
         defaultCenter={defaultCoords}
         center={coordinates}
         defaultZoom={defaultZomm}
-        /* margin={[50, 50, 50, 50]} */
+        zoom={zoom}
+        margin={[50, 50, 50, 50]}
         options={options}
         onChange={(e) => {
+          setZoom(e.zoom);
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
+        boun
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place) => {
@@ -86,3 +92,17 @@ export default function Map({
     </div>
   );
 }
+
+Map.propTypes = {
+  setCoordinates: PropTypes.func.isRequired,
+  setBounds: PropTypes.func.isRequired,
+  defaultZomm: PropTypes.number.isRequired,
+  zoom: PropTypes.number,
+  setZoom: PropTypes.func,
+  defaultCoords: PropTypes.array.isRequired,
+  coordinates: PropTypes.array.isRequired,
+  places: PropTypes.array.isRequired,
+  setChildClicked: PropTypes.func,
+  childClicked: PropTypes.string.isRequired,
+  apiKey: PropTypes.string.isRequired,
+};
