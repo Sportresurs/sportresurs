@@ -11,6 +11,7 @@
   @media screen and (min-width: 768px) {
     position: static;
     height: 100%;
-    width: 515px;
+    max-width: 515px;
+    flex: 1 1 100%
   }
 }

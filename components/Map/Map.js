@@ -74,9 +74,9 @@ function Map({
               className={wrapperStyles("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
+              key={place.id}
               lat={Number(place.latitude)}
               lng={Number(place.longitude)}
-              key={place.id}
             >
               <Marker
                 typeOfCourt={propertiesToMarker.latinName}

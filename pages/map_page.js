@@ -48,8 +48,8 @@ export default function MapPage() {
           defaultZoom={DEFAULT_ZOOM}
           defaultCenter={DEFAULT_CENTER}
           places={filteredPlaces.length ? filteredPlaces : places}
-          setChildClicked={setChildClicked}
           childClicked={childClicked}
+          setChildClicked={setChildClicked}
           onLoad={onMapLoaded}
           onChange={onMapChanged}
         />
