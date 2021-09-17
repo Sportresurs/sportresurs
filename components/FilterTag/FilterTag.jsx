@@ -13,18 +13,18 @@ const CloseButton = ({ onClick }) => {
   );
 };
 
-const FilterTag = ({ text, onClick, className }) => {
+const FilterTag = ({ data, deleteTag, className }) => {
   const wrapperClasses = classNames(styles.wrapper, className);
   const bodyClasses = classNames({
-    [styles.bodyFilterTag]: typeof text === "number",
+    [styles.bodyFilterTag]: typeof data.value === "number",
   });
   return (
     <div className={wrapperClasses}>
       <div className={bodyClasses}>
-        {text}
-        {typeof text === "number" ? <StarIcon /> : null}
+        {data.value}
+        {typeof data.value === "number" ? <StarIcon /> : null}
       </div>
-      <CloseButton onClick={onClick} />
+      <CloseButton onClick={() => deleteTag(data)} />
     </div>
   );
 };

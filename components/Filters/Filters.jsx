@@ -19,14 +19,12 @@ const FilterButton = ({ counter, changeStatus }) => {
 
 const Filters = ({ setAreas }) => {
   const [isOpen, changeStatus] = useState(false);
-  const [filters, setFiltres] = useState({
+  const [filters, setFilters] = useState({
     purposeOfAreas: [],
     districts: [],
     rating: { value: 0 },
     array: [],
   });
-
-  const tagClasses = classNames(styles.selectTag);
 
   // eslint-disable-next-line no-shadow
   const getNewAreas = (filtres) => {
@@ -36,7 +34,7 @@ const Filters = ({ setAreas }) => {
     setAreas();
   };
 
-  const deleteTag = (tag) => () => {
+  const deleteTag = (tag) => {
     const newPurposeOfAreas = filters.purposeOfAreas.filter(
       (item) => item.value !== tag.value
     );
@@ -45,7 +43,7 @@ const Filters = ({ setAreas }) => {
     );
     const newRating = tag === filters.rating ? { value: 0 } : filters.rating;
     const newArray = [...newPurposeOfAreas, ...newDistricts, newRating];
-    setFiltres({
+    setFilters({
       purposeOfAreas: newPurposeOfAreas,
       districts: newDistricts,
       rating: newRating,
@@ -59,15 +57,15 @@ const Filters = ({ setAreas }) => {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Майданчики</h1>
         <FilterButton
-          counter={filters.array.filter((item) => item.value !== 0).length}
+          counter={filters.array.filter((item) => item.value).length}
           changeStatus={changeStatus}
         />
         {isOpen && (
           <FilterWindow
             getNewAreas={getNewAreas}
             filters={filters}
-            counter={filters.array.filter((item) => item.value !== 0).length}
-            setFiltres={setFiltres}
+            counter={filters.array.filter((item) => item.value).length}
+            setFilters={setFilters}
             changeStatus={changeStatus}
           />
         )}
@@ -78,12 +76,7 @@ const Filters = ({ setAreas }) => {
             return null;
           }
           return (
-            <FilterTag
-              key={item.value}
-              className={tagClasses}
-              text={item.value}
-              onClick={deleteTag(item)}
-            />
+            <FilterTag key={item.value} data={item} deleteTag={deleteTag} />
           );
         })}
       </div>

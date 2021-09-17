@@ -20,25 +20,19 @@ const FilterWindow = ({
   getNewAreas,
   filters,
   counter,
-  setFiltres,
+  setFilters,
   changeStatus,
 }) => {
   const [purposeOfAreas, setPurposeOfAreas] = useState(filters.purposeOfAreas);
   const [districts, setDistricts] = useState(filters.districts);
   const [rating, setRating] = useState(filters.rating);
 
-  const handleChange1 = (option) => {
-    setPurposeOfAreas(option);
-  };
-  const handleChange2 = (option) => {
-    setDistricts(option);
-  };
   const changeRatingValue = (e) => {
     setRating({ value: Number(e.target.value) });
   };
 
   const applyFilters = () => {
-    setFiltres({
+    setFilters({
       purposeOfAreas,
       districts,
       rating,
@@ -60,7 +54,7 @@ const FilterWindow = ({
       <div className={styles.filterBody}>
         <MultiSelect
           value={purposeOfAreas}
-          handleChange={handleChange1}
+          handleChange={setPurposeOfAreas}
           type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
           data={[
             { label: "Спортивний", value: "Спортивний" },
@@ -74,7 +68,7 @@ const FilterWindow = ({
         />
         <MultiSelect
           value={districts}
-          handleChange={handleChange2}
+          handleChange={setDistricts}
           type="РАЙОН"
           data={[
             { label: "Шевченківський", value: "Шевченківський" },

@@ -27,7 +27,7 @@
 
 .wrapper {
   position: relative;
-  display: inline-flex;
+  display: flex;
   @media screen and (max-width: 768px) {
     justify-content: space-between;
   }
