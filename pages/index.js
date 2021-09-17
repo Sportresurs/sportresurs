@@ -5,6 +5,10 @@ import PlaygroundModal from "../components/PlaygroundModal";
 import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
+import { Grid } from "../components/Grid";
+import styles from "../styles/Home.module.scss";
+import PlaygroundsList from "../components/PlaygroundsList";
+import SearchSection from "../components/SearchSection";
 import News from "../components/News";
 
 export default function Home() {
@@ -31,19 +35,26 @@ export default function Home() {
       "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
     img: image,
   };
+
   return (
-    <>
-      <TopCourts courtList={data.topCourts} />
-      <Button variant="green" size="large" onClick={handleOpen}>
-        Open
-      </Button>
-      <PlaygroundModal
-        visible={modal}
-        onClose={handleClose}
-        playground={playground}
-      />
-      <About />
-      <News />
-    </>
+    <div className={styles.background}>
+      <Grid>
+        <SearchSection />
+        <TopCourts courtList={data.topCourts} />
+        <div>
+          <Button variant="green" size="large" onClick={handleOpen}>
+            Открыть модальное окно
+          </Button>
+        </div>
+        <PlaygroundModal
+          visible={modal}
+          onClose={handleClose}
+          playground={playground}
+        />
+        <PlaygroundsList />
+        <About />
+        <News />
+      </Grid>
+    </div>
   );
 }

@@ -23,6 +23,5 @@ export default function useColorLoop() {
     []
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback(() => colors.next().value, []);
 }

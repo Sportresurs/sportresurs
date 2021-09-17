@@ -1,0 +1,46 @@
+@import "styles/colors";
+
+@mixin beforeMixin {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 6px 12px 6px 18px;
+  border-radius: 2px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+  &::before {
+    @include beforeMixin;
+    border: 1px solid $color-secondary-lightGrey;
+    background-color: $color-primary-light;
+    background-size: 50% 50%;
+  }
+}
+.checkboxChecked {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
+  &::before {
+    @include beforeMixin;
+    border: none;
+    background-size: 60% 60%;
+    background-color: $color-form-blue;
+    background-image: url("../../public/svg/checkbox.svg");
+  }
+}
+.wrapper {
+    position: relative;
+    height: 32px;
+    color: $color-secondary-darkGrey;
+    font-size: 12px;
+}

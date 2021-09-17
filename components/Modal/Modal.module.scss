@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  z-index: 2;
+  z-index: 10;
   padding: 85px 17px 17px;
   background: $color-modal-darkened;
   @media screen and (max-width: 950px) {
@@ -18,15 +18,30 @@
 }
 .modal {
   display: flex;
-  background: $color-primary-light;
-  border-radius: 3px;
   width: 100%;
-  max-width: 1080px;
   max-height: 100%;
   position: relative;
   overflow: hidden;
   @media screen and (max-width: 950px) {
     max-width: 100%;
+  }
+}
+.large {
+  border-radius: 3px;
+  max-width: 1080px;
+}
+.medium {
+  border-radius: 6px;
+  max-width: 628px;
+  @media screen and (max-width: 950px) {
+    max-width: 342px;
+  }
+}
+.small {
+  border-radius: 6px;
+  max-width: 440px;
+  @media screen and (max-width: 950px) {
+    max-width: 339px;
     border-radius: 3px;
   }
 }
@@ -42,14 +57,18 @@
   top: 20px;
   right: 20px;
   background: transparent;
-  z-index: 2;
+  z-index: 3;
   @media screen and (max-width: 950px) {
     top: 17px;
-    right: 17px;
+    right: 10px;
   }
 }
 .circle {
   @media screen and (max-width: 950px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
     svg {
       width: 12px;
       height: 12px;
@@ -63,7 +82,7 @@
   }
 }
 .enter {
-  background: rgba(0,0,0, 0);
+  background: rgba(0, 0, 0, 0);
   .modal {
     opacity: 0;
     transform: scale(0.5);
@@ -85,7 +104,7 @@
   }
 }
 .exitActive {
-  background: rgba(0,0,0, 0);
+  background: rgba(0, 0, 0, 0);
   .modal {
     opacity: 0;
     transform: scale(0.1);

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import cn from "classnames";
-import s from "./Tag.module.scss";
+import className from "classnames";
+import styles from "./Tag.module.scss";
 
 const Tag = ({ text, color }) => (
-  <div className={cn(s.wrapper, s[color])}>
-    <p className={s.content}>{text}</p>
+  <div className={className(styles.wrapper, styles[color])}>
+    <p className={styles.content}>{text}</p>
   </div>
 );
 

@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
-import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
+import { CSSTransition } from "react-transition-group";
+import Portal from "../Portal";
 import CloseMark from "../../public/svg/closeModal.svg";
 import styles from "./Modal.module.scss";
 
@@ -14,7 +15,15 @@ const CloseIcon = ({ onClick, type }) => {
     </button>
   );
 };
-const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
+const Modal = ({
+  variant,
+  children,
+  visible,
+  shouldLockScreen = true,
+  onClose,
+  closeIconMobileVariant,
+}) => {
+  const contentClassName = classNames(styles.modal, styles[variant]);
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
@@ -24,49 +33,58 @@ const Modal = ({ children, visible, onClose, closeIconMobileVariant }) => {
         handleClose();
       }
     };
-    if (visible) {
+    if (visible && shouldLockScreen) {
       document.body.style.overflow = "hidden";
     }
     window.addEventListener("keydown", handleWindowKeydown);
     return function cleanup() {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleWindowKeydown);
+      if (shouldLockScreen) {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleWindowKeydown);
+      }
     };
   }, [visible, handleClose]);
   const handleContentClick = (e) => {
     e.stopPropagation();
   };
   return (
-    <CSSTransition
-      in={visible}
-      unmountOnExit
-      timeout={200}
-      classNames={{
-        enter: styles.enter,
-        enterActive: styles.enterActive,
-        exit: styles.exit,
-        exitActive: styles.exitActive,
-      }}
-    >
-      <div
-        className={styles.container}
-        role="presentation"
-        onClick={handleClose}
+    <Portal>
+      <CSSTransition
+        in={visible}
+        unmountOnExit
+        timeout={200}
+        classNames={{
+          enter: styles.enter,
+          enterActive: styles.enterActive,
+          exit: styles.exit,
+          exitActive: styles.exitActive,
+        }}
       >
         <div
-          className={styles.modal}
+          className={styles.container}
           role="presentation"
-          onClick={handleContentClick}
+          onClick={handleClose}
         >
-          <CloseIcon onClick={handleClose} type={closeIconMobileVariant} />
-          <div className={styles.modalContent}>{children}</div>
+          <div
+            className={contentClassName}
+            role="presentation"
+            onClick={handleContentClick}
+          >
+            <CloseIcon onClick={handleClose} type={closeIconMobileVariant} />
+            <div className={styles.modalContent}>{children}</div>
+          </div>
         </div>
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+    </Portal>
   );
 };
 
+Modal.defaultProps = {
+  variant: "medium",
+};
+
 Modal.propTypes = {
+  variant: PropTypes.oneOf(["large", "medium", "small"]),
   type: PropTypes.oneOf(["circle", ""]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
