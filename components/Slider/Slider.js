@@ -33,7 +33,7 @@ const SlickSlider = ({
   const size = useWindowSize();
 
   function setWidthOfDot(isForModal, windowSize) {
-    let dotWidth = null;
+    let dotWidth = 28.5;
     if (isForModal && windowSize > 767) {
       dotWidth = 28.5;
     }
@@ -59,6 +59,7 @@ const SlickSlider = ({
     <button
       type="button"
       className={cx("arrow", "next", {
+        hidden: indexImage + 1 === arrayLength && isInfinite === false,
         black: isArrowColorBlack,
       })}
       onClick={onClick}
@@ -71,7 +72,7 @@ const SlickSlider = ({
     <button
       type="button"
       className={cx("arrow", "prev", {
-        hidden: indexImage === 0,
+        hidden: indexImage === 0 && isInfinite === false,
         black: isArrowColorBlack,
       })}
       onClick={onClick}
@@ -143,7 +144,7 @@ SlickSlider.propTypes = {
   slidesToScroll: PropTypes.number.isRequired,
   isInfinite: PropTypes.oneOf([true, false]),
   speed: PropTypes.number,
-  islazyLoad: PropTypes.oneOf([true, false]),
+  isLazyLoad: PropTypes.oneOf([true, false]),
   isSwipe: PropTypes.oneOf([true, false]),
   isVariableWidth: PropTypes.oneOf([true, false]),
   isAutoplay: PropTypes.oneOf([true, false]),
