@@ -10,7 +10,14 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+@mixin buttonMixin {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
 .checkbox {
+  @include buttonMixin;
   display: inline-flex;
   align-items: center;
   &:hover {
@@ -24,6 +31,7 @@
   }
 }
 .checkboxChecked {
+  @include buttonMixin;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
