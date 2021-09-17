@@ -18,6 +18,7 @@ jobs:
       EMAIL_LOGIN: 
       EMAIL_PASS: 
       RECIPIENT_EMAIL: 
+      NEXT_PUBLIC_GMAP_API_KEY: 
     services:
       postgres:
         image: postgres
