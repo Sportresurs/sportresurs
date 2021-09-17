@@ -5,7 +5,7 @@ import Map from "../components/Map";
 
 import data from "../utils/testData/courtDatabase";
 
-const API_KEY = "AIzaSyCQpQm5NpH4H9sGBd66F8UzhPuAsyFEZTA"; // should be replaced to Sportresource key
+const API_KEY = process.env.NEXT_PUBLIC_GMAP_API_KEY; // should be replaced to Sportresource key
 const DEFAULT_COORDS = { lat: 49.841328, lng: 24.031592 };
 // const DEFAULT_BOUNDS = {
 //   sw: { lat: 49.83656742688311, lng: 24.02260123538207 },
@@ -17,7 +17,7 @@ export default function MapPage() {
   const [places /* , setPlaces */] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   useEffect(() => {
-    console.log("filtred plc", filteredPlaces);
+    // console.log("filtred plc", filteredPlaces);
   }, [filteredPlaces]);
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
@@ -90,7 +90,7 @@ export default function MapPage() {
         isLoading={isLoading} // to know do we need loading spinner or not.
 
         For the filtering purpose
-        type={type} 
+        type={type}
         setType={setType}
         rate={rate}
         setRate={setRate}

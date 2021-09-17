@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle } from "react";
+import { forwardRef } from "react";
 import GoogleMapReact from "google-map-react";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
