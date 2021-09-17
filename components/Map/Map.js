@@ -1,45 +1,38 @@
-import { forwardRef } from "react";
 import GoogleMapReact from "google-map-react";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
 import Marker from "../Marker";
 import types from "../../utils/testData/testArrs";
 
-const cx = classNames.bind(styles);
-function CustomMap(
-  {
-    defaultZomm,
-    defaultCoords,
-    coordinates,
-    places,
-    setChildClicked,
-    childClicked,
-    apiKey,
-    onLoad,
-    onChange,
-  },
-  ref
-) {
-  const options = {
-    minZoom: 11,
-    maxZoom: 20,
-    restriction: {
-      latLngBounds: {
-        north: 49.96325058667949,
-        south: 49.7223633490448,
-        east: 24.210497138916054,
-        west: 23.851724861084023,
-      },
+const options = {
+  minZoom: 11,
+  maxZoom: 20,
+  restriction: {
+    latLngBounds: {
+      north: 49.96325058667949,
+      south: 49.7223633490448,
+      east: 24.210497138916054,
+      west: 23.851724861084023,
     },
-  };
-  // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
+  },
+};
+
+const wrapperStyles = classNames.bind(styles);
+function Map({
+  defaultZoom,
+  defaultCenter,
+  places,
+  setChildClicked,
+  childClicked,
+  apiKey,
+  onLoad,
+  onChange,
+}) {
   function courtDataFinder(destination) {
-    // если мультипин
     if (destination.length > 1) {
       const multiPin = { color: "lilac", latinName: "Tennis" };
       return multiPin;
     }
-    // если нету призначення
     if (destination.length === 0) {
       const noDestination = { color: "red", latinName: "Handball" };
       return noDestination;
@@ -64,13 +57,10 @@ function CustomMap(
   return (
     <div className={styles.mapWrapper}>
       <GoogleMapReact
-        ref={ref}
         bootstrapURLKeys={{ key: apiKey }}
-        defaultCenter={defaultCoords}
-        center={coordinates}
-        defaultZoom={defaultZomm}
+        defaultCenter={defaultCenter}
+        defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
-        /* margin={[50, 50, 50, 50]} */
         options={options}
         onChange={handleChange}
         onDrag={handleChange}
@@ -78,10 +68,10 @@ function CustomMap(
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place) => {
-          const proprsToMarker = courtDataFinder(place.destination);
+          const propertiesToMarker = courtDataFinder(place.destination);
           return (
             <div
-              className={cx("markerWrapper", {
+              className={wrapperStyles("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
               lat={Number(place.latitude)}
@@ -89,8 +79,8 @@ function CustomMap(
               key={place.id}
             >
               <Marker
-                typeOfCourt={proprsToMarker.latinName}
-                bgColor={proprsToMarker.color}
+                typeOfCourt={propertiesToMarker.latinName}
+                bgColor={propertiesToMarker.color}
               />
             </div>
           );
@@ -100,4 +90,4 @@ function CustomMap(
   );
 }
 
-export default forwardRef(CustomMap);
+export default Map;
