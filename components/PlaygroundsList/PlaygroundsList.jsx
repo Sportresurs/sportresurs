@@ -67,9 +67,9 @@ const PlaygroundsList = () => {
   };
   return (
     <div className={styles.wrapper}>
+      <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
       <div className={styles.outerWrapper}>
         <div className={styles.innerWrapper}>
-          <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
           <ul className={styles.list}>
             {playgrounds.map((playground) => (
               <li className={styles.listItem} key={playground.id}>
