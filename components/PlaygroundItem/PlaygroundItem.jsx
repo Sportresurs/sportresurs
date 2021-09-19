@@ -1,10 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
+import PlaygroundModal from "../PlaygroundModal";
 
 const PlaygroundItem = ({ playground, isActive, handleClick }) => {
   const playgroundInfoFields = [
@@ -15,6 +16,15 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
   const containerStyleWrapper = classNames(styles.wrapper, {
     [styles.activeWrapper]: isActive,
   });
+
+  const [modal, setModal] = useState(false);
+  const handleOpen = () => {
+    setModal(true);
+  };
+  const handleClose = () => {
+    setModal(false);
+  };
+
   return (
     <div className={containerStyleWrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
@@ -35,13 +45,19 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
           rating={playground.rating}
           color={playground.color}
           address={playground.address}
-          courtNumber={playground.id}
+          courtNumber={playground.courtNumber}
           playground={playground}
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}
           isList={true}
+          modal={handleOpen}
         />
       </div>
+      <PlaygroundModal
+        visible={modal}
+        onClose={handleClose}
+        playground={playground}
+      />
     </div>
   );
 };
