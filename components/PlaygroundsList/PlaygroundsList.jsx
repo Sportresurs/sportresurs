@@ -21,7 +21,7 @@ const PlaygroundsList = () => {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      img: image,
+      image,
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ const PlaygroundsList = () => {
       opening: "08:00 - 22:00",
       lighting: "є",
       additionally: "дитячі елементи, огорожа, ворота",
-      img: image,
+      image,
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ const PlaygroundsList = () => {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      img: image,
+      image,
     },
     {
       id: 4,
@@ -73,7 +73,7 @@ const PlaygroundsList = () => {
       opening: "00:00 - 24:00",
       lighting: "відсутнє",
       additionally: "фут. ворота, огорожа, покриття",
-      img: image,
+      image,
     },
   ];
 

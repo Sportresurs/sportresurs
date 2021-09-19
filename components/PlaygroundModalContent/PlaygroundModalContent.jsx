@@ -6,6 +6,7 @@ import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
+import image from "./images/image.png";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -23,7 +24,7 @@ const PlaygroundModalContent = ({ playground }) => {
       <div className={styles.imageContainer}>
         <Image
           className={styles.bgImage}
-          src={playground.img}
+          src={image}
           alt=""
           layout="responsive"
         />

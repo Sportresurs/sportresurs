@@ -31,7 +31,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.img}
+            src={playground.image}
             alt=""
             layout="fill"
           />
