@@ -5,6 +5,24 @@ import Rating from "../Rating/Rating";
 import Button from "../Button";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import styles from "./CourtCardInfo.module.scss";
+import image from "../../public/img/court-placeholder.jpg";
+
+const playground = {
+  id: 1,
+  address: "Тернопільська, 13а, Львів",
+  districtColor: "yellow",
+  district: "Сихівський",
+  type: "спортивний",
+  purpose: "не зазначено",
+  area: "1630 м. кв.",
+  covering: "штучна трава",
+  access: "безкоштовний",
+  opening: "08:00 - 22:00",
+  lighting: "є",
+  additionally:
+    "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
+  img: image,
+};
 
 const CourtCardInfo = ({
   courtNumber,
@@ -13,12 +31,13 @@ const CourtCardInfo = ({
   color,
   showExtendedInfo,
   playgroundInfoFields,
-  playground,
   isList = false,
+  modal,
 }) => {
   const addressStyleWrapper = classNames(styles.addressOuter, {
     [styles.addressList]: isList,
   });
+
   return (
     <>
       <p className={styles.courtNumber}>майданчик №{courtNumber}</p>
@@ -38,7 +57,7 @@ const CourtCardInfo = ({
           ))}
         </div>
       ) : null}
-      <Button size="small" variant={color}>
+      <Button size="small" variant={color} onClick={modal}>
         Детальніше
       </Button>
     </>

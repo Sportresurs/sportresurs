@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import cn from "classnames";
@@ -6,6 +7,7 @@ import Tag from "../Tag";
 import placeholderImg from "../../public/img/court-placeholder.jpg";
 import colorMatch from "../../utils/testData/testArrs";
 import CourtCardInfo from "../CourtCardInfo";
+import PlaygroundModal from "../PlaygroundModal";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -21,6 +23,14 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     colorMatch.districtColors.find((item) => item.district === region).color;
 
   const color = districtColor(district);
+
+  const [modal, setModal] = useState(false);
+  const handleOpen = () => {
+    setModal(true);
+  };
+  const handleClose = () => {
+    setModal(false);
+  };
 
   return (
     <>
@@ -38,9 +48,15 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             address={address}
             color={color}
             rating={rating}
+            modal={handleOpen}
           />
         </div>
       </div>
+      <PlaygroundModal
+        visible={modal}
+        onClose={handleClose}
+        playground={courtInfo}
+      />
     </>
   );
 }

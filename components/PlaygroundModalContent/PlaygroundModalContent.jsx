@@ -32,9 +32,13 @@ const PlaygroundModalContent = ({ playground }) => {
         <div className={styles.tagBtn}>
           <Tag color={playground.districtColor} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
+        <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings color="yellow" readOnly={true} />
+        <Ratings
+          color={playground.districtColor}
+          readOnly={true}
+          value={playground.rating}
+        />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow
