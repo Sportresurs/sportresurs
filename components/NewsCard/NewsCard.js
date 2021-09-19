@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./NewsCard.module.scss";
@@ -19,3 +20,8 @@ export default function NewsCard({ newsData, color }) {
     </Link>
   );
 }
+
+NewsCard.propTypes = {
+  newsData: PropTypes.object,
+  color: PropTypes.string,
+};
