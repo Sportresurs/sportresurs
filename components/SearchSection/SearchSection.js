@@ -13,6 +13,7 @@ import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
 
 const cx = classNames.bind(styles);
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
   const [address, setAddress] = useState("");
@@ -148,5 +149,5 @@ function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
 }
 
 export default scriptLoader([
-  "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCQpQm5NpH4H9sGBd66F8UzhPuAsyFEZTA",
+  `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`,
 ])(SearchSection);
