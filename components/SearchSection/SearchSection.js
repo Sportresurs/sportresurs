@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
 import classNames from "classnames/bind";
+/* import Context from "../../context"; */
+import { Context } from "../../context/context";
 import Button from "../Button/Button";
 import { Grid } from "../Grid/Grid";
 import styles from "./SearchSection.module.scss";
@@ -21,6 +23,7 @@ const cx = classNames.bind(styles);
 function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
+  const { handleCoordinates } = useContext(Context);
 
   const handleInputClear = () => {
     setAddress("");
@@ -43,9 +46,10 @@ function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
     handleInputClear();
   }; */
 
-  const handleSubmit = () => {
+  /* const handleSubmit = () => {
+    handleCoordinates(coordinates);
     handleInputClear();
-  };
+  }; */
 
   const searchOptions = () => {
     if (typeof window !== "undefined") {
@@ -122,7 +126,10 @@ function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
                 )}
               </div>
               <Link href="/playgrounds">
-                <a className={styles.formBtn} onClick={handleSubmit}>
+                <a
+                  className={styles.formBtn}
+                  onClick={handleCoordinates(coordinates)}
+                >
                   <span className={styles.formBtnContent}>
                     Пошук майданчика
                   </span>
@@ -162,7 +169,7 @@ function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
       </section>
     );
   }
-  return <div>{coordinates && <p>{coordinates}</p>}</div>;
+  return <div></div>;
 }
 
 export default scriptLoader([
