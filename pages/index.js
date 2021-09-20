@@ -50,7 +50,6 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
-        <PlaygroundsList />
         <About />
       </Grid>
     </div>
