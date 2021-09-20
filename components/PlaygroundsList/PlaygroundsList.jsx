@@ -67,24 +67,19 @@ const PlaygroundsList = () => {
   };
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
-      <div className={styles.outerWrapper}>
-        <div className={styles.innerWrapper}>
-          <ul className={styles.list}>
-            {playgrounds.map((playground) => (
-              <li className={styles.listItem} key={playground.id}>
-                <PlaygroundItem
-                  playground={playground}
-                  isActive={activeItemId === playground.id}
-                  handleClick={() => {
-                    handleClick(playground.id);
-                  }}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <ul className={styles.list}>
+        {playgrounds.map((playground) => (
+          <li className={styles.listItem} key={playground.id}>
+            <PlaygroundItem
+              playground={playground}
+              isActive={activeItemId === playground.id}
+              handleClick={() => {
+                handleClick(playground.id);
+              }}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
