@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-/* import Context from "../context"; */
 import { Context } from "../context";
 import s from "../styles/Playgrounds.module.scss";
 import CourtCard from "../components/CourtCard";
