@@ -13,13 +13,13 @@ import FilterIcon from "../../public/svg/filterIcon.svg";
 const cx = classNames.bind(styles);
 
 function SearchOnMap({
-  setCoordinates,
+  handleCoordinates,
   onToggle,
   isScriptLoaded,
   isScriptLoadSucceed,
 }) {
   const [address, setAddress] = useState("");
-  const [latLng, setLatLng] = useState({});
+  const [coordinates, setCoordinates] = useState({});
 
   const handleInputClear = () => {
     setAddress("");
@@ -29,7 +29,7 @@ function SearchOnMap({
     const result = await geocodeByAddress(value);
     const ll = await getLatLng(result[0]);
     setAddress(value);
-    setLatLng(ll);
+    setCoordinates(ll);
   };
 
   const handleChange = (value) => {
@@ -38,7 +38,7 @@ function SearchOnMap({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCoordinates(latLng);
+    handleCoordinates(coordinates);
     handleInputClear();
   };
 

@@ -12,7 +12,7 @@
 
 .input {
     width: 100%;
-    padding: 10px 54px 11px 12px;
+    padding: 10px 24px 11px 52px;
 
     font-size: 12px;
     line-height: 1.66;
@@ -27,7 +27,7 @@
     white-space: nowrap;
 
     @media screen and (max-width: 767px) {
-        padding: 10px 12px 10px 44px;
+        padding: 10px 30px 10px 44px;
         font-size: 14px;
         line-height: 1.43;
     }
@@ -37,7 +37,11 @@
     @extend %button;
     position: absolute;
     top: 15px;
-    right: 12px;
+    right: 6px;
+
+    @media screen and (max-width: 767px) {
+        right: 12px;
+    }
 }
 
 .fromBtnCloseIcon {
@@ -47,8 +51,10 @@
 .formBtnFilter {
     @extend %button;
     position: absolute;
+    /* top: 11px;
+    right: 16px; */
     top: 11px;
-    right: 16px;
+    left: 12px;
 
     @media screen and (max-width: 767px) {
         top: 11px;

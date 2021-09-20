@@ -15,7 +15,7 @@ const Modal123 = () => {
 
   return (
     <div className={styles.box}>
-      <Search setCoordinates={setCoord} onToggle={handleToggleModal} />
+      <Search handleCoordinates={setCoord} onToggle={handleToggleModal} />
       {coord && (
         <div>
           <p>Lat: {coord.lat}</p>
