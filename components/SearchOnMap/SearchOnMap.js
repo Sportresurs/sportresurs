@@ -11,10 +11,12 @@ import Close from "../../public/svg/closeAutoCIcon.svg";
 import FilterIcon from "../../public/svg/filterIcon.svg";
 
 const cx = classNames.bind(styles);
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 function SearchOnMap({
   handleCoordinates,
   onToggle,
+  numberOfFilters,
   isScriptLoaded,
   isScriptLoadSucceed,
 }) {
@@ -118,6 +120,10 @@ function SearchOnMap({
           >
             <FilterIcon className={styles.formBtnFilterIcon} />
           </button>
+
+          {numberOfFilters && (
+            <div className={styles.numFilters}>{numberOfFilters}</div>
+          )}
         </div>
 
         <button className={styles.formBtn} type="submit">
@@ -130,5 +136,5 @@ function SearchOnMap({
 }
 
 export default scriptLoader([
-  "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCQpQm5NpH4H9sGBd66F8UzhPuAsyFEZTA",
+  `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`,
 ])(SearchOnMap);
