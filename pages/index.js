@@ -76,7 +76,7 @@ export default function Home() {
       opening: "00:00 - 24:00",
       lighting: "відсутнє",
       additionally: "фут. ворота, огорожа, покриття",
-      image: image,
+      image,
     },
   ];
 
