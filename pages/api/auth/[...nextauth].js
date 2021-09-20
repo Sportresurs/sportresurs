@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import { withSentry } from "@sentry/nextjs";
 
 const options = {
   providers: [
@@ -11,6 +12,8 @@ const options = {
   algorithms: ["HS256"],
 };
 
-export default function Login(req, res) {
+function Login(req, res) {
   return NextAuth(req, res, options);
 }
+
+export default withSentry(Login);
