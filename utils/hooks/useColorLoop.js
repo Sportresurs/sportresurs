@@ -23,5 +23,5 @@ export default function useColorLoop() {
     []
   );
 
-  return useCallback(() => colors.next().value, []);
+  return useCallback(() => colors.next().value, [colors]);
 }
