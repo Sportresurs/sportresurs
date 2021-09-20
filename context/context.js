@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const Context = createContext("");
 
 const ContextProvider = ({ children }) => {
-  const [coordinates, setCoordinates] = useState({});
+  const [coordinates, setCoordinates] = useState(null);
 
   const handleCoordinates = (value) => {
     setCoordinates(value);

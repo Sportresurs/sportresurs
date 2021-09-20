@@ -7,7 +7,7 @@ import PlacesAutocomplete, {
 import scriptLoader from "react-async-script-loader";
 import classNames from "classnames/bind";
 /* import Context from "../../context"; */
-import { Context } from "../../context/context";
+import { Context } from "../../context";
 import Button from "../Button/Button";
 import { Grid } from "../Grid/Grid";
 import styles from "./SearchSection.module.scss";

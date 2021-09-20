@@ -29,7 +29,7 @@ export default Sentry.withErrorBoundary(MyApp, {
 
 import * as Sentry from "@sentry/nextjs";
 import Layout from "../components/layout";
-import { ContextProvider } from "../context/context";
+import { ContextProvider } from "../context";
 import "../styles/base.scss";
 
 function MyApp({ Component, pageProps }) {
