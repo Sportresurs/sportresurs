@@ -111,3 +111,13 @@ On your email account, you will need to give access to login from third-party ap
 Also, this approach has limitations (500 emails per day / at a time). <br />
 If the mail got into the "SPAM" section, you need to indicate the sender as "verified". <br />
 After you indicate that this is a verified sender, email will stop getting into "SPAM". <br />
+
+## Administrator Authorization Configuration
+
+Step 1: Login in [console.cloud.google](https://console.cloud.google.com/). <br />
+Step 2: Create a [project](https://console.cloud.google.com/projectselector2/apis/credentials?supportedpurview=project). <br />
+Step 3: Create [OAuth client ID](https://console.cloud.google.com/apis/credentials/oauthclient), select `Web application` type.<br />
+Step 4: Add Configuration <br />
+> Authorized JavaScript origins: `{domain name}`, <br />
+> Authorized redirect URIs: `{domain name}/api/auth/callback/google`. <br />
+Step 5: `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` save in `.env` file. <br />
