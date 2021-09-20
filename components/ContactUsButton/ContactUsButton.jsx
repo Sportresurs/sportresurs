@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import ContactUsModal from "../ContactUsModal";
-import ThanksModal from "../ThanksModal";
+import SuccessDialog from "../SuccessDialog";
 
 const ContactUsButton = ({ shouldLockScreen }) => {
   const [modal, setModal] = useState(false);
@@ -29,7 +29,7 @@ const ContactUsButton = ({ shouldLockScreen }) => {
         onClose={handleClose}
         onSuccess={handleSuccessOpen}
       />
-      <ThanksModal
+      <SuccessDialog
         shouldLockScreen={shouldLockScreen}
         isShow={isSuccess}
         onClose={handleSuccessClose}
