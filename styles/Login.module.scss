@@ -1,0 +1,51 @@
+@import "./shared.scss";
+
+.login {
+  width: 1440px;
+  margin: 0 auto;
+  background-image: url("../public/img/bg/loginBg.png"),
+    url("../public/svg/basketballBgGreen.svg");
+  background-position: left top, 1090px 609px;
+  background-size: 52% 100%, 334px 581px;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.wrapper {
+  margin-top: 320px;
+  margin-right: 190px;
+  margin-bottom: 493px;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 45px;
+  color: $color-primary-dark;
+}
+
+.text {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  color: $color-secondary-darkGrey;
+}
+
+.button {
+  padding: 14px 111px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: $color-primary-light;
+}
