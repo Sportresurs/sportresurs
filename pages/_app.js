@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/nextjs";
+import { Provider } from "next-auth/client";
 import Layout from "../components/layout";
 import "../styles/base.scss";
 
@@ -6,8 +7,10 @@ function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
   return (
     <>
-      <div id="portal"></div>
-      {getLayout(<Component {...pageProps} />)}
+      <Provider session={pageProps.session}>
+        <div id="portal"></div>
+        {getLayout(<Component {...pageProps} />)}
+      </Provider>
     </>
   );
 }
