@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
-import styles from "../styles/Requests.module.scss";
-import Select from "../components/Select";
-import data from "../utils/testData/testRequestArr";
+import styles from "./Requests.module.scss";
+import Select from "../../components/Select";
+import data from "../../utils/testData/testRequestArr";
 
 const cx = classNames.bind(styles);
 
