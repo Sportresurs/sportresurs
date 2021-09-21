@@ -1,0 +1,78 @@
+@import "./shared.scss";
+
+.container {
+  margin: 25px auto;
+  max-width: 1177px;
+  padding: 30px 33px 88px;
+  border-radius: 2px;
+  background-color: $color-primary-light;
+}
+
+.title {
+  margin-bottom: 36px;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+
+  color: $color-primary-dark;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid $color-primary-dark;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-primary-dark;
+  text-align: left;
+}
+
+.table td:last-child {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 4%;
+}
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 12%;
+}
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 15%;
+}
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  word-break: break-word;
+  width: 23%;
+}
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 10%;
+}
+.table th:nth-child(6),
+.table td:nth-child(6) {
+  width: 15%;
+}
+.table th:nth-child(7),
+.table td:nth-child(7) {
+  word-break: break-word;
+  width: 21%;
+}
+
+.tableHead {
+  background-color: $color-secondary-yellowish;
+}
+
+.tableBody .new {
+  background-color: rgba(0, 150, 69, 0.3);
+}
