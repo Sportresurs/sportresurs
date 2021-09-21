@@ -95,15 +95,12 @@ export default function Map({
 }
 
 Map.propTypes = {
-  setCoordinates: PropTypes.func.isRequired,
-  setBounds: PropTypes.func.isRequired,
   defaultZomm: PropTypes.number.isRequired,
-  zoom: PropTypes.number,
-  setZoom: PropTypes.func,
-  defaultCoords: PropTypes.object.isRequired,
-  coordinates: PropTypes.object.isRequired,
+  defaultCenter: PropTypes.object.isRequired,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
   childClicked: PropTypes.string.isRequired,
   apiKey: PropTypes.string.isRequired,
+  onLoad: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
