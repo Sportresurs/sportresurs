@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
+import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./SearchOnMap.module.scss";
 import SearchIcon from "../../public/svg/searchIcon.svg";
@@ -134,6 +135,12 @@ function SearchOnMap({
   }
   return <div></div>;
 }
+
+SearchOnMap.propTypes = {
+  handleCoordinates: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  numberOfFilters: PropTypes.number.isRequired,
+};
 
 export default scriptLoader([
   `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`,
