@@ -3,45 +3,31 @@ import Modal from "../Modal";
 import Button from "../Button";
 import styles from "./Dialog.module.scss";
 import ThumbUpIcon from "../../public/svg/thumbUp.svg";
-import Basket from "../../public/svg/basket.svg";
 
 const Dialog = ({
-  isShow,
-  onClose,
-  header,
-  info,
-  isAdmin = false,
+  visible,
   shouldLockScreen,
+  title,
+  info,
+  onClose,
+  buttonsRender,
+  iconRender,
 }) => (
   <Modal
     shouldLockScreen={shouldLockScreen}
     variant="small"
-    visible={isShow}
+    visible={visible}
     onClose={onClose}
   >
     <div className={styles.modal}>
-      {isAdmin ? (
-        <Basket className={styles.icon} />
-      ) : (
-        <ThumbUpIcon className={styles.icon} />
-      )}
-      <h1 className={styles.title}>{header}</h1>
+      <div className={styles.icon}>
+        {iconRender ? iconRender() : <ThumbUpIcon />}
+      </div>
+      <h1 className={styles.title}>{title}</h1>
       <p className={styles.text}>{info}</p>
       <div>
-        {isAdmin ? (
-          <>
-            <Button variant={"white"} size={"medium"} onClick={onClose}>
-              Відмінити
-            </Button>
-            <Button
-              variant="black"
-              size="medium"
-              onClick={onClose}
-              className={styles.deleteBtn}
-            >
-              Видалити
-            </Button>
-          </>
+        {buttonsRender ? (
+          buttonsRender()
         ) : (
           <Button variant="black" size="medium" onClick={onClose}>
             Добре

@@ -1,13 +1,13 @@
 import React from "react";
 import Dialog from "../Dialog";
 
-const SuccessDialog = ({ isShow, onClose, shouldLockScreen }) => (
+const SuccessDialog = ({ isShow, shouldLockScreen, onClose }) => (
   <Dialog
     shouldLockScreen={shouldLockScreen}
-    onClose={onClose}
-    isShow={isShow}
-    header="Готово!"
+    visible={isShow}
+    title="Готово!"
     info="Ми отримали ваші дані і скоро вам зателефонуємо"
+    onClose={onClose}
   />
 );
 
