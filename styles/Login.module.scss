@@ -1,12 +1,12 @@
 @import "./shared.scss";
 
 .login {
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
   background-image: url("../public/img/bg/loginBg.png"),
     url("../public/svg/basketballBgGreen.svg");
-  background-position: left top, 1090px 609px;
-  background-size: 52% 100%, 334px 581px;
+  background-position: left top, 1106px 609px;
+  background-size: 50% 100%, 334px 581px;
   background-repeat: no-repeat, no-repeat;
 }
 
@@ -18,7 +18,8 @@
 
 .wrapper {
   margin-top: 320px;
-  margin-right: 190px;
+  margin-left: 55%;
+  margin-right: auto;
   margin-bottom: 493px;
 }
 
