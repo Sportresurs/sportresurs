@@ -2,7 +2,7 @@ import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
-import Marker from "../Marker";
+import MapMarkerWrapper from "../MapMarkerWrapper";
 import types from "../../utils/testData/testArrs";
 
 const options = {
@@ -74,19 +74,16 @@ export default function Map({
         {places?.map((place) => {
           const proprsToMarker = courtDataFinder(place.destination);
           return (
-            <div
+            <MapMarkerWrapper
               className={cx("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
               lat={Number(place.latitude)}
               lng={Number(place.longitude)}
               key={place.id}
-            >
-              <Marker
-                typeOfCourt={proprsToMarker.latinName}
-                bgColor={proprsToMarker.color}
-              />
-            </div>
+              typeOfCourt={proprsToMarker.latinName}
+              bgColor={proprsToMarker.color}
+            />
           );
         })}
       </GoogleMapReact>
@@ -95,11 +92,11 @@ export default function Map({
 }
 
 Map.propTypes = {
-  defaultZomm: PropTypes.number.isRequired,
   defaultCenter: PropTypes.object.isRequired,
+  defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
-  childClicked: PropTypes.string.isRequired,
+  childClicked: PropTypes.string,
   apiKey: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
