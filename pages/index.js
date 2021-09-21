@@ -9,6 +9,7 @@ import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
 import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
+import Marker from "../components/Marker";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -37,6 +38,11 @@ export default function Home() {
 
   return (
     <div className={styles.background}>
+      <Marker
+        typeOfCourt="MultiSelectCourt"
+        district="Zaliznychnyi"
+        isCourtMarker={true}
+      />
       <Grid>
         <SearchSection />
         <TopCourts courtList={data.topCourts} />
