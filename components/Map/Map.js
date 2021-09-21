@@ -5,42 +5,37 @@ import styles from "./Map.module.scss";
 import Marker from "../Marker";
 import types from "../../utils/testData/testArrs";
 
+const options = {
+  minZoom: 11,
+  maxZoom: 20,
+  restriction: {
+    latLngBounds: {
+      north: 49.96325058667949,
+      south: 49.7223633490448,
+      east: 24.210497138916054,
+      west: 23.851724861084023,
+    },
+  },
+};
+
 const cx = classNames.bind(styles);
 
 export default function Map({
-  setCoordinates,
-  setBounds,
-  defaultZomm,
-  zoom,
-  setZoom,
-  defaultCoords,
-  coordinates,
+  defaultZoom,
+  defaultCenter,
   places,
   setChildClicked,
   childClicked,
   apiKey,
+  onLoad,
+  onChange,
 }) {
-  const options = {
-    minZoom: 11,
-    maxZoom: 20,
-    restriction: {
-      latLngBounds: {
-        north: 49.96325058667949,
-        south: 49.7223633490448,
-        east: 24.210497138916054,
-        west: 23.851724861084023,
-      },
-    },
-  };
-
   // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
   function courtDataFinder(destination) {
-    // если мультипин
     if (destination.length > 1) {
       const multiPin = { color: "lilac", latinName: "Tennis" };
       return multiPin;
     }
-    // если нету призначення
     if (destination.length === 0) {
       const noDestination = { color: "red", latinName: "Handball" };
       return noDestination;
@@ -52,22 +47,28 @@ export default function Map({
     return matchedType;
   }
 
+  const handleApiLoaded = ({ map }) => {
+    if (onLoad) {
+      onLoad(map);
+    }
+  };
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange(e);
+    }
+  };
+
   return (
     <div className={styles.mapWrapper}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: apiKey }}
-        defaultCenter={defaultCoords}
-        center={coordinates}
-        defaultZoom={defaultZomm}
-        zoom={zoom}
-        margin={[50, 50, 50, 50]}
+        defaultCenter={defaultCenter}
+        defaultZoom={defaultZoom}
+        yesIWantToUseGoogleMapApiInternals
         options={options}
-        onChange={(e) => {
-          setZoom(e.zoom);
-          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
-          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-        }}
-        boun
+        onChange={handleChange}
+        onDrag={handleChange}
+        onGoogleApiLoaded={handleApiLoaded}
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place) => {
