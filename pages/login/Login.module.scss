@@ -1,10 +1,10 @@
-@import "./shared.scss";
+@import "../../styles/shared.scss";
 
 .login {
   max-width: 1440px;
   margin: 0 auto;
-  background-image: url("../public/img/bg/loginBg.png"),
-    url("../public/svg/basketballBgGreen.svg");
+  background-image: url("../../public/img/bg/loginBg.png"),
+    url("../../public/svg/basketballBgGreen.svg");
   background-position: left top, 1106px 609px;
   background-size: 50% 100%, 334px 581px;
   background-repeat: no-repeat, no-repeat;

@@ -1,5 +1,5 @@
-import styles from "../styles/Login.module.scss";
-import Button from "../components/Button";
+import styles from "./Login.module.scss";
+import Button from "../../components/Button";
 
 export default function Login() {
   return (
