@@ -1,10 +1,14 @@
 import Link from "next/link";
+import { useMemo } from "react";
+import ScrollableAnchor, { configureAnchors } from "react-scrollable-anchor";
 import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
+import useWindowSize from "../../utils/customHooks/findWindowSize";
+import setHeightOfHeader from "../../utils/findHeightOfHeader";
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +36,12 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const size = useWindowSize();
+
+  const heightOfHeader = useMemo(() => setHeightOfHeader(size.width), [size]);
+
+  configureAnchors({ offset: heightOfHeader, scrollDuration: 400 });
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -85,16 +95,18 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div className={styles.footerContacts}>
-            <h3 className={styles.footerContactsTitle}>Контакти</h3>
-            <address className={styles.footerContactsAddress}>
-              <p>79008, Львів,</p>
-              <p>пл. Ринок, 1, каб. 516</p>
-              <a href="tel:+38012345678" className={styles.footerTelephone}>
-                +38012345678
-              </a>
-            </address>
-          </div>
+          <ScrollableAnchor id={"navigateToContacts"}>
+            <div className={styles.footerContacts}>
+              <h3 className={styles.footerContactsTitle}>Контакти</h3>
+              <address className={styles.footerContactsAddress}>
+                <p>79008, Львів,</p>
+                <p>пл. Ринок, 1, каб. 516</p>
+                <a href="tel:+38012345678" className={styles.footerTelephone}>
+                  +38012345678
+                </a>
+              </address>
+            </div>
+          </ScrollableAnchor>
         </div>
 
         <div className={styles.legal}>
