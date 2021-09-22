@@ -9,6 +9,7 @@ import { Grid } from "../../components/Grid";
 import styles from "./Home.module.scss";
 import PlaygroundsList from "../../components/PlaygroundsList";
 import SearchSection from "../../components/SearchSection";
+import News from "../../components/News";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -52,6 +53,7 @@ export default function Home() {
         />
         <PlaygroundsList />
         <About />
+        <News />
       </Grid>
     </div>
   );
