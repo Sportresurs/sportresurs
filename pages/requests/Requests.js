@@ -6,6 +6,15 @@ import data from "../../utils/testData/testRequestArr";
 const cx = classNames.bind(styles);
 
 export default function Requests() {
+  const dataMaker = (date) => {
+    const rawData = new Date(date);
+    const adjustedDate = rawData.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    return adjustedDate;
+  };
   return (
     <section className={styles.requests}>
       <div className={styles.container}>
@@ -13,34 +22,40 @@ export default function Requests() {
         <table className={styles.table}>
           <thead className={styles.tableHead}>
             <tr>
-              <th>№</th>
-              <th>Дата</th>
-              <th>Статус</th>
-              <th>Адміністратор</th>
-              <th>Ім’я</th>
-              <th>Телефон</th>
-              <th>Додаткова інформація</th>
+              <th className={cx("headCell", "number")}>№</th>
+              <th className={cx("headCell", "data")}>Дата</th>
+              <th className={cx("headCell", "status")}>Статус</th>
+              <th className={cx("headCell", "admin")}>Адміністратор</th>
+              <th className={cx("headCell", "name")}>Ім’я</th>
+              <th className={cx("headCell", "tel")}>Телефон</th>
+              <th className={cx("headCell", "info")}>Додаткова інформація</th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {data.map(({ id, date, status, admin, name, tel, info }) => (
-              <tr
-                key={id}
-                className={cx("tableRow", {
-                  new: status === "новий",
-                })}
-              >
-                <td>{id}.</td>
-                <td>{date}</td>
-                <td>
-                  <Select requestStatus={status} />
-                </td>
-                <td>{admin || "-"}</td>
-                <td>{name}</td>
-                <td>{tel}</td>
-                <td>{info}</td>
-              </tr>
-            ))}
+            {data.requests.map(
+              ({ id, date, status, admin, name, tel, info }) => (
+                <tr
+                  key={id}
+                  className={cx("tableRow", {
+                    new: status === "новий",
+                  })}
+                >
+                  <td className={cx("tableCell", "number")}>{id}.</td>
+                  <td className={cx("tableCell", "date")}>{dataMaker(date)}</td>
+                  <td className={cx("tableCell", "status")}>
+                    <Select
+                      defaultValue={status}
+                      options={data.statusOptions}
+                      type="table"
+                    />
+                  </td>
+                  <td className={cx("tableCell", "admin")}>{admin || "-"}</td>
+                  <td className={cx("tableCell", "name")}>{name}</td>
+                  <td className={cx("tableCell", "tel")}>{tel}</td>
+                  <td className={cx("tableCell", "info")}>{info}</td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>

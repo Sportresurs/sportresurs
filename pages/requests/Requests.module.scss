@@ -22,8 +22,20 @@
   border-collapse: collapse;
 }
 
-.table th,
-.table td {
+.tableHead {
+  background-color: $color-secondary-yellowish;
+}
+
+.tableBody {
+  background-color: $color-primary-light;
+}
+
+.tableRow.new {
+  background-color: rgba(0, 150, 69, 0.3);
+}
+
+.tableCell,
+.headCell {
   padding: 12px;
   border: 1px solid $color-primary-dark;
   font-weight: 400;
@@ -33,46 +45,38 @@
   text-align: left;
 }
 
-.table td:last-child {
+.headCell.number,
+.tableCell.number {
+  width: 4%;
+}
+
+.tableCell.info {
   font-size: 12px;
   line-height: 15px;
 }
-
-.table th:nth-child(1),
-.table td:nth-child(1) {
-  width: 4%;
-}
-.table th:nth-child(2),
-.table td:nth-child(2) {
+.headCell.data,
+.tableCell.data {
   width: 12%;
 }
-.table th:nth-child(3),
-.table td:nth-child(3) {
+.headCell.status,
+.tableCell.status {
   width: 15%;
 }
-.table th:nth-child(4),
-.table td:nth-child(4) {
+.headCell.admin,
+.tableCell.admin {
   word-break: break-word;
   width: 23%;
 }
-.table th:nth-child(5),
-.table td:nth-child(5) {
+.headCell.name,
+.tableCell.name {
   width: 10%;
 }
-.table th:nth-child(6),
-.table td:nth-child(6) {
+.headCell.tel,
+.tableCell.tel {
   width: 15%;
 }
-.table th:nth-child(7),
-.table td:nth-child(7) {
+.headCell.info,
+.tableCell.info {
   word-break: break-word;
   width: 21%;
-}
-
-.tableHead {
-  background-color: $color-secondary-yellowish;
-}
-
-.tableBody .new {
-  background-color: rgba(0, 150, 69, 0.3);
 }

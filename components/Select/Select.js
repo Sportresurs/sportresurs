@@ -1,24 +1,45 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import { useState } from "react";
+import classNames from "classnames/bind";
+import PropTypes from "prop-types";
 import styles from "./Select.module.scss";
 
-export default function Select({ requestStatus }) {
-  const [status, setStatus] = useState(requestStatus);
+const cx = classNames.bind(styles);
+
+export default function Select({ defaultValue, options, type }) {
+  const [value, setValue] = useState(defaultValue);
 
   const handleOptionChange = (e) => {
-    setStatus(e.target.value);
-    // should be logic for patch the DB
+    setValue(e.target.value);
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-onchange
-    <select
-      className={styles.select}
-      value={status}
-      onChange={handleOptionChange}
+    <div
+      className={cx("customIcon", {
+        tableIcon: type === "table",
+        formIcon: type === "form",
+      })}
     >
-      <option value="новий">новий</option>
-      <option value="в процесі">в процесі</option>
-      <option value="оброблено">оброблено</option>
-    </select>
+      <select
+        className={cx("select", {
+          table: type === "table",
+          form: type === "form",
+        })}
+        value={value}
+        onChange={handleOptionChange}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
+
+Select.propTypes = {
+  defaultValue: PropTypes.string,
+  type: PropTypes.oneOf(["table", "form"]).isRequired,
+  options: PropTypes.array.isRequired,
+};

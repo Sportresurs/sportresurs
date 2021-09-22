@@ -1,5 +1,50 @@
+@import "../../styles/shared.scss";
+
+.customIcon {
+  position: relative;
+  max-width: 492px;
+}
+
+.tableIcon::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 8px;
+  top: 7px;
+  right: 2px;
+  background-image: url("../../public/svg/tableSelectIcon.svg");
+  pointer-events: none;
+}
+
+.formIcon::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 13px;
+  right: 13px;
+  background-image: url("../../public/svg/formSelectArrow.svg");
+  pointer-events: none;
+}
+
 .select {
   width: 100%;
+}
+
+.table {
+  appearance: none;
   border: none;
   background-color: transparent;
+}
+
+.form {
+  appearance: none;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $color-primary-dark;
 }

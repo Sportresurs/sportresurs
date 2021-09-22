@@ -1,7 +1,7 @@
 const requests = [
   {
     id: 1,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "новий",
     admin: "",
     name: "Мар’ян",
@@ -10,7 +10,7 @@ const requests = [
   },
   {
     id: 2,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "в процесі",
     admin: "denysgolovko@email.com",
     name: "Святослав",
@@ -19,7 +19,7 @@ const requests = [
   },
   {
     id: 3,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "оброблено",
     admin: "denysgolovko@email.com",
     name: "Катерина",
@@ -28,7 +28,7 @@ const requests = [
   },
   {
     id: 4,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "оброблено",
     admin: "denysgolovko@email.com",
     name: "Маркіян",
@@ -37,7 +37,7 @@ const requests = [
   },
   {
     id: 5,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "оброблено",
     admin: "denysgolovko@email.com",
     name: "Олександр",
@@ -46,7 +46,7 @@ const requests = [
   },
   {
     id: 6,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "оброблено",
     admin: "denysgolovko@email.com",
     name: "В’ячеслав",
@@ -55,7 +55,7 @@ const requests = [
   },
   {
     id: 7,
-    date: "28/09/2021",
+    date: 1632229355696,
     status: "оброблено",
     admin: "denysgolovko@email.com",
     name: "Анастасія",
@@ -64,4 +64,10 @@ const requests = [
   },
 ];
 
-export default requests;
+const statusOptions = [
+  { label: "оброблено", value: "оброблено" },
+  { label: "новий", value: "новий" },
+  { label: "в процесі", value: "в процесі" },
+];
+
+export default { requests, statusOptions };
