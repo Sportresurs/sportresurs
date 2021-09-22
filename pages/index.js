@@ -51,7 +51,7 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
-        <AdminPlaygroundModal visible={false} onClose={handleClose} />
+        <AdminPlaygroundModal visible={true} onClose={handleClose} />
         <PlaygroundsList />
         <About />
       </Grid>
