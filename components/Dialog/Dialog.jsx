@@ -9,9 +9,9 @@ const Dialog = ({
   shouldLockScreen,
   title,
   info,
-  onClose,
   buttonsRender,
   iconRender,
+  onClose,
 }) => (
   <Modal
     shouldLockScreen={shouldLockScreen}

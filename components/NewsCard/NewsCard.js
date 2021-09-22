@@ -4,15 +4,20 @@ import Link from "next/link";
 import styles from "./NewsCard.module.scss";
 import DeleteIcon from "../../public/svg/basketIcon.svg";
 
-export default function NewsCard({ newsData, color, canRemove, onOpen }) {
+export default function NewsCard({
+  newsData,
+  color,
+  canDelete,
+  onDeleteIconClick,
+}) {
   return (
     <Link href={newsData.url} passHref>
       <div className={styles.card}>
-        {canRemove ? (
+        {canDelete ? (
           <div className={styles.deleteIcon}>
             <DeleteIcon
               onClick={() => {
-                onOpen(newsData);
+                onDeleteIconClick(newsData);
               }}
             />
           </div>

@@ -9,7 +9,6 @@ const DeleteDialog = ({ visible, shouldLockScreen, onClose }) => (
     shouldLockScreen={shouldLockScreen}
     visible={visible}
     info="Ви впевнені, що хочете видалити цей пост?"
-    onClose={onClose}
     iconRender={() => <Basket />}
     buttonsRender={() => (
       <>
@@ -19,13 +18,14 @@ const DeleteDialog = ({ visible, shouldLockScreen, onClose }) => (
         <Button
           variant="black"
           size="medium"
-          onClick={onClose}
           className={styles.deleteBtn}
+          onClick={onClose}
         >
           Видалити
         </Button>
       </>
     )}
+    onClose={onClose}
   />
 );
 

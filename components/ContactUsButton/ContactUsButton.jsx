@@ -31,7 +31,7 @@ const ContactUsButton = ({ shouldLockScreen }) => {
       />
       <SuccessDialog
         shouldLockScreen={shouldLockScreen}
-        isShow={isSuccess}
+        visible={isSuccess}
         onClose={handleSuccessClose}
       />
     </>

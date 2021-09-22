@@ -46,8 +46,8 @@ export default function News({ isAdmin }) {
             key={item.id}
             newsData={item}
             color={getColor()}
-            canRemove={isAdmin}
-            onOpen={handleDeleteDialogOpen}
+            canDelete={isAdmin}
+            onDeleteIconClick={handleDeleteDialogOpen}
           />
         ))}
       </div>
