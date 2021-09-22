@@ -97,6 +97,19 @@
     background: $color-secondary-lightGrey;
   }
 }
+.white {
+  background: $color-primary-light;
+  color: $color-primary-dark;
+  border: 1px solid $color-primary-dark;
+  &:hover {
+    background: $color-primary-dark;
+    border: 1px solid $color-primary-dark;
+    color: $color-primary-light;
+  }
+  &:disabled {
+    background: $color-secondary-lightGrey;
+  }
+}
 .red {
   background: $color-accent-red;
   &:hover {
