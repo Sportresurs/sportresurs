@@ -1,11 +1,13 @@
+@import "../../styles/shared.scss";
+
 .form {
   width: 772px;
   display: flex;
   margin-top: 20px;
 }
 
-.input {
-  width: 607px;
+.inp {
+  min-width: 607px;
   margin: 0 36px 0 36px;
 }
 
