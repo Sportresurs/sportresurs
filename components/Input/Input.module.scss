@@ -16,6 +16,14 @@
   margin-bottom: 7px;
   font-weight: 500;
 }
+.smallLabel {
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+  margin-bottom: 5px;
+}
 .errorMsg {
   font-size: 12px;
   line-height: 15px;
@@ -52,6 +60,9 @@
 .textarea {
   height: 237px;
   resize: none;
+}
+.small {
+  height: 64px;
 }
 .inputError {
   border: 1px solid $color-form-red;

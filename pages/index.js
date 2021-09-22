@@ -9,6 +9,7 @@ import { Grid } from "../components/Grid";
 import styles from "../styles/Home.module.scss";
 import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
+import AdminPlaygroundModal from "../components/AdminPlaygroundModal";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -50,6 +51,7 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
+        <AdminPlaygroundModal visible={false} onClose={handleClose} />
         <PlaygroundsList />
         <About />
       </Grid>

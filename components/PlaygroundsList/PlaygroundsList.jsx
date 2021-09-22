@@ -38,6 +38,28 @@ const PlaygroundsList = () => {
       rating: 4.5,
       img: image,
     },
+    {
+      id: 26,
+      address: "вул.Довженка 25 ",
+      color: "red",
+      district: "Сихівський",
+      type: "спортивний",
+      covering: "штучна трава",
+      opening: "08:00 - 22:00",
+      rating: 4.5,
+      img: image,
+    },
+    {
+      id: 27,
+      address: "вул.Довженка 25 ",
+      color: "red",
+      district: "Сихівський",
+      type: "спортивний",
+      covering: "штучна трава",
+      opening: "08:00 - 22:00",
+      rating: 4.5,
+      img: image,
+    },
   ];
   const [activeItemId, setActiveItemId] = useState(null);
   const handleClick = (id) => {
@@ -45,7 +67,6 @@ const PlaygroundsList = () => {
   };
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
       <ul className={styles.list}>
         {playgrounds.map((playground) => (
           <li className={styles.listItem} key={playground.id}>
