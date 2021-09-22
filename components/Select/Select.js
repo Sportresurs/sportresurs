@@ -21,10 +21,7 @@ export default function Select({ defaultValue, options, type }) {
       })}
     >
       <select
-        className={cx("select", {
-          table: type === "table",
-          form: type === "form",
-        })}
+        className={cx("select", type)}
         value={value}
         onChange={handleOptionChange}
       >

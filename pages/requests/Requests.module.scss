@@ -45,8 +45,7 @@
   text-align: left;
 }
 
-.headCell.number,
-.tableCell.number {
+.number {
   width: 4%;
 }
 
@@ -54,29 +53,23 @@
   font-size: 12px;
   line-height: 15px;
 }
-.headCell.data,
-.tableCell.data {
+.data {
   width: 12%;
 }
-.headCell.status,
-.tableCell.status {
+.status {
   width: 15%;
 }
-.headCell.admin,
-.tableCell.admin {
+.admin {
   word-break: break-word;
   width: 23%;
 }
-.headCell.name,
-.tableCell.name {
+.name {
   width: 10%;
 }
-.headCell.tel,
-.tableCell.tel {
+.tel {
   width: 15%;
 }
-.headCell.info,
-.tableCell.info {
+.info {
   word-break: break-word;
   width: 21%;
 }
