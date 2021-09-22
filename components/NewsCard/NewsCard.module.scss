@@ -43,3 +43,23 @@
 .image {
   border-radius: 3px;
 }
+.deleteIcon {
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: $color-primary-light;
+}

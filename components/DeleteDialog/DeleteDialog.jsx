@@ -4,10 +4,10 @@ import Button from "../Button";
 import styles from "./DeleteDialog.module.scss";
 import Basket from "../../public/svg/basket.svg";
 
-const DeleteDialog = ({ isShow, shouldLockScreen, onClose }) => (
+const DeleteDialog = ({ visible, shouldLockScreen, onClose }) => (
   <Dialog
     shouldLockScreen={shouldLockScreen}
-    visible={isShow}
+    visible={visible}
     info="Ви впевнені, що хочете видалити цей пост?"
     onClose={onClose}
     iconRender={() => <Basket />}
