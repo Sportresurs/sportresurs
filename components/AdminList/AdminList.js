@@ -40,7 +40,6 @@ export default function AdminList() {
   const [admins, setAdmins] = useState(data);
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState({ isVisible: false, id: null });
-  // eslint-disable-next-line no-unused-vars
   const [editEmail, setEditEmail] = useState("");
 
   const handleSubmit = (e) => {
