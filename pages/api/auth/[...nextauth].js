@@ -12,12 +12,8 @@ const options = {
   ],
   callbacks: {
     async signIn(user) {
-      const users = await User.findAll();
-      const emails = users.map((el) => el.email);
-      if (emails.includes(user.email)) {
-        return true;
-      }
-      return false;
+      const count = await User.count({ where: { email: user.email } });
+      return Boolean(count);
     },
   },
 };
