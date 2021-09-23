@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
 import classNames from "classnames/bind";
+import { LVIV_COORDINATES } from "../../utils/constants";
 import { Context } from "../../context";
 import Button from "../Button/Button";
 import styles from "./SearchSection.module.scss";
@@ -30,21 +31,31 @@ function SearchSection({ isScriptLoaded, isScriptLoadSucceed }) {
 
   const handleSelect = async (value) => {
     const result = await geocodeByAddress(value);
-    const ll = await getLatLng(result[0]);
+    const LatLng = await getLatLng(result[0]);
     setAddress(value);
-    setCoordinates(ll);
+    setCoordinates(LatLng);
   };
 
-  const searchOptions = () => {
-    if (typeof window !== "undefined") {
-      return {
-        location: new window.google.maps.LatLng(49.842957, 24.031111),
-        radius: 30000,
-        types: ["address"],
-      };
-    }
-    return null;
-  };
+  /* const searchOptions = () => {
+    window.google && {
+      location: new window.google.maps.LatLng(
+        LVIV_COORDINATES.lat,
+        LVIV_COORDINATES.lng
+      ),
+      radius: 30000,
+      types: ["address"],
+    };
+  }; */
+
+  const searchOptions = () =>
+    window.google && {
+      location: new window.google.maps.LatLng(
+        LVIV_COORDINATES.lat,
+        LVIV_COORDINATES.lng
+      ),
+      radius: 30000,
+      types: ["address"],
+    };
 
   const onError = (status, clearSuggestions) => {
     clearSuggestions();
