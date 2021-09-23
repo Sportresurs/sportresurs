@@ -127,7 +127,7 @@ function SearchSection() {
                     </button>
                   )}
                 </div>
-                <Link href="/playgrounds">
+                <Link href="/map">
                   <a
                     className={cx("formBtn", {
                       disabled: !address,
