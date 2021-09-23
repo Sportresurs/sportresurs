@@ -1,0 +1,16 @@
+.wrapper {
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.listPlaceholder {
+  position: absolute;
+  bottom: 0;
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    height: calc(100vh - 64px);
+    width: 515px;
+  }
+}
