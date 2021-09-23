@@ -11,9 +11,9 @@ const options = {
     }),
   ],
   callbacks: {
-    async signIn(user) {
-      const count = await User.count({ where: { email: user.email } });
-      return Boolean(count);
+    async signIn({ email }) {
+      const count = await User.count({ where: { email } });
+      return count > 0;
     },
   },
 };
