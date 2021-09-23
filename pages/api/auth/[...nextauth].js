@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { withSentry } from "@sentry/nextjs";
+import { User } from "../../../models";
 
 const options = {
   providers: [
@@ -9,7 +10,12 @@ const options = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  algorithms: ["HS256"],
+  callbacks: {
+    async signIn({ email }) {
+      const count = await User.count({ where: { email } });
+      return count > 0;
+    },
+  },
 };
 
 function Login(req, res) {
