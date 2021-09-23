@@ -13,6 +13,7 @@
   top: 7px;
   right: 2px;
   background-image: url("../../public/svg/tableSelectIcon.svg");
+
   pointer-events: none;
 }
 
@@ -21,14 +22,16 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  top: 13px;
-  right: 13px;
+  top: 14px;
+  right: 12px;
   background-image: url("../../public/svg/formSelectArrow.svg");
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 
 .select {
   width: 100%;
+  box-shadow: none;
 }
 
 .table {
@@ -39,7 +42,6 @@
 
 .form {
   appearance: none;
-  width: 100%;
   padding: 8px 10px;
   border: 1px solid $color-secondary-mediumGrey;
   border-radius: 3px;
