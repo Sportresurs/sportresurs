@@ -8,31 +8,6 @@
 .imagesWrapper {
   flex: 1 1 50%;
 }
-.imageContainer {
-  max-width: 100%;
-  height: 58%;
-  background: $color-secondary-yellowish;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.emptyImagesWrapper {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  div {
-    margin-top: 18px;
-  }
-}
-.emptyImageContainer {
-  width: 116px;
-  height: 120px;
-  background-color: rgba(242, 186, 76, 0.02);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid $color-accent-yellow;
-}
 .contentWrapper {
   flex: 1 1 50%;
   box-sizing: border-box;

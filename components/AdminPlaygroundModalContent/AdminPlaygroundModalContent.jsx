@@ -1,46 +1,17 @@
 import React from "react";
 import { Formik } from "formik";
 import styles from "./AdminPlaygroundModalContent.module.scss";
-import AddImage from "../../public/svg/addImage.svg";
-import EmptyImage from "../../public/svg/emptyImage.svg";
 import DefaultEmptyImage from "../../public/svg/defaultEmptyImage.svg";
 import Ratings from "../Rating";
 import Input from "../Input";
 import Button from "../Button";
+import CustomDropzone from "../CustomDropzone";
 import validation from "./CustomValidationSchema";
 
 const AdminPlaygroundModalContent = () => (
   <div className={styles.wrapper}>
     <div className={styles.imagesWrapper}>
-      <div className={styles.imageContainer}>
-        <DefaultEmptyImage />
-      </div>
-      <div className={styles.emptyImagesWrapper}>
-        <div className={styles.emptyImageContainer}>
-          <AddImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-        <div className={styles.emptyImageContainer}>
-          <EmptyImage />
-        </div>
-      </div>
+      <CustomDropzone />
     </div>
     <div className={styles.contentWrapper}>
       <h1 className={styles.heading}>Майданчик № </h1>
