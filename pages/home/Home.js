@@ -1,16 +1,15 @@
-<<<<<<< HEAD
 import { useState } from "react";
-import About from "../components/About";
-import image from "../components/PlaygroundModalContent/images/image.png";
-import PlaygroundModal from "../components/PlaygroundModal";
-import Button from "../components/Button";
-import TopCourts from "../components/TopCourts";
-import data from "../utils/testData/testArrs";
-import { Grid } from "../components/Grid";
-import styles from "../styles/Home.module.scss";
-import PlaygroundsList from "../components/PlaygroundsList";
-import SearchSection from "../components/SearchSection";
-import AdminPlaygroundModal from "../components/AdminPlaygroundModal";
+import About from "../../components/About";
+import image from "../../components/PlaygroundModalContent/images/image.png";
+import PlaygroundModal from "../../components/PlaygroundModal";
+import Button from "../../components/Button";
+import TopCourts from "../../components/TopCourts";
+import data from "../../utils/testData/testArrs";
+import { Grid } from "../../components/Grid";
+import styles from "./Home.module.scss";
+import PlaygroundsList from "../../components/PlaygroundsList";
+import SearchSection from "../../components/SearchSection";
+import News from "../../components/News";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -52,13 +51,10 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
-        <AdminPlaygroundModal visible={true} onClose={handleClose} />
         <PlaygroundsList />
         <About />
+        <News />
       </Grid>
     </div>
   );
 }
-=======
-export { default } from "./home";
->>>>>>> develop

@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
 import styles from "./AdminPlaygroundModalContent.module.scss";
-import DefaultEmptyImage from "../../public/svg/defaultEmptyImage.svg";
 import Ratings from "../Rating";
 import Input from "../Input";
 import Button from "../Button";
