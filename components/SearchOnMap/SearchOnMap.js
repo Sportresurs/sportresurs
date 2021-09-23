@@ -10,7 +10,7 @@ import styles from "./SearchOnMap.module.scss";
 import { LVIV_COORDINATES } from "../../utils/constants";
 import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
-import FilterIcon from "../../public/svg/filterIcon.svg";
+import FilterIcon from "../../public/svg/filterIconMap.svg";
 
 const cx = classNames.bind(styles);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
