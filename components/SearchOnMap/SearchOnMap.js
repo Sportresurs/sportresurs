@@ -127,9 +127,9 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
                 onClick={onToggle}
               >
                 <FilterIcon className={styles.formBtnFilterIcon} />
-                {numberOfFilters && (
+                {numberOfFilters ? (
                   <div className={styles.numFilters}>{numberOfFilters}</div>
-                )}
+                ) : null}
               </button>
             </>
           )}
