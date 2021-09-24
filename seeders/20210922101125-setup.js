@@ -1,48 +1,13 @@
 module.exports = {
   up: async (queryInterface) => {
     const purposes = [
-      {
-        id: 1,
-        title: "баскетбольний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 2,
-        title: "футбольний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 3,
-        title: "волейбольний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 4,
-        title: "гімнастичний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 5,
-        title: "тенісний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 6,
-        title: "гандбольний",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-      {
-        id: 7,
-        title: "дитячий",
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
+      "баскетбольний",
+      "футбольний",
+      "волейбольний",
+      "гімнастичний",
+      "тенісний",
+      "гандбольний",
+      "дитячий",
     ];
     const areas = [
       {
@@ -586,39 +551,37 @@ module.exports = {
         additional: "ворота",
       },
     ];
-    await queryInterface.bulkInsert("purposes", purposes);
-    const areasForInsert = areas.map((area) => {
-      const { purposesList, ...forInsert } = area;
-      forInsert.created_at = new Date();
-      forInsert.updated_at = new Date();
-      return forInsert;
-    });
+    const purposesForInsert = purposes.map((purpose) => ({ title: purpose }));
+    const purposesIds = await queryInterface.bulkInsert(
+      "purposes",
+      purposesForInsert,
+      {
+        returning: ["id", "title"],
+      }
+    );
+    const areasForInsert = areas.map(({ purposesList, ...area }) => ({
+      ...area,
+      created_at: new Date(),
+      updated_at: new Date(),
+    }));
     const areasIds = await queryInterface.bulkInsert("areas", areasForInsert, {
       returning: ["id", "number"],
     });
     const relationships = [];
     areasIds.forEach((area) => {
       const { id, number } = area;
-      let purposesList = [];
-      // Getting purposesList by area number
-      for (let i = 0; i < areas.length; i += 1) {
-        if (areas[i].number === number) {
-          purposesList = areas[i].purposesList;
+      const { purposesList } = areas.find((item) => item.number === number);
+      purposesList.forEach((purposeTitle) => {
+        const purpose = purposesIds.find((item) => item.title === purposeTitle);
+        if (purpose) {
+          relationships.push({
+            area_id: id,
+            purpose_id: purpose.id,
+            created_at: new Date(),
+            updated_at: new Date(),
+          });
         }
-      }
-      // Finding purpose id by title and creating relationships
-      for (let i = 0; i < purposesList.length; i += 1) {
-        for (let j = 0; j < purposes.length; j += 1) {
-          if (purposes[j].title === purposesList[i]) {
-            relationships.push({
-              area_id: id,
-              purpose_id: purposes[j].id,
-              created_at: new Date(),
-              updated_at: new Date(),
-            });
-          }
-        }
-      }
+      });
     });
     await queryInterface.bulkInsert("purpose-area", relationships);
   },
