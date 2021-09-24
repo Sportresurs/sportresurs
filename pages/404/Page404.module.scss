@@ -1,0 +1,100 @@
+@import "../../styles/shared.scss";
+
+.notFound {
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  @media screen and (min-width: 768px) {
+    background-image: url("../../public/svg/errorBg.svg");
+    background-position: calc(50% + 50px) -150px;
+    background-size: 1000px 800px;
+    background-repeat: repeat-y;
+  }
+  @media screen and (min-width: 1000px) {
+    background-size: auto;
+  }
+}
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.textWrapper {
+  margin-left: 6%;
+  margin-right: 6%;
+}
+
+.title {
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 80px;
+  letter-spacing: 0.3px;
+  color: $color-primary-dark;
+
+  @media screen and (min-width: 320px) and (max-width: 425px) {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  @media screen and (min-width: 426px) and (max-width: 768px) {
+    font-size: 36px;
+    line-height: 42px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    font-size: 50px;
+    line-height: 60px;
+  }
+}
+
+.text {
+  margin-bottom: 36px;
+  max-width: 700px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 38px;
+  letter-spacing: 0.3px;
+  color: $color-primary-dark;
+
+  @media screen and (min-width: 320px) and (max-width: 425px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  @media screen and (min-width: 426px) and (max-width: 768px) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.link {
+  padding: 10px;
+  background-color: $color-primary-dark;
+  border-radius: 3px;
+
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.3px;
+  color: $color-primary-light;
+
+  @media screen and (min-width: 320px) and (max-width: 425px) {
+    font-size: 10px;
+    line-height: 10px;
+  }
+  @media screen and (min-width: 426px) and (max-width: 768px) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
