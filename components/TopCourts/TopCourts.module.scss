@@ -47,10 +47,16 @@
   list-style: none;
 
   @media screen and (max-width: 1150px) {
-    max-width: 648px;
+    max-width: 544px;
+  }
+
+  @media screen and (max-width: 630px) {
+    max-width: 257px;
   }
 }
 
 .listItem {
-  margin: 10px;
+  @media screen and (min-width: 1151px) {
+    margin: 10px;
+  }
 }

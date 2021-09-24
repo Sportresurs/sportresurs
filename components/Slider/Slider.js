@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames/bind";
 import styles from "./Slider.module.scss";
 import Arrow from "../../public/svg/sliderArrow.svg";
-import useWindowSize from "./hook";
+import useWindowSize from "../../utils/hooks/findWindowSize";
 
 const cx = classnames.bind(styles);
 
@@ -28,23 +28,25 @@ const SlickSlider = ({
   isModal,
   isArrowColorBlack,
   arrayLength,
+  classNameBox,
+  classNameArrow,
+  classNameDots,
 }) => {
-  const [indexImage, setIndexImage] = useState(0);
   const size = useWindowSize();
 
   function setWidthOfDot(isForModal, windowSize) {
-    let dotWidth = 28.5;
+    let dotWidth = 29;
     if (isForModal && windowSize > 767) {
-      dotWidth = 28.5;
+      dotWidth = 29;
     }
     if (isForModal && windowSize < 768) {
       dotWidth = 20;
     }
     if (isForModal === false && windowSize > 767) {
-      dotWidth = 32.5;
+      dotWidth = 33;
     }
     if (isForModal === false && windowSize < 768) {
-      dotWidth = 28.5;
+      dotWidth = 29;
     }
 
     return dotWidth;
@@ -58,11 +60,11 @@ const SlickSlider = ({
   const NextArrow = ({ onClick }) => (
     <button
       type="button"
-      className={cx("arrow", "next", {
-        hidden: indexImage + 1 === arrayLength && isInfinite === false,
+      className={cx("arrow", classNameArrow, "next", {
         black: isArrowColorBlack,
       })}
       onClick={onClick}
+      style={{ display: onClick === null ? "none" : "block" }}
     >
       <Arrow className={styles.arrowIcon} />
     </button>
@@ -71,18 +73,18 @@ const SlickSlider = ({
   const PrevArrow = ({ onClick }) => (
     <button
       type="button"
-      className={cx("arrow", "prev", {
-        hidden: indexImage === 0 && isInfinite === false,
+      className={cx("arrow", classNameArrow, "prev", {
         black: isArrowColorBlack,
       })}
       onClick={onClick}
+      style={{ display: onClick === null ? "none" : "block" }}
     >
       <Arrow className={styles.arrowIcon} />
     </button>
   );
 
   const settings = {
-    dotsClass: cx("dotsWrap", {
+    dotsClass: cx("dotsWrap", classNameDots, {
       modal: isModal === true,
     }),
     dots: isDots,
@@ -99,7 +101,6 @@ const SlickSlider = ({
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive,
-    beforeChange: (current, next) => setIndexImage(next),
     appendDots(dots) {
       return (
         <div>
@@ -115,7 +116,7 @@ const SlickSlider = ({
   };
 
   return (
-    <div className={styles.sliderWrap}>
+    <div className={classnames(styles.sliderWrap, classNameBox)}>
       <Slider {...settings}>{children}</Slider>
     </div>
   );
@@ -151,7 +152,7 @@ SlickSlider.propTypes = {
   autoplaySpeed: PropTypes.number,
   isArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
-  isArrowColorBlack: PropTypes.oneOf([true, false]).isRequired,
+  isArrowColorBlack: PropTypes.oneOf([true, false]),
   arrayLength: PropTypes.number.isRequired,
   responsive: PropTypes.arrayOf(
     PropTypes.shape({
