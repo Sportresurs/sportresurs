@@ -5,6 +5,7 @@ import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
 import FilterTag from "../FilterTag";
 import FilterWindow from "./FIlterWindow";
+import SearchOnMap from "../SearchOnMap";
 
 const FilterButton = ({ counter, changeStatus }) => {
   const wrapperIconClasses = classNames(styles.filterButton);
@@ -17,7 +18,7 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas }) => {
+const Filters = ({ setAreas, location, handleCoordinates }) => {
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
     purposeOfAreas: [],
@@ -55,11 +56,21 @@ const Filters = ({ setAreas }) => {
   return (
     <div>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Майданчики</h1>
-        <FilterButton
-          counter={filters.array.filter((item) => item.value).length}
-          changeStatus={changeStatus}
-        />
+        {location === "playgrounds" ? (
+          <>
+            <h1 className={styles.title}>Майданчики</h1>
+            <FilterButton
+              counter={filters.array.filter((item) => item.value).length}
+              changeStatus={changeStatus}
+            />
+          </>
+        ) : (
+          <SearchOnMap
+            onToggle={changeStatus}
+            handleCoordinates={handleCoordinates}
+            numberOfFilters={filters.array.filter((item) => item.value).length}
+          />
+        )}
         {isOpen && (
           <FilterWindow
             getNewAreas={getNewAreas}
@@ -90,11 +101,14 @@ FilterButton.propTypes = {
 };
 
 Filters.defaultProps = {
+  location: "playgrounds",
   setAreas: () => {},
+  handleCoordinates: () => {},
 };
 
 Filters.propTypes = {
   setAreas: PropTypes.func,
+  handleCoordinates: PropTypes.func,
 };
 
 export default Filters;
