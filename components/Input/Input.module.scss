@@ -6,9 +6,17 @@
   color: $color-primary-dark;
   max-width: 356px;
 }
+.form {
+  max-width: 492px;
+}
 .errorIcon {
   position: absolute;
   top:12px;
+  right: 18px;
+}
+.formErrorIcon {
+  position: absolute;
+  top:30px;
   right: 18px;
 }
 .inputLabel {

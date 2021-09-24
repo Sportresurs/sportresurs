@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import classNames from "classnames";
 import AddImage from "../../public/svg/addImage.svg";
 import styles from "./CustomDropzone.module.scss";
 import EmptyImage from "../../public/svg/emptyImage.svg";
@@ -8,10 +9,10 @@ import Slider from "../Slider";
 
 const CustomDropzone = () => {
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps, open } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
-    multiple: false,
-    noClick: true,
+    multiple: true,
+    noClick: false,
     noKeyboard: true,
     onDrop: (acceptedFiles) => {
       setFiles((currentFiles) =>
@@ -32,9 +33,13 @@ const CustomDropzone = () => {
     },
     [files]
   );
+  const addImageWrapperClass = classNames(
+    styles.emptyImageContainer,
+    styles.addImage
+  );
   return (
     <div className={styles.dropzoneContainer}>
-      {files.length > 1 ? (
+      {files.length > 0 ? (
         <div className={styles.sliderWrapper}>
           <Slider isModal={true} arrayLength={files.length}>
             {files.map((file) => (
@@ -50,9 +55,9 @@ const CustomDropzone = () => {
         </div>
       )}
       <div className={styles.emptyImagesWrapper}>
-        <div {...getRootProps()} className={styles.emptyImageContainer}>
+        <div {...getRootProps()} className={addImageWrapperClass}>
           <input {...getInputProps()} />
-          <AddImage onClick={open} />
+          <AddImage />
         </div>
         {new Array(7).fill(1).map((_, index) => (
           <div key={index} className={styles.emptyImageContainer}>

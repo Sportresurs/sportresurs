@@ -54,7 +54,7 @@ const FilterWindow = ({
       <div className={styles.filterBody}>
         <MultiSelect
           value={purposeOfAreas}
-          handleChange={setPurposeOfAreas}
+          onChange={setPurposeOfAreas}
           type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
           data={[
             { label: "Спортивний", value: "Спортивний" },
@@ -68,7 +68,7 @@ const FilterWindow = ({
         />
         <MultiSelect
           value={districts}
-          handleChange={setDistricts}
+          onChange={setDistricts}
           type="РАЙОН"
           data={[
             { label: "Шевченківський", value: "Шевченківський" },

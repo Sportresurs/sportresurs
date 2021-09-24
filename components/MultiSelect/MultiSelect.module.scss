@@ -16,7 +16,12 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
+.form {
+  width: 100%;
+  max-width: 492px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+}
 .filterType {
   margin-bottom: 5px;
   font-weight: 400;

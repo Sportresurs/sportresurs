@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import About from "../components/About";
 import image from "../components/PlaygroundModalContent/images/image.png";
@@ -7,7 +6,7 @@ import Button from "../components/Button";
 import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/Grid";
-import styles from "../styles/Home.module.scss";
+import styles from "../styles/MapPage.module.scss";
 import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
 import AdminPlaygroundModal from "../components/AdminPlaygroundModal";
@@ -59,6 +58,3 @@ export default function Home() {
     </div>
   );
 }
-=======
-export { default } from "./home";
->>>>>>> develop

@@ -13,6 +13,8 @@ const Input = ({
   className,
   size,
   labelSize,
+  inputSize,
+  errorStyle,
   ...rest
 }) => {
   const inputClassName = classNames(
@@ -23,10 +25,18 @@ const Input = ({
       [styles.inputError]: errorMessage,
     }
   );
-  const inputWrapperClassName = classNames(styles.wrapper, className);
+  const inputWrapperClassName = classNames(
+    styles.wrapper,
+    styles[inputSize],
+    className
+  );
   const inputLabelWrapperClassName = classNames(
     styles.inputLabel,
     styles[labelSize]
+  );
+  const errorIconWrapperClassName = classNames(
+    styles.errorIcon,
+    styles[errorStyle]
   );
   const renderInputField = () => (
     <>
@@ -37,7 +47,7 @@ const Input = ({
         {...rest}
       />
       {errorMessage && (
-        <div className={styles.errorIcon}>
+        <div className={errorIconWrapperClassName}>
           <ErrorIcon></ErrorIcon>
         </div>
       )}
