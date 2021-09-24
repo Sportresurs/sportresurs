@@ -40,6 +40,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 1110px;
+  width: 100%;
   margin: -10px;
   margin: 0;
   padding: 0;
@@ -58,5 +60,17 @@
 .listItem {
   @media screen and (min-width: 1151px) {
     margin: 10px;
+  }
+}
+
+.topCourtsSlider :global(.slick-slider) :global(.slick-list) {
+  @media screen and (min-width: 1151px) {
+    margin: 0;
+
+    :global(.slick-track) {
+      :global(.slick-slide)>div {
+        padding: 0;
+      }
+    }
   }
 }
