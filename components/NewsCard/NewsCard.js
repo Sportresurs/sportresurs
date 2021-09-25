@@ -1,3 +1,5 @@
+import { useSwipeable } from "react-swipeable";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,9 +12,18 @@ export default function NewsCard({
   canDelete,
   onDeleteIconClick,
 }) {
+  const [showInfo, setShowInfo] = useState(false);
+
+  const handlers = useSwipeable({
+    onSwipedUp: () => setShowInfo(true),
+    onSwipedDown: () => setShowInfo(false),
+    preventDefaultTouchmoveEvent: true,
+    trackTouch: true,
+  });
+
   return (
     <Link href={newsData.url} passHref>
-      <div className={styles.card}>
+      <div className={styles.card} {...handlers}>
         {canDelete ? (
           <div className={styles.deleteIcon}>
             <DeleteIcon
@@ -28,9 +39,15 @@ export default function NewsCard({
           layout="fill"
           className={styles.image}
         />
-        <div className={styles.info} style={{ background: color }}>
-          {newsData.text}
-        </div>
+        {showInfo ? (
+          <div className={styles.infoSwiped} style={{ background: color }}>
+            {newsData.text}
+          </div>
+        ) : (
+          <div className={styles.info} style={{ background: color }}>
+            {newsData.text}
+          </div>
+        )}
       </div>
     </Link>
   );
