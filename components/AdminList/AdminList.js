@@ -33,9 +33,11 @@ export default function AdminList() {
     },
   ];
 
-  const LOGGED = "loggedIn";
-  const NOTLOGGED = "notLoggedIn";
-  const DELETED = "deleted";
+  const eAdminStatus = {
+    LOGGED: "logged",
+    NOTLOGGED: "notLoggedIn",
+    DELETED: "deleted",
+  };
 
   const [admins, setAdmins] = useState(data);
   const [email, setEmail] = useState("");
@@ -44,7 +46,11 @@ export default function AdminList() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newList = admins.concat({ email, id: uuidv4(), status: NOTLOGGED });
+    const newList = admins.concat({
+      email,
+      id: uuidv4(),
+      status: eAdminStatus.NOTLOGGED,
+    });
     setAdmins(newList);
     setEmail("");
   };
@@ -81,16 +87,16 @@ export default function AdminList() {
   };
 
   function pickIcon(status) {
-    if (status === LOGGED) {
-      return <Tick className={s.icon} />;
+    switch (status) {
+      case status === eAdminStatus.LOGGED:
+        return <Tick className={s.icon} />;
+      case status === eAdminStatus.NOTLOGGED:
+        return <QuestionMark className={s.icon} />;
+      case status === eAdminStatus.DELETED:
+        return <Dagger className={s.icon} />;
+      default:
+        return null;
     }
-    if (status === NOTLOGGED) {
-      return <QuestionMark className={s.icon} />;
-    }
-    if (status === DELETED) {
-      return <Dagger className={s.icon} />;
-    }
-    return null;
   }
 
   return (
