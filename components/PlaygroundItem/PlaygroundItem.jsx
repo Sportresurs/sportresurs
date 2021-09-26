@@ -6,6 +6,7 @@ import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
 import PlaygroundModal from "../PlaygroundModal";
+import useModalHandlers from "../../utils/hooks/useModalHandlers";
 
 const PlaygroundItem = ({ playground, isActive, handleClick }) => {
   const playgroundInfoFields = [
@@ -17,13 +18,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
     [styles.activeWrapper]: isActive,
   });
 
-  const [modal, setModal] = useState(false);
-  const handleOpen = () => {
-    setModal(true);
-  };
-  const handleClose = () => {
-    setModal(false);
-  };
+  const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   return (
     <div className={containerStyleWrapper} onClick={handleClick}>
@@ -50,12 +45,12 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}
           isList={true}
-          modal={handleOpen}
+          modal={handleOpenModal}
         />
       </div>
       <PlaygroundModal
-        visible={modal}
-        onClose={handleClose}
+        visible={isModalShown}
+        onClose={handleCloseModal}
         playground={playground}
       />
     </div>
