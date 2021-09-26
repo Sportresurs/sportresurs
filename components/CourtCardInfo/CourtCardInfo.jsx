@@ -72,6 +72,7 @@ CourtCardInfo.propTypes = {
   address: PropTypes.string,
   rating: PropTypes.number,
   color: PropTypes.string,
+  openModal: PropTypes.func,
 };
 
 export default CourtCardInfo;
