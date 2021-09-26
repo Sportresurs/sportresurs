@@ -42,7 +42,7 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             address={address}
             color={color}
             rating={rating}
-            modal={handleOpenModal}
+            openModal={handleOpenModal}
           />
         </div>
       </div>

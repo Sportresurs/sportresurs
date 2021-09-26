@@ -1,7 +1,15 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Area extends Model {}
+  class Area extends Model {
+    static associate(models) {
+      this.belongsToMany(models.Purpose, {
+        through: "purpose-area",
+        foreignKey: "area_id",
+        otherKey: "purpose_id",
+      });
+    }
+  }
   Area.init(
     {
       number: DataTypes.INTEGER,

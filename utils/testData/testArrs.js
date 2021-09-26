@@ -20,6 +20,16 @@ const districtColors = [
   { district: "Інший", color: "black" },
 ];
 
+const groundTypes = [
+  { cirilicName: "гандбольний", latinName: "Handball", color: "red" },
+  { cirilicName: "дитячий", latinName: "Child", color: "blue" },
+  { cirilicName: "баскетбольний", latinName: "Basketball", color: "orange" },
+  { cirilicName: "тенісний", latinName: "Tennis", color: "lilac" },
+  { cirilicName: "футбольний", latinName: "Football", color: "green" },
+  { cirilicName: "волейбольний", latinName: "Volleyball", color: "yellow" },
+  { cirilicName: "гімнастичний", latinName: "Gymnastic", color: "black" },
+];
+
 const courtInfo = {
   id: "1212131",
   district: "Залізничний",
@@ -509,6 +519,7 @@ export default {
   districtColors,
   topCourts,
   playgroundsList,
+  groundTypes,
   districts,
   courtsType,
 };

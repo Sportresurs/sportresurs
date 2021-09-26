@@ -18,6 +18,9 @@ jobs:
       EMAIL_LOGIN: 
       EMAIL_PASS: 
       RECIPIENT_EMAIL: 
+      GOOGLE_CLIENT_ID:
+      GOOGLE_CLIENT_SECRET:
+      NEXTAUTH_URL:
     services:
       postgres:
         image: postgres

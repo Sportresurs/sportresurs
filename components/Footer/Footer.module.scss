@@ -1,6 +1,7 @@
 @import "../../styles/shared.scss";
 
 .footer {
+  z-index: 5;
   position: relative;
   width: 100%;
   background-color: $color-primary-dark;
