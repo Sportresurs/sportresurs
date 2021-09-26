@@ -44,7 +44,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}
           isList={true}
-          modal={handleOpenModal}
+          openModal={handleOpenModal}
         />
       </div>
       <PlaygroundModal

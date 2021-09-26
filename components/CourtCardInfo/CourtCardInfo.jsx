@@ -32,7 +32,7 @@ const CourtCardInfo = ({
   showExtendedInfo,
   playgroundInfoFields,
   isList = false,
-  modal,
+  openModal,
 }) => {
   const addressStyleWrapper = classNames(styles.addressOuter, {
     [styles.addressList]: isList,
@@ -57,7 +57,7 @@ const CourtCardInfo = ({
           ))}
         </div>
       ) : null}
-      <Button size="small" variant={color} onClick={modal}>
+      <Button size="small" variant={color} onClick={openModal}>
         Детальніше
       </Button>
     </>
