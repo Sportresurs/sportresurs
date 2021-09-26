@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Image from "next/image";
