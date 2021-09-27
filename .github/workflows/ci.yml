@@ -50,10 +50,6 @@ jobs:
       - name: Run Jest tests
         run: npm run jest
       - name: Run migrations
-        run: node_modules/.bin/sequelize db:migrate
+        run: node_modules/.bin/sequelize db:migrate && node_modules/.bin/sequelize db:migrate:undo:all && node_modules/.bin/sequelize db:migrate
       - name: Run seeds
-        run: node_modules/.bin/sequelize db:seed:all
-      - name: Undo seeds
-        run: node_modules/.bin/sequelize db:seed:undo:all
-      - name: Undo migrations
-        run: node_modules/.bin/sequelize db:migrate:undo:all
+        run: node_modules/.bin/sequelize db:seed:all && node_modules/.bin/sequelize db:seed:undo:all && node_modules/.bin/sequelize db:seed:all
