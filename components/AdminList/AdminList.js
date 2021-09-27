@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import s from "./AdminList.module.scss";
 import Tick from "../../public/svg/tickIcon.svg";
@@ -14,12 +14,12 @@ export default function AdminList() {
     {
       id: 0,
       email: "zelykrostyslav@email.com",
-      status: "loggedIn",
+      status: "logged",
     },
     {
       id: 1,
       email: "denysgolovko@email.com",
-      status: "loggedIn",
+      status: "logged",
     },
     {
       id: 2,
@@ -55,17 +55,17 @@ export default function AdminList() {
     setEmail("");
   };
 
-  function handleChange(e) {
+  const handleChange = useCallback((e) => {
     const { target } = e;
     const { value } = target;
     setEmail(value);
-  }
+  }, []);
 
-  function handleChangeEdit(e) {
+  const handleChangeEdit = useCallback((e) => {
     const { target } = e;
     const { value } = target;
     setEditEmail(value);
-  }
+  }, []);
 
   const handleSubmitEdit = (id) => (event) => {
     event.preventDefault();
@@ -76,15 +76,18 @@ export default function AdminList() {
     setVisible({ isVisible: false, id });
   };
 
-  const handleDelete = (id) => {
-    const newList = admins.filter((admin) => admin.id !== id);
-    setAdmins(newList);
-  };
+  const handleDelete = useCallback(
+    (id) => {
+      const newList = admins.filter((admin) => admin.id !== id);
+      setAdmins(newList);
+    },
+    [admins]
+  );
 
-  const onClickEdit = (admEmail, id) => {
+  const onClickEdit = useCallback((adminEmail, id) => {
     setVisible({ isVisible: true, id });
-    setEditEmail(admEmail);
-  };
+    setEditEmail(adminEmail);
+  }, []);
 
   function pickIcon(status) {
     switch (status) {

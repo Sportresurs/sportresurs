@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useFormik } from "formik";
+import { Formik } from "formik";
 import s from "./EditAdminForm.module.scss";
 import Input from "../Input/Input";
 import Button from "../Button";
@@ -11,27 +11,39 @@ export default function EditAdminForm({
   handleChange,
   adminId,
 }) {
-  const formik = useFormik({
-    initialValues: {
-      email: value,
-    },
-    validationSchema: validation,
-    onSubmit: handleSubmit,
-    onChange: handleChange,
-  });
+  const getFormikErrorByField = (formik, fieldName) =>
+    (formik.touched[fieldName] && formik.errors[fieldName]) || "";
   return (
-    <form className={s.editForm} onSubmit={formik.handleSubmit(adminId)}>
-      <Input
-        className={s.editInput}
-        type="email"
-        value={formik.values.email}
-        onChange={formik.onChange}
-        name="email"
-      />
-      <Button variant="black" size="small" className={s.saveBtn} type="submit">
-        Зберегти
-      </Button>
-    </form>
+    <Formik
+      initialValues={{
+        email: value,
+      }}
+      validationSchema={validation}
+      onSubmit={handleSubmit}
+      onChange={handleChange}
+    >
+      {(formik) => (
+        <form className={s.editForm} onSubmit={formik.handleSubmit(adminId)}>
+          <Input
+            className={s.editInput}
+            type="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            name="email"
+            errorMessage={getFormikErrorByField(formik, "email")}
+            {...formik.getFieldProps("email")}
+          />
+          <Button
+            variant="black"
+            size="small"
+            className={s.saveBtn}
+            type="submit"
+          >
+            Зберегти
+          </Button>
+        </form>
+      )}
+    </Formik>
   );
 }
 
