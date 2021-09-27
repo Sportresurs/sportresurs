@@ -18,7 +18,7 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas, location, handleCoordinates }) => {
+const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
     purposeOfAreas: [],
@@ -28,9 +28,9 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
   });
 
   // eslint-disable-next-line no-shadow
-  const getNewAreas = (filtres) => {
+  const getNewAreas = (filters) => {
     // eslint-disable-next-line no-unused-vars
-    const normalizedValues = filtres.map((item) => item.value);
+    const normalizedValues = filters.map((item) => item.value);
     // Exsample: const data = axios.post(URL_API, { filters: normalizedValues });
     setAreas();
   };
@@ -69,6 +69,7 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
             onToggle={changeStatus}
             handleCoordinates={handleCoordinates}
             numberOfFilters={filters.array.filter((item) => item.value).length}
+            API_KEY={API_KEY}
           />
         )}
         {isOpen && (
@@ -96,7 +97,7 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
 };
 
 FilterButton.propTypes = {
-  counte: PropTypes.number,
+  counter: PropTypes.number,
   changeStatus: PropTypes.func,
 };
 

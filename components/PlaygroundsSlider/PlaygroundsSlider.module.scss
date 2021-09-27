@@ -1,0 +1,11 @@
+@import "styles/colors";
+.sliderWrapper {
+  width: 350px;
+  margin: 0 20px;
+}
+.customDots {
+  background: $color-primary-dark;
+  &:focus {
+    background: $color-primary-dark;
+  }
+}

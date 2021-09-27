@@ -1,16 +1,159 @@
+@import "colors";
 .wrapper {
-  @media screen and (min-width: 768px) {
-    display: flex;
+  display: flex;
+  position: relative;
+  height: calc(100vh - 64px);
+  width: 100%;
+  padding-left: 10%;
+}
+.imageWrapper {
+  position: absolute;
+  top: 250px;
+  left: 0;
+}
+.sidebarWrapper {
+  flex: 1 1 30%;
+}
+.filterWrapper {
+  margin: 24px;
+}
+.wrapperHeading {
+  font-size: 18px;
+  padding-bottom: 18px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.hideIcon {
+  display: none;
+}
+.scrollBox {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  visibility: hidden;
+}
+.sliderWrapper {
+  display: none;
+  width: 350px;
+  height: 165px;
+}
+.listWrapper {
+  width: 100%;
+  height: 100%;
+}
+.listWrapper,
+.scrollBox:hover,
+.scrollBox:focus {
+  visibility: visible;
+}
+.mapWrapper {
+  flex: 1 1 70%;
+}
+@media screen and (max-width: 1150px) {
+  .wrapper {
+    padding-left: 5%;
   }
 }
-
-.listPlaceholder {
-  position: absolute;
-  bottom: 0;
-
-  @media screen and (min-width: 768px) {
-    position: static;
-    height: calc(100vh - 64px);
-    width: 515px;
+@media screen and (max-width: 950px) {
+  .wrapper {
+    padding-left: 0;
+    flex-direction: column-reverse;
+  }
+  .mapWrapper {
+    flex: 1 1 100%;
+  }
+  .filterWrapper {
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    width: 90%;
+  }
+  .scrollBox {
+    display: none;
+  }
+  .imageWrapper {
+    display: none;
+  }
+  .mobileSidebarWrapper {
+    position: absolute;
+    bottom: 0;
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    padding: 18px 0 60px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $color-secondary-yellowish;
+    overflow: hidden;
+  }
+  .hideMobileSidebar {
+    height: 0;
+  }
+  .mobileHeaderWrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 100%;
+  }
+  .wrapperHeading {
+    padding-right: 84px;
+  }
+  .hideIcon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background: $color-primary-light;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .sliderWrapper {
+    display: flex;
+    position: relative;
+    margin-left: -40px;
+    margin-bottom: 10px;
+    opacity: 1;
+  }
+  @keyframes animationSliderHide {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes animationHeader {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(20px);
+    }
+  }
+  @keyframes animationIcon {
+    from {
+      transform: translateY(0) rotate(0) ;
+    }
+    to {
+      transform: translateY(20px) rotate(180deg) ;
+      z-index: 4;
+    }
+  }
+  .hideMobileSidebar {
+    animation-name: animationSliderHide;
+    animation-duration: 700ms;
+    animation-fill-mode: forwards;
+  }
+  .hideMobileHeader {
+    animation-name: animationHeader;
+    animation-duration: 700ms;
+    animation-fill-mode: forwards;
+  }
+  .openMobileIcon {
+    animation-name: animationIcon;
+    animation-duration: 700ms;
+    animation-fill-mode: forwards;
   }
 }
