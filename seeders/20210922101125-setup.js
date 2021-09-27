@@ -551,10 +551,9 @@ module.exports = {
         additional: "ворота",
       },
     ];
-    const purposesForInsert = purposes.map((purpose) => ({ title: purpose }));
-    const purposesIds = await queryInterface.bulkInsert(
+    const purposeIds = await queryInterface.bulkInsert(
       "purposes",
-      purposesForInsert,
+      purposes.map((title) => ({ title })),
       {
         returning: ["id", "title"],
       }
@@ -572,7 +571,7 @@ module.exports = {
       const { id, number } = area;
       const { purposesList } = areas.find((item) => item.number === number);
       purposesList.forEach((purposeTitle) => {
-        const purpose = purposesIds.find((item) => item.title === purposeTitle);
+        const purpose = purposeIds.find((item) => item.title === purposeTitle);
         if (purpose) {
           relationships.push({
             area_id: id,
