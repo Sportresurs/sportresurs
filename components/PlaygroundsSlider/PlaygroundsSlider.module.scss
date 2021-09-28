@@ -1,0 +1,16 @@
+@import "styles/colors";
+.sliderWrapper {
+  width: 100%;
+  margin: 0;
+}
+.customArrow {
+  top: 42%;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+.customDots {
+  background: $color-primary-dark;
+  &:focus {
+    background: $color-primary-dark;
+  }
+}

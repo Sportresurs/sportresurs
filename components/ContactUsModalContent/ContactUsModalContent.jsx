@@ -48,7 +48,7 @@ const ContactUsModalContent = ({ onClose, onSuccess }) => {
               />
               <Input
                 className={styles.formGroup}
-                placeholder="Номер телефон"
+                placeholder="Номер телефону"
                 name="phone"
                 errorMessage={getFormikErrorByField(formik, `phone`)}
                 {...formik.getFieldProps("phone")}
