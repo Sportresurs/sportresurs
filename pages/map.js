@@ -111,9 +111,11 @@ export default function MapPage() {
   const handleSliderShow = () => {
     setSliderOpen((prevState) => !prevState);
   };
-
-  const sliderWrapperClass = classNames(styles.sliderWrapper, {
+  const sidebarWrapperClass = classNames(styles.mobileSidebarWrapper, {
     [styles.hideMobileSidebar]: !sliderOpen,
+  });
+  const sliderWrapperClass = classNames(styles.sliderWrapper, {
+    [styles.hideMobileSlider]: !sliderOpen,
   });
   const headerWrapperClass = classNames(styles.wrapperHeading, {
     [styles.hideMobileHeader]: !sliderOpen,
@@ -131,7 +133,7 @@ export default function MapPage() {
           <div className={styles.filterWrapper}>
             <Filters location="mapPage" API_KEY={API_KEY} />
           </div>
-          <div className={styles.mobileSidebarWrapper}>
+          <div className={sidebarWrapperClass}>
             <div className={styles.mobileHeaderWrapper}>
               <div>
                 <h1 className={headerWrapperClass}>Майданчики поблизу</h1>

@@ -2,7 +2,7 @@
 .wrapper {
   display: flex;
   position: relative;
-  height: calc(100vh - 64px);
+  height: calc(100vh - var(--header-height, 54px));
   width: 100%;
   padding-left: 10%;
 }
@@ -38,7 +38,6 @@
 .sliderWrapper {
   display: none;
   max-width: 350px;
-  height: 165px;
 }
 .listWrapper {
   width: 100%;
@@ -67,6 +66,7 @@
   }
   .filterWrapper {
     position: absolute;
+    pointer-events: all;
     top: 0;
     z-index: 4;
     width: 90%;
@@ -77,26 +77,33 @@
   .imageWrapper {
     display: none;
   }
+  .sidebarWrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+  }
   .mobileSidebarWrapper {
+    pointer-events: all;
     position: absolute;
     bottom: 0;
     z-index: 4;
     width: 100%;
     display: flex;
-    padding: 18px 0 60px 0;
+    padding: 18px 0 18px 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: $color-secondary-yellowish;
     overflow: hidden;
-  }
-  .hideMobileSidebar {
-    height: 0;
+    transition: all 300ms;
   }
   .mobileHeaderWrapper {
     display: flex;
     align-items: baseline;
     justify-content: center;
+    padding-bottom: 18px;
     width: 100%;
   }
   .wrapperHeading {
@@ -122,12 +129,14 @@
     transition: all 300ms;
   }
   .hideMobileSidebar {
-    transform: translateY(100px);
+    transform: translateY(245px);
+    padding-top: 10px;
   }
-  .hideMobileHeader {
-    transform: translateY(30px);
+  .hideMobileSlider {
+    opacity: 0;
+    pointer-events: none;
   }
   .openMobileIcon {
-    transform:translateY(30px) rotate(180deg);
+    transform:rotate(180deg);
   }
 }
