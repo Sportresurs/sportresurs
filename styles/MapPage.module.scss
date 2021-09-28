@@ -65,10 +65,7 @@
     flex: 1 1 100%;
   }
   .filterWrapper {
-    position: absolute;
     pointer-events: all;
-    top: 0;
-    z-index: 4;
     width: 90%;
   }
   .scrollBox {
@@ -81,14 +78,13 @@
     position: absolute;
     inset: 0;
     display: flex;
+    z-index: 4;
     flex-direction: column;
     pointer-events: none;
+    justify-content: space-between;
   }
   .mobileSidebarWrapper {
     pointer-events: all;
-    position: absolute;
-    bottom: 0;
-    z-index: 4;
     width: 100%;
     display: flex;
     padding: 18px 0 18px 0;
@@ -133,7 +129,7 @@
     transition: all 300ms;
   }
   .hideMobileSidebar {
-    transform: translateY(245px);
+    transform: translateY(calc(100% - 50px));
     padding-top: 10px;
   }
   .hideMobileSlider {

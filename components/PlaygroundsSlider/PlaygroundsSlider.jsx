@@ -13,6 +13,7 @@ const PlaygroundsSlider = ({ playgrounds }) => (
       isDots={true}
       arrayLength={playgrounds.length}
       slidesToScroll={1}
+      classNameArrow={styles.customArrow}
     >
       {playgrounds.map((playground) => (
         <div key={playground.id}>

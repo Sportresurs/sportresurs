@@ -2,13 +2,13 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
 import Map from "../components/Map";
-import styles from "../styles/MapPage.module.scss";
-import Filters from "../components/Filters";
-import data from "../utils/testData/courtDatabase";
+import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import PlaygroundsList from "../components/PlaygroundsList";
+import Filters from "../components/Filters";
+import styles from "../styles/MapPage.module.scss";
+import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import image from "../public/img/playgroundItemImage.png";
-import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
@@ -133,9 +133,7 @@ export default function MapPage() {
           <div className={sidebarWrapperClass}>
             <div className={styles.sidebarContainer}>
               <div className={styles.mobileHeaderWrapper}>
-                <div>
-                  <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
-                </div>
+                <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
                 <div className={iconWrapperClass} onClick={handleSliderShow}>
                   <HideMark />
                 </div>
