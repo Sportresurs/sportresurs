@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Requests.module.scss";
-import Select from "../../components/Select";
 import data from "../../utils/testData/testRequestArr";
+import TableRow from "../../components/TableRow/TableRow";
 
 const cx = classNames.bind(styles);
 
@@ -15,6 +15,7 @@ export default function Requests() {
     });
     return adjustedDate;
   };
+
   return (
     <section className={styles.requests}>
       <div className={styles.container}>
@@ -34,26 +35,18 @@ export default function Requests() {
           <tbody className={styles.tableBody}>
             {data.requests.map(
               ({ id, date, status, admin, name, tel, info }) => (
-                <tr
+                <TableRow
                   key={id}
-                  className={cx("tableRow", {
-                    new: status === "новий",
-                  })}
-                >
-                  <td className={cx("tableCell", "number")}>{id}.</td>
-                  <td className={cx("tableCell", "date")}>{dataMaker(date)}</td>
-                  <td className={cx("tableCell", "status")}>
-                    <Select
-                      defaultValue={status}
-                      options={data.statusOptions}
-                      type="table"
-                    />
-                  </td>
-                  <td className={cx("tableCell", "admin")}>{admin || "-"}</td>
-                  <td className={cx("tableCell", "name")}>{name}</td>
-                  <td className={cx("tableCell", "tel")}>{tel}</td>
-                  <td className={cx("tableCell", "info")}>{info}</td>
-                </tr>
+                  id={id}
+                  date={date}
+                  status={status}
+                  admin={admin}
+                  name={name}
+                  tel={tel}
+                  info={info}
+                  dataMaker={dataMaker}
+                  options={data.statusOptions}
+                />
               )
             )}
           </tbody>
