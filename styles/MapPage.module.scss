@@ -13,7 +13,7 @@
 }
 .sidebarWrapper {
   flex: 1 1 30%;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -99,15 +99,19 @@
     overflow: hidden;
     transition: all 300ms;
   }
+  .sidebarContainer {
+    max-width: 370px;
+    width: 100%;
+    padding: 0 10px;
+  }
   .mobileHeaderWrapper {
     display: flex;
     align-items: baseline;
-    justify-content: center;
-    padding-bottom: 18px;
+    justify-content: space-between;
+    margin-bottom: 18px;
     width: 100%;
   }
   .wrapperHeading {
-    padding-right: 84px;
     margin-left: 0;
   }
   .hideIcon {

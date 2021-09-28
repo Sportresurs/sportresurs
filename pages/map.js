@@ -117,9 +117,6 @@ export default function MapPage() {
   const sliderWrapperClass = classNames(styles.sliderWrapper, {
     [styles.hideMobileSlider]: !sliderOpen,
   });
-  const headerWrapperClass = classNames(styles.wrapperHeading, {
-    [styles.hideMobileHeader]: !sliderOpen,
-  });
   const iconWrapperClass = classNames(styles.hideIcon, {
     [styles.openMobileIcon]: !sliderOpen,
   });
@@ -134,16 +131,18 @@ export default function MapPage() {
             <Filters location="mapPage" API_KEY={API_KEY} />
           </div>
           <div className={sidebarWrapperClass}>
-            <div className={styles.mobileHeaderWrapper}>
-              <div>
-                <h1 className={headerWrapperClass}>Майданчики поблизу</h1>
+            <div className={styles.sidebarContainer}>
+              <div className={styles.mobileHeaderWrapper}>
+                <div>
+                  <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
+                </div>
+                <div className={iconWrapperClass} onClick={handleSliderShow}>
+                  <HideMark />
+                </div>
               </div>
-              <div className={iconWrapperClass} onClick={handleSliderShow}>
-                <HideMark />
+              <div className={sliderWrapperClass}>
+                <PlaygroundsSlider playgrounds={playgrounds} />
               </div>
-            </div>
-            <div className={sliderWrapperClass}>
-              <PlaygroundsSlider playgrounds={playgrounds} />
             </div>
           </div>
           <div className={styles.scrollBox}>
