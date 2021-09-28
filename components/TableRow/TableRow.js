@@ -13,13 +13,23 @@ export default function TableRow({
   name,
   tel,
   info,
-  dataMaker,
   options,
 }) {
+  // TODO: will be changed to session.user.mail
   const testMail = "remenjuk2010@gmail.com";
 
   const [currentStatus, setCurrentStatus] = useState(status);
   const [currentEmail, setCurrentEmail] = useState(admin);
+
+  const getFormattedDate = (dateToFormate) => {
+    const rawData = new Date(dateToFormate);
+    const formattedDate = rawData.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    return formattedDate;
+  };
 
   const handleStatusChange = (e) => {
     setCurrentStatus(e.target.value);
@@ -47,7 +57,7 @@ export default function TableRow({
       })}
     >
       <td className={cx("tableCell", "number")}>{id}.</td>
-      <td className={cx("tableCell", "date")}>{dataMaker(date)}</td>
+      <td className={cx("tableCell", "date")}>{getFormattedDate(date)}</td>
       <td className={cx("tableCell", "status")}>
         <Select
           onChange={handleStatusChange}
