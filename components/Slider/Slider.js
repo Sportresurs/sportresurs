@@ -31,6 +31,7 @@ const SlickSlider = ({
   classNameBox,
   classNameArrow,
   classNameDots,
+  classNameDotsModal,
 }) => {
   const size = useWindowSize();
 
@@ -86,6 +87,7 @@ const SlickSlider = ({
   const settings = {
     dotsClass: cx("dotsWrap", classNameDots, {
       modal: isModal === true,
+      [classNameDotsModal]: isModal === true,
     }),
     dots: isDots,
     slidesToShow,
@@ -160,6 +162,10 @@ SlickSlider.propTypes = {
       settings: PropTypes.object.isRequired,
     })
   ),
+  classNameBox: PropTypes.string,
+  classNameArrow: PropTypes.string,
+  classNameDots: PropTypes.string,
+  classNameDotsModal: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
