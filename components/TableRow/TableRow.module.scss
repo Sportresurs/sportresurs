@@ -1,0 +1,44 @@
+@import "../../styles/shared.scss";
+
+.tableRow.new {
+  background-color: rgba(0, 150, 69, 0.3);
+}
+
+.tableCell {
+  padding: 12px;
+  border: 1px solid $color-primary-dark;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-primary-dark;
+  text-align: left;
+}
+
+.number {
+  width: 4%;
+}
+
+.tableCell.info {
+  font-size: 12px;
+  line-height: 15px;
+}
+.data {
+  width: 12%;
+}
+.status {
+  width: 15%;
+}
+.admin {
+  word-break: break-word;
+  width: 23%;
+}
+.name {
+  width: 10%;
+}
+.tel {
+  width: 15%;
+}
+.info {
+  word-break: break-word;
+  width: 21%;
+}

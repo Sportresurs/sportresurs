@@ -121,3 +121,23 @@ Step 4: Add Configuration <br />
 &ensp;&ensp; Authorized JavaScript origins: `{domain name}`, <br />
 &ensp;&ensp; Authorized redirect URIs: `{domain name}/api/auth/callback/google`. <br />
 Step 5: `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` save in `.env` file. <br />
+
+## How we build our API Route
+
+We are using next-connect, and this a simple example:
+```js
+import { withSentry } from "@sentry/nextjs";
+import nextConnect from "next-connect";
+import checkAuthAdmin from "../../middleware/checkAuthAdmin";
+ 
+const handler = nextConnect()
+  .use(checkAuthAdmin) // Here you can add middleware
+  .get((req, res) => {
+    res.status(200).json({ method: "GET" });
+  });
+  .post((req, res) => {
+    res.status(200).json({ method: "POST" });
+  });
+
+export default withSentry(handler);
+```
