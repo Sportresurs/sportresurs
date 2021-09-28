@@ -1,0 +1,27 @@
+@import "../../styles/shared.scss";
+
+.container {
+  min-width: 100%;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 1150px) {
+    overflow: hidden;
+  }
+}
+
+.titleContainer {
+  width: 100%;
+  margin-bottom: -68px;
+}
+
+.title {
+  font-size: 36px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
+  color: $color-primary-dark;
+  @media screen and (max-width: 1150px) {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}

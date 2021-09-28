@@ -1,0 +1,75 @@
+@import "../../styles/shared.scss";
+
+.container {
+  margin: 25px auto;
+  max-width: 1177px;
+  padding: 30px 33px 88px;
+  border-radius: 2px;
+  background-color: $color-primary-light;
+}
+
+.title {
+  margin-bottom: 36px;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+
+  color: $color-primary-dark;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHead {
+  background-color: $color-secondary-yellowish;
+}
+
+.tableBody {
+  background-color: $color-primary-light;
+}
+
+.tableRow.new {
+  background-color: rgba(0, 150, 69, 0.3);
+}
+
+.tableCell,
+.headCell {
+  padding: 12px;
+  border: 1px solid $color-primary-dark;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: $color-primary-dark;
+  text-align: left;
+}
+
+.number {
+  width: 4%;
+}
+
+.tableCell.info {
+  font-size: 12px;
+  line-height: 15px;
+}
+.data {
+  width: 12%;
+}
+.status {
+  width: 15%;
+}
+.admin {
+  word-break: break-word;
+  width: 23%;
+}
+.name {
+  width: 10%;
+}
+.tel {
+  width: 15%;
+}
+.info {
+  word-break: break-word;
+  width: 21%;
+}

@@ -43,6 +43,7 @@ Button.propTypes = {
     "blue",
     "lilac",
     "black",
+    "white",
     "red",
     "yellow",
   ]).isRequired,
