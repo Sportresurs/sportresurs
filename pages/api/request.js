@@ -1,12 +1,12 @@
 import nc from "next-connect";
 import { withSentry } from "@sentry/nextjs";
-import ContactRequest from "../../models/contactrequest";
+import Request from "../../models/request";
 
 const handler = nc()
   .post(async (req, res) => {
     try {
       const { date, status, admin, name, tel, info } = req.body;
-      const newRequest = await ContactRequest.create({
+      const newRequest = await Request.create({
         date,
         status,
         admin,
@@ -21,7 +21,7 @@ const handler = nc()
     }
   })
   .get(async (req, res) => {
-    await ContactRequest.findAll()
+    await Request.findAll()
       .then((requests) => {
         res.statusCode = 200;
         res.json(requests);

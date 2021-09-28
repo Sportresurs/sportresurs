@@ -1,8 +1,8 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class ContactRequest extends Model {}
-  ContactRequest.init(
+  class Request extends Model {}
+  Request.init(
     {
       date: DataTypes.DATE,
       status: DataTypes.ENUM("новий", "в процесі", "оброблено"),
@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "ContactRequest",
+      modelName: "Request",
       underscored: true,
     }
   );
-  return ContactRequest;
+  return Request;
 };
