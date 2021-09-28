@@ -74,7 +74,7 @@ const playgrounds = [
 ];
 
 export default function MapPage() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   useEffect(() => {}, [filteredPlaces]);
@@ -109,17 +109,17 @@ export default function MapPage() {
   const [childClicked, setChildClicked] = useState(null);
 
   const handleSliderShow = () => {
-    setIsOpen(!isOpen);
+    setSliderOpen((prevState) => !prevState);
   };
 
   const sliderWrapperClass = classNames(styles.sliderWrapper, {
-    [styles.hideMobileSidebar]: !isOpen,
+    [styles.hideMobileSidebar]: !sliderOpen,
   });
   const headerWrapperClass = classNames(styles.wrapperHeading, {
-    [styles.hideMobileHeader]: !isOpen,
+    [styles.hideMobileHeader]: !sliderOpen,
   });
   const iconWrapperClass = classNames(styles.hideIcon, {
-    [styles.openMobileIcon]: !isOpen,
+    [styles.openMobileIcon]: !sliderOpen,
   });
   return (
     <>
@@ -136,8 +136,8 @@ export default function MapPage() {
               <div>
                 <h1 className={headerWrapperClass}>Майданчики поблизу</h1>
               </div>
-              <div className={iconWrapperClass}>
-                <HideMark onClick={handleSliderShow} />
+              <div className={iconWrapperClass} onClick={handleSliderShow}>
+                <HideMark />
               </div>
             </div>
             <div className={sliderWrapperClass}>

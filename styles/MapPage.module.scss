@@ -13,13 +13,16 @@
 }
 .sidebarWrapper {
   flex: 1 1 30%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 .filterWrapper {
-  margin: 24px;
+  margin: 24px 0 18px 20px;
 }
 .wrapperHeading {
+  margin-left: 20px;
   font-size: 18px;
-  padding-bottom: 18px;
   line-height: 18px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
@@ -30,12 +33,11 @@
 .scrollBox {
   width: 100%;
   height: 100%;
-  overflow: auto;
   visibility: hidden;
 }
 .sliderWrapper {
   display: none;
-  width: 350px;
+  max-width: 350px;
   height: 165px;
 }
 .listWrapper {
@@ -99,61 +101,33 @@
   }
   .wrapperHeading {
     padding-right: 84px;
+    margin-left: 0;
   }
   .hideIcon {
     display: flex;
+    cursor: pointer;
     width: 30px;
     height: 30px;
     background: $color-primary-light;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    transition: all 300ms;
   }
   .sliderWrapper {
     display: flex;
     position: relative;
-    margin-left: -40px;
     margin-bottom: 10px;
     opacity: 1;
-  }
-  @keyframes animationSliderHide {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  @keyframes animationHeader {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(20px);
-    }
-  }
-  @keyframes animationIcon {
-    from {
-      transform: translateY(0) rotate(0) ;
-    }
-    to {
-      transform: translateY(20px) rotate(180deg) ;
-      z-index: 4;
-    }
+    transition: all 300ms;
   }
   .hideMobileSidebar {
-    animation-name: animationSliderHide;
-    animation-duration: 700ms;
-    animation-fill-mode: forwards;
+    transform: translateY(100px);
   }
   .hideMobileHeader {
-    animation-name: animationHeader;
-    animation-duration: 700ms;
-    animation-fill-mode: forwards;
+    transform: translateY(30px);
   }
   .openMobileIcon {
-    animation-name: animationIcon;
-    animation-duration: 700ms;
-    animation-fill-mode: forwards;
+    transform:translateY(30px) rotate(180deg);
   }
 }

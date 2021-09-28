@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
 import FilterTag from "../FilterTag";
-import FilterWindow from "./FIlterWindow";
+import FilterWindow from "./FilterWindow";
 import SearchOnMap from "../SearchOnMap";
 
 const FilterButton = ({ counter, changeStatus }) => {
