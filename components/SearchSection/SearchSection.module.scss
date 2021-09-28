@@ -19,16 +19,11 @@
     line-height: 1.27;
     letter-spacing: 0.2px;
 
-    @media screen and (max-width: 1065px) {
-        font-size: 37px;
-        line-height: 1.4;
-    }
-
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1150px) {
         font-size: 29px;
         line-height: 1.5;
     }
-    
+
     @media screen and (max-width: 800px) {
         margin-bottom: 18px;
 
@@ -36,18 +31,18 @@
         line-height: 1.6;
     }
 
-    @media screen and (max-width: 660px) {
+    @media screen and (max-width: 675px) {
         font-size: 20px;
         line-height: 1.75;
     }
 
-    @media screen and (max-width: 480px) {
-        font-size: 16px;
+    @media screen and (max-width: 501px) {
+        font-size: 15px;
         line-height: 2.08;
     }
 
-    @media screen and (max-width: 374px) {
-        font-size: 14px;
+    @media screen and (max-width: 384px) {
+        font-size: 12.5px;
         line-height: 2.15;
         letter-spacing: 0;
     }
@@ -75,10 +70,17 @@
     }
 }
 
+.boxPlug {
+    width: 100%;
+    height: 42px;
+    background-color: transparent;
+    border: none;
+}
+
 .input {
     width: 100%;
     max-width: 657px;
-    padding: 11px 18px;
+    padding: 11px 36px 11px 18px;
 
     font-size: 12px;
     line-height: 1.66;
@@ -88,6 +90,10 @@
     background-color: $color-primary-light;
     outline: none;
 
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
     &::placeholder {
         color: $color-secondary-darkGrey;
         font-weight: 400;
@@ -96,7 +102,7 @@
 
     @media screen and (max-width: 800px) {
         max-width: 750px;
-        padding: 11px 12px;
+        padding: 11px 36px 11px 12px;
         margin-right: 0;
 
         font-size: 14px;
@@ -120,27 +126,31 @@
 }
 
 .formBtn {
-    @extend %button;
     display: inline-block;
-    padding: 12px 18px; 
+    padding: 12px 18px;
     white-space: nowrap;
 
     background-color: $color-primary-dark;
     border-radius: 3px;
     transition: background-color 200ms;
 
-     @media screen and (min-width: 801px) {
-         &:hover {
-             padding: 11px 17px;
-             background-color: $color-primary-light;
-             border: 1px solid $color-primary-dark;
-         }
-     }
+    @media screen and (min-width: 801px) {
+        &:hover {
+            padding: 11px 17px;
+            background-color: $color-primary-light;
+            border: 1px solid $color-primary-dark;
+        }
+    }
 
     @media screen and (max-width: 800px) {
         max-width: 42px;
         padding: 10px;
         border-radius: 0px 3px 3px 0px;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        cursor: pointer;
     }
 }
 
@@ -165,7 +175,11 @@
 .formBtnIcon {
     display: block;
 
-    .formBtn:hover & > path{
+    .formBtn &>path {
+        transition: all 200ms;
+    }
+
+    .formBtn:hover &>path {
         fill: $color-accent-green;
     }
 
@@ -174,38 +188,104 @@
     }
 }
 
+.autocomplete {
+    display: block;
+    position: absolute;
+    top: 43px;
+    width: 100%;
+    max-height: 251px;
+
+    background-color: $color-primary-light;
+    border: 1px solid $color-secondary-mediumGrey;
+    border-radius: 3px;
+
+    z-index: 3;
+
+    @media screen and (max-width: 800px) {
+        top: 42px;
+    }
+}
+
+.autocompleteItem {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 12px 6px 18px;
+
+    cursor: pointer;
+
+    transition: all 200ms;
+
+    &:first-child {
+        padding: 12px 12px 6px 18px;
+    }
+
+    &.hover {
+        background-color: rgba($color-secondary-lightGrey, 0.3);
+    }
+
+    @media screen and (max-width: 800px) {
+        padding: 6px 12px;
+
+        &:first-child {
+            padding: 12px 12px 6px 12px;
+        }
+    }
+}
+
+
+.autocompleteMainText {
+    margin-bottom: 3px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: $color-primary-dark;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.autocompleteSecondaryText {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    color: $color-secondary-darkGrey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .btnList {
     @extend %list;
 
     display: flex;
+    flex-wrap: wrap;
+    margin-top: -12px;
 
-    @media screen and (max-width: 425px) {
-        justify-content: space-between;
+    @media screen and (max-width: 697px) {
+        justify-content: space-around;
+    }
+
+    @media screen and (max-width: 528px) {
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 365px) {
+        flex-direction: column;
+        align-items:center;
     }
 }
 
 .btnItem {
     margin-right: 30px;
-    &:last-child {
-        margin-right: 0;
+    margin-top: 12px;
+
+    @media screen and (max-width: 1000px) {
+        margin-right: 24px;
     }
 
-    @media screen and (max-width: 425px) {
-        margin-right: 0;
-    }
-}
-
-.btnContent {
-
-    @media screen and (max-width: 800px) {
-        display: none;
-    }
-}
-
-.btnIcon {
-    display: block;
-
-    @media screen and (min-width: 801px) {
-        display: none;
+    @media screen and (max-width: 767px) {
+        margin-right: 12px;
     }
 }
