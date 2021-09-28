@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface) => {
-    const date = new Date();
+    const now = new Date();
     const purposes = [
       "баскетбольний",
       "футбольний",
@@ -561,13 +561,13 @@ module.exports = {
     );
     const areasForInsert = areas.map(({ purposesList, ...area }) => ({
       ...area,
-      created_at: date,
-      updated_at: date,
+      created_at: now,
+      updated_at: now,
     }));
-    const areasIds = await queryInterface.bulkInsert("areas", areasForInsert, {
+    const areaIds = await queryInterface.bulkInsert("areas", areasForInsert, {
       returning: ["id", "number"],
     });
-    const relationships = areasIds
+    const relationships = areaIds
       .flatMap(({ id, number }) => {
         const { purposesList } = areas.find((item) => item.number === number);
         return purposesList.map((purposeTitle) => {
@@ -577,8 +577,8 @@ module.exports = {
           return {
             area_id: id,
             purpose_id: purpose?.id,
-            created_at: date,
-            updated_at: date,
+            created_at: now,
+            updated_at: now,
           };
         });
       })
