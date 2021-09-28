@@ -568,7 +568,7 @@ module.exports = {
       returning: ["id", "number"],
     });
     const relationships = areasIds
-      .map(({ id, number }) => {
+      .flatMap(({ id, number }) => {
         const { purposesList } = areas.find((item) => item.number === number);
         return purposesList.map((purposeTitle) => {
           const purpose = purposeIds.find(
@@ -582,7 +582,6 @@ module.exports = {
           };
         });
       })
-      .flat()
       .filter(({ purpose_id: purposeId }) => purposeId);
     await queryInterface.bulkInsert("purpose-area", relationships);
   },
