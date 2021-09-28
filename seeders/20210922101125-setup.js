@@ -1,5 +1,6 @@
 module.exports = {
   up: async (queryInterface) => {
+    const date = new Date();
     const purposes = [
       "баскетбольний",
       "футбольний",
@@ -560,28 +561,29 @@ module.exports = {
     );
     const areasForInsert = areas.map(({ purposesList, ...area }) => ({
       ...area,
-      created_at: new Date(),
-      updated_at: new Date(),
+      created_at: date,
+      updated_at: date,
     }));
     const areasIds = await queryInterface.bulkInsert("areas", areasForInsert, {
       returning: ["id", "number"],
     });
-    const relationships = [];
-    areasIds.forEach((area) => {
-      const { id, number } = area;
-      const { purposesList } = areas.find((item) => item.number === number);
-      purposesList.forEach((purposeTitle) => {
-        const purpose = purposeIds.find((item) => item.title === purposeTitle);
-        if (purpose) {
-          relationships.push({
+    const relationships = areasIds
+      .map(({ id, number }) => {
+        const { purposesList } = areas.find((item) => item.number === number);
+        return purposesList.map((purposeTitle) => {
+          const purpose = purposeIds.find(
+            (item) => item.title === purposeTitle
+          );
+          return {
             area_id: id,
-            purpose_id: purpose.id,
-            created_at: new Date(),
-            updated_at: new Date(),
-          });
-        }
-      });
-    });
+            purpose_id: purpose?.id,
+            created_at: date,
+            updated_at: date,
+          };
+        });
+      })
+      .flat()
+      .filter(({ purpose_id: purposeId }) => purposeId);
     await queryInterface.bulkInsert("purpose-area", relationships);
   },
 
