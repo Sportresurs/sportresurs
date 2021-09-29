@@ -126,9 +126,8 @@
 }
 
 .filterBody {
-  min-height: 305px;
   box-sizing: border-box;
-  padding: 18px 12px 0 166px;
+  padding: 0 12px 0 166px;
   display: flex;
   color: $color-secondary-darkGrey;
   font-size: 10px;
@@ -136,20 +135,27 @@
   flex-direction: column;
   justify-content: space-between;
   @media screen and (min-width: 811px) and (max-width: 1023px) {
-    padding: 18px 12px 0 110px;
+    padding: 0 12px 0 122px;
   }
   @media screen and (min-width: 426px) and (max-width: 810px) {
-    padding: 18px 12px 0 40px;
+    padding: 0 12px 0 52px;
   }
   @media screen and (max-width: 503px) {
-    width: 343px;
+    width: 337px;
     margin: auto;
-    padding: 18px 12px;
+    padding: 0;
+  }
+  & > * {
+    margin-top: 18px;
   }
 }
 
 .buttonApply {
-  margin: 22px 17px 0 17px;
+  margin: 0 17px 0 17px;
   width: 303px;
   height: 40px;
+}
+
+.filterBodyRating {
+  margin-bottom: 30px;
 }

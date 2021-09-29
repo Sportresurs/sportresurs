@@ -1,8 +1,8 @@
-import s from "../styles/Playgrounds.module.scss";
-import CourtCard from "../components/CourtCard";
-import { Grid } from "../components/Grid";
-import data from "../utils/testData/testArrs";
-import Filters from "../components/Filters";
+import s from "./Playgrounds.module.scss";
+import CourtCard from "../../components/CourtCard";
+import { Grid } from "../../components/Grid";
+import data from "../../utils/testData/testArrs";
+import Filters from "../../components/Filters";
 
 export default function Playgrounds() {
   return (

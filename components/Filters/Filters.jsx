@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
 import FilterTag from "../FilterTag";
-import FilterWindow from "./FIlterWindow";
+import FilterWindow from "./FilterWindow";
+import SearchOnMap from "../SearchOnMap";
 
 const FilterButton = ({ counter, changeStatus }) => {
   const wrapperIconClasses = classNames(styles.filterButton);
@@ -17,7 +18,7 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas }) => {
+const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
     purposeOfAreas: [],
@@ -27,9 +28,9 @@ const Filters = ({ setAreas }) => {
   });
 
   // eslint-disable-next-line no-shadow
-  const getNewAreas = (filtres) => {
+  const getNewAreas = (filters) => {
     // eslint-disable-next-line no-unused-vars
-    const normalizedValues = filtres.map((item) => item.value);
+    const normalizedValues = filters.map((item) => item.value);
     // Exsample: const data = axios.post(URL_API, { filters: normalizedValues });
     setAreas();
   };
@@ -55,11 +56,22 @@ const Filters = ({ setAreas }) => {
   return (
     <div>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Майданчики</h1>
-        <FilterButton
-          counter={filters.array.filter((item) => item.value).length}
-          changeStatus={changeStatus}
-        />
+        {location === "playgrounds" ? (
+          <>
+            <h1 className={styles.title}>Майданчики</h1>
+            <FilterButton
+              counter={filters.array.filter((item) => item.value).length}
+              changeStatus={changeStatus}
+            />
+          </>
+        ) : (
+          <SearchOnMap
+            onToggle={changeStatus}
+            handleCoordinates={handleCoordinates}
+            numberOfFilters={filters.array.filter((item) => item.value).length}
+            API_KEY={API_KEY}
+          />
+        )}
         {isOpen && (
           <FilterWindow
             getNewAreas={getNewAreas}
@@ -85,16 +97,19 @@ const Filters = ({ setAreas }) => {
 };
 
 FilterButton.propTypes = {
-  counte: PropTypes.number,
+  counter: PropTypes.number,
   changeStatus: PropTypes.func,
 };
 
 Filters.defaultProps = {
+  location: "playgrounds",
   setAreas: () => {},
+  handleCoordinates: () => {},
 };
 
 Filters.propTypes = {
   setAreas: PropTypes.func,
+  handleCoordinates: PropTypes.func,
 };
 
 export default Filters;

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
@@ -12,11 +11,8 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
     { label: "Графік", field: "opening" },
     { label: "Покриття", field: "covering" },
   ];
-  const containerStyleWrapper = classNames(styles.wrapper, {
-    [styles.activeWrapper]: isActive,
-  });
   return (
-    <div className={containerStyleWrapper} onClick={handleClick}>
+    <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
