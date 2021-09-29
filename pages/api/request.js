@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { withSentry } from "@sentry/nextjs";
+import { withSentry, captureException } from "@sentry/nextjs";
 import { Request } from "../../models";
 
 const handler = nc().post(async (req, res) => {
@@ -10,10 +10,10 @@ const handler = nc().post(async (req, res) => {
       phone,
       info,
     });
-    res.statusCode = 201;
-    res.json(newRequest);
+    res.status(201).json(newRequest);
   } catch (err) {
     res.json(err);
+    captureException(err);
   }
 });
 
