@@ -29,6 +29,7 @@ export default function Map({
   apiKey,
   onLoad,
   onChange,
+  setMarkerIndex,
 }) {
   // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
   function courtDataFinder(destination) {
@@ -72,16 +73,18 @@ export default function Map({
         onGoogleApiLoaded={handleApiLoaded}
         onChildClick={(child) => setChildClicked(child)}
       >
-        {places?.map((place) => {
+        {places?.map((place, i) => {
           const proprsToMarker = courtDataFinder(place.destination);
           return (
             <MapMarkerWrapper
+              setMarkerIndex={setMarkerIndex}
               className={cx("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
               lat={Number(place.latitude)}
               lng={Number(place.longitude)}
               key={place.id}
+              indexMarker={i}
               typeOfCourt={proprsToMarker.latinName}
               bgColor={proprsToMarker.color}
             />

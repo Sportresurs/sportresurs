@@ -15,6 +15,9 @@ const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_ZOOM = 15;
 
 export default function MapPage() {
+  const [childClicked, setChildClicked] = useState(null);
+  const [markerIndex, setMarkerIndex] = useState(0);
+
   const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
@@ -47,8 +50,6 @@ export default function MapPage() {
     filterPlacesThrottled.current();
   }, []);
 
-  const [childClicked, setChildClicked] = useState(null);
-
   const handleSliderShow = () => {
     setSliderOpen((prevState) => !prevState);
   };
@@ -61,6 +62,7 @@ export default function MapPage() {
   const iconWrapperClass = classNames(styles.hideIcon, {
     [styles.openMobileIcon]: !sliderOpen,
   });
+
   return (
     <>
       <div className={styles.imageWrapper}>
@@ -81,6 +83,7 @@ export default function MapPage() {
               </div>
               <div className={sliderWrapperClass}>
                 <PlaygroundsSlider
+                  markerIndex={markerIndex}
                   playgrounds={filteredPlaces.length ? filteredPlaces : places}
                 />
               </div>
@@ -89,7 +92,9 @@ export default function MapPage() {
           <div className={styles.scrollBox}>
             <div className={styles.listWrapper}>
               <PlaygroundsList
-                playgrounds={filteredPlaces.length ? filteredPlaces : places}
+                playgrounds={
+                  filteredPlaces.length > 0 ? filteredPlaces : places
+                }
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
               />
@@ -101,11 +106,12 @@ export default function MapPage() {
             apiKey={API_KEY}
             defaultZoom={DEFAULT_ZOOM}
             defaultCenter={DEFAULT_CENTER}
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={filteredPlaces.length > 0 ? filteredPlaces : places}
             childClicked={childClicked}
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
             onChange={onMapChanged}
+            setMarkerIndex={setMarkerIndex}
           />
         </div>
       </div>

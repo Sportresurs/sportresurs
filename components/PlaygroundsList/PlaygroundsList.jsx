@@ -9,6 +9,7 @@ const PlaygroundsList = ({ playgrounds, childClicked, setChildClicked }) => {
   };
 
   const [elRefs, setElRefs] = useState([]);
+
   useEffect(() => {
     setElRefs((refs) =>
       Array(playgrounds.length)
