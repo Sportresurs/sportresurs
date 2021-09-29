@@ -45,16 +45,12 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
             })}
           />
 
-          <div
-            className={cx("icon", {
-              multi: typeOfCourt === "MultiSelectCourt",
-            })}
-          >
+          <div className={styles.icon}>
             <Image
               src={courtIcons[typeOfCourt]}
               alt={typeOfCourt}
-              width={typeOfCourt === "MultiSelectCourt" ? 15 : 20}
-              height={typeOfCourt === "MultiSelectCourt" ? 3 : 20}
+              width={20}
+              height={20}
             />
           </div>
         </button>
