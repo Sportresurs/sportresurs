@@ -4,12 +4,17 @@ module.exports = (sequelize, DataTypes) => {
   class Request extends Model {}
   Request.init(
     {
-      date: DataTypes.DATE,
       status: DataTypes.ENUM("новий", "в процесі", "оброблено"),
-      admin: DataTypes.STRING,
+      admin: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
       name: DataTypes.STRING,
-      tel: DataTypes.STRING,
-      info: DataTypes.TEXT,
+      phone: DataTypes.STRING,
+      details: DataTypes.TEXT,
     },
     {
       sequelize,
