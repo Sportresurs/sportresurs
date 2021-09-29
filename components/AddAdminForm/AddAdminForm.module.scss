@@ -1,0 +1,26 @@
+@import "../../styles/shared.scss";
+
+.form {
+  width: 772px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.inp {
+  min-width: 607px;
+  margin: 0 36px 0 36px;
+}
+
+.textContainer {
+  width: 100%;
+  margin-left: 36px;
+  color: $color-primary-dark;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}

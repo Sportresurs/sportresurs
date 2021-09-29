@@ -15,6 +15,9 @@ const options = {
       const count = await User.count({ where: { email } });
       return count > 0;
     },
+    async redirect(_url, baseUrl) {
+      return baseUrl;
+    },
   },
 };
 

@@ -1,3 +1,4 @@
+import { signIn } from "next-auth/client";
 import styles from "./Login.module.scss";
 import Button from "../../components/Button";
 
@@ -8,7 +9,11 @@ export default function Login() {
         <div className={styles.wrapper}>
           <h1 className={styles.title}>Вітаємо в СпортРесурс</h1>
           <p className={styles.text}>Активуйте свій доступ адміна</p>
-          <Button variant="green" className={styles.button}>
+          <Button
+            onClick={() => signIn()}
+            variant="green"
+            className={styles.button}
+          >
             Google Login
           </Button>
         </div>

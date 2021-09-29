@@ -13,9 +13,13 @@ import Close from "../../public/svg/closeAutoCIcon.svg";
 import FilterIcon from "../../public/svg/filterIconMap.svg";
 
 const cx = classNames.bind(styles);
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
+const SearchOnMap = ({
+  handleCoordinates,
+  onToggle,
+  numberOfFilters,
+  API_KEY,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({});
@@ -62,6 +66,7 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
       <Script
         type="text/javascript"
         src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
+        strategy="beforeInteractive"
         onLoad={() => {
           setIsLoaded(true);
         }}
@@ -127,9 +132,9 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
                 onClick={onToggle}
               >
                 <FilterIcon className={styles.formBtnFilterIcon} />
-                {numberOfFilters && (
+                {numberOfFilters ? (
                   <div className={styles.numFilters}>{numberOfFilters}</div>
-                )}
+                ) : null}
               </button>
             </>
           )}
@@ -147,6 +152,7 @@ SearchOnMap.propTypes = {
   handleCoordinates: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   numberOfFilters: PropTypes.number.isRequired,
+  API_KEY: PropTypes.string.isRequired,
 };
 
 export default SearchOnMap;
