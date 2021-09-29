@@ -66,6 +66,7 @@ export default function Map({
         defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         options={options}
+        margin={[100, 100, 100, 100]}
         onChange={handleChange}
         onDrag={handleChange}
         onGoogleApiLoaded={handleApiLoaded}

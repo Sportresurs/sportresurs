@@ -1,20 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import PlaygroundItem from "../PlaygroundItem";
 import styles from "./PlaygroundsList.module.scss";
 
-const PlaygroundsList = ({ playgrounds }) => {
+const PlaygroundsList = ({ playgrounds, childClicked, setChildClicked }) => {
   const [activeItemId, setActiveItemId] = useState(null);
   const handleClick = (id) => {
     setActiveItemId(id);
   };
+
+  const [elRefs, setElRefs] = useState([]);
+  useEffect(() => {
+    setElRefs((refs) =>
+      Array(playgrounds.length)
+        .fill()
+        .map((_, i) => refs[i] || createRef())
+    );
+  }, [playgrounds, childClicked, setChildClicked]);
+
+  useEffect(() => {
+    setChildClicked(activeItemId);
+  }, [activeItemId]);
+
+  useEffect(() => {
+    setActiveItemId(childClicked);
+  }, [childClicked]);
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.list}>
-        {playgrounds.map((playground) => (
-          <li className={styles.listItem} key={playground.id}>
+        {playgrounds.map((playground, i) => (
+          <li ref={elRefs[i]} className={styles.listItem} key={playground.id}>
             <PlaygroundItem
+              refProp={elRefs[i]}
               playground={playground}
-              isActive={activeItemId === playground.id}
+              isActive={
+                Number(childClicked) === playground.id ||
+                activeItemId === playground.id
+              }
               handleClick={() => {
                 handleClick(playground.id);
               }}

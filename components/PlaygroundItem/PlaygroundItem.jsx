@@ -4,13 +4,25 @@ import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
+import useWindowSize from "../../utils/hooks/findWindowSize";
 
-const PlaygroundItem = ({ playground, isActive, handleClick }) => {
+const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
     { label: "Тип майданчика", field: "type" },
     { label: "Графік", field: "opening" },
     { label: "Покриття", field: "covering" },
   ];
+
+  const screenWidth = useWindowSize().width;
+
+  if (isActive && screenWidth > 950) {
+    // eslint-disable-next-line no-unused-expressions
+    refProp?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest",
+    });
+  }
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
@@ -46,6 +58,7 @@ PlaygroundItem.propTypes = {
   playground: PropTypes.object,
   isActive: PropTypes.bool,
   handleClick: PropTypes.func,
+  refProp: PropTypes.object,
 };
 
 export default PlaygroundItem;
