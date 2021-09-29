@@ -39,8 +39,8 @@ export default function Home() {
   return (
     <div className={styles.background}>
       <Marker
-        typeOfCourt="VolleyballCourt"
-        district="Sykhivskyi"
+        typeOfCourt="ChildCourt"
+        district="Zaliznychnyi"
         isCourtMarker={true}
       />
       <Grid>

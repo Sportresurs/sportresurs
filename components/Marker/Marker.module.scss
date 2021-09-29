@@ -44,4 +44,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: -4px;
+
+    &.multi {
+        margin-top: -8px;
+    }
 }

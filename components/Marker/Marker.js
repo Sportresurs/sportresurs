@@ -10,111 +10,62 @@ import FootballCourt from "../../public/img/footballCourt.png";
 import HandballCourt from "../../public/img/handballCourt.png";
 import VolleyballCourt from "../../public/img/volleyballCourt.png";
 import GymnasticCourt from "../../public/img/gymnasticCourt.png";
-import MultiSelectCourt from "../../public/svg/multiSelectCourt.svg";
+import MultiSelectCourt from "../../public/img/multiSelectCourt.png";
 import WithoutTypeCourt from "../../public/img/withoutTypeCourt.png";
 import MapMarker from "../../public/svg/mapMarker.svg";
 import DefaultMarker from "../../public/svg/defaultMarker.svg";
 
 const cx = className.bind(styles);
 
-const Marker = ({ typeOfCourt, district, isCourtMarker }) => (
-  <>
-    {isCourtMarker ? (
-      <button className={styles.btnMarker}>
-        <MapMarker
-          className={cx({
-            red: district === "Halytskyi",
-            lilac: district === "Zaliznychnyi",
-            orange: district === "Lychakivskyi",
-            yellow: district === "Sykhivskyi",
-            blue: district === "Frankivskyi",
-            green: district === "Shevchenkivskyi",
-            black: district === "Another",
-          })}
-        />
+const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
+  const courtIcons = {
+    BasketballCourt,
+    TennisCourt,
+    ChildCourt,
+    FootballCourt,
+    HandballCourt,
+    VolleyballCourt,
+    GymnasticCourt,
+    MultiSelectCourt,
+    WithoutTypeCourt,
+  };
+  return (
+    <>
+      {isCourtMarker ? (
+        <button className={styles.btnMarker}>
+          <MapMarker
+            className={cx({
+              red: district === "Halytskyi",
+              lilac: district === "Zaliznychnyi",
+              orange: district === "Lychakivskyi",
+              yellow: district === "Sykhivskyi",
+              blue: district === "Frankivskyi",
+              green: district === "Shevchenkivskyi",
+              black: district === "Another",
+            })}
+          />
 
-        {typeOfCourt === "BasketballCourt" && (
-          <div className={styles.icon}>
+          <div
+            className={cx("icon", {
+              multi: typeOfCourt === "MultiSelectCourt",
+            })}
+          >
             <Image
-              src={BasketballCourt}
+              src={courtIcons[typeOfCourt]}
               alt={typeOfCourt}
-              width="20"
-              height="20"
+              width={typeOfCourt === "MultiSelectCourt" ? 15 : 20}
+              height={typeOfCourt === "MultiSelectCourt" ? 3 : 20}
             />
           </div>
-        )}
-        {typeOfCourt === "TennisCourt" && (
-          <div className={styles.icon}>
-            <Image src={TennisCourt} alt={typeOfCourt} width="20" height="20" />
-          </div>
-        )}
-        {typeOfCourt === "ChildCourt" && (
-          <div className={styles.icon}>
-            <Image src={ChildCourt} alt={typeOfCourt} width="20" height="20" />
-          </div>
-        )}
-        {typeOfCourt === "FootballCourt" && (
-          <div className={styles.icon}>
-            <Image
-              src={FootballCourt}
-              alt={typeOfCourt}
-              width="20"
-              height="20"
-            />
-          </div>
-        )}
-        {typeOfCourt === "HandballCourt" && (
-          <div className={styles.icon}>
-            <Image
-              src={HandballCourt}
-              alt={typeOfCourt}
-              width="20"
-              height="20"
-            />
-          </div>
-        )}
-        {typeOfCourt === "VolleyballCourt" && (
-          <div className={styles.icon}>
-            <Image
-              src={VolleyballCourt}
-              alt={typeOfCourt}
-              width="20"
-              height="20"
-            />
-          </div>
-        )}
-        {typeOfCourt === "GymnasticCourt" && (
-          <div className={styles.icon}>
-            <Image
-              src={GymnasticCourt}
-              alt={typeOfCourt}
-              width="20"
-              height="20"
-            />
-          </div>
-        )}
-
-        {typeOfCourt === "WithoutTypeCourt" && (
-          <div className={styles.icon}>
-            <Image
-              src={WithoutTypeCourt}
-              alt={typeOfCourt}
-              width="20"
-              height="20"
-            />
-          </div>
-        )}
-        {typeOfCourt === "MultiSelectCourt" && (
-          <MultiSelectCourt className={styles.icon} />
-        )}
-      </button>
-    ) : (
-      <button className={styles.btnMarker}>
-        <DefaultMarker />
-      </button>
-    )}
-  </>
-);
+        </button>
+      ) : (
+        <button className={styles.btnMarker}>
+          <DefaultMarker />
+        </button>
+      )}
+    </>
+  );
+};
 
 Marker.defaultProps = {
   typeOfCourt: "FootballCourt",
