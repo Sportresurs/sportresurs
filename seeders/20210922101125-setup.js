@@ -583,11 +583,11 @@ module.exports = {
         });
       })
       .filter(({ purpose_id: purposeId }) => purposeId);
-    await queryInterface.bulkInsert("purpose-area", relationships);
+    await queryInterface.bulkInsert("purpose-areas", relationships);
   },
 
   down: async (queryInterface) => {
-    await queryInterface.bulkDelete("purpose-area", null, {});
+    await queryInterface.bulkDelete("purpose-areas", null, {});
     await queryInterface.bulkDelete("purposes", null, {});
     await queryInterface.bulkDelete("areas", null, {});
   },
