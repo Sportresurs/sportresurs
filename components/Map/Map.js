@@ -97,7 +97,7 @@ Map.propTypes = {
   defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
-  childClicked: PropTypes.string,
+  childClicked: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   apiKey: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
