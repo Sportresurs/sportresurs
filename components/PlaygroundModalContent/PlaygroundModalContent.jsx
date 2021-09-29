@@ -6,6 +6,7 @@ import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
+import image from "./images/image.png";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -23,18 +24,22 @@ const PlaygroundModalContent = ({ playground }) => {
       <div className={styles.imageContainer}>
         <Image
           className={styles.bgImage}
-          src={playground.img}
+          src={image}
           alt=""
           layout="responsive"
         />
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground.districtColor} text={playground.district} />
+          <Tag color={playground.color} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
+        <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings color="yellow" readOnly={true} />
+        <Ratings
+          color={playground.color}
+          readOnly={true}
+          value={playground.rating}
+        />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow
