@@ -1,7 +1,11 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Request extends Model {}
+  class Request extends Model {
+    static associate(models) {
+      this.hasOne(models.User);
+    }
+  }
   Request.init(
     {
       status: DataTypes.ENUM("новий", "в процесі", "оброблено"),
