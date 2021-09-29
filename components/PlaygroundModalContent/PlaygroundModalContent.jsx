@@ -25,7 +25,7 @@ const PlaygroundModalContent = ({ playground }) => {
         <Slider
           slidesToShow={1}
           slidesToScroll={1}
-          isArrows={true}
+          withArrows={true}
           isModal={true}
           classNameBox={styles.sliderBox}
           classNameDots={styles.dots}
@@ -34,16 +34,13 @@ const PlaygroundModalContent = ({ playground }) => {
           arrayLength={playground.images.length}
         >
           {playground.images.map((img, i) => (
-            <>
-              <div key={i}>
-                <Image
-                  className={styles.bgImage}
-                  src={img}
-                  alt=""
-                  layout="responsive"
-                />
-              </div>
-            </>
+            <Image
+              className={styles.bgImage}
+              src={img}
+              alt=""
+              layout="responsive"
+              key={i}
+            />
           ))}
         </Slider>
       </div>
