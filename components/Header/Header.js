@@ -29,16 +29,7 @@ export default function Header() {
             <IconBtnMenu />
           </button>
           <Link href="/">
-            <a
-              className={styles.navLogo}
-              onClick={() => {
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                });
-                setMenuActive(false);
-              }}
-            >
+            <a className={styles.navLogo} onClick={handleMenuActiveFalse}>
               <IconLogoHead />
             </a>
           </Link>

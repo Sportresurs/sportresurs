@@ -1,7 +1,7 @@
 import { useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 import s from "./About.module.scss";
-import useWindowSize from "../../utils/customHooks/findWindowSize";
+import useWindowSize from "../../utils/hooks/findWindowSize";
 import setHeightOfHeader from "../../utils/findHeightOfHeader";
 
 export default function About() {
