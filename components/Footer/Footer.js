@@ -1,14 +1,12 @@
 import Link from "next/link";
-import { useMemo } from "react";
-import ScrollableAnchor, { configureAnchors } from "react-scrollable-anchor";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
-import useWindowSize from "../../utils/customHooks/findWindowSize";
-import setHeightOfHeader from "../../utils/findHeightOfHeader";
 
 const cx = classNames.bind(styles);
 
@@ -36,11 +34,15 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const size = useWindowSize();
+  const router = useRouter();
 
-  const heightOfHeader = useMemo(() => setHeightOfHeader(size.width), [size]);
-
-  configureAnchors({ offset: heightOfHeader, scrollDuration: 400 });
+  useEffect(() => {
+    if (router && router.asPath) {
+      window.scrollTo({ bottom: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  }, [router]);
 
   return (
     <footer className={styles.footer}>
@@ -95,18 +97,17 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <ScrollableAnchor id={"navigateToContacts"}>
-            <div className={styles.footerContacts}>
-              <h3 className={styles.footerContactsTitle}>Контакти</h3>
-              <address className={styles.footerContactsAddress}>
-                <p>79008, Львів,</p>
-                <p>пл. Ринок, 1, каб. 516</p>
-                <a href="tel:+38012345678" className={styles.footerTelephone}>
-                  +38012345678
-                </a>
-              </address>
-            </div>
-          </ScrollableAnchor>
+
+          <div className={styles.footerContacts} id="navigateToContacts">
+            <h3 className={styles.footerContactsTitle}>Контакти</h3>
+            <address className={styles.footerContactsAddress}>
+              <p>79008, Львів,</p>
+              <p>пл. Ринок, 1, каб. 516</p>
+              <a href="tel:+38012345678" className={styles.footerTelephone}>
+                +38012345678
+              </a>
+            </address>
+          </div>
         </div>
 
         <div className={styles.legal}>
