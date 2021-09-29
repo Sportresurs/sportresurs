@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/client";
 import Link from "next/link";
 import className from "classnames/bind";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import styles from "./Header.module.scss";
 import ContactUsButton from "../ContactUsButton";
+import LoginButton from "../LoginButton";
 
 const cx = className.bind(styles);
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  const [session] = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setIsAdminLoggedIn(true);
+    }
+  }, [isAdminLoggedIn, session]);
 
   const handleMenuActive = () => {
     setMenuActive(!menuActive);
@@ -66,8 +77,11 @@ export default function Header() {
                   </Link>
                 </li>
               </ul>
-
-              <ContactUsButton shouldLockScreen={true} />
+              {isAdminLoggedIn ? (
+                <LoginButton setIsAdminLoggedIn={setIsAdminLoggedIn} />
+              ) : (
+                <ContactUsButton shouldLockScreen={true} />
+              )}
             </div>
           </div>
         </nav>
