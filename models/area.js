@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Area extends Model {
     static associate(models) {
       this.belongsToMany(models.Purpose, {
-        through: "purpose-area",
+        through: "purpose-areas",
         foreignKey: "area_id",
         otherKey: "purpose_id",
       });
@@ -24,13 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       ),
       address: DataTypes.STRING,
       type: DataTypes.ENUM("спортивний", "дитячо-спортивний", "інший"),
-      purpose: DataTypes.ENUM(
-        "баскетбольний",
-        "футбольний",
-        "волейбольний",
-        "воркаут",
-        "мультифункційний"
-      ),
+      longitude: DataTypes.DECIMAL(10, 8),
+      latitude: DataTypes.DECIMAL(10, 8),
       size: DataTypes.FLOAT,
       coating: DataTypes.STRING,
       access: DataTypes.ENUM("безкоштовний", "платний"),
