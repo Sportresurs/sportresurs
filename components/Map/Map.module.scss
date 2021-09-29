@@ -7,16 +7,16 @@
 
 .markerWrapper {
   position: relative;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   width: 40px;
   transition: 0.3s;
 
   &:hover {
-    transform: translate(-50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
     z-index: 2;
   }
   &.selected {
-    transform: translate(-50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
     z-index: 1;
   }
 }
