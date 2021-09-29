@@ -7,27 +7,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
       status: {
         type: Sequelize.ENUM("новий", "в процесі", "оброблено"),
         allowNull: false,
       },
       admin: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "users",
+          },
+          key: "id",
+        },
       },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      tel: {
+      phone: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      info: {
+      details: {
         type: Sequelize.TEXT,
       },
       created_at: {
