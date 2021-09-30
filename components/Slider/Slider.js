@@ -17,6 +17,7 @@ const SlickSlider = ({
   slidesToShow,
   slidesToScroll,
   slideIndex,
+  setChildClicked,
   speed,
   isInfinite,
   isLazyLoad,
@@ -108,6 +109,7 @@ const SlickSlider = ({
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive,
+    afterChange: (current) => setChildClicked(Number(children[current].key)),
     appendDots(dots) {
       return (
         <div>
