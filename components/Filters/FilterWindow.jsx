@@ -39,7 +39,7 @@ const FilterWindow = ({
       array: [...purposeOfAreas, ...districts, rating],
     });
     changeStatus(false);
-    getNewAreas([...purposeOfAreas, ...districts, rating]);
+    getNewAreas(purposeOfAreas, districts, rating);
   };
 
   const classesButton = classNames(styles.buttonApply);
