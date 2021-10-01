@@ -34,10 +34,12 @@
   transition: 0.5s;
 }
 
-.info:hover {
-  transform: translateY(-208px);
-  -webkit-line-clamp: 100;
-  padding-top: 30px;
+@media screen and (min-width: 1150px) {
+  .info:hover {
+    transform: translateY(-208px);
+    -webkit-line-clamp: 100;
+    padding-top: 30px;
+  }
 }
 
 .infoMore {

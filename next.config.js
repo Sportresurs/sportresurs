@@ -2,6 +2,9 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 const moduleExports = {
   reactStrictMode: true,
+  images: {
+    domains: ["instagram.fiev14-1.fna.fbcdn.net"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
