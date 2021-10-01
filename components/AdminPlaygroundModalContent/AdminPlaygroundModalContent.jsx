@@ -11,8 +11,8 @@ import validation from "./CustomValidationSchema";
 import customerService from "../../api/customerService";
 
 const districtOptions = [
-  { label: "Сихівський", value: "Сихівський" },
   { label: "Галицький", value: "Галицький" },
+  { label: "Сихівський", value: "Сихівський" },
   { label: "Залізничний", value: "Залізничний" },
   { label: "Личаківський", value: "Личаківський" },
   { label: "Франківський", value: "Франківський" },
@@ -42,11 +42,24 @@ const lightingOptions = [
 ];
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState([]);
   const handleSubmit = async (values) => {
+    const formData = new FormData();
+    // eslint-disable-next-line array-callback-return
+    Object.keys(values).map((item) => {
+      let value = values[item];
+      if (Array.isArray(value)) {
+        value = value.map((i) => i.value);
+      }
+      formData.append(`${item}`, value);
+    });
+    formData.append(
+      "images",
+      files.map((file) => file.file)
+    );
     setLoading(true);
     try {
-      await customerService.contactRequest(values);
-      alert(values);
+      await customerService.contactRequest(formData);
       onSuccess();
     } finally {
       setLoading(false);
@@ -58,26 +71,26 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imagesWrapper}>
-        <CustomDropzone />
+        <CustomDropzone files={files} setFiles={setFiles} />
       </div>
       <div className={styles.contentWrapper}>
         <h1 className={styles.heading}>Майданчик № </h1>
         <Formik
           initialValues={{
             number: "",
-            district: "",
+            district: "Галицький",
             address: "",
             latitude: "",
             longitude: "",
-            type: "",
+            type: "Спортивний",
             purpose: [],
             area: "",
             covering: "",
-            access: "",
+            access: "Безкоштовний",
             opening: "00:00 - 00:00",
-            lighting: "",
+            lighting: "Є",
             details: "",
-            rating: Number(""),
+            rating: null,
           }}
           validationSchema={validation}
           onSubmit={handleSubmit}
@@ -101,6 +114,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 <Select
                   type="form"
                   options={districtOptions}
+                  defaultValue={[{ label: "Галицький", value: "Галицький" }]}
                   label="Район"
                   labelSize="smallLabel"
                   inputSize="form"
@@ -142,6 +156,8 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   {...formik.getFieldProps("type")}
                 />
                 <MultiSelect
+                  placeholderColor="#150223"
+                  placeholderFontSize="14px"
                   type="Призначення"
                   data={purposeOptions}
                   multiSelectType="form"

@@ -21,6 +21,9 @@
   max-width: 492px;
   border-radius: 3px;
   margin-bottom: 12px;
+  .filterType {
+    color: $color-primary-dark;
+  }
 }
 .filterType {
   margin-bottom: 5px;

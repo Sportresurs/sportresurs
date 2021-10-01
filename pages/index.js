@@ -7,7 +7,6 @@ import TopCourts from "../components/TopCourts";
 import data from "../utils/testData/testArrs";
 import { Grid } from "../components/Grid";
 import styles from "../styles/MapPage.module.scss";
-import PlaygroundsList from "../components/PlaygroundsList";
 import SearchSection from "../components/SearchSection";
 import AdminPlaygroundModal from "../components/AdminPlaygroundModal";
 
@@ -52,7 +51,6 @@ export default function Home() {
           playground={playground}
         />
         <AdminPlaygroundModal visible={true} onClose={handleClose} />
-        <PlaygroundsList />
         <About />
       </Grid>
     </div>

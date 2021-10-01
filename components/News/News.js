@@ -1,7 +1,9 @@
+import { useState } from "react";
 import styles from "./News.module.scss";
 import NewsCard from "../NewsCard";
 import useColorLoop from "../../utils/hooks/useColorLoop";
 import image from "../../public/img/court-placeholder.jpg";
+import DeleteDialog from "../DeleteDialog";
 
 const news = [
   {
@@ -24,7 +26,14 @@ const news = [
   },
 ];
 
-export default function News() {
+export default function News({ isAdmin }) {
+  const [itemToRemove, setItemToRemove] = useState(null);
+  const handleDeleteDialogOpen = (item) => {
+    setItemToRemove(item);
+  };
+  const handleDeleteDialogClose = () => {
+    setItemToRemove(null);
+  };
   const getColor = useColorLoop();
   return (
     <>
@@ -33,9 +42,16 @@ export default function News() {
       </div>
       <div className={styles.container}>
         {news.map((item) => (
-          <NewsCard key={item.id} newsData={item} color={getColor()} />
+          <NewsCard
+            key={item.id}
+            newsData={item}
+            color={getColor()}
+            canDelete={isAdmin}
+            onDeleteIconClick={handleDeleteDialogOpen}
+          />
         ))}
       </div>
+      <DeleteDialog visible={itemToRemove} onClose={handleDeleteDialogClose} />
     </>
   );
 }

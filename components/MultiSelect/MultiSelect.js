@@ -21,6 +21,10 @@ export default function MultiSelect({
   value,
   type = "район",
   multiSelectType,
+  placeholderColor,
+  placeholderFontSize,
+  boxFontSize,
+  arrowColor,
   ...rest
 }) {
   const customStyle = {
@@ -32,17 +36,22 @@ export default function MultiSelect({
       ...base,
       paddingRight: "2px",
       minHeight: "42px",
+      borderColor: "#AFAFAF",
     }),
     placeholder: (base) => ({
       ...base,
-      color: "#737B7D",
+      color: placeholderColor || "#737B7D",
       fontWeight: "400",
-      fontSize: "12px",
+      fontSize: placeholderFontSize || "12px",
       lineHeight: "15px",
     }),
     valueContainer: (base) => ({
       ...base,
       padding: "2px 6px 8px 6px",
+    }),
+    indicatorSeparator: (base) => ({
+      ...base,
+      backgroundColor: "#AFAFAF",
     }),
     multiValue: (base) => ({
       ...base,
@@ -50,14 +59,13 @@ export default function MultiSelect({
       borderRadius: "3px",
       padding: "3px 3px 3px 0",
       fontWeight: "400",
-      fontSize: "10px",
+      fontSize: boxFontSize || "10px",
       lineHeight: "11px",
     }),
     menu: (base) => ({
       ...base,
       minWidth: "150px",
       maxWidth: "337px",
-
       zIndex: 4,
     }),
     option: (base) => ({
@@ -65,7 +73,6 @@ export default function MultiSelect({
       padding: "0",
       display: "flex",
       alignItems: "center",
-
       backgroundColor: "#ffffff",
     }),
   };
@@ -88,6 +95,7 @@ export default function MultiSelect({
             primary25: "#ffffff",
             primary: "#7BB9FA",
             neutral10: "#D0D0D0",
+            neutral20: arrowColor || "#737B7D",
             dangerLight: "#D0D0D0",
           },
         })}
@@ -109,4 +117,8 @@ MultiSelect.propTypes = {
   data: PropTypes.array.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   type: PropTypes.string.isRequired,
+  placeholderColor: PropTypes.string,
+  placeholderFontSize: PropTypes.string,
+  boxFontSize: PropTypes.string,
+  arrowColor: PropTypes.string,
 };

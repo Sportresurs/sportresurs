@@ -12,6 +12,7 @@ export default function Select({
   type,
   label,
   labelSize,
+  ...rest
 }) {
   const [value, setValue] = useState(defaultValue);
   const inputLabelWrapperClassName = classNames(
@@ -35,6 +36,7 @@ export default function Select({
           className={cx("select", type)}
           value={value}
           onChange={handleOptionChange}
+          {...rest}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

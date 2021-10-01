@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDropzone } from "react-dropzone";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classNames from "classnames";
+import Slider from "../Slider";
 import AddImage from "../../public/svg/addImage.svg";
 import styles from "./CustomDropzone.module.scss";
 import EmptyImage from "../../public/svg/emptyImage.svg";
 import DefaultEmptyImage from "../../public/svg/defaultEmptyImage.svg";
-import Slider from "../Slider";
+import BasketIcon from "../../public/svg/basketIcon.svg";
 
-const CustomDropzone = () => {
-  const [files, setFiles] = useState([]);
+const reorder = (files, startIndex, endIndex) => {
+  const result = files;
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+};
+
+const CustomDropzone = ({ files, setFiles }) => {
+  const lastId = useRef(1);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     multiple: true,
@@ -18,11 +27,10 @@ const CustomDropzone = () => {
       setFiles((currentFiles) =>
         [].concat(
           currentFiles,
-          acceptedFiles.map((file) =>
-            Object.assign(file, {
-              url: URL.createObjectURL(file),
-            })
-          )
+          acceptedFiles.map((file) => {
+            lastId.current += 1;
+            return { id: lastId.current, file, url: URL.createObjectURL(file) };
+          })
         )
       );
     },
@@ -37,13 +45,25 @@ const CustomDropzone = () => {
     styles.emptyImageContainer,
     styles.addImage
   );
+  const handleImageDelete = (id) => {
+    setFiles((prevState) => prevState.filter((file) => file.id !== id));
+  };
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const file = reorder(files, result.source.index, result.destination.index);
+    setFiles([...file]);
+  };
+
   return (
-    <div className={styles.dropzoneContainer}>
+    <div>
       {files.length > 0 ? (
         <div className={styles.sliderWrapper}>
           <Slider isModal={true} arrayLength={files.length}>
             {files.map((file) => (
-              <img key={file.toString()} src={file.url} alt="" />
+              <img key={file.id} src={file.url} alt="" />
             ))}
           </Slider>
         </div>
@@ -59,15 +79,60 @@ const CustomDropzone = () => {
           <input {...getInputProps()} />
           <AddImage />
         </div>
-        {new Array(7).fill(1).map((_, index) => (
-          <div key={index} className={styles.emptyImageContainer}>
-            {files[index] ? (
-              <img src={files[index].url} alt="" className={styles.image} />
-            ) : (
-              <EmptyImage />
-            )}
+        {files.length > 0 ? (
+          <div className={styles.scrollBox}>
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Droppable droppableId="droppable" direction="horizontal">
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className={styles.imagesWrapper}
+                  >
+                    {files.map((file, index) => (
+                      <Draggable
+                        key={file.id}
+                        draggableId={file.id.toString()}
+                        index={index}
+                      >
+                        {/* eslint-disable-next-line no-shadow */}
+                        {(provided) => (
+                          <div
+                            className={styles.emptyImageContainer}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div
+                              className={styles.deleteIcon}
+                              onClick={() => handleImageDelete(file.id)}
+                            >
+                              <BasketIcon />
+                            </div>
+                            <img
+                              src={file.url}
+                              alt=""
+                              className={styles.image}
+                            />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           </div>
-        ))}
+        ) : (
+          <div className={styles.imagesWrapper}>
+            {new Array(3).fill(1).map((_, index) => (
+              <div key={index} className={styles.emptyImageContainer}>
+                <EmptyImage />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

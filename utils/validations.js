@@ -12,26 +12,28 @@ const validation = {
     let errorMessage = "";
     switch (rule) {
       case "name":
-        errorMessage = "Будь ласка, введіть валідне ім'я";
+        errorMessage = "Будь ласка, введіть валідне ім'я.";
         break;
       case "phone":
+        errorMessage = "Введіть, будь ласка, номер у форматі +380XX XXX XX XX.";
+        break;
       case "number":
-        errorMessage = "Будь ласка, введіть валідний номер";
+        errorMessage = "Будь ласка, введіть валідний номер.";
         break;
       case "latitude":
-        errorMessage = "Будь ласка, введіть валідну широту";
+        errorMessage = "Будь ласка, введіть валідну широту.";
         break;
       case "longitude":
-        errorMessage = "Будь ласка, введіть валідну довготу";
+        errorMessage = "Будь ласка, введіть валідну довготу.";
         break;
       case "area":
-        errorMessage = "Будь ласка, введіть валідний метраж";
+        errorMessage = "Будь ласка, введіть валідний метраж.";
         break;
       case "max":
-        errorMessage = `Кількість символів не повинно перевищувати ${option}`;
+        errorMessage = `Кількість символів не повинно перевищувати ${option}.`;
         break;
       default:
-        errorMessage = "Поле обов'язково до заповнення";
+        errorMessage = "Заповніть, будь ласка, це поле.";
         break;
     }
     return errorMessage;
