@@ -47,7 +47,7 @@ const SlickSlider = ({
       dotWidth = 33;
     }
     if (isForModal === false && windowSize < 768) {
-      dotWidth = 29;
+      dotWidth = 28.5;
     }
 
     return dotWidth;
