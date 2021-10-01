@@ -1,7 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import className from "classnames/bind";
 import styles from "./Marker.module.scss";
 import BasketballCourt from "../../public/img/basketballCourt.png";
 import TennisCourt from "../../public/img/tennisCourt.png";
@@ -15,8 +14,6 @@ import WithoutTypeCourt from "../../public/img/withoutTypeCourt.png";
 import MapMarker from "../../public/svg/mapMarker.svg";
 import DefaultMarker from "../../public/svg/defaultMarker.svg";
 
-const cx = className.bind(styles);
-
 const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
   const courtIcons = {
     BasketballCourt,
@@ -29,21 +26,21 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
     MultiSelectCourt,
     WithoutTypeCourt,
   };
+
+  const districtToColor = {
+    Halitskyi: "red",
+    Zaliznychnyi: "lilac",
+    Lychakivskyi: "orange",
+    Sykhivskyi: "yellow",
+    Frankivskyi: "blue",
+    Shevchenkivskyi: "green",
+    Another: "black",
+  };
   return (
     <>
       {isCourtMarker ? (
         <button className={styles.btnMarker}>
-          <MapMarker
-            className={cx({
-              red: district === "Halytskyi",
-              lilac: district === "Zaliznychnyi",
-              orange: district === "Lychakivskyi",
-              yellow: district === "Sykhivskyi",
-              blue: district === "Frankivskyi",
-              green: district === "Shevchenkivskyi",
-              black: district === "Another",
-            })}
-          />
+          <MapMarker className={styles[districtToColor[district]]} />
 
           <div className={styles.icon}>
             <Image
