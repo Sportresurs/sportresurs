@@ -31,7 +31,8 @@ export default function Map({
   onChange,
 }) {
   // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
-  function courtDataFinder(destination) {
+  function courtDataFinder(purposes) {
+    const destination = purposes.map(({ title }) => title);
     if (destination.length > 1) {
       const multiPin = { color: "lilac", latinName: "Tennis" };
       return multiPin;
@@ -72,7 +73,7 @@ export default function Map({
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place) => {
-          const proprsToMarker = courtDataFinder(place.destination);
+          const proprsToMarker = courtDataFinder(place.Purposes);
           return (
             <MapMarkerWrapper
               className={cx("markerWrapper", {

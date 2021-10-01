@@ -5,6 +5,7 @@ import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
+import placeholderImg from "../../public/img/court-placeholder.jpg";
 
 const PlaygroundItem = ({ playground, isActive, handleClick }) => {
   const playgroundInfoFields = [
@@ -19,12 +20,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
-          <Image
-            className={styles.bgImage}
-            src={playground.image}
-            alt=""
-            layout="fill"
-          />
+          <Image src={placeholderImg} alt="court" layout="fill" />
         </div>
       </div>
       <div className={styles.contentWrapper}>
