@@ -9,9 +9,9 @@
   cursor: pointer;
   overflow: hidden;
   @media screen and (max-width: 1150px) {
-        min-width: 250px;
-        min-height: 333px;
-      }
+    min-width: 250px;
+    min-height: 333px;
+  }
 }
 
 .info {
@@ -35,6 +35,29 @@
 }
 
 .info:hover {
+  transform: translateY(-208px);
+  -webkit-line-clamp: 100;
+  padding-top: 30px;
+}
+
+.infoMore {
+  height: 256px;
+  top: 308px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0px 0px 3px 3px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: $color-primary-light;
+  padding: 10px 7px 7px 6px;
+  transition: 0.5s;
   transform: translateY(-208px);
   -webkit-line-clamp: 100;
   padding-top: 30px;
