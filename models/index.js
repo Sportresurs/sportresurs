@@ -7,6 +7,7 @@ const PurposeArea = require("./purpose-area");
 const Purpose = require("./purpose");
 const BlockedNews = require("./blocked-news");
 const config = require("../config/config")[env];
+const Request = require("./request");
 
 const db = {};
 
@@ -28,6 +29,7 @@ db.PurposeArea = PurposeArea(sequelize, Sequelize.DataTypes);
 db.Purpose = Purpose(sequelize, Sequelize.DataTypes);
 db.Area = Area(sequelize, Sequelize.DataTypes);
 db.BlockedNews = BlockedNews(sequelize, Sequelize.DataTypes);
+db.Request = Request(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Purpose extends Model {
     static associate(models) {
       this.belongsToMany(models.Area, {
-        through: "purpose-area",
+        through: "purpose-areas",
         foreignKey: "purpose_id",
         otherKey: "area_id",
       });
@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Purpose",
       underscored: true,
+      createdAt: false,
+      updatedAt: false,
     }
   );
   return Purpose;
