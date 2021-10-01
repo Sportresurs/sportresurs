@@ -1,12 +1,12 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
+import axios from "axios";
 import Map from "../components/Map";
 import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import PlaygroundsList from "../components/PlaygroundsList";
 import Filters from "../components/Filters";
 import styles from "../styles/MapPage.module.scss";
-import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import image from "../public/img/playgroundItemImage.png";
 import HideMark from "../public/svg/hideSliderArrow.svg";
@@ -75,9 +75,17 @@ const playgrounds = [
 
 export default function MapPage() {
   const [sliderOpen, setSliderOpen] = useState(true);
-  const [places] = useState(data.courtsDataBase);
+  const [places, setPlaces] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   useEffect(() => {}, [filteredPlaces]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:3000/api/areas",
+    }).then(({ data }) => setPlaces(data.areas));
+  }, []);
+
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
     if (!mapRef.current) {
@@ -128,7 +136,11 @@ export default function MapPage() {
       <div className={styles.wrapper}>
         <div className={styles.sidebarWrapper}>
           <div className={styles.filterWrapper}>
-            <Filters location="mapPage" API_KEY={API_KEY} />
+            <Filters
+              setAreas={setPlaces}
+              location="mapPage"
+              API_KEY={API_KEY}
+            />
           </div>
           <div className={sidebarWrapperClass}>
             <div className={styles.sidebarContainer}>
