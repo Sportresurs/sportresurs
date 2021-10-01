@@ -11,6 +11,7 @@ const Area = require("./area.js");
 const Image = require("./image.js");
 const PurposeArea = require("./purpose-area.js");
 const Purpose = require("./purpose.js");
+const Request = require("./request.js");
 
 const db = {};
 
@@ -26,6 +27,7 @@ db.Image = Image(sequelize, Sequelize.DataTypes);
 db.PurposeArea = PurposeArea(sequelize, Sequelize.DataTypes);
 db.Purpose = Purpose(sequelize, Sequelize.DataTypes);
 db.Area = Area(sequelize, Sequelize.DataTypes);
+db.Request = Request(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

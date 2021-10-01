@@ -54,6 +54,7 @@ module.exports = {
       },
     });
     await queryInterface.removeColumn("areas", "purpose");
+    await queryInterface.sequelize.query("drop type enum_areas_purpose;");
     await queryInterface.addColumn("areas", "latitude", {
       type: Sequelize.DECIMAL(10, 10),
       allowNull: false,
@@ -64,8 +65,8 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("purposes");
     await queryInterface.dropTable("purpose-area");
+    await queryInterface.dropTable("purposes");
     await queryInterface.addColumn("areas", "purpose", {
       type: Sequelize.ENUM(
         "баскетбольний",

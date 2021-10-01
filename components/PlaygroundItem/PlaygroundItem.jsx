@@ -1,10 +1,10 @@
-import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
+import PlaygroundModal from "../PlaygroundModal";
+import useModalHandlers from "../../utils/hooks/useModalHandlers";
 
 const PlaygroundItem = ({ playground, isActive, handleClick }) => {
   const playgroundInfoFields = [
@@ -12,16 +12,16 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
     { label: "Графік", field: "opening" },
     { label: "Покриття", field: "covering" },
   ];
-  const containerStyleWrapper = classNames(styles.wrapper, {
-    [styles.activeWrapper]: isActive,
-  });
+
+  const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
   return (
-    <div className={containerStyleWrapper} onClick={handleClick}>
+    <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.img}
+            src={playground.image}
             alt=""
             layout="fill"
           />
@@ -35,13 +35,19 @@ const PlaygroundItem = ({ playground, isActive, handleClick }) => {
           rating={playground.rating}
           color={playground.color}
           address={playground.address}
-          courtNumber={playground.id}
+          courtNumber={playground.courtNumber}
           playground={playground}
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}
           isList={true}
+          openModal={handleOpenModal}
         />
       </div>
+      <PlaygroundModal
+        visible={isModalShown}
+        onClose={handleCloseModal}
+        playground={playground}
+      />
     </div>
   );
 };
