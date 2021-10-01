@@ -19,6 +19,12 @@ const ContextProvider = ({ children }) => {
     }));
   };
 
+  const handleDistricts = (e) => {
+    setFilterData((prevState) => ({
+      ...prevState,
+      districts: [e.target.textContent],
+    }));
+  };
   return (
     <Context.Provider
       value={{
@@ -26,6 +32,7 @@ const ContextProvider = ({ children }) => {
         filterData,
         handleCoordinates,
         handlePurposeOfAreas,
+        handleDistricts,
         setFilterData,
       }}
     >

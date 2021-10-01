@@ -106,9 +106,9 @@ CloseFilterWindow.propTypes = {
 
 FilterWindow.propTypes = {
   getNewAreas: PropTypes.func,
-  filtres: PropTypes.object,
+  filters: PropTypes.object,
   counter: PropTypes.number,
-  setFiltres: PropTypes.func,
+  setFilters: PropTypes.func,
   changeStatus: PropTypes.func,
 };
 

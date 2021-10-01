@@ -7,26 +7,28 @@
   flex: 0 0 auto;
 }
 .content {
+  --header-height: 64px;
   flex: 1 1 100%;
+  margin-top: var(--header-height);
 
   @media screen and (min-width: 1024px){
-    margin-top: 64px;
+    --header-height: 64px;
   }
 
   @media screen and (min-width: 811px) and (max-width: 1023px) {
-    margin-top: 54px;
+    --header-height: 54px;
   }
 
   @media screen and (min-width: 504px) and (max-width: 810px) {
-    margin-top: 132px;
+    --header-height: 132px;
   }
 
   @media screen and (min-width: 426px) and (max-width: 503px) {
-    margin-top: 169px;
+    --header-height: 169px;
   }
 
   @media screen and (max-width: 425px) {
-    margin-top: 54px;
+    --header-height: 54px;
   }
 }
 .footer {
