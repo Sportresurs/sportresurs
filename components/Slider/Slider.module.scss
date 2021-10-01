@@ -22,14 +22,10 @@
 
     transform: translateY(-50%);
     opacity: 0.8;
-    z-index: 10;
+    z-index: 2;
 
     &.black path {
         fill: $color-primary-dark;
-    }
-
-    &.hidden {
-        display: none;
     }
 
     &.next {

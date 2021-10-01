@@ -1,0 +1,65 @@
+@import "../../styles/shared.scss";
+
+.card {
+  width: 350px;
+  height: 344px;
+  margin-right: 20px;
+  position: relative;
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  @media screen and (max-width: 1150px) {
+        min-width: 250px;
+        min-height: 333px;
+      }
+}
+
+.info {
+  height: 256px;
+  top: 308px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0px 0px 3px 3px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: $color-primary-light;
+  padding: 10px 7px 7px 6px;
+  transition: 0.5s;
+}
+
+.info:hover {
+  transform: translateY(-208px);
+  -webkit-line-clamp: 100;
+  padding-top: 30px;
+}
+
+.image {
+  border-radius: 3px;
+}
+.deleteIcon {
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: $color-primary-light;
+}

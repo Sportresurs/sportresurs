@@ -6,6 +6,8 @@ import Tag from "../Tag";
 import placeholderImg from "../../public/img/court-placeholder.jpg";
 import colorMatch from "../../utils/testData/testArrs";
 import CourtCardInfo from "../CourtCardInfo";
+import PlaygroundModal from "../PlaygroundModal";
+import useModalHandlers from "../../utils/hooks/useModalHandlers";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -21,6 +23,8 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     colorMatch.districtColors.find((item) => item.district === region).color;
 
   const color = districtColor(district);
+
+  const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   return (
     <>
@@ -38,9 +42,15 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             address={address}
             color={color}
             rating={rating}
+            openModal={handleOpenModal}
           />
         </div>
       </div>
+      <PlaygroundModal
+        visible={isModalShown}
+        onClose={handleCloseModal}
+        playground={courtInfo}
+      />
     </>
   );
 }
