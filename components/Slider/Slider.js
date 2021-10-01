@@ -23,7 +23,7 @@ const SlickSlider = ({
   isVariableWidth,
   isAutoplay,
   autoplaySpeed,
-  isArrows,
+  withArrows,
   responsive,
   isModal,
   isArrowColorBlack,
@@ -31,6 +31,7 @@ const SlickSlider = ({
   classNameBox,
   classNameArrow,
   classNameDots,
+  classNameDotsModal,
 }) => {
   const size = useWindowSize();
 
@@ -86,6 +87,7 @@ const SlickSlider = ({
   const settings = {
     dotsClass: cx("dotsWrap", classNameDots, {
       modal: isModal === true,
+      [classNameDotsModal]: isModal === true,
     }),
     dots: isDots,
     slidesToShow,
@@ -97,7 +99,7 @@ const SlickSlider = ({
     variableWidth: isVariableWidth,
     autoplay: isAutoplay,
     autoplaySpeed,
-    arrows: isArrows,
+    arrows: withArrows,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive,
@@ -133,7 +135,7 @@ SlickSlider.defaultProps = {
   isVariableWidth: false,
   isAutoplay: false,
   autoplaySpeed: 3000,
-  isArrows: true,
+  withArrows: true,
   responsive: null,
   isModal: false,
   isArrowColorBlack: false,
@@ -150,7 +152,7 @@ SlickSlider.propTypes = {
   isVariableWidth: PropTypes.oneOf([true, false]),
   isAutoplay: PropTypes.oneOf([true, false]),
   autoplaySpeed: PropTypes.number,
-  isArrows: PropTypes.oneOf([true, false]).isRequired,
+  withArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
   isArrowColorBlack: PropTypes.oneOf([true, false]),
   arrayLength: PropTypes.number.isRequired,
@@ -160,6 +162,10 @@ SlickSlider.propTypes = {
       settings: PropTypes.object.isRequired,
     })
   ),
+  classNameBox: PropTypes.string,
+  classNameArrow: PropTypes.string,
+  classNameDots: PropTypes.string,
+  classNameDotsModal: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

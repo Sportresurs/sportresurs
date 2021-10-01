@@ -6,7 +6,7 @@ import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
-import image from "./images/image.png";
+import Slider from "../Slider";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -22,12 +22,27 @@ const PlaygroundModalContent = ({ playground }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        <Image
-          className={styles.bgImage}
-          src={image}
-          alt=""
-          layout="responsive"
-        />
+        <Slider
+          slidesToShow={1}
+          slidesToScroll={1}
+          withArrows={true}
+          isModal={true}
+          classNameBox={styles.sliderBox}
+          classNameDots={styles.dots}
+          classNameDotsModal={styles.modalDots}
+          isArrowColorBlack={false}
+          arrayLength={playground.images.length}
+        >
+          {playground.images.map((img, i) => (
+            <Image
+              className={styles.bgImage}
+              src={img}
+              alt=""
+              layout="responsive"
+              key={i}
+            />
+          ))}
+        </Slider>
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
