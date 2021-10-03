@@ -3,11 +3,11 @@
 .card {
   width: 350px;
   height: 344px;
-  margin-right: 20px;
   position: relative;
   border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
+
   @media screen and (max-width: 1150px) {
     min-width: 250px;
     min-height: 333px;
@@ -68,6 +68,7 @@
 .image {
   border-radius: 3px;
 }
+
 .deleteIcon {
   border: none;
   position: absolute;
@@ -79,10 +80,12 @@
   justify-content: center;
   align-items: center;
   padding: 0;
+
   svg {
     width: 15px;
     height: 15px;
   }
+
   border-radius: 50%;
   width: 25px;
   height: 25px;

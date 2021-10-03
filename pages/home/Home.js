@@ -24,7 +24,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ export default function Home() {
       opening: "08:00 - 22:00",
       lighting: "є",
       additionally: "дитячі елементи, огорожа, ворота",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 3,
@@ -59,7 +59,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 4,
@@ -76,7 +76,7 @@ export default function Home() {
       opening: "00:00 - 24:00",
       lighting: "відсутнє",
       additionally: "фут. ворота, огорожа, покриття",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 5,
@@ -94,7 +94,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 6,
@@ -111,7 +111,7 @@ export default function Home() {
       opening: "08:00 - 22:00",
       lighting: "є",
       additionally: "дитячі елементи, огорожа, ворота",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 7,
@@ -129,7 +129,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      image,
+      images: [image, image, image, image],
     },
     {
       id: 8,
@@ -146,7 +146,7 @@ export default function Home() {
       opening: "00:00 - 24:00",
       lighting: "відсутнє",
       additionally: "фут. ворота, огорожа, покриття",
-      image,
+      images: [image, image, image, image],
     },
   ];
 

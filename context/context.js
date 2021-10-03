@@ -12,6 +12,12 @@ const ContextProvider = ({ children }) => {
   const handleCoordinates = (value) => {
     setCoordinates(value);
   };
+  const handlePurposeOfAreas = (e) => {
+    setFilterData((prevState) => ({
+      ...prevState,
+      purposeOfAreas: [e.target.textContent],
+    }));
+  };
 
   const handleDistricts = (e) => {
     setFilterData((prevState) => ({
@@ -25,6 +31,7 @@ const ContextProvider = ({ children }) => {
         coordinates,
         filterData,
         handleCoordinates,
+        handlePurposeOfAreas,
         handleDistricts,
         setFilterData,
       }}
