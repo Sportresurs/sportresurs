@@ -19,14 +19,15 @@ export default function News({ isAdmin }) {
   const getColor = useColorLoop();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/news")
-      .then((res) => {
+    async function getNews() {
+      try {
+        const res = await axios.get("http://localhost:3000/api/news");
         setNews(res.data);
-      })
-      .catch((err) => {
+      } catch (err) {
         captureException(err);
-      });
+      }
+    }
+    getNews();
   }, [news]);
   return (
     <>
