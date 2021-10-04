@@ -4,36 +4,24 @@ const Context = createContext("");
 
 const ContextProvider = ({ children }) => {
   const [coordinates, setCoordinates] = useState(null);
-  const [filterData, setFilterData] = useState({
-    purposeOfAreas: [],
-    districts: [],
-  });
+  const [filterData, setFilterData] = useState(null);
 
   const handleCoordinates = (value) => {
     setCoordinates(value);
   };
-  const handlePurposeOfAreas = (e) => {
-    setFilterData((prevState) => ({
-      ...prevState,
-      purposeOfAreas: [e.target.textContent],
-    }));
+  const handleFilterData = (e) => {
+    setFilterData([
+      { label: e.target.textContent, value: e.target.textContent },
+    ]);
   };
 
-  const handleDistricts = (e) => {
-    setFilterData((prevState) => ({
-      ...prevState,
-      districts: [e.target.textContent],
-    }));
-  };
   return (
     <Context.Provider
       value={{
         coordinates,
         filterData,
         handleCoordinates,
-        handlePurposeOfAreas,
-        handleDistricts,
-        setFilterData,
+        handleFilterData,
       }}
     >
       {children}
