@@ -50,7 +50,7 @@ export default function Select({
 }
 
 Select.propTypes = {
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
   type: PropTypes.oneOf(["table", "form"]).isRequired,
   options: PropTypes.array.isRequired,
   label: PropTypes.string,

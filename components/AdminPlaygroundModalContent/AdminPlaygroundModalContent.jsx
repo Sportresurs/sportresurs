@@ -87,8 +87,6 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   defaultValue={options.districts[0]}
                   label="Район"
                   labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
                   {...formik.getFieldProps("district")}
                 />
                 <Input
