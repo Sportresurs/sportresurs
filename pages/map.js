@@ -95,7 +95,10 @@ export default function MapPage() {
     const bounds = mapRef.current.getBounds();
     setFilteredPlaces(
       places.filter((place) =>
-        bounds.contains({ lat: place.latitude, lng: place.longitude })
+        bounds.contains({
+          lat: Number(place.latitude),
+          lng: Number(place.longitude),
+        })
       )
     );
   }, [places]);
