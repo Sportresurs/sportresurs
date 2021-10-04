@@ -24,12 +24,15 @@ const CustomDropzone = ({ files, setFiles }) => {
     multiple: true,
     noClick: false,
     noKeyboard: true,
-    onDrop: ({ acceptedFiles }) => {
-      setFiles(({ currentFiles }) =>
-        [...currentFiles, ...acceptedFiles].map((file) => {
-          lastId.current += 1;
-          return { id: lastId.current, file, url: URL.createObjectURL(file) };
-        })
+    onDrop: (acceptedFiles) => {
+      setFiles((currentFiles) =>
+        [].concat(
+          currentFiles,
+          acceptedFiles.map((file) => {
+            lastId.current += 1;
+            return { id: lastId.current, file, url: URL.createObjectURL(file) };
+          })
+        )
       );
     },
   });

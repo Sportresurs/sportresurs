@@ -65,6 +65,10 @@ const Input = ({
 
 Input.defaultProps = {
   as: "input",
+  size: "",
+  labelSize: "",
+  inputSize: "",
+  errorStyle: "",
 };
 
 Input.propTypes = {

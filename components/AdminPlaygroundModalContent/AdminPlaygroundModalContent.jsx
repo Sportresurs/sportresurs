@@ -7,12 +7,12 @@ import Button from "../Button";
 import Select from "../Select";
 import MultiSelect from "../MultiSelect";
 import CustomDropzone from "../CustomDropzone";
-import validation from "../../validationSchema";
+import validation from "../../validationSchemas/AddCourtValidationSchema";
 import options from "../../utils/testData/testArrs";
 import customerService from "../../api/customerService";
 
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const handleSubmit = async (values) => {
     const formData = new FormData();
@@ -27,12 +27,12 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       "images",
       files.map(({ file }) => file)
     );
-    setLoading(true);
+    setIsLoading(true);
     try {
       await customerService.contactRequest(formData);
       onSuccess();
     } finally {
-      setLoading(false);
+      setIsLoading(false);
       onClose();
     }
   };
@@ -130,7 +130,10 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   placeholderColor="#150223"
                   placeholderFontSize="14px"
                   type="Призначення"
-                  data={options.purposeOptions}
+                  data={options.courtsType.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
                   multiSelectType="form"
                   className={styles.input}
                   {...purposeField}
@@ -201,7 +204,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   variant="lilac"
                   size="medium-dense"
                   className={styles.submitButton}
-                  isLoading={loading}
+                  isLoading={isLoading}
                 >
                   Зберегти
                 </Button>
