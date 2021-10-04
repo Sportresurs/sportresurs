@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
-import { captureException } from "@sentry/nextjs";
-import axios from "axios";
+import { useState } from "react";
 import styles from "./News.module.scss";
 import NewsCard from "../NewsCard";
 import useColorLoop from "../../utils/hooks/useColorLoop";
 import DeleteDialog from "../DeleteDialog";
 import Slider from "../Slider";
+import useFetchData from "../../utils/hooks/useFetchData";
 
 export default function News({ isAdmin }) {
   const [itemToRemove, setItemToRemove] = useState(null);
-  const [news, setNews] = useState([]);
   const handleDeleteDialogOpen = (item) => {
     setItemToRemove(item);
   };
@@ -18,17 +16,8 @@ export default function News({ isAdmin }) {
   };
   const getColor = useColorLoop();
 
-  useEffect(() => {
-    async function getNews() {
-      try {
-        const res = await axios.get("http://localhost:3000/api/news");
-        setNews(res.data);
-      } catch (err) {
-        captureException(err);
-      }
-    }
-    getNews();
-  }, [news]);
+  const news = useFetchData("http://localhost:3000/api/news");
+
   return (
     <>
       <div className={styles.titleContainer}>
