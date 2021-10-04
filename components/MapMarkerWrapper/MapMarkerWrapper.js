@@ -5,12 +5,17 @@ export default function MapMarkerWrapper({
   lng,
   key,
   typeOfCourt,
-  bgColor,
+  district,
   className,
+  isCourtMarker,
 }) {
   return (
     <div lat={lat} lng={lng} key={key} className={className}>
-      <Marker typeOfCourt={typeOfCourt} bgColor={bgColor} />
+      <Marker
+        typeOfCourt={typeOfCourt}
+        district={district}
+        isCourtMarker={isCourtMarker}
+      />
     </div>
   );
 }

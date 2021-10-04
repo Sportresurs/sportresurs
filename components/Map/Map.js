@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
 import MapMarkerWrapper from "../MapMarkerWrapper";
-import types from "../../utils/testData/testArrs";
+import courtDataFinder from "../../utils/courtDataFinder";
 
 const options = {
   minZoom: 11,
@@ -29,24 +29,8 @@ export default function Map({
   apiKey,
   onLoad,
   onChange,
+  searchPinCoords,
 }) {
-  // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
-  function courtDataFinder(destination) {
-    if (destination.length > 1) {
-      const multiPin = { color: "lilac", latinName: "Tennis" };
-      return multiPin;
-    }
-    if (destination.length === 0) {
-      const noDestination = { color: "red", latinName: "Handball" };
-      return noDestination;
-    }
-    const matchedType = types.groundTypes.find(
-      (item) => item.cirilicName === destination[0]
-    );
-
-    return matchedType;
-  }
-
   const handleApiLoaded = ({ map }) => {
     if (onLoad) {
       onLoad(map);
@@ -64,6 +48,7 @@ export default function Map({
         bootstrapURLKeys={{ key: apiKey }}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
+        center={searchPinCoords}
         yesIWantToUseGoogleMapApiInternals
         options={options}
         onChange={handleChange}
@@ -72,7 +57,7 @@ export default function Map({
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place) => {
-          const proprsToMarker = courtDataFinder(place.destination);
+          const proprsToMarker = courtDataFinder(place);
           return (
             <MapMarkerWrapper
               className={cx("markerWrapper", {
@@ -81,11 +66,19 @@ export default function Map({
               lat={Number(place.latitude)}
               lng={Number(place.longitude)}
               key={place.id}
-              typeOfCourt={proprsToMarker.latinName}
-              bgColor={proprsToMarker.color}
+              typeOfCourt={proprsToMarker.type}
+              district={proprsToMarker.district}
+              isCourtMarker={true}
             />
           );
         })}
+        {searchPinCoords && (
+          <MapMarkerWrapper
+            lat={Number(searchPinCoords.lat)}
+            lng={Number(searchPinCoords.lng)}
+            isCourtMarker={false}
+          />
+        )}
       </GoogleMapReact>
     </div>
   );

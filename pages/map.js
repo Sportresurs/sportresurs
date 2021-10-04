@@ -8,72 +8,14 @@ import Filters from "../components/Filters";
 import styles from "../styles/MapPage.module.scss";
 import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
-import image from "../public/img/playgroundItemImage.png";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
 const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_ZOOM = 15;
 
-const playgrounds = [
-  {
-    id: 23,
-    address: "вул.Довженка 23 ",
-    color: "green",
-    district: "Шевченківський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 24,
-    address: "вул.Довженка 24 ",
-    color: "yellow",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 25,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 26,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 27,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-];
-
 export default function MapPage() {
+  const [searchPinCoords, setSearchPinCoords] = useState();
   const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
@@ -122,13 +64,15 @@ export default function MapPage() {
   });
   return (
     <>
-      <div className={styles.imageWrapper}>
-        <PlaygroundImage />
-      </div>
+      <div className={styles.imageWrapper}>{<PlaygroundImage />}</div>
       <div className={styles.wrapper}>
         <div className={styles.sidebarWrapper}>
           <div className={styles.filterWrapper}>
-            <Filters location="mapPage" API_KEY={API_KEY} />
+            <Filters
+              location="mapPage"
+              API_KEY={API_KEY}
+              handleCoordinates={setSearchPinCoords}
+            />
           </div>
           <div className={sidebarWrapperClass}>
             <div className={styles.sidebarContainer}>
@@ -139,13 +83,13 @@ export default function MapPage() {
                 </div>
               </div>
               <div className={sliderWrapperClass}>
-                <PlaygroundsSlider playgrounds={playgrounds} />
+                <PlaygroundsSlider playgrounds={filteredPlaces} />
               </div>
             </div>
           </div>
           <div className={styles.scrollBox}>
             <div className={styles.listWrapper}>
-              <PlaygroundsList playgrounds={playgrounds} />
+              <PlaygroundsList playgrounds={filteredPlaces} />
             </div>
           </div>
         </div>
@@ -159,6 +103,7 @@ export default function MapPage() {
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
             onChange={onMapChanged}
+            searchPinCoords={searchPinCoords}
           />
         </div>
       </div>
