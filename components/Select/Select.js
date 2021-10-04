@@ -54,5 +54,5 @@ Select.propTypes = {
   type: PropTypes.oneOf(["table", "form"]).isRequired,
   options: PropTypes.array.isRequired,
   label: PropTypes.string,
-  labelSize: PropTypes.string,
+  labelSize: PropTypes.oneOf(["smallLabel", ""]),
 };
