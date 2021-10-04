@@ -7,8 +7,8 @@ import Button from "../Button";
 import Select from "../Select";
 import MultiSelect from "../MultiSelect";
 import CustomDropzone from "../CustomDropzone";
-import validation from "../CustomValidationSchema";
-import options from "../../utils/testData/AddCourtFormOptions";
+import validation from "../../validationSchema";
+import options from "../../utils/testData/testArrs";
 import customerService from "../../api/customerService";
 
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
@@ -48,17 +48,17 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
         <Formik
           initialValues={{
             number: "",
-            district: "Галицький",
+            district: "",
             address: "",
             latitude: "",
             longitude: "",
-            type: "Спортивний",
+            type: "",
             purpose: [],
             area: "",
             covering: "",
-            access: "Безкоштовний",
+            access: "",
             opening: "00:00 - 00:00",
-            lighting: "Є",
+            lighting: "",
             details: "",
             rating: null,
           }}
@@ -71,10 +71,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
               formik.setFieldValue("purpose", value);
             };
             return (
-              <form
-                onSubmit={formik.handleSubmit}
-                className={styles.formWrapper}
-              >
+              <form onSubmit={formik.handleSubmit}>
                 <Input
                   className={styles.input}
                   label="Номер майданчику"
@@ -86,8 +83,8 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 />
                 <Select
                   type="form"
-                  options={options.districtOptions}
-                  defaultValue={[{ label: "Галицький", value: "Галицький" }]}
+                  options={options.districts}
+                  defaultValue={options.districts[0]}
                   label="Район"
                   labelSize="smallLabel"
                   inputSize="form"
@@ -125,6 +122,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   type="form"
                   options={options.typeOptions}
                   label="Тип майданчика"
+                  defaultValue={options.typeOptions[0].value}
                   labelSize="smallLabel"
                   {...formik.getFieldProps("type")}
                 />
@@ -158,6 +156,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 <Select
                   type="form"
                   options={options.accessOptions}
+                  defaultValue={options.accessOptions[0].value}
                   label="Доступ"
                   labelSize="smallLabel"
                   {...formik.getFieldProps("access")}
@@ -174,6 +173,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 <Select
                   type="form"
                   options={options.lightingOptions}
+                  defaultValue={options.lightingOptions[0].value}
                   label="Освітлення"
                   labelSize="smallLabel"
                   {...formik.getFieldProps("lighting")}

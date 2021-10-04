@@ -79,9 +79,12 @@ export default function MultiSelect({
   const multiSelectWrapperStyle = classNames(styles.wrapper, {
     [styles.form]: multiSelectType === "form",
   });
+  const filterType = classNames(styles.filterType, {
+    [styles.formFilterType]: multiSelectType === "form",
+  });
   return (
     <div className={multiSelectWrapperStyle}>
-      <p className={styles.filterType}>{type}</p>
+      <p className={filterType}>{type}</p>
       <Select
         options={data}
         theme={(theme) => ({

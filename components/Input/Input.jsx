@@ -75,10 +75,10 @@ Input.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
-  size: PropTypes.string,
-  labelSize: PropTypes.string,
-  inputSize: PropTypes.string,
-  errorStyle: PropTypes.string,
+  size: PropTypes.oneOf(["small"]),
+  labelSize: PropTypes.oneOf(["smallLabel"]),
+  inputSize: PropTypes.oneOf(["form"]),
+  errorStyle: PropTypes.oneOf(["formErrorIcon"]),
 };
 
 export default Input;

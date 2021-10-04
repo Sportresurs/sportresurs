@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import validation from "../../utils/validations";
+import validation from "../utils/validations";
 
 const validationSchema = Yup.object({
   number: Yup.string()

@@ -20,9 +20,6 @@
   width: 100%;
   max-width: 100%;
   border-radius: 3px;
-  .filterType {
-    color: $color-primary-dark;
-  }
 }
 .filterType {
   margin-bottom: 5px;
@@ -32,4 +29,7 @@
   letter-spacing: 0.3px;
   text-transform: uppercase;
   color: $color-secondary-darkGrey;
+}
+.formFilterType {
+  color: $color-primary-dark;
 }

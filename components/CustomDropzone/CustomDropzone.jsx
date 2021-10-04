@@ -15,7 +15,7 @@ const reorder = (files, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
   return result;
 };
-const DEFAULT_IMAGES = 3;
+const DEFAULT_IMAGES_LENGTH = 3;
 
 const CustomDropzone = ({ files, setFiles }) => {
   const lastId = useRef(1);
@@ -24,15 +24,12 @@ const CustomDropzone = ({ files, setFiles }) => {
     multiple: true,
     noClick: false,
     noKeyboard: true,
-    onDrop: (acceptedFiles) => {
-      setFiles((currentFiles) =>
-        [].concat(
-          currentFiles,
-          acceptedFiles.map((file) => {
-            lastId.current += 1;
-            return { id: lastId.current, file, url: URL.createObjectURL(file) };
-          })
-        )
+    onDrop: ({ acceptedFiles }) => {
+      setFiles(({ currentFiles }) =>
+        [...currentFiles, ...acceptedFiles].map((file) => {
+          lastId.current += 1;
+          return { id: lastId.current, file, url: URL.createObjectURL(file) };
+        })
       );
     },
   });
@@ -134,7 +131,7 @@ const CustomDropzone = ({ files, setFiles }) => {
           </div>
         ) : (
           <div className={styles.imagesWrapper}>
-            {new Array(DEFAULT_IMAGES).fill(1).map((_, index) => (
+            {new Array(DEFAULT_IMAGES_LENGTH).fill(1).map((_, index) => (
               <div key={index} className={styles.emptyImageContainer}>
                 <EmptyImage />
               </div>
