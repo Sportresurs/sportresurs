@@ -7,55 +7,25 @@ import Button from "../Button";
 import Select from "../Select";
 import MultiSelect from "../MultiSelect";
 import CustomDropzone from "../CustomDropzone";
-import validation from "./CustomValidationSchema";
+import validation from "../CustomValidationSchema";
+import options from "../../utils/testData/AddCourtFormOptions";
 import customerService from "../../api/customerService";
 
-const districtOptions = [
-  { label: "Галицький", value: "Галицький" },
-  { label: "Сихівський", value: "Сихівський" },
-  { label: "Залізничний", value: "Залізничний" },
-  { label: "Личаківський", value: "Личаківський" },
-  { label: "Франківський", value: "Франківський" },
-  { label: "Шевченківський", value: "Шевченківський" },
-  { label: "Інший", value: "Інший" },
-];
-const typeOptions = [
-  { label: "Спортивний", value: "Спортивний" },
-  { label: "Дитячо-спортивний", value: "Дитячо-спортивний" },
-];
-const purposeOptions = [
-  { label: "Спортивний", value: "Спортивний" },
-  { label: "Дитячий", value: "Дитячий" },
-  { label: "Тенісний", value: "Тенісний" },
-  { label: "Футбольний", value: "Футбольний" },
-  { label: "Стріт воркаут", value: "Стріт воркаут" },
-  { label: "Скейт-майданчик", value: "Скейт-майданчик" },
-  { label: "Бігові доріжки", value: "Бігові доріжки" },
-];
-const accessOptions = [
-  { label: "Безкоштовний", value: "Безкоштовний" },
-  { label: "Платний", value: "Платний" },
-];
-const lightingOptions = [
-  { label: "Є", value: "Є" },
-  { label: "Відсутнє", value: "Відсутнє" },
-];
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const handleSubmit = async (values) => {
     const formData = new FormData();
-    // eslint-disable-next-line array-callback-return
-    Object.keys(values).map((item) => {
-      let value = values[item];
+    Object.keys(values).forEach((key) => {
+      let value = values[key];
       if (Array.isArray(value)) {
         value = value.map((i) => i.value);
       }
-      formData.append(`${item}`, value);
+      formData.append(key, value);
     });
     formData.append(
       "images",
-      files.map((file) => file.file)
+      files.map(({ file }) => file)
     );
     setLoading(true);
     try {
@@ -101,7 +71,10 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
               formik.setFieldValue("purpose", value);
             };
             return (
-              <form onSubmit={formik.handleSubmit}>
+              <form
+                onSubmit={formik.handleSubmit}
+                className={styles.formWrapper}
+              >
                 <Input
                   className={styles.input}
                   label="Номер майданчику"
@@ -113,7 +86,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 />
                 <Select
                   type="form"
-                  options={districtOptions}
+                  options={options.districtOptions}
                   defaultValue={[{ label: "Галицький", value: "Галицький" }]}
                   label="Район"
                   labelSize="smallLabel"
@@ -150,7 +123,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 />
                 <Select
                   type="form"
-                  options={typeOptions}
+                  options={options.typeOptions}
                   label="Тип майданчика"
                   labelSize="smallLabel"
                   {...formik.getFieldProps("type")}
@@ -159,8 +132,9 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                   placeholderColor="#150223"
                   placeholderFontSize="14px"
                   type="Призначення"
-                  data={purposeOptions}
+                  data={options.purposeOptions}
                   multiSelectType="form"
+                  className={styles.input}
                   {...purposeField}
                 />
                 <Input
@@ -183,7 +157,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 />
                 <Select
                   type="form"
-                  options={accessOptions}
+                  options={options.accessOptions}
                   label="Доступ"
                   labelSize="smallLabel"
                   {...formik.getFieldProps("access")}
@@ -199,7 +173,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                 />
                 <Select
                   type="form"
-                  options={lightingOptions}
+                  options={options.lightingOptions}
                   label="Освітлення"
                   labelSize="smallLabel"
                   {...formik.getFieldProps("lighting")}

@@ -75,6 +75,10 @@ Input.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  size: PropTypes.string,
+  labelSize: PropTypes.string,
+  inputSize: PropTypes.string,
+  errorStyle: PropTypes.string,
 };
 
 export default Input;

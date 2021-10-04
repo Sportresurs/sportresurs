@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { useState } from "react";
+import { useState } from "react";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
 import styles from "./Select.module.scss";
@@ -53,4 +53,6 @@ Select.propTypes = {
   defaultValue: PropTypes.string,
   type: PropTypes.oneOf(["table", "form"]).isRequired,
   options: PropTypes.array.isRequired,
+  label: PropTypes.string,
+  labelSize: PropTypes.string,
 };

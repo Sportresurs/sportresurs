@@ -33,6 +33,7 @@ const SlickSlider = ({
   classNameDots,
 }) => {
   const size = useWindowSize();
+
   function setWidthOfDot(isForModal, windowSize) {
     let dotWidth = 29;
     if (isForModal && windowSize > 767) {

@@ -15,6 +15,7 @@ const reorder = (files, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
   return result;
 };
+const DEFAULT_IMAGES = 3;
 
 const CustomDropzone = ({ files, setFiles }) => {
   const lastId = useRef(1);
@@ -53,8 +54,12 @@ const CustomDropzone = ({ files, setFiles }) => {
       return;
     }
 
-    const file = reorder(files, result.source.index, result.destination.index);
-    setFiles([...file]);
+    const images = reorder(
+      files,
+      result.source.index,
+      result.destination.index
+    );
+    setFiles([...images]);
   };
 
   return (
@@ -83,10 +88,10 @@ const CustomDropzone = ({ files, setFiles }) => {
           <div className={styles.scrollBox}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId="droppable" direction="horizontal">
-                {(provided) => (
+                {({ innerRef, droppableProps, placeholder }) => (
                   <div
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
+                    ref={innerRef}
+                    {...droppableProps}
                     className={styles.imagesWrapper}
                   >
                     {files.map((file, index) => (
@@ -95,13 +100,16 @@ const CustomDropzone = ({ files, setFiles }) => {
                         draggableId={file.id.toString()}
                         index={index}
                       >
-                        {/* eslint-disable-next-line no-shadow */}
-                        {(provided) => (
+                        {({
+                          innerRef: draggableRef,
+                          draggableProps,
+                          dragHandleProps,
+                        }) => (
                           <div
                             className={styles.emptyImageContainer}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
+                            ref={draggableRef}
+                            {...draggableProps}
+                            {...dragHandleProps}
                           >
                             <div
                               className={styles.deleteIcon}
@@ -118,7 +126,7 @@ const CustomDropzone = ({ files, setFiles }) => {
                         )}
                       </Draggable>
                     ))}
-                    {provided.placeholder}
+                    {placeholder}
                   </div>
                 )}
               </Droppable>
@@ -126,7 +134,7 @@ const CustomDropzone = ({ files, setFiles }) => {
           </div>
         ) : (
           <div className={styles.imagesWrapper}>
-            {new Array(3).fill(1).map((_, index) => (
+            {new Array(DEFAULT_IMAGES).fill(1).map((_, index) => (
               <div key={index} className={styles.emptyImageContainer}>
                 <EmptyImage />
               </div>
