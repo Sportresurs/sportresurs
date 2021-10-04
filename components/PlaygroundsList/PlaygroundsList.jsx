@@ -16,7 +16,7 @@ const PlaygroundsList = ({ playgrounds, childClicked, setChildClicked }) => {
         .fill()
         .map((_, i) => refs[i] || createRef())
     );
-  }, [playgrounds, childClicked, setChildClicked]);
+  }, [playgrounds]);
 
   useEffect(() => {
     setChildClicked(activeItemId);

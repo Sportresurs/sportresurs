@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
@@ -15,14 +15,17 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
 
   const screenWidth = useWindowSize().width;
 
-  if (isActive && screenWidth > 950) {
-    // eslint-disable-next-line no-unused-expressions
-    refProp?.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "nearest",
-    });
-  }
+  useEffect(() => {
+    if (isActive && screenWidth > 950) {
+      // eslint-disable-next-line no-unused-expressions
+      refProp?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+    }
+  }, [screenWidth, isActive, refProp]);
+
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>

@@ -30,6 +30,7 @@ export default function Map({
   onLoad,
   onChange,
   setMarkerIndex,
+  setSliderOpen,
 }) {
   // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
   function courtDataFinder(destination) {
@@ -77,6 +78,7 @@ export default function Map({
           const proprsToMarker = courtDataFinder(place.destination);
           return (
             <MapMarkerWrapper
+              setSliderOpen={setSliderOpen}
               setMarkerIndex={setMarkerIndex}
               className={cx("markerWrapper", {
                 selected: Number(childClicked) === place.id,

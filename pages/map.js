@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
 import Map from "../components/Map";
@@ -21,7 +21,7 @@ export default function MapPage() {
   const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
-  useEffect(() => {}, [filteredPlaces]);
+
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
     if (!mapRef.current) {
@@ -113,6 +113,7 @@ export default function MapPage() {
             onLoad={onMapLoaded}
             onChange={onMapChanged}
             setMarkerIndex={setMarkerIndex}
+            setSliderOpen={setSliderOpen}
           />
         </div>
       </div>
