@@ -149,6 +149,7 @@ export default function Home() {
       images: [image, image, image, image],
     },
   ];
+
   return (
     <div className={styles.background}>
       <Grid>
