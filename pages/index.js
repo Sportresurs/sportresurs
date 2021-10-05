@@ -8,7 +8,6 @@ import data from "../utils/testData/testArrs";
 import { Grid } from "../components/Grid";
 import styles from "../styles/MapPage.module.scss";
 import SearchSection from "../components/SearchSection";
-import AdminPlaygroundModal from "../components/AdminPlaygroundModal";
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -50,7 +49,6 @@ export default function Home() {
           onClose={handleClose}
           playground={playground}
         />
-        <AdminPlaygroundModal visible={true} onClose={handleClose} />
         <About />
       </Grid>
     </div>

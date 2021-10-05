@@ -4,9 +4,14 @@
   margin: 0;
 }
 .customArrow {
-  top: 42%;
-  margin-right: -20px;
-  margin-left: -20px;
+  top: 35%;
+  margin-right: -35px;
+  margin-left: -35px;
+  @media screen and (max-width: 767px) {
+    top: 42%;
+    margin-right: -20px;
+    margin-left: -20px;
+  }
 }
 .customDots {
   background: $color-primary-dark;

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "purpose-area",
+      modelName: "purpose-areas",
       underscored: true,
     }
   );
