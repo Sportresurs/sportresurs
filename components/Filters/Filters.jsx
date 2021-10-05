@@ -33,7 +33,7 @@ const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
   const getNewAreas = async (purposes, districts, rating) => {
     const { data } = await axios({
       method: "post",
-      url: "http://localhost:3000/api/areas",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
       data: {
         purposes: purposes.map((item) => item.value.toLowerCase()),
         districts: districts.map((item) => item.value),
