@@ -34,16 +34,17 @@ const getBlockedIds = async () => {
 const filterNews = async (news, blockedIds) =>
   news.filter(({ id }) => !blockedIds.includes(id));
 
-const clearOldBlockedNews = async (news, blockedIds) => {
+const clearOldBlockedNews = (news, blockedIds) => {
   const newsIds = news.map(({ id }) => id);
   const oldBlocks = blockedIds.filter((id) => !newsIds.includes(id));
-  if (oldBlocks.length > 0) {
-    await BlockedNews.destroy({
-      where: {
-        instagram_id: oldBlocks,
-      },
-    });
+  if (oldBlocks.length === 0) {
+    return undefined;
   }
+  return BlockedNews.destroy({
+    where: {
+      instagram_id: oldBlocks,
+    },
+  });
 };
 
 export const getNewsFromInstagram = async () => {
