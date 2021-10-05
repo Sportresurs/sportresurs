@@ -1,11 +1,11 @@
 import { useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import styles from "./Filters.module.scss";
-import CloseFilterWindowIcon from "../../public/svg/closeFilterWindow.svg";
 import Rating from "../Rating";
 import Button from "../Button";
 import MultiSelect from "../MultiSelect/MultiSelect";
+import styles from "./Filters.module.scss";
+import CloseFilterWindowIcon from "../../public/svg/closeFilterWindow.svg";
 
 const CloseFilterWindow = ({ changeStatus }) => {
   const wrapperIconClasses = classNames(styles.closeWindowButton);
@@ -54,7 +54,6 @@ const FilterWindow = ({
       <div className={styles.filterBody}>
         <MultiSelect
           value={purposeOfAreas}
-          handleChange={setPurposeOfAreas}
           type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
           data={[
             { label: "Спортивний", value: "Спортивний" },
@@ -65,10 +64,10 @@ const FilterWindow = ({
             { label: "Скейт-майданчик", value: "Скейт-майданчик" },
             { label: "Бігові доріжки", value: "Бігові доріжки" },
           ]}
+          onChange={setPurposeOfAreas}
         />
         <MultiSelect
           value={districts}
-          handleChange={setDistricts}
           type="РАЙОН"
           data={[
             { label: "Шевченківський", value: "Шевченківський" },
@@ -79,6 +78,7 @@ const FilterWindow = ({
             { label: "Галицький", value: "Галицький" },
             { label: "Інший", value: "Інший" },
           ]}
+          onChange={setDistricts}
         />
         <div className={styles.filterBodyRating}>
           <p>РЕЙТИНГ</p>
@@ -89,9 +89,9 @@ const FilterWindow = ({
           />
         </div>
         <Button
-          onClick={applyFilters}
           className={classesButton}
           variant="black"
+          onClick={applyFilters}
         >
           ЗАСТОСУВАТИ ФІЛЬТРИ
         </Button>
