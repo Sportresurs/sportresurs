@@ -16,6 +16,7 @@ export default function NewsCard({
   const handlers = useSwipeable({
     onTap: () => setShowInfo(true),
   });
+
   return (
     <div className={styles.card} {...handlers}>
       {canDelete ? (
@@ -30,8 +31,8 @@ export default function NewsCard({
       <Image
         src={newsData.imgUrl}
         alt="news-card"
-        layout="fill"
         className={styles.image}
+        layout="fill"
       />
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div

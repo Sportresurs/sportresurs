@@ -3,7 +3,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const moduleExports = {
   reactStrictMode: true,
   images: {
-    domains: ["fna.fbcdn.net"],
+    domains: [],
   },
   webpack(config) {
     config.module.rules.push({
