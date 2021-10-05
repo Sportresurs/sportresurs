@@ -29,7 +29,7 @@ export default function NewsCard({
         </div>
       ) : null}
       <Image
-        src={newsData.imgUrl}
+        src={`/api/imageproxy?url=${encodeURIComponent(newsData.imgUrl)}`}
         alt="news-card"
         className={styles.image}
         layout="fill"
