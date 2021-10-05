@@ -34,7 +34,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const { handlePurposeOfAreas } = useContext(Context);
+  const { handleFilterData } = useContext(Context);
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -82,7 +82,7 @@ export default function Footer() {
               {courtsLink.map((item) => (
                 <li key={item.name} className={styles.footerCourtsLink}>
                   <Link href={item.link}>
-                    <a onClick={handlePurposeOfAreas}>{item.name}</a>
+                    <a onClick={handleFilterData}>{item.name}</a>
                   </Link>
                 </li>
               ))}

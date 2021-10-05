@@ -29,7 +29,7 @@ export default function News({ isAdmin }) {
           slidesToScroll={3}
           isInfinite={true}
           isAutoplay={true}
-          isArrows={false}
+          withArrows={false}
           isModal={false}
           arrayLength={news.length}
           responsive={[

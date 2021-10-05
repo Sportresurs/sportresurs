@@ -1,4 +1,5 @@
 import colors from "../../styles/exportColorVars.module.scss";
+import image from "../../public/img/playgroundPlaceholder.png";
 
 const colorDescription = [
   { color: "green", hex: colors.colorAccentGreen },
@@ -90,7 +91,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "16g5464",
@@ -107,7 +108,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1289g661",
@@ -124,7 +125,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "18d7131",
@@ -141,7 +142,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "5654jg465",
@@ -158,7 +159,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "16kjh5464",
@@ -175,7 +176,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1289te661",
@@ -192,7 +193,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "187h131",
@@ -209,7 +210,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "565nv4465",
@@ -226,7 +227,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "16546ye4",
@@ -243,7 +244,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "12896tet61",
@@ -260,7 +261,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1871tyr31",
@@ -277,7 +278,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "5654htr65",
@@ -294,7 +295,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "165hk464",
@@ -311,7 +312,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "12549661",
@@ -328,7 +329,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1871fgh31",
@@ -345,7 +346,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "565mm4465",
@@ -362,7 +363,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1654bm64",
@@ -379,7 +380,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "12sf89661",
@@ -396,7 +397,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1871se31",
@@ -413,7 +414,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "565tw465",
@@ -430,7 +431,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1wet65464",
@@ -447,7 +448,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "128yr9661",
@@ -464,7 +465,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
   {
     id: "1871u31",
@@ -481,7 +482,7 @@ const playgroundsList = [
     opening: "00:00 - 24:00",
     lighting: "відсутнє",
     additionally: "фут. ворота, огорожа, покриття",
-    image: "https://i.ibb.co/dGJcNGD/court-Placeholder.jpg",
+    images: [image, image, image, image],
   },
 ];
 
@@ -513,6 +514,19 @@ const courtsType = [
   "Бігові доріжки",
 ];
 
+const typeOptions = [
+  { label: "Спортивний", value: "Спортивний" },
+  { label: "Дитячо-спортивний", value: "Дитячо-спортивний" },
+];
+const accessOptions = [
+  { label: "Безкоштовний", value: "Безкоштовний" },
+  { label: "Платний", value: "Платний" },
+];
+const lightingOptions = [
+  { label: "Є", value: "Є" },
+  { label: "Відсутнє", value: "Відсутнє" },
+];
+
 export default {
   colorDescription,
   courtInfo,
@@ -522,4 +536,7 @@ export default {
   groundTypes,
   districts,
   courtsType,
+  typeOptions,
+  accessOptions,
+  lightingOptions,
 };
