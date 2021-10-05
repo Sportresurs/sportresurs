@@ -1,5 +1,5 @@
 import colors from "../../styles/exportColorVars.module.scss";
-import image from "../../components/PlaygroundModalContent/images/image.png";
+import image from "../../public/img/playgroundPlaceholder.png";
 
 const colorDescription = [
   { color: "green", hex: colors.colorAccentGreen },
