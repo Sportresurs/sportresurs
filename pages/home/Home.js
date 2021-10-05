@@ -1,5 +1,5 @@
 import About from "../../components/About";
-import image from "../../components/PlaygroundModalContent/images/image.png";
+import image from "../../public/img/playgroundPlaceholder.png";
 import TopCourts from "../../components/TopCourts";
 import { Grid } from "../../components/Grid";
 import styles from "./Home.module.scss";
