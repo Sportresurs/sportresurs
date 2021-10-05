@@ -37,7 +37,7 @@ export default function News({ isAdmin }) {
   const getColor = useColorLoop();
   return (
     <>
-      <div className={styles.titleContainer}>
+      <div className={styles.titleContainer} id="navigateToNews">
         <h2 className={styles.title}>Новини</h2>
       </div>
       <div className={styles.container}>

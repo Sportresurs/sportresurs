@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
@@ -34,16 +32,6 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (router && router.asPath) {
-      window.scrollTo({ bottom: 0, behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }
-  }, [router]);
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
