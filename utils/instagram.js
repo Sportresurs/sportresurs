@@ -2,10 +2,12 @@ import axios from "axios";
 import * as Sentry from "@sentry/nextjs";
 import { BlockedNews } from "../models";
 
-const LIMIT_POSTS = 30;
+const LIMIT_POSTS = process.env.LIMIT_INSTAGRAM_POSTS || 30;
 const INSTAGRAM_PAGE_ID = 46497980119;
 const QUERY_HASH = "472f257a40c653c64c666ce877d59d2b";
 const MINUTES_15 = 900000;
+const LIMIT_POSTS_FOR_FRONT =
+  process.env.LIMIT_INSTAGRAM_INSTAGRAM_POSTS_FOR_FRONT || 15;
 
 const PARAMS = [
   `query_hash=${QUERY_HASH}`,
@@ -29,13 +31,10 @@ const getBlockedIds = async () => {
   return blockedNews.map(({ instagram_id: instagramId }) => instagramId);
 };
 
-const filterNews = async (news) => {
-  const blockedIds = await getBlockedIds();
-  return news.filter(({ id }) => !blockedIds.includes(id));
-};
+const filterNews = async (news, blockedIds) =>
+  news.filter(({ id }) => !blockedIds.includes(id));
 
-const clearOldBlockedNews = async (news) => {
-  const blockedIds = await getBlockedIds();
+const clearOldBlockedNews = async (news, blockedIds) => {
   const newsIds = news.map(({ id }) => id);
   const oldBlocks = blockedIds.filter((id) => !newsIds.includes(id));
   if (oldBlocks.length > 0) {
@@ -72,8 +71,11 @@ export const getNewsFromInstagram = async () => {
         };
       });
 
-    await clearOldBlockedNews(newsFromInstagram);
-    const filteredNews = (await filterNews(newsFromInstagram)).slice(0, 15);
+    const blockedIds = await getBlockedIds();
+    await clearOldBlockedNews(newsFromInstagram, blockedIds);
+    const filteredNews = (
+      await filterNews(newsFromInstagram, blockedIds)
+    ).slice(0, LIMIT_POSTS_FOR_FRONT);
     lastReq.news = filteredNews;
     lastReq.time = timeNow;
     return filteredNews;
