@@ -44,7 +44,7 @@ const sendInviteAdmin = (email) => {
   const message = `
     <p>Вас додали як адміністратора сайту Спортресурс.</p>
     <p>Посилання для входу в адмінку:</p>
-    <p>${NEXTAUTH_URL}login</p>
+    <a href="${NEXTAUTH_URL}login">${NEXTAUTH_URL}login</a>
     <p>Дякуємо!</p>
   `;
 
