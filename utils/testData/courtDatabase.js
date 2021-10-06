@@ -18,7 +18,7 @@ const courtsDataBase = [
     lighting: true,
     additional:
       "огорожа, ворота, тенісний стіл, вуличні тренажери, смітники, лавки",
-    img: image,
+    image,
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const courtsDataBase = [
     opening: "00:00-24:00",
     lighting: true,
     additional: "дитячі елементи; огорожа, ворота",
-    img: image,
+    image,
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ const courtsDataBase = [
     lighting: true,
     additional:
       "дитячі ігрові комплекси, елементи стрітворкауту, огорожа, смітники, лавки ",
-    img: image,
+    image,
   },
   {
     id: 4,
@@ -73,7 +73,7 @@ const courtsDataBase = [
     opening: "00:00-24:00",
     lighting: false,
     additional: "баскетбольні щити",
-    img: image,
+    image,
   },
   {
     id: 5,
@@ -92,7 +92,7 @@ const courtsDataBase = [
     lighting: false,
     additional:
       "вуличні тренажери, турніки, лавки, смітники, баскетб. щити, фут. ворота, тенісний стіл",
-    img: image,
+    image,
   },
   {
     id: 6,
@@ -111,7 +111,7 @@ const courtsDataBase = [
     lighting: false,
     additional:
       "вуличні тренажери, турніки, лавки, смітники, баскетб. щити, фут. ворота, тенісний стіл",
-    img: image,
+    image,
   },
   {
     id: 7,
@@ -129,7 +129,7 @@ const courtsDataBase = [
     opening: "00:00-24:00",
     lighting: false,
     additional: "",
-    img: image,
+    image,
   },
   {
     id: 8,
@@ -148,7 +148,7 @@ const courtsDataBase = [
     lighting: false,
     additional:
       "турніки, атлетичний комплекс, лавки, смітники, тенісні  столи, баскетбольні щити, огорожа, футбольні ворота",
-    img: image,
+    image,
   },
   {
     id: 9,
@@ -167,7 +167,7 @@ const courtsDataBase = [
     lighting: false,
     additional:
       "Дитячі ігрові комплекси, лавки, тенісні столи, баскет-больні щити",
-    img: image,
+    image,
   },
   {
     id: 10,
@@ -186,7 +186,7 @@ const courtsDataBase = [
     lighting: false,
     additional:
       "Дитячі ігрові комплекси, лавки, смітники, ворота гандбольні, турніки, баскетбольні щити",
-    img: image,
+    image,
   },
   {
     id: 11,
@@ -204,7 +204,7 @@ const courtsDataBase = [
     opening: "00:00-24:00",
     lighting: false,
     additional: "тренажери, футбольне поле",
-    img: image,
+    image,
   },
   {
     id: 12,
@@ -222,7 +222,7 @@ const courtsDataBase = [
     opening: "00:00-24:00",
     lighting: false,
     additional: "",
-    img: image,
+    image,
   },
 ];
 

@@ -5,8 +5,9 @@ export default function MapMarkerWrapper({
   lng,
   key,
   typeOfCourt,
-  bgColor,
+  district,
   className,
+  isCourtMarker,
   setMarkerIndex,
   indexMarker,
   setSliderOpen,
@@ -25,7 +26,11 @@ export default function MapMarkerWrapper({
       role="button"
       tabIndex={0}
     >
-      <Marker typeOfCourt={typeOfCourt} bgColor={bgColor} />
+      <Marker
+        typeOfCourt={typeOfCourt}
+        district={district}
+        isCourtMarker={isCourtMarker}
+      />
     </div>
   );
 }

@@ -1,4 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
 import Map from "../components/Map";
@@ -9,18 +15,28 @@ import styles from "../styles/MapPage.module.scss";
 import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
+import { Context } from "../context";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
 const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_ZOOM = 15;
 
 export default function MapPage() {
+  const { coordinates, handleCoordinates } = useContext(Context);
+
+  const [searchPinCoords, setSearchPinCoords] = useState(coordinates);
   const [childClicked, setChildClicked] = useState(null);
   const [markerIndex, setMarkerIndex] = useState(0);
-
   const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+
+  useEffect(
+    () => () => {
+      handleCoordinates(null);
+    },
+    []
+  );
 
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
@@ -65,13 +81,15 @@ export default function MapPage() {
 
   return (
     <>
-      <div className={styles.imageWrapper}>
-        <PlaygroundImage />
-      </div>
+      <div className={styles.imageWrapper}>{<PlaygroundImage />}</div>
       <div className={styles.wrapper}>
         <div className={styles.sidebarWrapper}>
           <div className={styles.filterWrapper}>
-            <Filters location="mapPage" API_KEY={API_KEY} />
+            <Filters
+              location="mapPage"
+              API_KEY={API_KEY}
+              handleCoordinates={setSearchPinCoords}
+            />
           </div>
           <div className={sidebarWrapperClass}>
             <div className={styles.sidebarContainer}>
@@ -112,6 +130,7 @@ export default function MapPage() {
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
             onChange={onMapChanged}
+            searchPinCoords={searchPinCoords}
             setMarkerIndex={setMarkerIndex}
             setSliderOpen={setSliderOpen}
           />

@@ -29,14 +29,13 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   }, [screenWidth, isActive, refProp]);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
-
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.image}
+            src={playground.image.src}
             alt=""
             layout="fill"
           />

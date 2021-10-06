@@ -21,14 +21,32 @@ const districtColors = [
   { district: "Інший", color: "black" },
 ];
 
+const courtsDistrict = [
+  { district: "Шевченківський", latinName: "Shevchenkivskyi" },
+  { district: "Франківський", latinName: "Frankivskyi" },
+  { district: "Личаківський", latinName: "Lychakivskyi" },
+  { district: "Залізничний", latinName: "Zaliznychnyi" },
+  { district: "Сихівський", latinName: "Sykhivskyi" },
+  { district: "Галицький", latinName: "Halitskyi" },
+  { district: "Інший", latinName: "Another" },
+];
+
 const groundTypes = [
-  { cirilicName: "гандбольний", latinName: "Handball", color: "red" },
-  { cirilicName: "дитячий", latinName: "Child", color: "blue" },
-  { cirilicName: "баскетбольний", latinName: "Basketball", color: "orange" },
-  { cirilicName: "тенісний", latinName: "Tennis", color: "lilac" },
-  { cirilicName: "футбольний", latinName: "Football", color: "green" },
-  { cirilicName: "волейбольний", latinName: "Volleyball", color: "yellow" },
-  { cirilicName: "гімнастичний", latinName: "Gymnastic", color: "black" },
+  { cirilicName: "гандбольний", latinName: "HandballCourt", color: "red" },
+  { cirilicName: "дитячий", latinName: "ChildCourt", color: "blue" },
+  {
+    cirilicName: "баскетбольний",
+    latinName: "BasketballCourt",
+    color: "orange",
+  },
+  { cirilicName: "тенісний", latinName: "TennisCourt", color: "lilac" },
+  { cirilicName: "футбольний", latinName: "FootballCourt", color: "green" },
+  {
+    cirilicName: "волейбольний",
+    latinName: "VolleyballCourt",
+    color: "yellow",
+  },
+  { cirilicName: "гімнастичний", latinName: "GymnasticCourt", color: "black" },
 ];
 
 const courtInfo = {
@@ -494,13 +512,6 @@ const districts = [
   { label: "Сихівський", value: "Сихівський" },
   { label: "Галицький", value: "Галицький" },
   { label: "Інший", value: "Інший" },
-  /*   "Шевченківський",
-  "Франківський",
-  "Личаківський",
-  "Залізничний",
-  "Сихівський",
-  "Галицький",
-  "Інший", */
 ];
 
 const courtsType = [
@@ -536,6 +547,7 @@ export default {
   groundTypes,
   districts,
   courtsType,
+  courtsDistrict,
   typeOptions,
   accessOptions,
   lightingOptions,
