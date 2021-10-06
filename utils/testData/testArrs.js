@@ -525,6 +525,19 @@ const courtsType = [
   "Бігові доріжки",
 ];
 
+const typeOptions = [
+  { label: "Спортивний", value: "Спортивний" },
+  { label: "Дитячо-спортивний", value: "Дитячо-спортивний" },
+];
+const accessOptions = [
+  { label: "Безкоштовний", value: "Безкоштовний" },
+  { label: "Платний", value: "Платний" },
+];
+const lightingOptions = [
+  { label: "Є", value: "Є" },
+  { label: "Відсутнє", value: "Відсутнє" },
+];
+
 export default {
   colorDescription,
   courtInfo,
@@ -535,4 +548,7 @@ export default {
   districts,
   courtsType,
   courtsDistrict,
+  typeOptions,
+  accessOptions,
+  lightingOptions,
 };

@@ -3,6 +3,23 @@
 .customIcon {
   position: relative;
   max-width: 492px;
+  :focus {
+    outline: none;
+    border: 1px solid $color-form-blue;
+  }
+}
+.inputLabel {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+.smallLabel {
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+  margin-bottom: 5px;
 }
 
 .tableIcon::after {
@@ -49,4 +66,5 @@
   font-size: 14px;
   line-height: 24px;
   color: $color-primary-dark;
+  margin-bottom: 12px;
 }

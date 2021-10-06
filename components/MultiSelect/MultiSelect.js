@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Select, { components } from "react-select";
+import classNames from "classnames";
 import styles from "./MultiSelect.module.scss";
 import Checkbox from "../Checkbox/Checkbox";
 
@@ -18,12 +19,13 @@ const Option = (props) => (
 export default function MultiSelect({
   data,
   value,
-  handleChange,
   type = "район",
+  multiSelectType,
   placeholderColor,
   placeholderFontSize,
   boxFontSize,
   arrowColor,
+  ...rest
 }) {
   const customStyle = {
     container: (base) => ({
@@ -74,10 +76,15 @@ export default function MultiSelect({
       backgroundColor: "#ffffff",
     }),
   };
-
+  const multiSelectWrapperStyle = classNames(styles.wrapper, {
+    [styles.form]: multiSelectType === "form",
+  });
+  const filterType = classNames(styles.filterType, {
+    [styles.formFilterType]: multiSelectType === "form",
+  });
   return (
-    <div className={styles.wrapper}>
-      <p className={styles.filterType}>{type}</p>
+    <div className={multiSelectWrapperStyle}>
+      <p className={filterType}>{type}</p>
       <Select
         options={data}
         theme={(theme) => ({
@@ -101,9 +108,9 @@ export default function MultiSelect({
         closeMenuOnSelect={false}
         hideSelectedOptions={false}
         components={{ Option }}
-        onChange={handleChange}
         value={value}
         placeholder={"Не вибрано"}
+        {...rest}
       />
     </div>
   );
@@ -112,7 +119,6 @@ export default function MultiSelect({
 MultiSelect.propTypes = {
   data: PropTypes.array.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  handleChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   placeholderColor: PropTypes.string,
   placeholderFontSize: PropTypes.string,

@@ -11,12 +11,33 @@ const Input = ({
   errorMessage,
   placeholder,
   className,
+  size,
+  labelSize,
+  inputSize,
+  errorStyle,
   ...rest
 }) => {
-  const inputClassName = classNames(styles.customInput, styles[RootComponent], {
-    [styles.inputError]: errorMessage,
-  });
-  const inputWrapperClassName = classNames(styles.wrapper, className);
+  const inputClassName = classNames(
+    styles.customInput,
+    styles[RootComponent],
+    styles[size],
+    {
+      [styles.inputError]: errorMessage,
+    }
+  );
+  const inputWrapperClassName = classNames(
+    styles.wrapper,
+    styles[inputSize],
+    className
+  );
+  const inputLabelWrapperClassName = classNames(
+    styles.inputLabel,
+    styles[labelSize]
+  );
+  const errorIconWrapperClassName = classNames(
+    styles.errorIcon,
+    styles[errorStyle]
+  );
   const renderInputField = () => (
     <>
       <RootComponent
@@ -26,7 +47,7 @@ const Input = ({
         {...rest}
       />
       {errorMessage && (
-        <div className={styles.errorIcon}>
+        <div className={errorIconWrapperClassName}>
           <ErrorIcon></ErrorIcon>
         </div>
       )}
@@ -35,7 +56,7 @@ const Input = ({
 
   return (
     <div className={inputWrapperClassName}>
-      {label && <label className={styles.inputLabel}>{label}</label>}
+      {label && <label className={inputLabelWrapperClassName}>{label}</label>}
       {renderInputField()}
       {errorMessage && <div className={styles.errorMsg}>{errorMessage}</div>}
     </div>
@@ -44,6 +65,10 @@ const Input = ({
 
 Input.defaultProps = {
   as: "input",
+  size: "",
+  labelSize: "",
+  inputSize: "",
+  errorStyle: "",
 };
 
 Input.propTypes = {
@@ -54,6 +79,10 @@ Input.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+  size: PropTypes.oneOf(["small", ""]),
+  labelSize: PropTypes.oneOf(["smallLabel", ""]),
+  inputSize: PropTypes.oneOf(["form", ""]),
+  errorStyle: PropTypes.oneOf(["formErrorIcon", ""]),
 };
 
 export default Input;
