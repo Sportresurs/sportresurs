@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -91,12 +90,19 @@ export default function Header() {
             <IconBtnMenu />
           </button>
           <Link href="/">
-            <a className={styles.navLogo} onClick={handleMenuActiveFalse}>
+            <a
+              role="link"
+              tabIndex={0}
+              className={styles.navLogo}
+              onClick={handleMenuActiveFalse}
+            >
               <IconLogoHead />
             </a>
           </Link>
 
           <div
+            role="button"
+            tabIndex={0}
             className={cx("backdrop", {
               isOpen: menuActive,
             })}
@@ -125,6 +131,8 @@ export default function Header() {
                 <li className={styles.navItem}>
                   <Link href="/?anchorName=navigateToAboutUs">
                     <a
+                      role="link"
+                      tabIndex={0}
                       className={styles.navLink}
                       anchor="navigateToAboutUs"
                       onClick={
@@ -140,6 +148,8 @@ export default function Header() {
                 <li className={styles.navItem}>
                   <Link href="/?anchorName=navigateToNews">
                     <a
+                      role="link"
+                      tabIndex={0}
                       className={styles.navLink}
                       anchor="navigateToNews"
                       onClick={
@@ -155,6 +165,8 @@ export default function Header() {
                 <li className={styles.navItem}>
                   <Link href="/?anchorName=navigateToContacts">
                     <a
+                      role="link"
+                      tabIndex={0}
                       className={styles.navLink}
                       anchor="navigateToContacts"
                       onClick={
