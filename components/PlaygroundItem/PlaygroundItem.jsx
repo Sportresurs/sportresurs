@@ -5,6 +5,8 @@ import CourtCardInfo from "../CourtCardInfo";
 import styles from "./PlaygroundItem.module.scss";
 import Tag from "../Tag";
 import useWindowSize from "../../utils/hooks/findWindowSize";
+import PlaygroundModal from "../PlaygroundModal";
+import useModalHandlers from "../../utils/hooks/useModalHandlers";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -26,13 +28,15 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
     }
   }, [screenWidth, isActive, refProp]);
 
+  const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.img}
+            src={playground.image}
             alt=""
             layout="fill"
           />
@@ -46,13 +50,19 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
           rating={playground.rating}
           color={playground.color}
           address={playground.address}
-          courtNumber={playground.id}
+          courtNumber={playground.courtNumber}
           playground={playground}
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}
           isList={true}
+          openModal={handleOpenModal}
         />
       </div>
+      <PlaygroundModal
+        visible={isModalShown}
+        onClose={handleCloseModal}
+        playground={playground}
+      />
     </div>
   );
 };

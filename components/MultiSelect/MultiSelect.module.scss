@@ -16,7 +16,11 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
+.form {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 3px;
+}
 .filterType {
   margin-bottom: 5px;
   font-weight: 400;
@@ -25,4 +29,7 @@
   letter-spacing: 0.3px;
   text-transform: uppercase;
   color: $color-secondary-darkGrey;
+}
+.formFilterType {
+  color: $color-primary-dark;
 }

@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import styles from "./SearchSection.module.scss";
 import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
+import Slider from "../Slider";
 
 const cx = classNames.bind(styles);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -20,7 +21,7 @@ function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
-  const { handleCoordinates } = useContext(Context);
+  const { handleCoordinates, handleFilterData } = useContext(Context);
 
   useEffect(() => window.google && setIsLoaded(true), []);
 
@@ -145,26 +146,80 @@ function SearchSection() {
           </form>
 
           <ul className={styles.btnList}>
-            <li className={styles.btnItem}>
-              <Button variant="orange" size="medium">
-                <span className={styles.btnContent}>Личаківський</span>
-              </Button>
-            </li>
-            <li className={styles.btnItem}>
-              <Button variant="green" size="medium">
-                <span className={styles.btnContent}>Шевченківський</span>
-              </Button>
-            </li>
-            <li className={styles.btnItem}>
-              <Button variant="blue" size="medium">
-                <span className={styles.btnContent}>Франківський</span>
-              </Button>
-            </li>
-            <li className={styles.btnItem}>
-              <Button variant="lilac" size="medium">
-                <span className={styles.btnContent}>Залізничний</span>
-              </Button>
-            </li>
+            <Slider
+              isDots={false}
+              slidesToShow={4}
+              slidesToScroll={1}
+              isInfinite={true}
+              isVariableWidth={true}
+              withArrows={false}
+              classNameBox={styles.sliderBox}
+              responsive={[
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  },
+                },
+                {
+                  breakpoint: 500,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                  },
+                },
+              ]}
+            >
+              <li className={styles.btnItem}>
+                <Link href="/map" passHref>
+                  <Button
+                    variant="orange"
+                    size="medium"
+                    as="a"
+                    onClick={handleFilterData}
+                  >
+                    Личаківський
+                  </Button>
+                </Link>
+              </li>
+              <li className={styles.btnItem}>
+                <Link href="/map" passHref>
+                  <Button
+                    variant="green"
+                    size="medium"
+                    as="a"
+                    onClick={handleFilterData}
+                  >
+                    Шевченківський
+                  </Button>
+                </Link>
+              </li>
+              <li className={styles.btnItem}>
+                <Link href="/map" passHref>
+                  <Button
+                    variant="blue"
+                    size="medium"
+                    as="a"
+                    onClick={handleFilterData}
+                  >
+                    Франківський
+                  </Button>
+                </Link>
+              </li>
+              <li className={styles.btnItem}>
+                <Link href="/map" passHref>
+                  <Button
+                    variant="lilac"
+                    size="medium"
+                    as="a"
+                    onClick={handleFilterData}
+                  >
+                    Залізничний
+                  </Button>
+                </Link>
+              </li>
+            </Slider>
           </ul>
         </div>
       </section>
