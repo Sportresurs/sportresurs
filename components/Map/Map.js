@@ -30,6 +30,8 @@ export default function Map({
   onLoad,
   onChange,
   searchPinCoords,
+  setMarkerIndex,
+  setSliderOpen,
 }) {
   const handleApiLoaded = ({ map }) => {
     if (onLoad) {
@@ -51,15 +53,18 @@ export default function Map({
         center={searchPinCoords}
         yesIWantToUseGoogleMapApiInternals
         options={options}
+        margin={[100, 100, 100, 100]}
         onChange={handleChange}
         onDrag={handleChange}
         onGoogleApiLoaded={handleApiLoaded}
         onChildClick={(child) => setChildClicked(child)}
       >
-        {places?.map((place) => {
+        {places?.map((place, i) => {
           const proprsToMarker = courtDataFinder(place);
           return (
             <MapMarkerWrapper
+              setSliderOpen={setSliderOpen}
+              setMarkerIndex={setMarkerIndex}
               className={cx("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
@@ -69,6 +74,7 @@ export default function Map({
               typeOfCourt={proprsToMarker.type}
               district={proprsToMarker.district}
               isCourtMarker={true}
+              indexMarker={i}
             />
           );
         })}
@@ -89,7 +95,7 @@ Map.propTypes = {
   defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
-  childClicked: PropTypes.string,
+  childClicked: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   apiKey: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,

@@ -158,7 +158,6 @@ const courtsDataBase = [
     rating: 3,
     district: "Франківський",
     color: "blue",
-
     type: "Дитячо-спортивний",
     destination: ["дитячий", "баскетбольний", "тенісний"],
     size: 750,
