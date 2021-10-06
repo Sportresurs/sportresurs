@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { captureException } from "@sentry/nextjs";
 
-export default function useFetchData(url) {
-  const [data, setData] = useState([], null);
+export default function useFetchData(url, defaultValue) {
+  const [data, setData] = useState(defaultValue);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 

@@ -16,7 +16,7 @@ export default function News({ isAdmin }) {
   };
   const getColor = useColorLoop();
 
-  const [news] = useFetchData(`/api/news`);
+  const [news] = useFetchData(`/api/news`, []);
 
   return (
     <>
