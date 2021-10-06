@@ -10,7 +10,7 @@ const PlaygroundsSlider = ({ playgrounds, markerIndex, setChildClicked }) => (
       slideIndex={markerIndex}
       isModal={false}
       slidesToShow={1}
-      isArrows={true}
+      withArrows={true}
       isArrowColorBlack={true}
       isDots={false}
       arrayLength={playgrounds.length}
