@@ -109,7 +109,12 @@ const SlickSlider = ({
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive,
-    afterChange: (current) => setChildClicked(Number(children[current].key)),
+    afterChange(current) {
+      if (setChildClicked) {
+        return setChildClicked(Number(children[current].key));
+      }
+      return null;
+    },
     appendDots(dots) {
       return (
         <div>
