@@ -21,7 +21,7 @@ function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
-  const { handleCoordinates, handleDistricts } = useContext(Context);
+  const { handleCoordinates, handleFilterData } = useContext(Context);
 
   useEffect(() => window.google && setIsLoaded(true), []);
 
@@ -152,8 +152,7 @@ function SearchSection() {
               slidesToScroll={1}
               isInfinite={true}
               isVariableWidth={true}
-              isArrows={false}
-              isAutoplay={true}
+              withArrows={false}
               classNameBox={styles.sliderBox}
               responsive={[
                 {
@@ -178,7 +177,7 @@ function SearchSection() {
                     variant="orange"
                     size="medium"
                     as="a"
-                    onClick={handleDistricts}
+                    onClick={handleFilterData}
                   >
                     Личаківський
                   </Button>
@@ -190,7 +189,7 @@ function SearchSection() {
                     variant="green"
                     size="medium"
                     as="a"
-                    onClick={handleDistricts}
+                    onClick={handleFilterData}
                   >
                     Шевченківський
                   </Button>
@@ -202,7 +201,7 @@ function SearchSection() {
                     variant="blue"
                     size="medium"
                     as="a"
-                    onClick={handleDistricts}
+                    onClick={handleFilterData}
                   >
                     Франківський
                   </Button>
@@ -214,7 +213,7 @@ function SearchSection() {
                     variant="lilac"
                     size="medium"
                     as="a"
-                    onClick={handleDistricts}
+                    onClick={handleFilterData}
                   >
                     Залізничний
                   </Button>

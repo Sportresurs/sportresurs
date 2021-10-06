@@ -55,7 +55,7 @@ export default function Ratings({
 }
 
 Ratings.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   precision: PropTypes.number,
   readOnly: PropTypes.bool,
   color: PropTypes.oneOf([
