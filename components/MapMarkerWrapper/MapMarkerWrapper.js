@@ -7,9 +7,24 @@ export default function MapMarkerWrapper({
   typeOfCourt,
   bgColor,
   className,
+  setMarkerIndex,
+  indexMarker,
+  setSliderOpen,
 }) {
+  const index = indexMarker;
   return (
-    <div lat={lat} lng={lng} key={key} className={className}>
+    <div
+      onClick={() => {
+        setSliderOpen(true);
+        setMarkerIndex(index);
+      }}
+      lat={lat}
+      lng={lng}
+      key={key}
+      className={className}
+      role="button"
+      tabIndex={0}
+    >
       <Marker typeOfCourt={typeOfCourt} bgColor={bgColor} />
     </div>
   );

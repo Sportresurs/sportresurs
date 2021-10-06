@@ -29,6 +29,8 @@ export default function Map({
   apiKey,
   onLoad,
   onChange,
+  setMarkerIndex,
+  setSliderOpen,
 }) {
   // please ignore this function while revieweing as it's temporary until new pins will be created by designer and added to Marker component
   function courtDataFinder(destination) {
@@ -66,21 +68,25 @@ export default function Map({
         defaultZoom={defaultZoom}
         yesIWantToUseGoogleMapApiInternals
         options={options}
+        margin={[100, 100, 100, 100]}
         onChange={handleChange}
         onDrag={handleChange}
         onGoogleApiLoaded={handleApiLoaded}
         onChildClick={(child) => setChildClicked(child)}
       >
-        {places?.map((place) => {
+        {places?.map((place, i) => {
           const proprsToMarker = courtDataFinder(place.destination);
           return (
             <MapMarkerWrapper
+              setSliderOpen={setSliderOpen}
+              setMarkerIndex={setMarkerIndex}
               className={cx("markerWrapper", {
                 selected: Number(childClicked) === place.id,
               })}
               lat={Number(place.latitude)}
               lng={Number(place.longitude)}
               key={place.id}
+              indexMarker={i}
               typeOfCourt={proprsToMarker.latinName}
               bgColor={proprsToMarker.color}
             />
@@ -96,7 +102,7 @@ Map.propTypes = {
   defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
-  childClicked: PropTypes.string,
+  childClicked: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   apiKey: PropTypes.string.isRequired,
   onLoad: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
