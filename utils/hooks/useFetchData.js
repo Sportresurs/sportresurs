@@ -1,31 +1,29 @@
 import { useState, useEffect } from "react";
 import { captureException } from "@sentry/nextjs";
 
-const cache = {};
-
 export default function useFetchData(url) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([], null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     if (!url) return;
-
+    setIsLoading(true);
     const fetchData = async () => {
-      if (cache[url]) {
-        setData(cache[url]);
-      } else {
-        try {
-          const response = await fetch(url);
-          const resData = await response.json();
-          cache[url] = resData;
-          setData(resData);
-        } catch (err) {
-          captureException(err);
-        }
+      try {
+        const response = await fetch(url);
+        const resData = await response.json();
+        setData(resData);
+        setIsLoading(false);
+      } catch (err) {
+        captureException(err);
+        setErrorMsg(err.message);
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [url]);
 
-  return data;
+  return [data, isLoading, errorMsg];
 }

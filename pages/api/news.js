@@ -1,6 +1,6 @@
 import { withSentry, captureException } from "@sentry/nextjs";
 import nc from "next-connect";
-import getNewsFromInstagram from "../../utils/instagram";
+import { getNewsFromInstagram } from "../../utils/instagram";
 
 const handler = nc().get(async (req, res) => {
   try {
