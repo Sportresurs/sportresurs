@@ -4,7 +4,10 @@ const Context = createContext("");
 
 const ContextProvider = ({ children }) => {
   const [coordinates, setCoordinates] = useState(null);
-  const [filterData, setFilterData] = useState(null);
+  const [filterData, setFilterData] = useState({
+    purposeOfAreas: [],
+    districts: [],
+  });
 
   const handleCoordinates = (value) => {
     setCoordinates(value);
