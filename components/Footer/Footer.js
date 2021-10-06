@@ -88,7 +88,8 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div className={styles.footerContacts}>
+
+          <div className={styles.footerContacts} id="navigateToContacts">
             <h3 className={styles.footerContactsTitle}>Контакти</h3>
             <address className={styles.footerContactsAddress}>
               <p>79008, Львів,</p>

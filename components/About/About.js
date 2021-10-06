@@ -2,7 +2,7 @@ import s from "./About.module.scss";
 
 export default function About() {
   return (
-    <section className={s.aboutUs}>
+    <section className={s.aboutUs} id="navigateToAboutUs">
       <div className={s.container}>
         <div className={s.videoWrapper}>
           <iframe
