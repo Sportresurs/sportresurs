@@ -11,7 +11,7 @@ export default function Playgrounds() {
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3000/api/areas",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
     }).then(({ data }) => setAreas(data.areas));
   }, []);
 

@@ -82,7 +82,7 @@ export default function MapPage() {
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://localhost:3000/api/areas",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
     }).then(({ data }) => setPlaces(data.areas));
   }, []);
 
