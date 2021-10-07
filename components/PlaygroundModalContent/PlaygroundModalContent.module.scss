@@ -19,6 +19,13 @@
 .bgImage {
   max-width: 100%;
 }
+
+.plImage {
+  background-image: url("../../public/img/placeholderImage.png");
+  width: 530,6px;
+  height: 677px;
+}
+
 .contentWrapper {
   background: $color-primary-light;
   flex: 1 1 50%;
