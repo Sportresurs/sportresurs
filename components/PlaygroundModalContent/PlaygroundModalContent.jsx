@@ -7,6 +7,7 @@ import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
 import Slider from "../Slider";
+import placeholderImage from "../../public/img/placeholderImgModal.png";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -45,7 +46,11 @@ const PlaygroundModalContent = ({ playground }) => {
             ))}
           </Slider>
         ) : (
-          <div className={styles.plImage}></div>
+          <Image
+            src={placeholderImage}
+            alt="placeholderImg"
+            layout="responsive"
+          ></Image>
         )}
       </div>
       <div className={styles.contentWrapper}>
