@@ -21,7 +21,7 @@ function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
-  const { handleCoordinates, handleFilterData } = useContext(Context);
+  const { handleCoordinates, handleFilterDistrict } = useContext(Context);
 
   useEffect(() => window.google && setIsLoaded(true), []);
 
@@ -177,7 +177,7 @@ function SearchSection() {
                     variant="orange"
                     size="medium"
                     as="a"
-                    onClick={handleFilterData}
+                    onClick={handleFilterDistrict}
                   >
                     Личаківський
                   </Button>
@@ -189,7 +189,7 @@ function SearchSection() {
                     variant="green"
                     size="medium"
                     as="a"
-                    onClick={handleFilterData}
+                    onClick={handleFilterDistrict}
                   >
                     Шевченківський
                   </Button>
@@ -201,7 +201,7 @@ function SearchSection() {
                     variant="blue"
                     size="medium"
                     as="a"
-                    onClick={handleFilterData}
+                    onClick={handleFilterDistrict}
                   >
                     Франківський
                   </Button>
@@ -213,7 +213,7 @@ function SearchSection() {
                     variant="lilac"
                     size="medium"
                     as="a"
-                    onClick={handleFilterData}
+                    onClick={handleFilterDistrict}
                   >
                     Залізничний
                   </Button>

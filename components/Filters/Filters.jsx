@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
-import axios from "axios";
+import { useState, useContext, useEffect } from "react";
 import classNames from "classnames";
+import axios from "axios";
 import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
@@ -20,28 +20,47 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
-  const { filterData } = useContext(Context);
+const Filters = ({ setAreas, location, handleCoordinates }) => {
+  const { areas, filterData, filterFields } = useContext(Context);
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
     purposeOfAreas: filterData.purposeOfAreas,
     districts: filterData.districts,
     rating: { value: 0 },
-    array: [],
+    array: [...filterData.purposeOfAreas, ...filterData.districts],
   });
 
   const getNewAreas = async (purposes, districts, rating) => {
-    const { data } = await axios({
-      method: "post",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
-      data: {
-        purposes: purposes.map((item) => item.value.toLowerCase()),
-        districts: districts.map((item) => item.value),
-        rating: rating.value,
-      },
+    const mapFilterPurposes = purposes.map((item) => item.value.toLowerCase());
+    const mapFilterDstricts = districts.map((item) => item.value);
+    const data = areas.filter((area) => {
+      const mapPurposes = area.Purposes.map((item) => item.title);
+      return (
+        (mapFilterPurposes.length
+          ? mapFilterPurposes.every((value) => mapPurposes.includes(value))
+          : true) &&
+        (mapFilterDstricts.length
+          ? mapFilterDstricts.includes(area.district)
+          : true) &&
+        area.rating >= rating.value
+      );
     });
-    setAreas(data.areas);
+    return setAreas(data);
   };
+
+  useEffect(() => {
+    if (!filters.array.length && filters.rating.value === 0) {
+      axios({
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
+      }).then(({ data }) => setAreas(data.areas));
+    }
+    return getNewAreas(
+      filters.purposeOfAreas,
+      filters.districts,
+      filters.rating
+    );
+  }, []);
 
   const deleteTag = (tag) => {
     const newPurposeOfAreas = filters.purposeOfAreas.filter(
@@ -77,11 +96,11 @@ const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
             onToggle={changeStatus}
             handleCoordinates={handleCoordinates}
             numberOfFilters={filters.array.filter((item) => item.value).length}
-            API_KEY={API_KEY}
           />
         )}
         {isOpen && (
           <FilterWindow
+            filterFields={filterFields}
             getNewAreas={getNewAreas}
             filters={filters}
             counter={filters.array.filter((item) => item.value).length}

@@ -17,6 +17,7 @@ const CloseFilterWindow = ({ changeStatus }) => {
 };
 
 const FilterWindow = ({
+  filterFields,
   getNewAreas,
   filters,
   counter,
@@ -55,29 +56,19 @@ const FilterWindow = ({
         <MultiSelect
           value={purposeOfAreas}
           type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
-          data={[
-            { label: "Спортивний", value: "Спортивний" },
-            { label: "Дитячий", value: "Дитячий" },
-            { label: "Тенісний", value: "Тенісний" },
-            { label: "Футбольний", value: "Футбольний" },
-            { label: "Стріт воркаут", value: "Стріт воркаут" },
-            { label: "Скейт-майданчик", value: "Скейт-майданчик" },
-            { label: "Бігові доріжки", value: "Бігові доріжки" },
-          ]}
+          data={filterFields.purposes.map((item) => ({
+            value: item,
+            label: item,
+          }))}
           onChange={setPurposeOfAreas}
         />
         <MultiSelect
           value={districts}
           type="РАЙОН"
-          data={[
-            { label: "Шевченківський", value: "Шевченківський" },
-            { label: "Франківський", value: "Франківський" },
-            { label: "Личаківський", value: "Личаківський" },
-            { label: "Залізничний", value: "Залізничний" },
-            { label: "Сихівський", value: "Сихівський" },
-            { label: "Галицький", value: "Галицький" },
-            { label: "Інший", value: "Інший" },
-          ]}
+          data={filterFields.districts.map((item) => ({
+            value: item,
+            label: item,
+          }))}
           onChange={setDistricts}
         />
         <div className={styles.filterBodyRating}>
