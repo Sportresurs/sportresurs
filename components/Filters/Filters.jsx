@@ -31,16 +31,14 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
   });
 
   const getNewAreas = async (purposes, districts, rating) => {
-    const mapFilterPurposes = purposes.map((item) => item.value.toLowerCase());
-    const mapFilterDstricts = districts.map((item) => item.value);
+    const purposeValues = purposes.map((item) => item.value.toLowerCase());
+    const districtValues = districts.map((item) => item.value);
     const data = areas.filter((area) => {
       const mapPurposes = area.Purposes.map((item) => item.title);
       return (
-        (mapFilterPurposes.length
-          ? mapFilterPurposes.every((value) => mapPurposes.includes(value))
-          : true) &&
-        (mapFilterDstricts.length
-          ? mapFilterDstricts.includes(area.district)
+        purposeValues.every((value) => mapPurposes.includes(value)) &&
+        (districtValues.length
+          ? districtValues.includes(area.district)
           : true) &&
         area.rating >= rating.value
       );
