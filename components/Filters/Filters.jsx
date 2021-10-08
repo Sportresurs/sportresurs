@@ -34,9 +34,9 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
     const purposeValues = purposes.map((item) => item.value.toLowerCase());
     const districtValues = districts.map((item) => item.value);
     const data = areas.filter((area) => {
-      const mapPurposes = area.Purposes.map((item) => item.title);
+      const arayPurposes = area.Purposes.map((item) => item.title);
       return (
-        purposeValues.every((value) => mapPurposes.includes(value)) &&
+        purposeValues.every((value) => arayPurposes.includes(value)) &&
         (districtValues.length
           ? districtValues.includes(area.district)
           : true) &&
