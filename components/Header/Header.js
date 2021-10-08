@@ -12,7 +12,7 @@ const cx = className.bind(styles);
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
 
   const [session] = useSession();
 

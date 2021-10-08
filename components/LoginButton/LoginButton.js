@@ -27,11 +27,16 @@ export default function LoginButton({ setIsAdminLoggedIn }) {
     setIsDialogOpen(!isDialogOpen);
   };
 
-  const handleAdminLogOut = () => {
+  const handleAdminLogOut = async () => {
     setIsDialogOpen(!isDialogOpen);
     setIsMenuOpen(!isMenuOpen);
     setIsAdminLoggedIn(false);
-    signOut();
+    try {
+      const isSignedOut = await signOut();
+      if (!isSignedOut) setIsAdminLoggedIn(true);
+    } catch {
+      setIsAdminLoggedIn(true);
+    }
   };
 
   return (
