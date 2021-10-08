@@ -79,7 +79,7 @@ Marker.propTypes = {
     "WithoutTypeCourt",
   ]).isRequired,
   district: PropTypes.oneOf([
-    "Halytskyi",
+    "Halitskyi",
     "Zaliznychnyi",
     "Lychakivskyi",
     "Sykhivskyi",
