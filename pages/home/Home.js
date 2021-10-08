@@ -24,7 +24,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      images: [image, image, image, image],
+      images: null,
     },
     {
       id: 2,
