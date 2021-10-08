@@ -1,27 +1,21 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 import s from "./Playgrounds.module.scss";
 import CourtCard from "../../components/CourtCard";
 import { Grid } from "../../components/Grid";
 import Filters from "../../components/Filters";
+import { Context } from "../../context";
 
 export default function Playgrounds() {
-  const [areas, setAreas] = useState([]);
-
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
-    }).then(({ data }) => setAreas(data.areas));
-  }, []);
+  const { areas } = useContext(Context);
+  const [filteredPlaces, setFilteredPlaces] = useState(areas);
 
   return (
     <div className={s.background}>
       <section className={s.courts}>
         <Grid>
-          <Filters setAreas={setAreas} />
+          <Filters setAreas={setFilteredPlaces} />
           <ul className={s.list}>
-            {areas.map((court) => (
+            {filteredPlaces.map((court) => (
               <li key={court.id} className={s.listItem}>
                 <CourtCard courtInfo={court} variant="courtList" />
               </li>

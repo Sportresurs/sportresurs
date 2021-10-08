@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
-import axios from "axios";
+import Script from "next/script";
 import Map from "../components/Map";
 import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import PlaygroundsList from "../components/PlaygroundsList";
@@ -75,16 +75,12 @@ const playgrounds = [
 
 export default function MapPage() {
   const [sliderOpen, setSliderOpen] = useState(true);
-  const [places, setPlaces] = useState([]);
+  const [places] = useState([]);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
-  useEffect(() => {}, [filteredPlaces]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
-    }).then(({ data }) => setPlaces(data.areas));
-  }, []);
+  useEffect(() => window.google && setIsLoaded(true), []);
+  useEffect(() => {}, [filteredPlaces]);
 
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
@@ -133,50 +129,63 @@ export default function MapPage() {
   });
   return (
     <>
-      <div className={styles.imageWrapper}>
-        <PlaygroundImage />
-      </div>
-      <div className={styles.wrapper}>
-        <div className={styles.sidebarWrapper}>
-          <div className={styles.filterWrapper}>
-            <Filters
-              setAreas={setPlaces}
-              location="mapPage"
-              API_KEY={API_KEY}
-            />
+      <Script
+        type="text/javascript"
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
+        /* strategy="beforeInteractive" */
+        onLoad={() => {
+          setIsLoaded(true);
+        }}
+      />
+      {isLoaded && (
+        <>
+          <div className={styles.imageWrapper}>
+            <PlaygroundImage />
           </div>
-          <div className={sidebarWrapperClass}>
-            <div className={styles.sidebarContainer}>
-              <div className={styles.mobileHeaderWrapper}>
-                <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
-                <div className={iconWrapperClass} onClick={handleSliderShow}>
-                  <HideMark />
+          <div className={styles.wrapper}>
+            <div className={styles.sidebarWrapper}>
+              <div className={styles.filterWrapper}>
+                <Filters setAreas={setFilteredPlaces} location="mapPage" />
+              </div>
+              <div className={sidebarWrapperClass}>
+                <div className={styles.sidebarContainer}>
+                  <div className={styles.mobileHeaderWrapper}>
+                    <h1 className={styles.wrapperHeading}>
+                      Майданчики поблизу
+                    </h1>
+                    <div
+                      className={iconWrapperClass}
+                      onClick={handleSliderShow}
+                    >
+                      <HideMark />
+                    </div>
+                  </div>
+                  <div className={sliderWrapperClass}>
+                    <PlaygroundsSlider playgrounds={playgrounds} />
+                  </div>
                 </div>
               </div>
-              <div className={sliderWrapperClass}>
-                <PlaygroundsSlider playgrounds={playgrounds} />
+              <div className={styles.scrollBox}>
+                <div className={styles.listWrapper}>
+                  <PlaygroundsList playgrounds={playgrounds} />
+                </div>
               </div>
             </div>
-          </div>
-          <div className={styles.scrollBox}>
-            <div className={styles.listWrapper}>
-              <PlaygroundsList playgrounds={playgrounds} />
+            <div className={styles.mapWrapper}>
+              <Map
+                apiKey={API_KEY}
+                defaultZoom={DEFAULT_ZOOM}
+                defaultCenter={DEFAULT_CENTER}
+                places={filteredPlaces.length ? filteredPlaces : places}
+                childClicked={childClicked}
+                setChildClicked={setChildClicked}
+                onLoad={onMapLoaded}
+                onChange={onMapChanged}
+              />
             </div>
           </div>
-        </div>
-        <div className={styles.mapWrapper}>
-          <Map
-            apiKey={API_KEY}
-            defaultZoom={DEFAULT_ZOOM}
-            defaultCenter={DEFAULT_CENTER}
-            places={filteredPlaces.length ? filteredPlaces : places}
-            childClicked={childClicked}
-            setChildClicked={setChildClicked}
-            onLoad={onMapLoaded}
-            onChange={onMapChanged}
-          />
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
