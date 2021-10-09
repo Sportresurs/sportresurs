@@ -53,6 +53,7 @@ const ContextProvider = ({ children }) => {
         filterFields,
         areas,
         setAreas,
+        setFilterData,
         handleCoordinates,
         handleFilterDistrict,
         handleFilterPurpose,

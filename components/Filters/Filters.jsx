@@ -21,7 +21,8 @@ const FilterButton = ({ counter, changeStatus }) => {
 };
 
 const Filters = ({ setAreas, location, handleCoordinates }) => {
-  const { areas, filterData, filterFields } = useContext(Context);
+  const { areas, filterData, filterFields, setFilterData } =
+    useContext(Context);
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
     purposeOfAreas: filterData.purposeOfAreas,
@@ -53,11 +54,14 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
         url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
       }).then(({ data }) => setAreas(data.areas));
     }
-    return getNewAreas(
-      filters.purposeOfAreas,
-      filters.districts,
-      filters.rating
-    );
+    getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
+    return () => {
+      setFilterData({
+        purposeOfAreas: [],
+        districts: [],
+        rating: { value: 0 },
+      });
+    };
   }, []);
 
   const deleteTag = (tag) => {
