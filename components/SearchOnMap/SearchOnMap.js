@@ -14,11 +14,8 @@ import FilterIcon from "../../public/svg/filterIconMap.svg";
 const cx = classNames.bind(styles);
 
 const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
-  // const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({});
-
-  // useEffect(() => window.google && setIsLoaded(true), []);
 
   const handleInputClear = () => {
     setAddress("");
