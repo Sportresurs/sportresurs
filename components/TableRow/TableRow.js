@@ -70,7 +70,7 @@ export default function TableRow({
 
       <td className={cx("tableCell", "name")}>{name}</td>
       <td className={cx("tableCell", "tel")}>{tel}</td>
-      <td className={cx("tableCell", "info")}>{info}</td>
+      <td className={cx("tableCell", "info")}>{info || "Без коментаря"}</td>
     </tr>
   );
 }

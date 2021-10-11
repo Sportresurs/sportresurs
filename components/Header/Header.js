@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
+import { useSession } from "next-auth/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import className from "classnames/bind";
@@ -6,6 +7,7 @@ import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import styles from "./Header.module.scss";
 import ContactUsButton from "../ContactUsButton";
+import LoginButton from "../LoginButton";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 import setHeightOfHeader from "../../utils/findHeightOfHeader";
 
@@ -13,6 +15,16 @@ const cx = className.bind(styles);
 
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(true);
+
+  const [session] = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setIsAdminLoggedIn(true);
+    }
+  }, [isAdminLoggedIn, session]);
+
   const router = useRouter();
   const size = useWindowSize();
   const heightOfHeader = useMemo(() => setHeightOfHeader(size.width), [size]);
@@ -180,8 +192,11 @@ export default function Header() {
                   </Link>
                 </li>
               </ul>
-
-              <ContactUsButton shouldLockScreen={true} />
+              {isAdminLoggedIn ? (
+                <LoginButton setIsAdminLoggedIn={setIsAdminLoggedIn} />
+              ) : (
+                <ContactUsButton shouldLockScreen={true} />
+              )}
             </div>
           </div>
         </nav>
