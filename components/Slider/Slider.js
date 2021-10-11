@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,6 +16,8 @@ const SlickSlider = ({
   isDots,
   slidesToShow,
   slidesToScroll,
+  slideIndex,
+  setChildClicked,
   speed,
   isInfinite,
   isLazyLoad,
@@ -23,7 +25,7 @@ const SlickSlider = ({
   isVariableWidth,
   isAutoplay,
   autoplaySpeed,
-  isArrows,
+  withArrows,
   responsive,
   isModal,
   isArrowColorBlack,
@@ -31,8 +33,14 @@ const SlickSlider = ({
   classNameBox,
   classNameArrow,
   classNameDots,
+  classNameDotsModal,
 }) => {
   const size = useWindowSize();
+  const slider = useRef();
+
+  useEffect(() => {
+    slider.current.slickGoTo(Number(slideIndex));
+  }, [slideIndex]);
 
   function setWidthOfDot(isForModal, windowSize) {
     let dotWidth = 29;
@@ -46,7 +54,7 @@ const SlickSlider = ({
       dotWidth = 33;
     }
     if (isForModal === false && windowSize < 768) {
-      dotWidth = 29;
+      dotWidth = 28.5;
     }
 
     return dotWidth;
@@ -86,10 +94,12 @@ const SlickSlider = ({
   const settings = {
     dotsClass: cx("dotsWrap", classNameDots, {
       modal: isModal === true,
+      [classNameDotsModal]: isModal === true,
     }),
     dots: isDots,
     slidesToShow,
     slidesToScroll,
+    slideIndex,
     speed,
     infinite: isInfinite,
     lazyLoad: isLazyLoad,
@@ -97,10 +107,16 @@ const SlickSlider = ({
     variableWidth: isVariableWidth,
     autoplay: isAutoplay,
     autoplaySpeed,
-    arrows: isArrows,
+    arrows: withArrows,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive,
+    afterChange(current) {
+      if (setChildClicked) {
+        return setChildClicked(Number(children[current].key));
+      }
+      return null;
+    },
     appendDots(dots) {
       return (
         <div>
@@ -117,7 +133,9 @@ const SlickSlider = ({
 
   return (
     <div className={classnames(styles.sliderWrap, classNameBox)}>
-      <Slider {...settings}>{children}</Slider>
+      <Slider ref={slider} {...settings}>
+        {children}
+      </Slider>
     </div>
   );
 };
@@ -126,6 +144,7 @@ SlickSlider.defaultProps = {
   isDots: true,
   slidesToShow: 1,
   slidesToScroll: 1,
+  slideIndex: 1,
   isInfinite: false,
   speed: 500,
   isLazyLoad: true,
@@ -133,7 +152,7 @@ SlickSlider.defaultProps = {
   isVariableWidth: false,
   isAutoplay: false,
   autoplaySpeed: 3000,
-  isArrows: true,
+  withArrows: true,
   responsive: null,
   isModal: false,
   isArrowColorBlack: false,
@@ -150,7 +169,9 @@ SlickSlider.propTypes = {
   isVariableWidth: PropTypes.oneOf([true, false]),
   isAutoplay: PropTypes.oneOf([true, false]),
   autoplaySpeed: PropTypes.number,
+  slideIndex: PropTypes.number,
   isArrows: PropTypes.oneOf([true, false]).isRequired,
+  withArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
   isArrowColorBlack: PropTypes.oneOf([true, false]),
   arrayLength: PropTypes.number.isRequired,
@@ -160,6 +181,10 @@ SlickSlider.propTypes = {
       settings: PropTypes.object.isRequired,
     })
   ),
+  classNameBox: PropTypes.string,
+  classNameArrow: PropTypes.string,
+  classNameDots: PropTypes.string,
+  classNameDotsModal: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

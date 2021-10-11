@@ -3,69 +3,39 @@
 .btnMarker {
     @extend %button;
     position: relative;
-    display: inline-block;
+    display: block;
+
+    & svg {
+        display: block;
+    }
 }
 
-.lilac {
+.lilac path:nth-child(2) {
     fill: $color-accent-purple;
-    transition: all 200ms;
-    
-    .btnMarker:hover &{
-        fill: $color-hover-purple;
-    }
 }
 
-.red {    
+.red path:nth-child(2) {
     fill: $color-accent-red;
-    transition: all 200ms;
-    
-    .btnMarker:hover & {
-        fill: $color-hover-red;
-    }
 }
 
-.blue {
+.blue path:nth-child(2) {
     fill: $color-accent-blue;
-    transition: all 200ms;
-    
-    .btnMarker:hover & {
-        fill: $color-hover-blue;
-    }
 }
 
-.yellow {
+.yellow path:nth-child(2) {
     fill: $color-accent-yellow;
-    transition: all 200ms;
-    
-    .btnMarker:hover & {
-        fill: $color-hover-yellow;
-    }
 }
 
-.orange {
+.orange path:nth-child(2) {
     fill: $color-accent-orange;
-    transition: all 200ms;
-    
-    .btnMarker:hover & {
-        fill: $color-hover-orange;
-    }
 }
 
-.green {
+.green path:nth-child(2) {
     fill: $color-accent-green;
-    
-    .btnMarker:hover & {
-        fill: $color-hover-green;
-    }
 }
 
-.black {
+.black path:nth-child(2) {
     fill: $color-primary-dark;
-    transition: all 200ms;
-    
-    .btnMarker:hover & {
-        fill: $color-primary-light;
-    }
 }
 
 .icon {
@@ -73,10 +43,5 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -7px;
-
-    .btnMarker:hover &.blackColor > path {
-        stroke: $color-primary-dark;
-        transition: 200ms;
-    }
+    margin-top: -4px;
 }

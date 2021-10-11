@@ -1,21 +1,23 @@
 import Link from "next/link";
 import classNames from "classnames/bind";
+import { useContext } from "react";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
+import { Context } from "../../context";
 
 const cx = classNames.bind(styles);
 
 const courtsLink = [
-  { link: "/", name: "Волейбольний" },
-  { link: "/", name: "Дитячий" },
-  { link: "/", name: "Футбольний" },
-  { link: "/", name: "Гімнастичний" },
-  { link: "/", name: "Баскетбольний" },
-  { link: "/", name: "Тенісний" },
-  { link: "/", name: "Гандбольний" },
+  { link: "/playgrounds", name: "Волейбольний" },
+  { link: "/playgrounds", name: "Дитячий" },
+  { link: "/playgrounds", name: "Футбольний" },
+  { link: "/playgrounds", name: "Гімнастичний" },
+  { link: "/playgrounds", name: "Баскетбольний" },
+  { link: "/playgrounds", name: "Тенісний" },
+  { link: "/playgrounds", name: "Гандбольний" },
 ];
 
 const socialLinks = [
@@ -32,6 +34,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { handleFilterData } = useContext(Context);
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -79,13 +82,14 @@ export default function Footer() {
               {courtsLink.map((item) => (
                 <li key={item.name} className={styles.footerCourtsLink}>
                   <Link href={item.link}>
-                    <a>{item.name}</a>
+                    <a onClick={handleFilterData}>{item.name}</a>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className={styles.footerContacts}>
+
+          <div className={styles.footerContacts} id="navigateToContacts">
             <h3 className={styles.footerContactsTitle}>Контакти</h3>
             <address className={styles.footerContactsAddress}>
               <p>79008, Львів,</p>

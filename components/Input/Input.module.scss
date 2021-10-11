@@ -6,15 +6,31 @@
   color: $color-primary-dark;
   max-width: 356px;
 }
+.form {
+  width: 100%;
+}
 .errorIcon {
   position: absolute;
   top:12px;
+  right: 18px;
+}
+.formErrorIcon {
+  position: absolute;
+  top:30px;
   right: 18px;
 }
 .inputLabel {
   display: block;
   margin-bottom: 7px;
   font-weight: 500;
+}
+.smallLabel {
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+  margin-bottom: 5px;
 }
 .errorMsg {
   font-size: 12px;
@@ -52,6 +68,9 @@
 .textarea {
   height: 237px;
   resize: none;
+}
+.small {
+  height: 64px;
 }
 .inputError {
   border: 1px solid $color-form-red;

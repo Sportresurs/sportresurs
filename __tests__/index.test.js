@@ -4,6 +4,7 @@ import Home from "../pages/index";
 
 describe("Home", () => {
   it("About Us section on Home page renders correctly", () => {
+    window.scrollTo = jest.fn();
     render(<Home />);
 
     const aboutUsHeading = screen.getByText("Про нас");

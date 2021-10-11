@@ -69,8 +69,13 @@
   line-height: 18px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
+  text-align: center;
 
   color: $color-primary-dark;
+
+  @media screen and (min-width: 668px) {
+    text-align: left;
+  }
 }
 
 .mission {
@@ -80,6 +85,7 @@
   font-size: 18px;
   line-height: 22px;
   letter-spacing: 0.2px;
+  text-align: center;
 
   color: $color-accent-purple;
 
@@ -92,6 +98,10 @@
     font-size: 36px;
     line-height: 56px;
     margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 668px) {
+    text-align: left;
   }
 }
 

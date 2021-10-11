@@ -66,8 +66,7 @@
 
 .outer {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  transform: translateY(20%);
   opacity: 0;
   height: 155px;
   width: 100%;
@@ -76,10 +75,10 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   background-color: $color-primary-light;
-  transition: /* transform */ 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 200ms;
 
   .card:hover & {
+    transform: translateY(-100%);
     opacity: 1;
   }
 }
-

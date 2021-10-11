@@ -22,6 +22,7 @@
 }
 .wrapperHeading {
   margin-left: 20px;
+  margin-bottom: 18px;
   font-size: 18px;
   line-height: 18px;
   letter-spacing: 0.4px;
@@ -138,6 +139,6 @@
     pointer-events: none;
   }
   .openMobileIcon {
-    transform:rotate(180deg);
+    transform: rotate(180deg);
   }
 }

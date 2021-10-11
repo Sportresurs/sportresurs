@@ -2,7 +2,7 @@ import s from "./About.module.scss";
 
 export default function About() {
   return (
-    <section className={s.aboutUs}>
+    <section className={s.aboutUs} id="navigateToAboutUs">
       <div className={s.container}>
         <div className={s.videoWrapper}>
           <iframe
@@ -21,9 +21,10 @@ export default function About() {
             Наша ціль - доступні майданчики для всіх
           </h3>
           <p className={s.text}>
-            Et has minim elitr intellegat. Mea aeterno eleifend antiopam ad, nam
-            no suscipit quaerendum. At nam minimum ponderum. Est audiam animal
-            molestiae te. Ex duo eripuit mentitum.
+            ЛКП Спортресурс — це будівництво та реконструкція спортивної
+            інфраструктури, а також якісна та своєчасна підтримка спортивних
+            подій. Ми сприяємо розвитку масового та професійного спорту,
+            гармонійному розвитку людей та формуванню здорового способу життя.
           </p>
         </div>
       </div>

@@ -1,4 +1,10 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
 import Map from "../components/Map";
@@ -8,76 +14,30 @@ import Filters from "../components/Filters";
 import styles from "../styles/MapPage.module.scss";
 import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
-import image from "../public/img/playgroundItemImage.png";
 import HideMark from "../public/svg/hideSliderArrow.svg";
+import { Context } from "../context";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
 const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_ZOOM = 15;
 
-const playgrounds = [
-  {
-    id: 23,
-    address: "вул.Довженка 23 ",
-    color: "green",
-    district: "Шевченківський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 24,
-    address: "вул.Довженка 24 ",
-    color: "yellow",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 25,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 26,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-  {
-    id: 27,
-    address: "вул.Довженка 25 ",
-    color: "red",
-    district: "Сихівський",
-    type: "спортивний",
-    covering: "штучна трава",
-    opening: "08:00 - 22:00",
-    rating: 4.5,
-    img: image,
-  },
-];
-
 export default function MapPage() {
+  const { coordinates, handleCoordinates } = useContext(Context);
+
+  const [searchPinCoords, setSearchPinCoords] = useState(coordinates);
+  const [childClicked, setChildClicked] = useState(null);
+  const [markerIndex, setMarkerIndex] = useState(0);
   const [sliderOpen, setSliderOpen] = useState(true);
   const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
-  useEffect(() => {}, [filteredPlaces]);
+
+  useEffect(
+    () => () => {
+      handleCoordinates(null);
+    },
+    []
+  );
+
   const mapRef = useRef();
   const filterPlaces = useCallback(() => {
     if (!mapRef.current) {
@@ -106,8 +66,6 @@ export default function MapPage() {
     filterPlacesThrottled.current();
   }, []);
 
-  const [childClicked, setChildClicked] = useState(null);
-
   const handleSliderShow = () => {
     setSliderOpen((prevState) => !prevState);
   };
@@ -120,15 +78,18 @@ export default function MapPage() {
   const iconWrapperClass = classNames(styles.hideIcon, {
     [styles.openMobileIcon]: !sliderOpen,
   });
+
   return (
     <>
-      <div className={styles.imageWrapper}>
-        <PlaygroundImage />
-      </div>
+      <div className={styles.imageWrapper}>{<PlaygroundImage />}</div>
       <div className={styles.wrapper}>
         <div className={styles.sidebarWrapper}>
           <div className={styles.filterWrapper}>
-            <Filters location="mapPage" API_KEY={API_KEY} />
+            <Filters
+              location="mapPage"
+              API_KEY={API_KEY}
+              handleCoordinates={setSearchPinCoords}
+            />
           </div>
           <div className={sidebarWrapperClass}>
             <div className={styles.sidebarContainer}>
@@ -139,13 +100,23 @@ export default function MapPage() {
                 </div>
               </div>
               <div className={sliderWrapperClass}>
-                <PlaygroundsSlider playgrounds={playgrounds} />
+                <PlaygroundsSlider
+                  setChildClicked={setChildClicked}
+                  markerIndex={markerIndex}
+                  playgrounds={filteredPlaces.length ? filteredPlaces : places}
+                />
               </div>
             </div>
           </div>
           <div className={styles.scrollBox}>
             <div className={styles.listWrapper}>
-              <PlaygroundsList playgrounds={playgrounds} />
+              <PlaygroundsList
+                playgrounds={
+                  filteredPlaces.length > 0 ? filteredPlaces : places
+                }
+                childClicked={childClicked}
+                setChildClicked={setChildClicked}
+              />
             </div>
           </div>
         </div>
@@ -154,11 +125,14 @@ export default function MapPage() {
             apiKey={API_KEY}
             defaultZoom={DEFAULT_ZOOM}
             defaultCenter={DEFAULT_CENTER}
-            places={filteredPlaces.length ? filteredPlaces : places}
+            places={filteredPlaces.length > 0 ? filteredPlaces : places}
             childClicked={childClicked}
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
             onChange={onMapChanged}
+            searchPinCoords={searchPinCoords}
+            setMarkerIndex={setMarkerIndex}
+            setSliderOpen={setSliderOpen}
           />
         </div>
       </div>

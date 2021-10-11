@@ -12,7 +12,7 @@ export default function TopCourts({ courtList }) {
             slidesToShow={4}
             slidesToScroll={1}
             isInfinite={true}
-            isArrows={false}
+            withArrows={false}
             isModal={false}
             isAutoplay={true}
             arrayLength={courtList.length}

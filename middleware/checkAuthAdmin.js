@@ -5,7 +5,7 @@ const checkAuthAdmin = async (req, res, next) => {
   if (!session) {
     return res.status(401).send("You don't have access.");
   }
-  next();
+  return next();
 };
 
 export default checkAuthAdmin;

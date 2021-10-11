@@ -1,12 +1,22 @@
 @import "../../styles/shared.scss";
 
 .container {
-  min-width: 100%;
+  max-width: 1110px;
   height: 450px;
   display: flex;
   align-items: center;
+  margin: 0 auto;
+
   @media screen and (max-width: 1150px) {
-    overflow: hidden;
+    width: 810px;
+  }
+
+  @media screen and (max-width: 990px) {
+    width: 530px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 250px;
   }
 }
 
@@ -20,7 +30,14 @@
   line-height: 56px;
   letter-spacing: 0.2px;
   color: $color-primary-dark;
+  
+
   @media screen and (max-width: 1150px) {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: 646px) {
     font-size: 18px;
     line-height: 23px;
   }

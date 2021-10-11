@@ -6,6 +6,7 @@ import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
+import Slider from "../Slider";
 
 const PlaygroundModalContent = ({ playground }) => {
   const playgroundInfoFields = [
@@ -21,20 +22,43 @@ const PlaygroundModalContent = ({ playground }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        <Image
-          className={styles.bgImage}
-          src={playground.img}
-          alt=""
-          layout="responsive"
-        />
+        {playground.images ? (
+          <Slider
+            slidesToShow={1}
+            slidesToScroll={1}
+            withArrows={true}
+            isModal={true}
+            classNameBox={styles.sliderBox}
+            classNameDots={styles.dots}
+            classNameDotsModal={styles.modalDots}
+            isArrowColorBlack={false}
+            arrayLength={playground.images.length}
+          >
+            {playground.images.map((img, i) => (
+              <Image
+                className={styles.bgImage}
+                src={img}
+                alt=""
+                layout="responsive"
+                key={i}
+              />
+            ))}
+          </Slider>
+        ) : (
+          <div className={styles.plImage}></div>
+        )}
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground.districtColor} text={playground.district} />
+          <Tag color={playground.color} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.id}</h1>
+        <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings color="yellow" readOnly={true} />
+        <Ratings
+          color={playground.color}
+          readOnly={true}
+          value={playground.rating}
+        />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow
