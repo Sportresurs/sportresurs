@@ -148,7 +148,7 @@ export default function MapPage({ playgrounds }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`${process.env.HOST}api/areas`);
   const data = await res.json();
   return {
