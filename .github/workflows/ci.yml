@@ -16,14 +16,15 @@ jobs:
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      EMAIL_LOGIN: 
-      EMAIL_PASS: 
-      RECIPIENT_EMAIL: 
+      EMAIL_LOGIN:
+      EMAIL_PASS:
+      RECIPIENT_EMAIL:
       GOOGLE_CLIENT_ID:
       GOOGLE_CLIENT_SECRET:
       NEXTAUTH_URL:
       LIMIT_INSTAGRAM_INSTAGRAM_POSTS_FOR_FRONT:
       LIMIT_INSTAGRAM_POSTS:
+      HOST: http://localhost:3000/
     services:
       postgres:
         image: postgres
@@ -42,8 +43,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          cache: 'npm'
+          node-version: "14"
+          cache: "npm"
       - name: Install dependencies
         run: npm ci --no-optional
       - name: Run eslint
