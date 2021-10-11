@@ -12,13 +12,15 @@ const options = {
   ],
   callbacks: {
     async signIn({ email }) {
-      const user = await User.findOne({ where: { email } });
-      if (!user || user.status === "deleted") {
+      const user = await User.findOne({
+        where: { email },
+        attributes: ["email", "status"],
+      });
+      if (!user || user.dataValues.status === "deleted") {
         return false;
       }
-      if (user.status !== "confirmed") {
-        user.status = "confirmed";
-        await user.save();
+      if (user.dataValues.status === "pending") {
+        User.update({ status: "confirmed" }, { where: { email } });
       }
       return true;
     },
