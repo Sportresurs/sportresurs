@@ -12,7 +12,6 @@ import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import PlaygroundsList from "../components/PlaygroundsList";
 import Filters from "../components/Filters";
 import styles from "../styles/MapPage.module.scss";
-import data from "../utils/testData/courtDatabase";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 import { Context } from "../context";
@@ -21,14 +20,13 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Spo
 const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
 const DEFAULT_ZOOM = 15;
 
-export default function MapPage() {
+export default function MapPage({ playgrounds }) {
   const { coordinates, handleCoordinates } = useContext(Context);
 
   const [searchPinCoords, setSearchPinCoords] = useState(coordinates);
   const [childClicked, setChildClicked] = useState(null);
   const [markerIndex, setMarkerIndex] = useState(0);
   const [sliderOpen, setSliderOpen] = useState(true);
-  const [places] = useState(data.courtsDataBase);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   useEffect(
@@ -46,11 +44,14 @@ export default function MapPage() {
 
     const bounds = mapRef.current.getBounds();
     setFilteredPlaces(
-      places.filter((place) =>
-        bounds.contains({ lat: place.latitude, lng: place.longitude })
+      playgrounds.filter((place) =>
+        bounds.contains({
+          lat: Number(place.latitude),
+          lng: Number(place.longitude),
+        })
       )
     );
-  }, [places]);
+  }, [playgrounds]);
 
   const filterPlacesThrottled = useRef(throttle(filterPlaces, 500));
 
@@ -95,7 +96,12 @@ export default function MapPage() {
             <div className={styles.sidebarContainer}>
               <div className={styles.mobileHeaderWrapper}>
                 <h1 className={styles.wrapperHeading}>Майданчики поблизу</h1>
-                <div className={iconWrapperClass} onClick={handleSliderShow}>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  className={iconWrapperClass}
+                  onClick={handleSliderShow}
+                >
                   <HideMark />
                 </div>
               </div>
@@ -103,7 +109,9 @@ export default function MapPage() {
                 <PlaygroundsSlider
                   setChildClicked={setChildClicked}
                   markerIndex={markerIndex}
-                  playgrounds={filteredPlaces.length ? filteredPlaces : places}
+                  playgrounds={
+                    filteredPlaces.length ? filteredPlaces : playgrounds
+                  }
                 />
               </div>
             </div>
@@ -112,7 +120,7 @@ export default function MapPage() {
             <div className={styles.listWrapper}>
               <PlaygroundsList
                 playgrounds={
-                  filteredPlaces.length > 0 ? filteredPlaces : places
+                  filteredPlaces.length > 0 ? filteredPlaces : playgrounds
                 }
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
@@ -125,7 +133,7 @@ export default function MapPage() {
             apiKey={API_KEY}
             defaultZoom={DEFAULT_ZOOM}
             defaultCenter={DEFAULT_CENTER}
-            places={filteredPlaces.length > 0 ? filteredPlaces : places}
+            places={filteredPlaces.length > 0 ? filteredPlaces : playgrounds}
             childClicked={childClicked}
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
@@ -138,4 +146,14 @@ export default function MapPage() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.HOST}api/areas`);
+  const data = await res.json();
+  return {
+    props: {
+      playgrounds: data.areas,
+    },
+  };
 }

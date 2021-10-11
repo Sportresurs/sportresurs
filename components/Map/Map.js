@@ -83,6 +83,7 @@ export default function Map({
             lat={Number(searchPinCoords.lat)}
             lng={Number(searchPinCoords.lng)}
             isCourtMarker={false}
+            isClickable={false}
           />
         )}
       </GoogleMapReact>

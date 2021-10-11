@@ -1,26 +1,25 @@
 import data from "./testData/testArrs";
 
 export default function courtDataFinder(court) {
-  if (court.destination.length > 1) {
-    const districtLatin = data.courtsDistrict.find(
-      (el) => el.district === court.district
+  function getDistrictLatinName() {
+    return data.courtsDistrict.find((el) => el.district === court.district)
+      .latinName;
+  }
+  function getTypeLatinName() {
+    return data.groundTypes.find(
+      (el) => el.cirilicName === court.Purposes[0].title
     ).latinName;
+  }
+  const districtLatin = getDistrictLatinName();
+
+  if (court.Purposes.length > 1) {
     return { district: districtLatin, type: "MultiSelectCourt" };
   }
-  if (court.destination.length === 0) {
-    const districtLatin = data.courtsDistrict.find(
-      (el) => el.district === court.district
-    ).latinName;
-
+  if (court.Purposes.length === 0) {
     return { district: districtLatin, type: "WithoutTypeCourt" };
   }
-  if (court.destination.length === 1) {
-    const districtLatin = data.courtsDistrict.find(
-      (el) => el.district === court.district
-    ).latinName;
-    const typeLatin = data.groundTypes.find(
-      (el) => el.cirilicName === court.destination
-    );
+  if (court.Purposes.length === 1) {
+    const typeLatin = getTypeLatinName();
     return { district: districtLatin, type: typeLatin };
   }
   return { district: "Another", type: "WithoutTypeCourt" };
