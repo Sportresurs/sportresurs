@@ -147,6 +147,7 @@ function SearchSection() {
 
           <ul className={styles.btnList}>
             <Slider
+              arrayLength={4}
               isDots={false}
               slidesToShow={4}
               slidesToScroll={1}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
@@ -7,7 +7,8 @@ import Tag from "../Tag";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
-import placeholderImg from "../../public/img/court-placeholder.jpg";
+import getDistrictColor from "../../utils/getDistrictColor";
+import image from "../../public/img/playgroundPlaceholder.png";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -30,20 +31,29 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   }, [screenWidth, isActive, refProp]);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+  const color = getDistrictColor(playground.district);
+  // eslint-disable-next-line no-param-reassign
+  playground.images = [image, image, image, image]; // temporary measure while waiting for DB with images, now it's doesn't exsist
+
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
-          <Image src={placeholderImg} alt="court" layout="fill" />
+          <Image
+            className={styles.bgImage}
+            src={playground.images[0]}
+            alt=""
+            layout="fill"
+          />
         </div>
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground.color} text={playground.district} />
+          <Tag color={color} text={playground.district} />
         </div>
         <CourtCardInfo
           rating={playground.rating}
-          color={playground.color}
+          color={color}
           address={playground.address}
           courtNumber={playground.courtNumber}
           playground={playground}
@@ -54,6 +64,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
         />
       </div>
       <PlaygroundModal
+        color={color}
         visible={isModalShown}
         onClose={handleCloseModal}
         playground={playground}
@@ -66,7 +77,6 @@ PlaygroundItem.propTypes = {
   playground: PropTypes.object,
   isActive: PropTypes.bool,
   handleClick: PropTypes.func,
-  refProp: PropTypes.object,
 };
 
 export default PlaygroundItem;
