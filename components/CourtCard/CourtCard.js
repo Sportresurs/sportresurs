@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
-import cn from "classnames";
-import s from "./CourtCard.module.scss";
+import classNames from "classnames";
+import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
 import colorMatch from "../../utils/testData/testArrs";
 import CourtCardInfo from "../CourtCardInfo";
@@ -28,19 +28,20 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
 
   return (
     <>
-      <div className={cn(s.card, s[variant])}>
-        <div className={s.inner}>
-          <div className={s.district}>
+      <div className={classNames(styles.card, styles[variant])}>
+        <div className={styles.inner}>
+          <div className={styles.district}>
             <Tag text={district} color={color}></Tag>
           </div>
           <Image
+            className={styles.image}
             src={images ? images[0] : placeholderImg}
             alt="court"
             layout="fill"
           />
-          <p className={s.address}>{address}</p>
+          <p className={styles.address}>{address}</p>
         </div>
-        <div className={s.outer}>
+        <div className={styles.outer}>
           <CourtCardInfo
             courtNumber={courtNumber}
             address={address}

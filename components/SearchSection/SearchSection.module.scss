@@ -13,7 +13,6 @@
     display: block;
     margin-bottom: 32px;
     
-    text-align: center;
     color: $color-primary-dark;
     font-weight: 800;
     font-size: 44px;
@@ -245,38 +244,84 @@
     white-space: nowrap;
 }
 
-.btnList {
+.linkList {
     @extend %list;
-    max-width: 645px;
-
     display: flex;
     flex-wrap: wrap;
+}
 
-    @media screen and (max-width: 767px) {
-        margin: 0 auto;
-        max-width: 443px;
+.linkItem {
+    margin-right: 30px;
+
+    &:last-child {
+        margin-right: 0;
     }
 
-    @media screen and (max-width: 500px) {       
-        max-width: 375px;
-    }
-
-    @media screen and (max-width: 424px) {
-        max-width: 335px;
-    }
-
-    @media screen and (max-width: 374px) {
-        max-width: 293px;
+    @media screen and (max-width: 800px) {
+        margin-right: 12px;
     }
 }
 
-.sliderBox :global(.slick-slider) :global(.slick-list) {
-    @media screen and (max-width: 767px) {
-        margin: 0 -6px;
+.link {
+    display: inline-block;
+    padding: 12px 18px;
 
-        :global(.slick-track) {
-            :global(.slick-slide)>div {
-                padding: 0 6px;
+    font-size: 14px;
+    line-height: 1.29;
+    font-weight: 700;
+    color: $color-primary-light;
+    letter-spacing: 0.3px;
+
+    border-radius: 3px;
+    transition: background-color 200ms;
+
+    &.orange {
+        background-color: $color-accent-orange;
+    }
+    &.orange:hover {
+        background-color: $color-hover-orange;
+    }
+
+    &.green {
+        background-color: $color-accent-green;
+    }
+
+    &.green:hover {
+        background-color: $color-hover-green;
+    }
+
+    &.blue {
+        background-color: $color-accent-blue;
+    }
+
+    &.blue:hover {
+        background-color: $color-hover-blue;
+    }
+
+    &.lilac {
+        background-color: $color-accent-purple;
+    }
+
+    &.lilac:hover {
+        background-color: $color-hover-purple;
+    }
+
+
+}
+
+.sliderBox :global(.slick-slider) {
+    margin-right: -6px;
+
+    :global(.slick-list) {
+        width: 100%;
+
+        @media screen and (max-width: 1150px) {
+            margin: 0 -6px;
+
+            :global(.slick-track) {
+                :global(.slick-slide)>div {
+                    padding: 0 6px;
+                }
             }
         }
     }

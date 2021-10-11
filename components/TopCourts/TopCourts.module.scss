@@ -10,13 +10,11 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .title {
   margin-bottom: 15px;
 
-  text-align: center;
   font-weight: 700;
   font-size: 18px;
   line-height: 23px;
@@ -38,37 +36,32 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   max-width: 1110px;
-  width: 100%;
-  margin: -10px;
   margin: 0;
   padding: 0;
 
   list-style: none;
-
-  @media screen and (max-width: 1150px) {
-    max-width: 544px;
-  }
-
-  @media screen and (max-width: 630px) {
-    max-width: 257px;
-  }
 }
 
 .listItem {
-  @media screen and (min-width: 1151px) {
-    margin: 10px;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 
-.topCourtsSlider :global(.slick-slider) :global(.slick-list) {
-  @media screen and (min-width: 1151px) {
-    margin: 0;
+.topCourtsSlider :global(.slick-slider) {
+  margin-right: -12px;
+
+  :global(.slick-list) {
+    width: 100%;
+
+    margin: 0 -12px;
 
     :global(.slick-track) {
       :global(.slick-slide)>div {
-        padding: 0;
+        padding: 0 12px;
       }
     }
   }

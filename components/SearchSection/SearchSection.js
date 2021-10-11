@@ -8,11 +8,11 @@ import PlacesAutocomplete, {
 import classNames from "classnames/bind";
 import { LVIV_COORDINATES } from "../../utils/constants";
 import { Context } from "../../context";
-import Button from "../Button/Button";
 import styles from "./SearchSection.module.scss";
 import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
 import Slider from "../Slider";
+import useWindowSize from "../../utils/hooks/findWindowSize";
 
 const cx = classNames.bind(styles);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
@@ -22,6 +22,22 @@ function SearchSection() {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
   const { handleCoordinates, handleFilterData } = useContext(Context);
+  const size = useWindowSize();
+
+  const calculateWidth = (value) => {
+    let width = null;
+
+    if (value >= 601 && value <= 670) {
+      width = value * 0.88;
+    }
+    if (value <= 600) {
+      width = value * 0.9;
+    }
+
+    return width;
+  };
+
+  const widthOfContainer = calculateWidth(size.width);
 
   useEffect(() => window.google && setIsLoaded(true), []);
 
@@ -145,81 +161,113 @@ function SearchSection() {
             )}
           </form>
 
-          <ul className={styles.btnList}>
-            <Slider
-              isDots={false}
-              slidesToShow={4}
-              slidesToScroll={1}
-              isInfinite={true}
-              isVariableWidth={true}
-              withArrows={false}
-              classNameBox={styles.sliderBox}
-              responsive={[
-                {
-                  breakpoint: 767,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
+          <ul className={styles.linkList} style={{ width: widthOfContainer }}>
+            {size.width <= 670 && (
+              <Slider
+                isDots={false}
+                slidesToShow={4}
+                slidesToScroll={1}
+                isInfinite={true}
+                isVariableWidth={true}
+                withArrows={false}
+                arrayLength={4}
+                classNameBox={styles.sliderBox}
+                responsive={[
+                  {
+                    breakpoint: 671,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    },
                   },
-                },
-                {
-                  breakpoint: 500,
-                  settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                  },
-                },
-              ]}
-            >
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="orange"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterData}
-                  >
-                    Личаківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="green"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterData}
-                  >
-                    Шевченківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="blue"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterData}
-                  >
-                    Франківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="lilac"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterData}
-                  >
-                    Залізничний
-                  </Button>
-                </Link>
-              </li>
-            </Slider>
+                ]}
+              >
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "orange")}
+                      onClick={handleFilterData}
+                    >
+                      Личаківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "green")}
+                      onClick={handleFilterData}
+                    >
+                      Шевченківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "blue")}
+                      onClick={handleFilterData}
+                    >
+                      Франківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "lilac")}
+                      onClick={handleFilterData}
+                    >
+                      Залізничний
+                    </a>
+                  </Link>
+                </li>
+              </Slider>
+            )}
+            {size.width >= 671 && (
+              <>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "orange")}
+                      onClick={handleFilterData}
+                    >
+                      Личаківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "green")}
+                      onClick={handleFilterData}
+                    >
+                      Шевченківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "blue")}
+                      onClick={handleFilterData}
+                    >
+                      Франківський
+                    </a>
+                  </Link>
+                </li>
+                <li className={styles.linkItem}>
+                  <Link href="/map" passHref>
+                    <a
+                      className={cx("link", "lilac")}
+                      onClick={handleFilterData}
+                    >
+                      Залізничний
+                    </a>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </section>
