@@ -16,6 +16,12 @@ import useWindowSize from "../../utils/hooks/findWindowSize";
 
 const cx = classNames.bind(styles);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const districtsLink = [
+  { district: "Личаківський", color: "orange" },
+  { district: "Шевченківський", color: "green" },
+  { district: "Франківський", color: "blue" },
+  { district: "Залізничний", color: "lilac" },
+];
 
 function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -146,6 +152,8 @@ function SearchSection() {
                 </div>
                 <Link href="/map">
                   <a
+                    role="link"
+                    tabIndex={0}
                     className={cx("formBtn", {
                       disabled: !address,
                     })}
@@ -182,90 +190,38 @@ function SearchSection() {
                   },
                 ]}
               >
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "orange")}
-                      onClick={handleFilterData}
-                    >
-                      Личаківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "green")}
-                      onClick={handleFilterData}
-                    >
-                      Шевченківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "blue")}
-                      onClick={handleFilterData}
-                    >
-                      Франківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "lilac")}
-                      onClick={handleFilterData}
-                    >
-                      Залізничний
-                    </a>
-                  </Link>
-                </li>
+                {districtsLink.map(({ district, color }) => (
+                  <li key={district} className={styles.linkItem}>
+                    <Link href="/map" passHref>
+                      <a
+                        role="link"
+                        tabIndex={0}
+                        className={cx("link", color)}
+                        onClick={handleFilterData}
+                      >
+                        {district}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
               </Slider>
             )}
             {size.width >= 671 && (
               <>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "orange")}
-                      onClick={handleFilterData}
-                    >
-                      Личаківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "green")}
-                      onClick={handleFilterData}
-                    >
-                      Шевченківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "blue")}
-                      onClick={handleFilterData}
-                    >
-                      Франківський
-                    </a>
-                  </Link>
-                </li>
-                <li className={styles.linkItem}>
-                  <Link href="/map" passHref>
-                    <a
-                      className={cx("link", "lilac")}
-                      onClick={handleFilterData}
-                    >
-                      Залізничний
-                    </a>
-                  </Link>
-                </li>
+                {districtsLink.map(({ district, color }) => (
+                  <li key={district} className={styles.linkItem}>
+                    <Link href="/map" passHref>
+                      <a
+                        role="link"
+                        tabIndex={0}
+                        className={cx("link", color)}
+                        onClick={handleFilterData}
+                      >
+                        {district}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
               </>
             )}
           </ul>
