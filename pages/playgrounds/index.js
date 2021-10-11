@@ -28,7 +28,7 @@ export default function Playgrounds({ playgrounds }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/areas");
+  const res = await fetch(process.env.HOST_playgrounds);
   const data = await res.json();
   return {
     props: {

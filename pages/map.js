@@ -27,7 +27,6 @@ export default function MapPage({ playgrounds }) {
   const [childClicked, setChildClicked] = useState(null);
   const [markerIndex, setMarkerIndex] = useState(0);
   const [sliderOpen, setSliderOpen] = useState(true);
-  const [places] = useState(playgrounds);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
 
   useEffect(
@@ -45,14 +44,14 @@ export default function MapPage({ playgrounds }) {
 
     const bounds = mapRef.current.getBounds();
     setFilteredPlaces(
-      places.filter((place) =>
+      playgrounds.filter((place) =>
         bounds.contains({
           lat: Number(place.latitude),
           lng: Number(place.longitude),
         })
       )
     );
-  }, [places]);
+  }, [playgrounds]);
 
   const filterPlacesThrottled = useRef(throttle(filterPlaces, 500));
 
@@ -110,7 +109,9 @@ export default function MapPage({ playgrounds }) {
                 <PlaygroundsSlider
                   setChildClicked={setChildClicked}
                   markerIndex={markerIndex}
-                  playgrounds={filteredPlaces.length ? filteredPlaces : places}
+                  playgrounds={
+                    filteredPlaces.length ? filteredPlaces : playgrounds
+                  }
                 />
               </div>
             </div>
@@ -119,7 +120,7 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.listWrapper}>
               <PlaygroundsList
                 playgrounds={
-                  filteredPlaces.length > 0 ? filteredPlaces : places
+                  filteredPlaces.length > 0 ? filteredPlaces : playgrounds
                 }
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
@@ -132,7 +133,7 @@ export default function MapPage({ playgrounds }) {
             apiKey={API_KEY}
             defaultZoom={DEFAULT_ZOOM}
             defaultCenter={DEFAULT_CENTER}
-            places={filteredPlaces.length > 0 ? filteredPlaces : places}
+            places={filteredPlaces.length > 0 ? filteredPlaces : playgrounds}
             childClicked={childClicked}
             setChildClicked={setChildClicked}
             onLoad={onMapLoaded}
@@ -148,7 +149,7 @@ export default function MapPage({ playgrounds }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(process.env.PLAUGROUNDS_HOST);
+  const res = await fetch(process.env.HOST_playgrounds);
   const data = await res.json();
   return {
     props: {
