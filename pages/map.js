@@ -149,7 +149,7 @@ export default function MapPage({ playgrounds }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(process.env.HOST_playgrounds);
+  const res = await fetch(`${process.env.HOST}api/areas`);
   const data = await res.json();
   return {
     props: {
