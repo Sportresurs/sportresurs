@@ -1,18 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Dialog from "../Dialog";
 import Button from "../Button";
 import styles from "./DeleteDialog.module.scss";
 import Basket from "../../public/svg/basket.svg";
+import WarningIcon from "../../public/svg/warningIcon.svg";
+import deleteDialogTypes from "../../utils/deleteDialogTypes";
 
-const DeleteDialog = ({ visible, shouldLockScreen, onClose }) => (
+const DeleteDialog = ({
+  variant = "deletePost",
+  visible,
+  onCancel,
+  shouldLockScreen,
+  onClose,
+  forAdminLogOut,
+}) => (
   <Dialog
     shouldLockScreen={shouldLockScreen}
     visible={visible}
-    info="Ви впевнені, що хочете видалити цей пост?"
-    iconRender={() => <Basket />}
+    info={deleteDialogTypes[variant]}
+    iconRender={() => (forAdminLogOut ? <WarningIcon /> : <Basket />)}
     buttonsRender={() => (
       <>
-        <Button variant={"white"} size={"medium"} onClick={onClose}>
+        <Button variant={"white"} size={"medium"} onClick={onCancel || onClose}>
           Відмінити
         </Button>
         <Button
@@ -21,12 +31,24 @@ const DeleteDialog = ({ visible, shouldLockScreen, onClose }) => (
           className={styles.deleteBtn}
           onClick={onClose}
         >
-          Видалити
+          {forAdminLogOut ? "Вийти" : "Видалити"}
         </Button>
       </>
     )}
-    onClose={onClose}
+    onClose={onCancel || onClose}
   />
 );
+
+DeleteDialog.propTypes = {
+  variant: PropTypes.oneOf([
+    "deleteCourt",
+    "deletePost",
+    "deleteAdmin",
+    "closeCourt",
+    "adminLogout",
+  ]),
+  forAdminLogOut: PropTypes.bool,
+  onCancel: PropTypes.func,
+};
 
 export default DeleteDialog;

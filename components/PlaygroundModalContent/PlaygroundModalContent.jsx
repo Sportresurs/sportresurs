@@ -22,27 +22,31 @@ const PlaygroundModalContent = ({ playground, color }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        <Slider
-          slidesToShow={1}
-          slidesToScroll={1}
-          withArrows={true}
-          isModal={true}
-          classNameBox={styles.sliderBox}
-          classNameDots={styles.dots}
-          classNameDotsModal={styles.modalDots}
-          isArrowColorBlack={false}
-          arrayLength={playground.images.length}
-        >
-          {playground.images.map((img, i) => (
-            <Image
-              className={styles.bgImage}
-              src={img}
-              alt=""
-              layout="responsive"
-              key={i}
-            />
-          ))}
-        </Slider>
+        {playground.images ? (
+          <Slider
+            slidesToShow={1}
+            slidesToScroll={1}
+            withArrows={true}
+            isModal={true}
+            classNameBox={styles.sliderBox}
+            classNameDots={styles.dots}
+            classNameDotsModal={styles.modalDots}
+            isArrowColorBlack={false}
+            arrayLength={playground.images.length}
+          >
+            {playground.images.map((img, i) => (
+              <Image
+                className={styles.bgImage}
+                src={img}
+                alt=""
+                layout="responsive"
+                key={i}
+              />
+            ))}
+          </Slider>
+        ) : (
+          <div className={styles.plImage}></div>
+        )}
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
