@@ -5,13 +5,13 @@ import { sendRequest } from "../../utils/emailSender";
 
 const handler = nc().post(async (req, res) => {
   try {
-    const { name, phone, info } = req.body;
+    const { name, phone, details } = req.body;
     const newRequest = await Request.create({
       name,
       phone,
-      info,
+      details,
     });
-    sendRequest(name, phone, info);
+    sendRequest(name, phone, details);
     res.status(201).json(newRequest);
   } catch (err) {
     res.json(err);

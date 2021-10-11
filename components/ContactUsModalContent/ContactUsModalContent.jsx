@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
+import axios from "axios";
 import Input from "../Input/Input";
 import Button from "../Button";
 import styles from "./ContactUsModalContent.module.scss";
 import BasketballIcon from "../../public/assets/images/basketball.svg";
 import validation from "./CustomValidationSchema";
-import customerService from "../../api/customerService";
 
 const ContactUsModalContent = ({ onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      await customerService.contactRequest(values);
+      await axios.post("/api/request", values);
       onSuccess();
     } finally {
       setLoading(false);
