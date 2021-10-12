@@ -12,7 +12,7 @@ const ContactUsModalContent = ({ onClose, onSuccess }) => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      await axios.post("/api/request", values);
+      await axios.post(`${process.env.NEXT_PUBLIC_HOST}api/request`, values);
       onSuccess();
     } finally {
       setLoading(false);
