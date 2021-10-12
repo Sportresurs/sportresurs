@@ -31,7 +31,7 @@ export default function Playgrounds({ playgrounds }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.HOST}api/areas`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/areas`);
   const data = await res.json();
   return {
     props: {

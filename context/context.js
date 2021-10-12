@@ -19,11 +19,11 @@ const ContextProvider = ({ children }) => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/areas/filter-fields`,
+      url: `${process.env.NEXT_PUBLIC_HOST}api/areas/filter-fields`,
     }).then(({ data }) => setFilterFields(data));
     axios({
       method: "GET",
-      url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
+      url: `${process.env.NEXT_PUBLIC_HOST}api/areas`,
     }).then(({ data }) => setAreas(data.areas));
   }, []);
 

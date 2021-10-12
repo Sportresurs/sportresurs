@@ -51,7 +51,7 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
     if (!filters.array.length && filters.rating.value === 0) {
       axios({
         method: "GET",
-        url: `${process.env.NEXT_PUBLIC_API_URL}/areas`,
+        url: `${process.env.NEXT_PUBLIC_HOST}api/areas`,
       }).then(({ data }) => setAreas(data.areas));
     }
     getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
