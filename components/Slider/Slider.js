@@ -170,7 +170,6 @@ SlickSlider.propTypes = {
   isAutoplay: PropTypes.oneOf([true, false]),
   autoplaySpeed: PropTypes.number,
   slideIndex: PropTypes.number,
-  isArrows: PropTypes.oneOf([true, false]).isRequired,
   withArrows: PropTypes.oneOf([true, false]).isRequired,
   isModal: PropTypes.oneOf([true, false]).isRequired,
   isArrowColorBlack: PropTypes.oneOf([true, false]),

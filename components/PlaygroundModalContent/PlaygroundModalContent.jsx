@@ -7,17 +7,18 @@ import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
 import Slider from "../Slider";
+import placeholderImage from "../../public/img/placeholderImgModal.png";
 
-const PlaygroundModalContent = ({ playground }) => {
+const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
     { label: "Тип майданчика", field: "type" },
     { label: "Призначення", field: "purpose" },
-    { label: "Метраж", field: "area" },
-    { label: "Покриття", field: "covering" },
+    { label: "Метраж", field: "size" },
+    { label: "Покриття", field: "coating" },
     { label: "Доступ", field: "access" },
-    { label: "Час роботи", field: "opening" },
-    { label: "Освітлення", field: "lighting" },
-    { label: "Додатково", field: "additionally" },
+    { label: "Час роботи", field: "open_time" },
+    { label: "Освітлення", field: "light" },
+    { label: "Додатково", field: "additional" },
   ];
   return (
     <div className={styles.wrapper}>
@@ -45,20 +46,20 @@ const PlaygroundModalContent = ({ playground }) => {
             ))}
           </Slider>
         ) : (
-          <div className={styles.plImage}></div>
+          <Image
+            src={placeholderImage}
+            alt="placeholderImg"
+            layout="responsive"
+          ></Image>
         )}
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground.color} text={playground.district} />
+          <Tag color={color} text={playground.district} />
         </div>
         <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings
-          color={playground.color}
-          readOnly={true}
-          value={playground.rating}
-        />
+        <Ratings color={color} readOnly={true} value={playground.rating} />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, field }) => (
             <PlaygroundInfoRow
