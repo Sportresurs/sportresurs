@@ -11,14 +11,25 @@ import placeholderImage from "../../public/img/placeholderImgModal.png";
 
 const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
-    { label: "Тип майданчика", field: "type" },
-    { label: "Призначення", field: "purpose" },
-    { label: "Метраж", field: "size" },
-    { label: "Покриття", field: "coating" },
-    { label: "Доступ", field: "access" },
-    { label: "Час роботи", field: "open_time" },
-    { label: "Освітлення", field: "light" },
-    { label: "Додатково", field: "additional" },
+    { label: "Тип майданчика", value: playground.type },
+    {
+      label: "Призначення",
+      value: playground.Purposes.map((purpose, index, arr) =>
+        index === arr.length - 1 ? purpose.title : `${purpose.title}, `
+      ),
+    },
+    { label: "Метраж", value: playground.size },
+    { label: "Покриття", value: playground.coating },
+    { label: "Доступ", value: playground.access },
+    {
+      label: "Час роботи",
+      value: `${playground.open_time.substring(
+        0,
+        5
+      )} - ${playground.close_time.substring(0, 5)}`,
+    },
+    { label: "Освітлення", value: playground.light ? "є" : "немає" },
+    { label: "Додатково", value: playground.additional },
   ];
   return (
     <div className={styles.wrapper}>
@@ -57,16 +68,12 @@ const PlaygroundModalContent = ({ playground, color }) => {
         <div className={styles.tagBtn}>
           <Tag color={color} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
+        <h1 className={styles.heading}>Майданчик № {playground.number}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
         <Ratings color={color} readOnly={true} value={playground.rating} />
         <div className={styles.infoWrapper}>
-          {playgroundInfoFields.map(({ label, field }) => (
-            <PlaygroundInfoRow
-              key={field}
-              label={label}
-              value={playground[field]}
-            />
+          {playgroundInfoFields.map(({ label, value }) => (
+            <PlaygroundInfoRow key={value} label={label} value={value} />
           ))}
         </div>
         <div className={styles.contactBtn}>
