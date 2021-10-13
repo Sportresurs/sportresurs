@@ -14,9 +14,6 @@ export default function News({ isAdmin }) {
   const calculateWidth = (value) => {
     let width = null;
 
-    if (value >= 1001 && value <= 1149) {
-      width = 820;
-    }
     if (value >= 901 && value <= 1149) {
       width = value * 0.82;
     }

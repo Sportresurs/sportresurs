@@ -8,9 +8,7 @@ export default function TopCourts({ courtList }) {
 
   const calculateWidth = (value) => {
     let width = null;
-    if (value >= 1001 && value <= 1150) {
-      width = 820;
-    }
+
     if (value >= 901 && value <= 1000) {
       width = value * 0.82;
     }
