@@ -5,14 +5,14 @@ import checkAuthAdmin from "../../../middleware/checkAuthAdmin";
 
 const handler = nc()
   .use(checkAuthAdmin)
-  .delete(async (req, res) => {
+  .patch(async (req, res) => {
     try {
-      const { email } = req.body;
-      const candidate = await User.findOne({ where: { email } });
+      const { id } = req.query;
+      const candidate = await User.findOne({ where: { id } });
       if (!candidate) {
         return res.status(409).send("This email does not exist!");
       }
-      await User.destroy({ where: { email } });
+      await User.update({ status: "deleted" }, { where: { id } });
       return res.status(200).send("Admin successfully deleted!");
     } catch (err) {
       captureException(err);
