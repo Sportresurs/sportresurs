@@ -5,6 +5,7 @@ import { Grid } from "../../components/Grid";
 import styles from "./Home.module.scss";
 import SearchSection from "../../components/SearchSection";
 import News from "../../components/News";
+import AdminPlaygroundModal from "../../components/AdminPlaygroundModal";
 
 export default function Home() {
   const playgrounds = [
@@ -85,6 +86,7 @@ export default function Home() {
       <Grid>
         <SearchSection />
         <TopCourts courtList={playgrounds} />
+        <AdminPlaygroundModal visible={true} />
         <About />
         <News />
       </Grid>

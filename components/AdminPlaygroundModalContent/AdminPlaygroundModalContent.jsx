@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Formik } from "formik";
+import classNames from "classnames";
+import PropTypes from "prop-types";
 import styles from "./AdminPlaygroundModalContent.module.scss";
+import Spinner from "../Spinner";
 import Ratings from "../Rating";
 import Input from "../Input";
 import Button from "../Button";
@@ -9,27 +13,58 @@ import MultiSelect from "../MultiSelect";
 import CustomDropzone from "../CustomDropzone";
 import validation from "../../validationSchemas/AddCourtValidationSchema";
 import options from "../../utils/testData/testArrs";
-import customerService from "../../api/customerService";
+import useAsyncData from "../../utils/hooks/useAsyncData";
+import playgroundService from "../../api/playgroundService";
 
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState([]);
+  const [onFocus, setOnFocus] = useState(false);
+  const { data: purposesOptions, isLoading: isInitialDataLoading } =
+    useAsyncData(playgroundService.getPurposes);
+  const handleFocus = (e) => {
+    if (e.currentTarget === e.target) {
+      setOnFocus(true);
+    } else {
+      setOnFocus(true);
+    }
+  };
+  const handleBlur = (e) => {
+    if (e.currentTarget === e.target) {
+      setOnFocus(false);
+    } else {
+      setOnFocus(false);
+    }
+  };
+  const wrapperTimeContainerStyles = classNames(styles.timeWrapper, {
+    [styles.timeWrapperFocus]: onFocus,
+  });
   const handleSubmit = async (values) => {
+    setIsLoading(true);
     const formData = new FormData();
     Object.keys(values).forEach((key) => {
       let value = values[key];
+      if (key === "type" || key === "access") {
+        value = value.toLowerCase();
+      }
+      if (key === "openTime" || key === "closeTime") {
+        value = `${value}:00`;
+      }
       if (Array.isArray(value)) {
         value = value.map((i) => i.value);
       }
-      formData.append(key, value);
+      formData.set(key, value);
     });
-    formData.append(
-      "images",
-      files.map(({ file }) => file)
-    );
-    setIsLoading(true);
+    files.forEach((file) => {
+      formData.append("images", file.file);
+    });
     try {
-      await customerService.contactRequest(formData);
+      await axios({
+        method: "POST",
+        url: "http://localhost:3000/api/playground",
+        headers: { "Content-Type": "form/multipart" },
+        data: formData,
+      });
       onSuccess();
     } finally {
       setIsLoading(false);
@@ -38,181 +73,208 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   };
   const getFormikErrorByField = (formik, fieldName) =>
     (formik.touched[fieldName] && formik.errors[fieldName]) || "";
+  const contentClassesWrapper = classNames(styles.contentWrapper, {
+    [styles.loadingContentWrapper]: isInitialDataLoading,
+  });
   return (
     <div className={styles.wrapper}>
       <div className={styles.imagesWrapper}>
         <CustomDropzone files={files} setFiles={setFiles} />
       </div>
-      <div className={styles.contentWrapper}>
-        <h1 className={styles.heading}>Майданчик № </h1>
-        <Formik
-          initialValues={{
-            number: "",
-            district: "",
-            address: "",
-            latitude: "",
-            longitude: "",
-            type: "",
-            purpose: [],
-            area: "",
-            covering: "",
-            access: "",
-            opening: "00:00 - 00:00",
-            lighting: "",
-            details: "",
-            rating: null,
-          }}
-          validationSchema={validation}
-          onSubmit={handleSubmit}
-        >
-          {(formik) => {
-            const purposeField = formik.getFieldProps("purpose");
-            purposeField.onChange = (value) => {
-              formik.setFieldValue("purpose", value);
-            };
-            return (
-              <form onSubmit={formik.handleSubmit}>
-                <Input
-                  className={styles.input}
-                  label="Номер майданчику"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `number`)}
-                  {...formik.getFieldProps("number")}
-                />
-                <Select
-                  type="form"
-                  options={options.districts}
-                  defaultValue={options.districts[0]}
-                  label="Район"
-                  labelSize="smallLabel"
-                  {...formik.getFieldProps("district")}
-                />
-                <Input
-                  className={styles.input}
-                  label="Адреса"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `address`)}
-                  {...formik.getFieldProps("address")}
-                />
-                <Input
-                  className={styles.input}
-                  label="широта"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `latitude`)}
-                  {...formik.getFieldProps("latitude")}
-                />
-                <Input
-                  className={styles.input}
-                  label="Довгота"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `longitude`)}
-                  {...formik.getFieldProps("longitude")}
-                />
-                <Select
-                  type="form"
-                  options={options.typeOptions}
-                  label="Тип майданчика"
-                  defaultValue={options.typeOptions[0].value}
-                  labelSize="smallLabel"
-                  {...formik.getFieldProps("type")}
-                />
-                <MultiSelect
-                  placeholderColor="#150223"
-                  placeholderFontSize="14px"
-                  type="Призначення"
-                  data={options.courtsType.map((item) => ({
-                    label: item,
-                    value: item,
-                  }))}
-                  multiSelectType="form"
-                  className={styles.input}
-                  {...purposeField}
-                />
-                <Input
-                  className={styles.input}
-                  label="Метраж"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `area`)}
-                  {...formik.getFieldProps("area")}
-                />
-                <Input
-                  className={styles.input}
-                  label="Покриття"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `covering`)}
-                  {...formik.getFieldProps("covering")}
-                />
-                <Select
-                  type="form"
-                  options={options.accessOptions}
-                  defaultValue={options.accessOptions[0].value}
-                  label="Доступ"
-                  labelSize="smallLabel"
-                  {...formik.getFieldProps("access")}
-                />
-                <Input
-                  className={styles.input}
-                  label="часи роботи"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `opening`)}
-                  {...formik.getFieldProps("opening")}
-                />
-                <Select
-                  type="form"
-                  options={options.lightingOptions}
-                  defaultValue={options.lightingOptions[0].value}
-                  label="Освітлення"
-                  labelSize="smallLabel"
-                  {...formik.getFieldProps("lighting")}
-                />
-                <Input
-                  className={styles.input}
-                  label="Додатково"
-                  as="textarea"
-                  size="small"
-                  labelSize="smallLabel"
-                  inputSize="form"
-                  errorStyle="formErrorIcon"
-                  errorMessage={getFormikErrorByField(formik, `details`)}
-                  {...formik.getFieldProps("details")}
-                />
-                <p className={styles.inputInfo}>Рейтинг</p>
-                <Ratings
-                  color="black"
-                  readOnly={false}
-                  value={formik.initialValues.rating}
-                  {...formik.getFieldProps("rating")}
-                />
-                <Button
-                  type="submit"
-                  variant="lilac"
-                  size="medium-dense"
-                  className={styles.submitButton}
-                  isLoading={isLoading}
-                >
-                  Зберегти
-                </Button>
-              </form>
-            );
-          }}
-        </Formik>
+      <div className={contentClassesWrapper}>
+        {isInitialDataLoading ? (
+          <div>
+            <Spinner color="red" size="100px" />
+          </div>
+        ) : (
+          <>
+            <h1 className={styles.heading}>Майданчик № </h1>
+            <Formik
+              initialValues={{
+                number: "",
+                district: options.districts[0].value,
+                address: "",
+                latitude: "",
+                longitude: "",
+                type: options.typeOptions[0].value,
+                purpose: [],
+                area: "",
+                coating: "",
+                access: options.accessOptions[0].value,
+                openTime: "00:00",
+                closeTime: "00:00",
+                light: options.lightingOptions[0].value,
+                additional: "",
+                rating: 0.0,
+              }}
+              validationSchema={validation}
+              onSubmit={handleSubmit}
+            >
+              {(formik) => {
+                const purposeField = formik.getFieldProps("purpose");
+                purposeField.onChange = (value) => {
+                  formik.setFieldValue("purpose", value);
+                };
+                return (
+                  <form onSubmit={formik.handleSubmit}>
+                    <Input
+                      className={styles.input}
+                      label="Номер майданчику"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `number`)}
+                      {...formik.getFieldProps("number")}
+                    />
+                    <Select
+                      type="form"
+                      options={options.districts}
+                      label="Район"
+                      labelSize="smallLabel"
+                      {...formik.getFieldProps("district")}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="Адреса"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `address`)}
+                      {...formik.getFieldProps("address")}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="широта"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `latitude`)}
+                      {...formik.getFieldProps("latitude")}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="Довгота"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `longitude`)}
+                      {...formik.getFieldProps("longitude")}
+                    />
+                    <Select
+                      type="form"
+                      options={options.typeOptions}
+                      label="Тип майданчика"
+                      labelSize="smallLabel"
+                      {...formik.getFieldProps("type")}
+                    />
+                    <MultiSelect
+                      placeholderColor="#150223"
+                      placeholderFontSize="14px"
+                      type="Призначення"
+                      options={purposesOptions.map((item) => ({
+                        label: item.title,
+                        value: item.id,
+                      }))}
+                      multiSelectType="form"
+                      className={styles.input}
+                      {...purposeField}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="Метраж"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `area`)}
+                      {...formik.getFieldProps("area")}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="Покриття"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `coating`)}
+                      {...formik.getFieldProps("coating")}
+                    />
+                    <Select
+                      type="form"
+                      options={options.accessOptions}
+                      label="Доступ"
+                      labelSize="smallLabel"
+                      {...formik.getFieldProps("access")}
+                    />
+                    <p className={styles.timeLabel}>часи роботи</p>
+                    <div
+                      className={wrapperTimeContainerStyles}
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
+                    >
+                      <input
+                        type="time"
+                        min="00:00"
+                        max="24:00"
+                        className={styles.open}
+                        {...formik.getFieldProps("openTime")}
+                      />
+                      <nobr> -</nobr>
+                      <input
+                        type="time"
+                        min="00:00"
+                        max="24:00"
+                        className={styles.close}
+                        {...formik.getFieldProps("closeTime")}
+                      />
+                      <div className={styles.clockClose} />
+                    </div>
+                    <Select
+                      type="form"
+                      options={options.lightingOptions}
+                      label="Освітлення"
+                      labelSize="smallLabel"
+                      {...formik.getFieldProps("light")}
+                    />
+                    <Input
+                      className={styles.input}
+                      label="Додатково"
+                      as="textarea"
+                      size="small"
+                      labelSize="smallLabel"
+                      inputSize="form"
+                      errorStyle="formErrorIcon"
+                      errorMessage={getFormikErrorByField(formik, `additional`)}
+                      {...formik.getFieldProps("additional")}
+                    />
+                    <p className={styles.inputInfo}>Рейтинг</p>
+                    <Ratings
+                      color="black"
+                      readOnly={false}
+                      value={formik.initialValues.rating}
+                      {...formik.getFieldProps("rating")}
+                    />
+                    <Button
+                      type="submit"
+                      variant="lilac"
+                      size="medium-dense"
+                      className={styles.submitButton}
+                      isLoading={isLoading}
+                    >
+                      Зберегти
+                    </Button>
+                  </form>
+                );
+              }}
+            </Formik>
+          </>
+        )}
       </div>
     </div>
   );
+};
+
+AdminPlaygroundModalContent.propTypes = {
+  onClose: PropTypes.func,
+  onSuccess: PropTypes.func,
 };
 
 export default AdminPlaygroundModalContent;

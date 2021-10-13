@@ -18,6 +18,15 @@
   box-sizing: border-box;
   padding: 18px 15px 0;
 }
+.loadingContentWrapper {
+  flex: 1 1 50%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .heading {
   font-size: 36px;
   line-height: 56px;
@@ -39,4 +48,51 @@
 }
 .submitButton {
   margin: 30px 0 18px;
+}
+.timeWrapper {
+  max-width: 492px;
+  margin-bottom: 12px;
+  height: 42px;
+  padding: 11px 13.5px 12px 10px;
+  font-weight: 400;
+  background-color: $color-primary-light;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+  position: relative;
+}
+.timeWrapperFocus {
+  border: 1px solid $color-form-blue;
+}
+.timeLabel {
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+  margin-bottom: 5px;
+}
+.open {
+  margin-right: -30px;
+  border: none;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+.close {
+  border: none;
+  padding-left: 5px;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+.clockClose {
+  height: 30px;
+  width: 45px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 125px;
+  z-index: 2;
 }

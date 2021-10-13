@@ -523,8 +523,8 @@ const accessOptions = [
   { label: "Платний", value: "Платний" },
 ];
 const lightingOptions = [
-  { label: "Є", value: "Є" },
-  { label: "Відсутнє", value: "Відсутнє" },
+  { label: "Є", value: true },
+  { label: "Відсутнє", value: false },
 ];
 
 export default {
