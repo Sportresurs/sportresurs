@@ -30,21 +30,6 @@ function SearchSection() {
   const { handleCoordinates, handleFilterData } = useContext(Context);
   const size = useWindowSize();
 
-  const calculateWidth = (value) => {
-    let width = null;
-
-    if (value >= 601 && value <= 670) {
-      width = value * 0.88;
-    }
-    if (value <= 600) {
-      width = value * 0.9;
-    }
-
-    return width;
-  };
-
-  const widthOfContainer = calculateWidth(size.width);
-
   useEffect(() => window.google && setIsLoaded(true), []);
 
   const handleInputClear = () => {
@@ -169,7 +154,7 @@ function SearchSection() {
             )}
           </form>
 
-          <ul className={styles.linkList} style={{ width: widthOfContainer }}>
+          <ul className={styles.linkList}>
             {size.width <= 670 && (
               <Slider
                 isDots={false}

@@ -15,8 +15,17 @@
   align-items: center;
   max-width: 1110px;
 
-  @media screen and (max-width: 1150px) {
+  @media screen and (max-width: 1149px) {
     max-width: 820px;
+  }
+  @media screen and (max-width: 900px) {
+    max-width: calc(100vw * 0.86);
+  }
+  @media screen and (max-width: 750px) {
+    max-width: calc(100vw * 0.88);
+  }
+  @media screen and (max-width: 600px) {
+    max-width: calc(100vw * 0.9);
   }
 }
 

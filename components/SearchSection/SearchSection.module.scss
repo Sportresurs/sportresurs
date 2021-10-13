@@ -248,6 +248,14 @@
     @extend %list;
     display: flex;
     flex-wrap: wrap;
+
+    @media screen and (max-width: 670px) {
+        max-width: calc(100vw * 0.88);
+    }
+
+    @media screen and (max-width: 600px) {
+        max-width: calc(100vw * 0.9);
+    }
 }
 
 .linkItem {

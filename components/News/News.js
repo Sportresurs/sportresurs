@@ -5,32 +5,9 @@ import useColorLoop from "../../utils/hooks/useColorLoop";
 import DeleteDialog from "../DeleteDialog";
 import Slider from "../Slider";
 import useFetchData from "../../utils/hooks/useFetchData";
-import useWindowSize from "../../utils/hooks/findWindowSize";
 
 export default function News({ isAdmin }) {
   const [itemToRemove, setItemToRemove] = useState(null);
-  const size = useWindowSize();
-
-  const calculateWidth = (value) => {
-    let width = null;
-
-    if (value >= 901 && value <= 1149) {
-      width = value * 0.82;
-    }
-    if (value >= 751 && value <= 900) {
-      width = value * 0.86;
-    }
-    if (value >= 601 && value <= 750) {
-      width = value * 0.88;
-    }
-    if (value <= 600) {
-      width = value * 0.9;
-    }
-
-    return width;
-  };
-
-  const widthOfContainer = calculateWidth(size.width);
 
   const handleDeleteDialogOpen = (item) => {
     setItemToRemove(item);
@@ -47,12 +24,12 @@ export default function News({ isAdmin }) {
       <div className={styles.titleContainer} id="navigateToNews">
         <h2 className={styles.title}>Новини</h2>
       </div>
-      <div className={styles.containerList} style={{ width: widthOfContainer }}>
+      <div className={styles.containerList}>
         <Slider
           slidesToShow={3}
           slidesToScroll={3}
           isInfinite={true}
-          isAutoplay={false}
+          isAutoplay={true}
           withArrows={false}
           isModal={false}
           isVariableWidth={true}

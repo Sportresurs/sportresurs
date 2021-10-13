@@ -44,6 +44,18 @@
   @media screen and (max-width: 1150px) {
     max-width: 820px;
   }
+  @media screen and (max-width: 1000px) {
+    max-width: calc(100vw * 0.82);
+  }
+  @media screen and (max-width: 900px) {
+    max-width: calc(100vw * 0.86);
+  }
+  @media screen and (max-width: 750px) {
+    max-width: calc(100vw * 0.88);
+  }
+  @media screen and (max-width: 600px) {
+    max-width: calc(100vw * 0.9);
+  }
 }
 
 .listItem {
