@@ -8,6 +8,9 @@ const handler = nc()
   .get(async (req, res) => {
     try {
       const admins = await User.findAll();
+      if (admins.length === 0) {
+        return res.status(404).send("The list of admins is empty!");
+      }
       return res.status(200).json(admins);
     } catch (err) {
       captureException(err);
