@@ -5,12 +5,36 @@ export default function MapMarkerWrapper({
   lng,
   key,
   typeOfCourt,
-  bgColor,
+  district,
   className,
+  isCourtMarker,
+  setMarkerIndex,
+  indexMarker,
+  setSliderOpen,
+  isClickable = true,
 }) {
+  const index = indexMarker;
   return (
-    <div lat={lat} lng={lng} key={key} className={className}>
-      <Marker typeOfCourt={typeOfCourt} bgColor={bgColor} />
+    <div
+      onClick={() => {
+        if (isClickable) {
+          setSliderOpen(true);
+          setMarkerIndex(index);
+        }
+        return null;
+      }}
+      lat={lat}
+      lng={lng}
+      key={key}
+      className={className}
+      role="button"
+      tabIndex={0}
+    >
+      <Marker
+        typeOfCourt={typeOfCourt}
+        district={district}
+        isCourtMarker={isCourtMarker}
+      />
     </div>
   );
 }

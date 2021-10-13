@@ -5,7 +5,7 @@
     width: 100%;
     background-color: $color-primary-dark;
 
-    z-index: 5;
+    z-index: 6;
 }
 
 .nav {
@@ -158,8 +158,16 @@
         margin-right: 39px;
     }
 
+    &:nth-child(1).active {
+        color: $color-accent-blue;
+    }
+
     &:nth-child(1):hover {
         color: $color-accent-blue;
+    }
+
+    &:nth-child(2).active {
+        color: $color-accent-green;
     }
 
     &:nth-child(2):hover {

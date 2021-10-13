@@ -3,26 +3,22 @@ import Image from "next/image";
 import cn from "classnames";
 import s from "./CourtCard.module.scss";
 import Tag from "../Tag";
-import placeholderImg from "../../public/img/court-placeholder.jpg";
-import colorMatch from "../../utils/testData/testArrs";
 import CourtCardInfo from "../CourtCardInfo";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
+import getDistrictColor from "../../utils/getDistrictColor";
+import placeholderImg from "../../public/img/placeholderImgCard.png";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
     district = "Інший",
     address = "Адреса не вказана",
-    courtNumber = 0,
+    number = 0,
     rating = 3,
-    /* image, */ // for future data base
+    images,
   } = courtInfo;
 
-  // to match color with color in Button and Tag components
-  const districtColor = (region) =>
-    colorMatch.districtColors.find((item) => item.district === region).color;
-
-  const color = districtColor(district);
+  const color = getDistrictColor(district);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
@@ -33,12 +29,16 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           <div className={s.district}>
             <Tag text={district} color={color}></Tag>
           </div>
-          <Image src={placeholderImg} alt="court" layout="fill" />
+          <Image
+            src={images ? images[0] : placeholderImg}
+            alt="court"
+            layout="fill"
+          />
           <p className={s.address}>{address}</p>
         </div>
         <div className={s.outer}>
           <CourtCardInfo
-            courtNumber={courtNumber}
+            courtNumber={number}
             address={address}
             color={color}
             rating={rating}
@@ -47,6 +47,7 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
         </div>
       </div>
       <PlaygroundModal
+        color={color}
         visible={isModalShown}
         onClose={handleCloseModal}
         playground={courtInfo}
@@ -67,7 +68,7 @@ CourtCard.propTypes = {
       "Інший",
     ]).isRequired,
     address: PropTypes.string.isRequired,
-    courtNumber: PropTypes.number.isRequired,
+    number: PropTypes.number.isRequired,
     image: PropTypes.string,
     rating: PropTypes.number.isRequired,
   }),

@@ -12,8 +12,17 @@ const options = {
   ],
   callbacks: {
     async signIn({ email }) {
-      const count = await User.count({ where: { email } });
-      return count > 0;
+      const user = await User.findOne({
+        where: { email },
+        attributes: ["email", "status"],
+      });
+      if (!user || user.dataValues.status === "deleted") {
+        return false;
+      }
+      if (user.dataValues.status === "pending") {
+        User.update({ status: "confirmed" }, { where: { email } });
+      }
+      return true;
     },
     async redirect(_url, baseUrl) {
       return baseUrl;

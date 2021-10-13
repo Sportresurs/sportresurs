@@ -124,19 +124,15 @@
 
 .facebook:hover {
   .socialIcon path {
+    transition: 0.2s;
     fill: #00bc57;
-  }
-}
-
-.twitter:hover {
-  .socialIcon path {
-    fill: #01a1eb;
   }
 }
 
 .insta:hover {
   .socialIcon path,
   .socialIcon ellipse {
+    transition: 0.2s;
     fill: #ffffff;
   }
 }
@@ -197,6 +193,7 @@
   font-size: 15px;
   line-height: 24px;
   color: $color-secondary-yellowish;
+  transition: 0.2s;
 
   &:nth-child(n + 5) {
     margin-right: 0;
@@ -236,6 +233,7 @@
 }
 
 .footerTelephone {
+  transition: 0.2s;
   &:hover,
   &:focus {
     color: $color-accent-green;

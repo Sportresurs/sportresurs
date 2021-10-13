@@ -7,61 +7,73 @@ import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
 import Slider from "../Slider";
+import placeholderImage from "../../public/img/placeholderImgModal.png";
 
-const PlaygroundModalContent = ({ playground }) => {
+const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
-    { label: "Тип майданчика", field: "type" },
-    { label: "Призначення", field: "purpose" },
-    { label: "Метраж", field: "area" },
-    { label: "Покриття", field: "covering" },
-    { label: "Доступ", field: "access" },
-    { label: "Час роботи", field: "opening" },
-    { label: "Освітлення", field: "lighting" },
-    { label: "Додатково", field: "additionally" },
+    { label: "Тип майданчика", value: playground.type },
+    {
+      label: "Призначення",
+      value: playground.Purposes.map((purpose, index, arr) =>
+        index === arr.length - 1 ? purpose.title : `${purpose.title}, `
+      ),
+    },
+    { label: "Метраж", value: playground.size },
+    { label: "Покриття", value: playground.coating },
+    { label: "Доступ", value: playground.access },
+    {
+      label: "Час роботи",
+      value: `${playground.open_time.substring(
+        0,
+        5
+      )} - ${playground.close_time.substring(0, 5)}`,
+    },
+    { label: "Освітлення", value: playground.light ? "є" : "немає" },
+    { label: "Додатково", value: playground.additional },
   ];
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        <Slider
-          slidesToShow={1}
-          slidesToScroll={1}
-          withArrows={true}
-          isModal={true}
-          classNameBox={styles.sliderBox}
-          classNameDots={styles.dots}
-          classNameDotsModal={styles.modalDots}
-          isArrowColorBlack={false}
-          arrayLength={playground.images.length}
-        >
-          {playground.images.map((img, i) => (
-            <Image
-              className={styles.bgImage}
-              src={img}
-              alt=""
-              layout="responsive"
-              key={i}
-            />
-          ))}
-        </Slider>
+        {playground.images ? (
+          <Slider
+            slidesToShow={1}
+            slidesToScroll={1}
+            withArrows={true}
+            isModal={true}
+            classNameBox={styles.sliderBox}
+            classNameDots={styles.dots}
+            classNameDotsModal={styles.modalDots}
+            isArrowColorBlack={false}
+            arrayLength={playground.images.length}
+          >
+            {playground.images.map((img, i) => (
+              <Image
+                className={styles.bgImage}
+                src={img}
+                alt=""
+                layout="responsive"
+                key={i}
+              />
+            ))}
+          </Slider>
+        ) : (
+          <Image
+            src={placeholderImage}
+            alt="placeholderImg"
+            layout="responsive"
+          ></Image>
+        )}
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground.color} text={playground.district} />
+          <Tag color={color} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.courtNumber}</h1>
+        <h1 className={styles.heading}>Майданчик № {playground.number}</h1>
         <p className={styles.street}>вул. {playground.address}</p>
-        <Ratings
-          color={playground.color}
-          readOnly={true}
-          value={playground.rating}
-        />
+        <Ratings color={color} readOnly={true} value={playground.rating} />
         <div className={styles.infoWrapper}>
-          {playgroundInfoFields.map(({ label, field }) => (
-            <PlaygroundInfoRow
-              key={field}
-              label={label}
-              value={playground[field]}
-            />
+          {playgroundInfoFields.map(({ label, value }) => (
+            <PlaygroundInfoRow key={value} label={label} value={value} />
           ))}
         </div>
         <div className={styles.contactBtn}>

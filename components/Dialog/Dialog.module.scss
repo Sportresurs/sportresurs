@@ -15,8 +15,11 @@
   }
 
   @media screen and (min-width: 768px) {
-    padding: 102px 75px;
+    padding: 102px 30px;
     max-width: 440px;
+  }
+  @media screen and (min-width: 950px) {
+    padding: 102px 75px;
   }
 }
 
@@ -44,4 +47,3 @@
 .buttonContainer {
   display: flex;
 }
-
