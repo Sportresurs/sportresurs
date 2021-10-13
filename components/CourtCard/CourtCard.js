@@ -7,6 +7,7 @@ import CourtCardInfo from "../CourtCardInfo";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
+import placeholderImg from "../../public/img/placeholderImgCard.png";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -28,7 +29,11 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           <div className={s.district}>
             <Tag text={district} color={color}></Tag>
           </div>
-          <Image src={images[0]} alt="court" layout="fill" />
+          <Image
+            src={images ? images[0] : placeholderImg}
+            alt="court"
+            layout="fill"
+          />
           <p className={s.address}>{address}</p>
         </div>
         <div className={s.outer}>
