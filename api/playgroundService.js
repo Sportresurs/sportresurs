@@ -1,7 +1,7 @@
 import axios from "./axiosInstance";
 
 const playgroundService = {
-  getPurpose() {
+  getPurposes() {
     return axios.get("/purposes").then((response) => response.data.purpose);
   },
   create(formData) {

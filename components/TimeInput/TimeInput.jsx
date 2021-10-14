@@ -5,6 +5,7 @@ import styles from "./TimeInput.module.scss";
 const TimeInput = ({
   openFormikProps,
   closeFormikProps,
+  label,
   onFocus,
   handleFocus,
   handleBlur,
@@ -14,7 +15,7 @@ const TimeInput = ({
   });
   return (
     <>
-      <p className={styles.timeLabel}>часи роботи</p>
+      <p className={styles.timeLabel}>{label}</p>
       <div
         className={wrapperTimeContainerStyles}
         onFocus={handleFocus}

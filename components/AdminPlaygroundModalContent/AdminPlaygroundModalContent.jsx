@@ -21,7 +21,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [files, setFiles] = useState([]);
   const [onFocus, setOnFocus] = useState(false);
   const { data: purposesOptions = [], isLoading: isInitialDataLoading } =
-    useAsyncData(playgroundService.getPurpose);
+    useAsyncData(playgroundService.getPurposes);
   const handleFocus = (e) => {
     if (e.currentTarget === e.target) {
       setOnFocus(true);
@@ -193,6 +193,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                       closeFormikProps={{
                         ...formik.getFieldProps("closeTime"),
                       }}
+                      label="часи роботи"
                       onFocus={onFocus}
                       handleFocus={handleFocus}
                       handleBlur={handleBlur}
