@@ -14,13 +14,14 @@ import options from "../../utils/testData/testArrs";
 import useAsyncData from "../../utils/hooks/useAsyncData";
 import playgroundService from "../../api/playgroundService";
 import WithLoader from "../WithLoader";
+import TimeInput from "../TimeInput";
 
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [onFocus, setOnFocus] = useState(false);
   const { data: purposesOptions = [], isLoading: isInitialDataLoading } =
-    useAsyncData(playgroundService.purpose);
+    useAsyncData(playgroundService.getPurpose);
   const handleFocus = (e) => {
     if (e.currentTarget === e.target) {
       setOnFocus(true);
@@ -28,16 +29,9 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       setOnFocus(true);
     }
   };
-  const handleBlur = (e) => {
-    if (e.currentTarget === e.target) {
-      setOnFocus(false);
-    } else {
-      setOnFocus(false);
-    }
+  const handleBlur = () => {
+    setOnFocus(false);
   };
-  const wrapperTimeContainerStyles = classNames(styles.timeWrapper, {
-    [styles.timeWrapperFocus]: onFocus,
-  });
   const handleSubmit = async (values) => {
     setIsLoading(true);
     const formData = new FormData();
@@ -58,7 +52,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       formData.append("images", file.file);
     });
     try {
-      await playgroundService.createPlayground(formData);
+      await playgroundService.create(formData);
       onSuccess();
     } finally {
       setIsLoading(false);
@@ -194,29 +188,15 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                       labelSize="smallLabel"
                       {...formik.getFieldProps("access")}
                     />
-                    <p className={styles.timeLabel}>часи роботи</p>
-                    <div
-                      className={wrapperTimeContainerStyles}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    >
-                      <input
-                        type="time"
-                        min="00:00"
-                        max="24:00"
-                        className={styles.open}
-                        {...formik.getFieldProps("openTime")}
-                      />
-                      <nobr> -</nobr>
-                      <input
-                        type="time"
-                        min="00:00"
-                        max="24:00"
-                        className={styles.close}
-                        {...formik.getFieldProps("closeTime")}
-                      />
-                      <div className={styles.clockClose} />
-                    </div>
+                    <TimeInput
+                      openFormikProps={{ ...formik.getFieldProps("openTime") }}
+                      closeFormikProps={{
+                        ...formik.getFieldProps("closeTime"),
+                      }}
+                      onFocus={onFocus}
+                      handleFocus={handleFocus}
+                      handleBlur={handleBlur}
+                    />
                     <Select
                       type="form"
                       options={options.lightingOptions}

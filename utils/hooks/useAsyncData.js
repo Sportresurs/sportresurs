@@ -8,8 +8,7 @@ export default function useAsyncData(method) {
     async function requestData() {
       setLoading(true);
       try {
-        const resData = await method();
-        setData(resData);
+        setData(await method());
       } catch (e) {
         setError(e);
       } finally {
