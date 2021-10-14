@@ -19,7 +19,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [onFocus, setOnFocus] = useState(false);
-  const { data: purposesOptions, isLoading: isInitialDataLoading } =
+  const { data: purposesOptions = [], isLoading: isInitialDataLoading } =
     useAsyncData(playgroundService.purpose);
   const handleFocus = (e) => {
     if (e.currentTarget === e.target) {
@@ -49,12 +49,10 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       if (key === "openTime" || key === "closeTime") {
         value = `${value}:00`;
       }
-      formData.set(key, value);
       if (Array.isArray(value)) {
-        value.forEach((i) => {
-          formData.append(`${key}[]`, i.value);
-        });
+        value = value.map((i) => i.value);
       }
+      formData.set(key, value);
     });
     files.forEach((file) => {
       formData.append("images", file.file);
@@ -163,7 +161,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                       placeholderColor="#150223"
                       placeholderFontSize="14px"
                       type="Призначення"
-                      options={purposesOptions.map((item) => ({
+                      data={purposesOptions.map((item) => ({
                         label: item.title,
                         value: item.id,
                       }))}

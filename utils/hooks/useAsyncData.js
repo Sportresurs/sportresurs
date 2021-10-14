@@ -10,10 +10,10 @@ export default function useAsyncData(method) {
       try {
         const resData = await method();
         setData(resData);
-        setLoading(false);
       } catch (e) {
-        setLoading(false);
         setError(e);
+      } finally {
+        setLoading(false);
       }
     }
     requestData();
