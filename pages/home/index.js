@@ -3,18 +3,28 @@ import TopCourts from "../../components/TopCourts";
 import { Grid } from "../../components/Grid";
 import SearchSection from "../../components/SearchSection";
 import News from "../../components/News";
-import topPlaygrounds from "../../utils/topPlaygrounds";
 import styles from "./Home.module.scss";
 
-export default function Home() {
+export default function Home({ topPlaygrounds }) {
   return (
     <div className={styles.background}>
       <Grid>
         <SearchSection />
-        <TopCourts courtList={topPlaygrounds} />
+        {topPlaygrounds && <TopCourts courtList={topPlaygrounds} />}
         <About />
         <News />
       </Grid>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/areas`);
+  const data = await res.json();
+  const topPlaygrounds = data.areas.filter((el) => el.featured);
+  return {
+    props: {
+      topPlaygrounds,
+    },
+  };
 }
