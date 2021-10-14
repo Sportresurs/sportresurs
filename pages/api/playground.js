@@ -40,7 +40,7 @@ const handler = nc()
         additional,
         rating,
       } = req.body;
-      const imgData = req.images.images;
+      const imgData = req.files.images;
       const blobImages = [];
       imgData.forEach((img) => {
         blobImages.push(fs.readFileSync(img.path));

@@ -7,8 +7,8 @@ formDataConvert.use(async (req, res, next) => {
   const form = new formidable.IncomingForm();
   form.keepExtensions = true;
   form.multiples = true;
-  await form.parse(req, (err, fields, file) => {
-    req.images = file;
+  await form.parse(req, (err, fields, files) => {
+    req.files = files;
     req.body = fields;
     next();
   });

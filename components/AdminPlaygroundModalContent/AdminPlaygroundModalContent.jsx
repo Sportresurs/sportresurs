@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Formik } from "formik";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./AdminPlaygroundModalContent.module.scss";
-import Spinner from "../Spinner";
 import Ratings from "../Rating";
 import Input from "../Input";
 import Button from "../Button";
@@ -15,13 +13,14 @@ import validation from "../../validationSchemas/AddCourtValidationSchema";
 import options from "../../utils/testData/testArrs";
 import useAsyncData from "../../utils/hooks/useAsyncData";
 import playgroundService from "../../api/playgroundService";
+import WithLoader from "../WithLoader";
 
 const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [onFocus, setOnFocus] = useState(false);
   const { data: purposesOptions, isLoading: isInitialDataLoading } =
-    useAsyncData(playgroundService.getPurposes);
+    useAsyncData(playgroundService.purpose);
   const handleFocus = (e) => {
     if (e.currentTarget === e.target) {
       setOnFocus(true);
@@ -50,21 +49,18 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       if (key === "openTime" || key === "closeTime") {
         value = `${value}:00`;
       }
-      if (Array.isArray(value)) {
-        value = value.map((i) => i.value);
-      }
       formData.set(key, value);
+      if (Array.isArray(value)) {
+        value.forEach((i) => {
+          formData.append(`${key}[]`, i.value);
+        });
+      }
     });
     files.forEach((file) => {
       formData.append("images", file.file);
     });
     try {
-      await axios({
-        method: "POST",
-        url: "http://localhost:3000/api/playground",
-        headers: { "Content-Type": "form/multipart" },
-        data: formData,
-      });
+      await playgroundService.createPlayground(formData);
       onSuccess();
     } finally {
       setIsLoading(false);
@@ -82,11 +78,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
         <CustomDropzone files={files} setFiles={setFiles} />
       </div>
       <div className={contentClassesWrapper}>
-        {isInitialDataLoading ? (
-          <div>
-            <Spinner color="red" size="100px" />
-          </div>
-        ) : (
+        <WithLoader isLoading={isInitialDataLoading}>
           <>
             <h1 className={styles.heading}>Майданчик № </h1>
             <Formik
@@ -266,7 +258,7 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
               }}
             </Formik>
           </>
-        )}
+        </WithLoader>
       </div>
     </div>
   );

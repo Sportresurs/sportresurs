@@ -1,10 +1,13 @@
-import instance from "./instance";
+import axios from "./axiosInstance";
 
 const playgroundService = {
-  getPurposes() {
-    return instance
-      .get("getPurposes")
-      .then((response) => response.data.purpose);
+  purpose() {
+    return axios.get("getPurposes").then((response) => response.data.purpose);
+  },
+  createPlayground(formData) {
+    return axios.post("playground", formData, {
+      headers: { "Content-Type": "form/multipart" },
+    });
   },
 };
 
