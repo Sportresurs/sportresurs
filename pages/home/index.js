@@ -5,7 +5,6 @@ import SearchSection from "../../components/SearchSection";
 import News from "../../components/News";
 import topPlaygrounds from "../../utils/topPlaygrounds";
 import styles from "./Home.module.scss";
-import AdminPlaygroundModal from "../../components/AdminPlaygroundModal";
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <Grid>
         <SearchSection />
         <TopCourts courtList={topPlaygrounds} />
-        <AdminPlaygroundModal visible={true} />
         <About />
         <News />
       </Grid>
