@@ -9,7 +9,7 @@ export default function TopCourts({ courtList }) {
       <div className={s.wrapper}>
         <ul className={s.list}>
           <Slider
-            slidesToShow={4}
+            slidesToShow={courtList.length}
             slidesToScroll={1}
             isInfinite={true}
             withArrows={false}
