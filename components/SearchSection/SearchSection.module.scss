@@ -250,11 +250,10 @@
     flex-wrap: wrap;
 
     @media screen and (max-width: 670px) {
-        max-width: calc(100vw * 0.88);
+        max-width: 88vw;
     }
-
     @media screen and (max-width: 600px) {
-        max-width: calc(100vw * 0.9);
+        max-width: 90vw;
     }
 }
 
@@ -318,18 +317,33 @@
 }
 
 .sliderBox :global(.slick-slider) {
-    margin-right: -6px;
 
     :global(.slick-list) {
-        width: 100%;
 
-        @media screen and (max-width: 1150px) {
-            margin: 0 -6px;
+        @media screen and (min-width: 627px) and (max-width: 670px) {
+            width: 594px;  
+        }
+        @media screen and (max-width: 626px) {
+            width: 107.8%;
+        }
+        @media screen and (max-width: 600px) {
+            width: 106.8%;
+        }
+        @media screen and (max-width: 500px) {
+            width: 107%;
+        }
+        @media screen and (max-width: 424px) {
+            width: 107.2%;
+        }
+        @media screen and (max-width: 374px) {
+            width: 107.5%;
+        }
+        
+        margin: 0 -6px;
 
-            :global(.slick-track) {
-                :global(.slick-slide)>div {
-                    padding: 0 6px;
-                }
+        :global(.slick-track) {
+            :global(.slick-slide)>div {
+                padding: 0 6px;
             }
         }
     }

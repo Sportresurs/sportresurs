@@ -45,16 +45,16 @@
     max-width: 820px;
   }
   @media screen and (max-width: 1000px) {
-    max-width: calc(100vw * 0.82);
+    max-width: 82vw;
   }
   @media screen and (max-width: 900px) {
-    max-width: calc(100vw * 0.86);
+    max-width: 86vw;
   }
   @media screen and (max-width: 750px) {
-    max-width: calc(100vw * 0.88);
+    max-width: 88vw;
   }
   @media screen and (max-width: 600px) {
-    max-width: calc(100vw * 0.9);
+    max-width: 90vw;
   }
 }
 
@@ -67,10 +67,36 @@
 }
 
 .topCourtsSlider :global(.slick-slider) {
-  margin-right: -12px;
 
   :global(.slick-list) {
-    width: 100%;
+    
+    @media screen and (max-width: 1150px) {
+      width: 830px;
+    }
+    @media screen and (min-width: 886px) and (max-width: 900px) {
+      width: 830px;
+    }
+    @media screen and (max-width: 885px) {
+      width: 109.9%;
+    }
+    @media screen and (max-width: 750px) {
+      width: 108.8%;
+    }
+    @media screen and (max-width: 600px) {
+      width: 108%;
+    }
+    @media screen and (max-width: 500px) {
+      width: 108.57%;
+    }
+    @media screen and (max-width: 424px) {
+      width: 108.98%;
+    } 
+    @media screen and (max-width: 374px) {
+      width: 109.4%;
+    }
+    @media screen and (max-width: 320px) {
+      width: 109.8%;
+    }
 
     margin: 0 -12px;
 
