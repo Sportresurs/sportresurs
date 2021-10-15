@@ -37,7 +37,7 @@ const clearOldBlockedNews = (news, blockedIds) => {
   });
 };
 
-const getLongLivedTokenFomFB = async () => {
+const getLongLivedToken = async () => {
   const monthNow = new Date().getMonth();
   if (LONG_TOKEN_FB.month === monthNow) {
     return;
@@ -63,7 +63,7 @@ const getPosts = async () => {
     return LAST_REQUEST.news;
   }
   try {
-    await getLongLivedTokenFomFB();
+    await getLongLivedToken();
     const {
       data: { data },
     } = await axios.get(
