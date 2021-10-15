@@ -11,13 +11,17 @@ export default function MapMarkerWrapper({
   setMarkerIndex,
   indexMarker,
   setSliderOpen,
+  isClickable = true,
 }) {
   const index = indexMarker;
   return (
     <div
       onClick={() => {
-        setSliderOpen(true);
-        setMarkerIndex(index);
+        if (isClickable) {
+          setSliderOpen(true);
+          setMarkerIndex(index);
+        }
+        return null;
       }}
       lat={lat}
       lng={lng}

@@ -1,5 +1,4 @@
-import Script from "next/script";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -14,17 +13,9 @@ import FilterIcon from "../../public/svg/filterIconMap.svg";
 
 const cx = classNames.bind(styles);
 
-const SearchOnMap = ({
-  handleCoordinates,
-  onToggle,
-  numberOfFilters,
-  API_KEY,
-}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({});
-
-  useEffect(() => window.google && setIsLoaded(true), []);
 
   const handleInputClear = () => {
     setAddress("");
@@ -63,81 +54,67 @@ const SearchOnMap = ({
 
   return (
     <>
-      <Script
-        type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
-        strategy="beforeInteractive"
-        onLoad={() => {
-          setIsLoaded(true);
-        }}
-      />
-
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputBox}>
-          {!isLoaded && <input className={styles.inputPlug} />}
-          {isLoaded && (
-            <>
-              <PlacesAutocomplete
-                value={address}
-                onChange={handleChange}
-                onSelect={handleSelect}
-                searchOptions={searchOptions()}
-                onError={onError}
-              >
-                {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-                  <div>
-                    <input
-                      {...getInputProps({
-                        placeholder: "Введіть назву вулиці",
-                        className: styles.input,
-                      })}
-                    />
-                    {suggestions.length >= 1 && (
-                      <div className={cx("autocomplete")}>
-                        {suggestions.map((suggestion) => (
-                          <div
-                            {...getSuggestionItemProps(suggestion, {
-                              className: cx("autocompleteItem", {
-                                hover: suggestion.active,
-                              }),
-                            })}
-                            key={suggestion.description}
-                          >
-                            <span className={cx("autocompleteMainText")}>
-                              {suggestion.formattedSuggestion.mainText}
-                            </span>
-                            <span className={cx("autocompleteSecondaryText")}>
-                              {suggestion.formattedSuggestion.secondaryText}
-                            </span>
-                          </div>
-                        ))}
+          <PlacesAutocomplete
+            value={address}
+            onChange={handleChange}
+            onSelect={handleSelect}
+            searchOptions={searchOptions()}
+            onError={onError}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: "Введіть назву вулиці",
+                    className: styles.input,
+                  })}
+                />
+                {suggestions.length >= 1 && (
+                  <div className={cx("autocomplete")}>
+                    {suggestions.map((suggestion) => (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className: cx("autocompleteItem", {
+                            hover: suggestion.active,
+                          }),
+                        })}
+                        key={suggestion.description}
+                      >
+                        <span className={cx("autocompleteMainText")}>
+                          {suggestion.formattedSuggestion.mainText}
+                        </span>
+                        <span className={cx("autocompleteSecondaryText")}>
+                          {suggestion.formattedSuggestion.secondaryText}
+                        </span>
                       </div>
-                    )}
+                    ))}
                   </div>
                 )}
-              </PlacesAutocomplete>
-              {address && (
-                <button
-                  className={styles.fromBtnClose}
-                  type="button"
-                  onClick={handleInputClear}
-                >
-                  <Close className={styles.fromBtnCloseIcon}></Close>
-                </button>
-              )}
-
-              <button
-                className={styles.formBtnFilter}
-                type="button"
-                onClick={onToggle}
-              >
-                <FilterIcon className={styles.formBtnFilterIcon} />
-                {numberOfFilters ? (
-                  <div className={styles.numFilters}>{numberOfFilters}</div>
-                ) : null}
-              </button>
-            </>
+              </div>
+            )}
+          </PlacesAutocomplete>
+          {address && (
+            <button
+              className={styles.fromBtnClose}
+              type="button"
+              onClick={handleInputClear}
+            >
+              <Close className={styles.fromBtnCloseIcon}></Close>
+            </button>
           )}
+
+          <button
+            className={styles.formBtnFilter}
+            type="button"
+            onClick={onToggle}
+          >
+            <FilterIcon className={styles.formBtnFilterIcon} />
+            {numberOfFilters ? (
+              <div className={styles.numFilters}>{numberOfFilters}</div>
+            ) : null}
+          </button>
         </div>
 
         <button className={styles.formBtn} type="submit">

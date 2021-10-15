@@ -2,9 +2,9 @@ import About from "../../components/About";
 import image from "../../public/img/playgroundPlaceholder.png";
 import TopCourts from "../../components/TopCourts";
 import { Grid } from "../../components/Grid";
-import styles from "./Home.module.scss";
 import SearchSection from "../../components/SearchSection";
 import News from "../../components/News";
+import styles from "./Home.module.scss";
 
 export default function Home() {
   const playgrounds = [
@@ -24,7 +24,7 @@ export default function Home() {
       lighting: "є",
       additionally:
         "огорожа, ворота, тенісний стіл, вуличні тренажери,смітники, лавки, комерційні години (бронювання за телефоном)",
-      images: null,
+      images: [image, image, image, image],
     },
     {
       id: 2,

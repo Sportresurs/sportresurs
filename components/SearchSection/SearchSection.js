@@ -27,7 +27,7 @@ function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
-  const { handleCoordinates, handleFilterData } = useContext(Context);
+  const { handleCoordinates, handleFilterDistrict } = useContext(Context);
   const size = useWindowSize();
 
   useEffect(() => window.google && setIsLoaded(true), []);
@@ -182,7 +182,7 @@ function SearchSection() {
                         role="link"
                         tabIndex={0}
                         className={cx("link", color)}
-                        onClick={handleFilterData}
+                        onClick={handleFilterDistrict}
                       >
                         {district}
                       </a>
@@ -200,7 +200,7 @@ function SearchSection() {
                         role="link"
                         tabIndex={0}
                         className={cx("link", color)}
-                        onClick={handleFilterData}
+                        onClick={handleFilterDistrict}
                       >
                         {district}
                       </a>

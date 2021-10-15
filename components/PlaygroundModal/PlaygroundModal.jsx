@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import PlaygroundModalContent from "../PlaygroundModalContent";
 import Modal from "../Modal";
 
-const PlaygroundModal = ({ visible, onClose, playground }) => (
+const PlaygroundModal = ({ visible, onClose, playground, color }) => (
   <Modal
     variant="large"
     visible={visible}
@@ -11,7 +11,7 @@ const PlaygroundModal = ({ visible, onClose, playground }) => (
     closeIconMobileVariant="circle"
     shouldLockScreen
   >
-    <PlaygroundModalContent playground={playground} />
+    <PlaygroundModalContent playground={playground} color={color} />
   </Modal>
 );
 

@@ -18,6 +18,15 @@
   box-sizing: border-box;
   padding: 18px 15px 0;
 }
+.loadingContentWrapper {
+  flex: 1 1 50%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .heading {
   font-size: 36px;
   line-height: 56px;

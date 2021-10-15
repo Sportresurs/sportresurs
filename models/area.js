@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Area extends Model {
     static associate(models) {
       this.belongsToMany(models.Purpose, {
-        through: "purpose-areas",
+        through: models.PurposeArea,
         foreignKey: "area_id",
         otherKey: "purpose_id",
       });

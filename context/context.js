@@ -1,18 +1,48 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const Context = createContext("");
 
 const ContextProvider = ({ children }) => {
   const [coordinates, setCoordinates] = useState(null);
-  const [filterData, setFilterData] = useState(null);
+  const [filterData, setFilterData] = useState({
+    purposeOfAreas: [],
+    districts: [],
+    rating: { value: 0 },
+  });
+  const [filterFields, setFilterFields] = useState({
+    purposes: [],
+    districts: [],
+  });
+  const [areas, setAreas] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_HOST}api/areas/filter-fields`,
+    }).then(({ data }) => setFilterFields(data));
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_HOST}api/areas`,
+    }).then(({ data }) => setAreas(data.areas));
+  }, []);
 
   const handleCoordinates = (value) => {
     setCoordinates(value);
   };
-  const handleFilterData = (e) => {
-    setFilterData([
-      { label: e.target.textContent, value: e.target.textContent },
-    ]);
+  const handleFilterDistrict = (e) => {
+    setFilterData({
+      purposeOfAreas: [],
+      districts: [{ label: e.target.textContent, value: e.target.textContent }],
+    });
+  };
+  const handleFilterPurpose = (e) => {
+    setFilterData({
+      districts: [],
+      purposeOfAreas: [
+        { label: e.target.textContent, value: e.target.textContent },
+      ],
+    });
   };
 
   return (
@@ -20,8 +50,13 @@ const ContextProvider = ({ children }) => {
       value={{
         coordinates,
         filterData,
+        filterFields,
+        areas,
+        setAreas,
+        setFilterData,
         handleCoordinates,
-        handleFilterData,
+        handleFilterDistrict,
+        handleFilterPurpose,
       }}
     >
       {children}
