@@ -13,13 +13,11 @@ export default function Playgrounds({ playgrounds }) {
         <Grid>
           <Filters setAreas={setFilteredPlaces} />
           <ul className={s.list}>
-            {filteredPlaces.map((court) => {
-              return (
-                <li key={court.id} className={s.listItem}>
-                  <CourtCard courtInfo={court} variant="courtList" />
-                </li>
-              );
-            })}
+            {filteredPlaces.map((court) => (
+              <li key={court.id} className={s.listItem}>
+                <CourtCard courtInfo={court} variant="courtList" />
+              </li>
+            ))}
           </ul>
         </Grid>
       </section>
