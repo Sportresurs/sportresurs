@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/client";
 import classNames from "classnames/bind";
 import { useState } from "react";
 import Select from "../Select";
@@ -15,8 +16,10 @@ export default function TableRow({
   info,
   options,
 }) {
+  const [session] = useSession();
+  const currentAdminEmail = session?.user.email;
   // TODO: will be changed to session.user.mail
-  const testMail = "remenjuk2010@gmail.com";
+  /* const testMail = "remenjuk2010@gmail.com"; */
 
   const [currentStatus, setCurrentStatus] = useState(status);
   const [currentEmail, setCurrentEmail] = useState(admin);
@@ -31,21 +34,39 @@ export default function TableRow({
     return formattedDate;
   };
 
+  const updateData = async (requestID, requestStatus, adminEmail) => {
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        id: requestID,
+        status: requestStatus,
+        email: adminEmail,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   const handleStatusChange = (e) => {
     setCurrentStatus(e.target.value);
 
     switch (e.target.value) {
       case "в процесі":
-        setCurrentEmail(testMail);
+        setCurrentEmail(currentAdminEmail);
+        updateData(id, e.target.value, currentAdminEmail);
+
         break;
       case "оброблено":
-        setCurrentEmail(testMail);
+        setCurrentEmail(currentAdminEmail);
+        updateData(id, e.target.value, currentAdminEmail);
         break;
       case "новий":
-        setCurrentEmail("-");
+        setCurrentEmail(null);
+        updateData(id, e.target.value, null);
         break;
       default:
-        setCurrentEmail("-");
+        setCurrentEmail(null);
     }
   };
 
@@ -53,7 +74,7 @@ export default function TableRow({
     <tr
       key={id}
       className={cx("tableRow", {
-        new: status === "новий",
+        new: currentStatus === "новий",
       })}
     >
       <td className={cx("tableCell", "number")}>{id}.</td>

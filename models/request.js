@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Request.init(
     {
-      status: DataTypes.ENUM("новий", "в процесі", "оброблено"),
+      status: {
+        type: DataTypes.ENUM("новий", "в процесі", "оброблено"),
+        defaultValue: "новий",
+      },
       admin: {
         type: DataTypes.INTEGER,
         references: {
@@ -19,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       phone: DataTypes.STRING,
       details: DataTypes.TEXT,
+      admin_email: DataTypes.STRING,
     },
     {
       sequelize,

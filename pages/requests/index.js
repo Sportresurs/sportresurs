@@ -5,7 +5,7 @@ import TableRow from "../../components/TableRow";
 
 const cx = classNames.bind(styles);
 
-export default function Requests() {
+export default function Requests({ requests }) {
   return (
     <section className={styles.requests}>
       <div className={styles.container}>
@@ -23,17 +23,27 @@ export default function Requests() {
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {data.requests.map(
-              ({ id, date, status, admin, name, tel, info }) => (
+            {requests.map(
+              ({
+                id,
+                status,
+                // eslint-disable-next-line camelcase
+                admin_email,
+                name,
+                phone,
+                details,
+                createdAt,
+              }) => (
                 <TableRow
                   key={id}
                   id={id}
-                  date={date}
+                  date={createdAt}
                   status={status}
-                  admin={admin}
+                  // eslint-disable-next-line camelcase
+                  admin={admin_email}
                   name={name}
-                  tel={tel}
-                  info={info}
+                  tel={phone}
+                  info={details}
                   options={data.statusOptions}
                 />
               )
@@ -43,4 +53,16 @@ export default function Requests() {
       </div>
     </section>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
+    method: "GET",
+  });
+  const requests = await res.json();
+  return {
+    props: {
+      requests: requests.userRequests,
+    },
+  };
 }

@@ -11,13 +11,22 @@ const cx = classNames.bind(styles);
 export default function LoginButton({ setIsAdminLoggedIn }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [newRequestsAmount, setNewRequestsAmount] = useState(0);
+  const [newRequestsAmount, setNewRequestsAmount] = useState(null);
+
+  async function getRequestsAmount() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
+      method: "GET",
+    });
+    const requests = await res.json();
+    const newRequests = requests.userRequests.filter(
+      (el) => el.status === "новий"
+    ).length;
+    setNewRequestsAmount(newRequests);
+  }
 
   useEffect(() => {
-    // fetch logic to get amount of new requests
-    // fake fetch
-    setNewRequestsAmount(5);
-  }, []);
+    getRequestsAmount();
+  }, [isMenuOpen]);
 
   const handleMenuClose = () => {
     setIsMenuOpen(!isMenuOpen);
