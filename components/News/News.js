@@ -8,6 +8,7 @@ import useFetchData from "../../utils/hooks/useFetchData";
 
 export default function News({ isAdmin }) {
   const [itemToRemove, setItemToRemove] = useState(null);
+
   const handleDeleteDialogOpen = (item) => {
     setItemToRemove(item);
   };
@@ -19,11 +20,11 @@ export default function News({ isAdmin }) {
   const [news] = useFetchData(`/api/news`, []);
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.titleContainer} id="navigateToNews">
         <h2 className={styles.title}>Новини</h2>
       </div>
-      <div className={styles.container}>
+      <div className={styles.containerList}>
         <Slider
           slidesToShow={3}
           slidesToScroll={3}
@@ -31,7 +32,9 @@ export default function News({ isAdmin }) {
           isAutoplay={true}
           withArrows={false}
           isModal={false}
+          isVariableWidth={true}
           arrayLength={news.length}
+          classNameBox={styles.newsSlider}
           responsive={[
             {
               breakpoint: 1150,
@@ -68,6 +71,6 @@ export default function News({ isAdmin }) {
         </Slider>
       </div>
       <DeleteDialog visible={itemToRemove} onClose={handleDeleteDialogClose} />
-    </>
+    </div>
   );
 }

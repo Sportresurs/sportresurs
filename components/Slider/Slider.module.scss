@@ -4,15 +4,6 @@
     width: 100%;
 }
 
-.sliderWrap :global(.slick-slider) :global(.slick-list) {
-    margin: 0 -15px;
-    :global(.slick-track) {
-        :global(.slick-slide) > div {
-            padding: 0 15px;
-        }
-    }
-}
-
 .arrow {
     @extend %button;
     position: absolute;
