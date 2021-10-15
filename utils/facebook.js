@@ -42,38 +42,40 @@ const getLongLivedTokenFomFB = async () => {
   if (LONG_TOKEN_FB.month === monthNow) {
     return;
   }
-  const params = [
-    "grant_type=fb_exchange_token",
-    `client_id=${FB_CLIENT_ID}`,
-    `client_secret=${FB_CLIENT_SECRET}`,
-    `fb_exchange_token=${FB_ACCESS_TOKEN}`,
-  ];
-  const url = `https://graph.facebook.com/v12.0/oauth/access_token?${params.join(
-    "&"
-  )}`;
-  const { data } = await axios.get(url);
+  const { data } = await axios.get(
+    "https://graph.facebook.com/v12.0/oauth/access_token",
+    {
+      params: {
+        grant_type: "fb_exchange_token",
+        client_id: FB_CLIENT_ID,
+        client_secret: FB_CLIENT_SECRET,
+        fb_exchange_token: FB_ACCESS_TOKEN,
+      },
+    }
+  );
   LONG_TOKEN_FB.month = monthNow;
   LONG_TOKEN_FB.value = data.access_token;
 };
 
-const getPostsFromFB = async () => {
+const getPosts = async () => {
   const timeNow = Date.now();
   if (LAST_REQUEST.time + MINUTES_15 > timeNow) {
     return LAST_REQUEST.news;
   }
   try {
     await getLongLivedTokenFomFB();
-    const params = [
-      "fields=message,id,full_picture,permalink_url",
-      `limit=${LIMIT_FB_POSTS}`,
-      `access_token=${LONG_TOKEN_FB.value}`,
-    ];
-    const url = `https://graph.facebook.com/v12.0/lkpsportresurs/posts?${params.join(
-      "&"
-    )}`;
     const {
       data: { data },
-    } = await axios.get(url);
+    } = await axios.get(
+      "https://graph.facebook.com/v12.0/lkpsportresurs/posts",
+      {
+        params: {
+          fields: "message,id,full_picture,permalink_url",
+          limit: LIMIT_FB_POSTS,
+          access_token: LONG_TOKEN_FB.value,
+        },
+      }
+    );
     const normalizedData = data
       .filter((post) => post.full_picture && post.message)
       .map((post) => ({
@@ -105,4 +107,4 @@ const clearNewsCache = () => {
   LAST_REQUEST.time = 0;
 };
 
-export { getPostsFromFB, clearNewsCache };
+export { getPosts, clearNewsCache };
