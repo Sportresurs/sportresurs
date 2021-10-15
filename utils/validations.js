@@ -7,7 +7,7 @@ const validation = {
     /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/,
   longitudeValidation:
     /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/,
-  areaValidation: /^[0-9]{1,4}$/,
+  areaValidation: /^$|^[0-9]{1,4}$/,
   getErrorMessage(rule, option) {
     let errorMessage = "";
     switch (rule) {
