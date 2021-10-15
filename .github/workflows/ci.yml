@@ -18,13 +18,15 @@ jobs:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       EMAIL_LOGIN:
       EMAIL_PASS:
-      RECIPIENT_EMAIL:
       GOOGLE_CLIENT_ID:
       GOOGLE_CLIENT_SECRET:
       NEXTAUTH_URL:
-      LIMIT_INSTAGRAM_INSTAGRAM_POSTS_FOR_FRONT:
-      LIMIT_INSTAGRAM_POSTS:
       NEXT_PUBLIC_HOST: http://localhost:3000/
+      LIMIT_FB_POSTS:
+      LIMIT_FB_POSTS_FOR_FRONT:
+      FB_CLIENT_ID:
+      FB_CLIENT_SECRET:
+      FB_ACCESS_TOKEN:
     services:
       postgres:
         image: postgres
