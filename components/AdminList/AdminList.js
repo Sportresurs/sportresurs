@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import s from "./AdminList.module.scss";
 import Tick from "../../public/svg/tickIcon.svg";
 import QuestionMark from "../../public/svg/questionMarkIcon.svg";
@@ -16,83 +16,30 @@ export default function AdminList() {
     []
   );
 
-  // const data = [
-  //   {
-  //     id: 0,
-  //     email: "zelykrostyslav@email.com",
-  //     status: "logged",
-  //   },
-  //   {
-  //     id: 1,
-  //     email: "denysgolovko@email.com",
-  //     status: "logged",
-  //   },
-  //   {
-  //     id: 2,
-  //     email: "lebronjames@email.com",
-  //     status: "notLoggedIn",
-  //   },
-  //   {
-  //     id: 3,
-  //     email: "giannisantetokounmpo@email.com",
-  //     status: "deleted",
-  //   },
-  // ];
-
   const eAdminStatus = {
     LOGGED: "logged",
     NOTLOGGED: "notLoggedIn",
     DELETED: "deleted",
   };
 
-  const [admins, setAdmins] = useState(adminList);
-  const [email, setEmail] = useState("");
   const [visible, setVisible] = useState({ isVisible: false, id: null });
-  const [editEmail, setEditEmail] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newList = admins.concat({
-      email,
-      id: uuidv4(),
-      status: eAdminStatus.NOTLOGGED,
-    });
-    setAdmins(newList);
-    setEmail("");
+  const handleDelete = async (id) => {
+    // eslint-disable-next-line no-alert
+    if (window.confirm("Видалити користувача зі списку адмінів?")) {
+      window.location.reload(false);
+      await axios.patch(
+        `${process.env.NEXT_PUBLIC_HOST}api/admin/delete-admin?id=${id}`
+      );
+    }
   };
 
-  const handleChange = useCallback((e) => {
-    const { target } = e;
-    const { value } = target;
-    setEmail(value);
-  }, []);
-
-  const handleChangeEdit = useCallback((e) => {
-    const { target } = e;
-    const { value } = target;
-    setEditEmail(value);
-  }, []);
-
-  const handleSubmitEdit = (id) => (event) => {
-    event.preventDefault();
-    const elementsIndex = admins.findIndex((element) => element.id === id);
-    const newArray = [...admins];
-    newArray[elementsIndex] = { ...newArray[elementsIndex], email: editEmail };
-    setAdmins(newArray);
-    setVisible({ isVisible: false, id });
-  };
-
-  const handleDelete = useCallback(
-    (id) => {
-      const newList = admins.filter((admin) => admin.id !== id);
-      setAdmins(newList);
-    },
-    [admins]
-  );
-
-  const onClickEdit = useCallback((adminEmail, id) => {
+  const onClickEdit = useCallback((id) => {
     setVisible({ isVisible: true, id });
-    setEditEmail(adminEmail);
+  }, []);
+
+  const onClickEditCancel = useCallback(() => {
+    setVisible({ isVisible: false, id: null });
   }, []);
 
   function pickIcon(status) {
@@ -118,33 +65,27 @@ export default function AdminList() {
             {admin.email}
             <button
               className={s.btnIcon}
-              onClick={() => handleDelete(admin.id)}
+              onClick={() => {
+                handleDelete(admin.id);
+              }}
             >
               <DeleteIcon />
             </button>
             <button
               className={s.btnIcon}
-              onClick={() => onClickEdit(admin.email, admin.id)}
+              type="button"
+              onClick={() => onClickEdit(admin.id)}
             >
               <EditIcon />
             </button>
             {visible.isVisible && visible.id === admin.id ? (
-              <EditAdminForm
-                value={editEmail}
-                handleChange={handleChangeEdit}
-                handleSubmit={handleSubmitEdit}
-                adminId={admin.id}
-              />
+              <EditAdminForm admin={admin} cancel={onClickEditCancel} />
             ) : null}
           </p>
         </div>
       ))}
       <h2 className={s.addAdminTitle}>Додати нового адмістратора</h2>
-      <AddAdminForm
-        value={email}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
+      <AddAdminForm />
     </div>
   );
 }
