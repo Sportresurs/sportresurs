@@ -8,6 +8,8 @@ const validation = {
   longitudeValidation:
     /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/,
   areaValidation: /^$|^[0-9]{1,4}$/,
+  emailValidation:
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
   getErrorMessage(rule, option) {
     let errorMessage = "";
     switch (rule) {
@@ -31,6 +33,9 @@ const validation = {
         break;
       case "max":
         errorMessage = `Кількість символів не повинно перевищувати ${option}.`;
+        break;
+      case "email":
+        errorMessage = "Будь ласка, введіть валідний email.";
         break;
       default:
         errorMessage = "Заповніть, будь ласка, це поле.";
