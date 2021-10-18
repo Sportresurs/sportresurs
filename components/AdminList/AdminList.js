@@ -8,30 +8,36 @@ import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
 import AddAdminForm from "../AddAdminForm";
 import EditAdminForm from "../EditAdminForm";
+import useFetchData from "../../utils/hooks/useFetchData";
 
 export default function AdminList() {
-  const data = [
-    {
-      id: 0,
-      email: "zelykrostyslav@email.com",
-      status: "logged",
-    },
-    {
-      id: 1,
-      email: "denysgolovko@email.com",
-      status: "logged",
-    },
-    {
-      id: 2,
-      email: "lebronjames@email.com",
-      status: "notLoggedIn",
-    },
-    {
-      id: 3,
-      email: "giannisantetokounmpo@email.com",
-      status: "deleted",
-    },
-  ];
+  const [adminList] = useFetchData(
+    `${process.env.NEXT_PUBLIC_HOST}api/admin/get-admins`,
+    []
+  );
+
+  // const data = [
+  //   {
+  //     id: 0,
+  //     email: "zelykrostyslav@email.com",
+  //     status: "logged",
+  //   },
+  //   {
+  //     id: 1,
+  //     email: "denysgolovko@email.com",
+  //     status: "logged",
+  //   },
+  //   {
+  //     id: 2,
+  //     email: "lebronjames@email.com",
+  //     status: "notLoggedIn",
+  //   },
+  //   {
+  //     id: 3,
+  //     email: "giannisantetokounmpo@email.com",
+  //     status: "deleted",
+  //   },
+  // ];
 
   const eAdminStatus = {
     LOGGED: "logged",
@@ -39,7 +45,7 @@ export default function AdminList() {
     DELETED: "deleted",
   };
 
-  const [admins, setAdmins] = useState(data);
+  const [admins, setAdmins] = useState(adminList);
   const [email, setEmail] = useState("");
   const [visible, setVisible] = useState({ isVisible: false, id: null });
   const [editEmail, setEditEmail] = useState("");
@@ -105,7 +111,7 @@ export default function AdminList() {
   return (
     <div className={s.container}>
       <h2 className={s.title}>Адміністратори</h2>
-      {admins.map((admin) => (
+      {adminList.map((admin) => (
         <div key={admin.id} className={s.textContainer}>
           <p className={s.email}>
             {pickIcon(admin.status)}
