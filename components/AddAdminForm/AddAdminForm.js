@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import s from "./AddAdminForm.module.scss";
 import Input from "../Input/Input";
 import Button from "../Button";
-import validation from "./ValidationSchema";
+import validation from "../../validationSchemas/AddAdminValidationSchema";
 
 export default function AddAdminForm({ value, handleSubmit, handleChange }) {
   const getFormikErrorByField = (formik, fieldName) =>
