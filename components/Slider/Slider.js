@@ -12,6 +12,7 @@ import useWindowSize from "../../utils/hooks/findWindowSize";
 const cx = classnames.bind(styles);
 
 const SlickSlider = ({
+  childClicked,
   children,
   isDots,
   slidesToShow,
@@ -112,7 +113,7 @@ const SlickSlider = ({
     prevArrow: <PrevArrow />,
     responsive,
     afterChange(current) {
-      if (setChildClicked) {
+      if (childClicked) {
         return setChildClicked(Number(children[current].key));
       }
       return null;
