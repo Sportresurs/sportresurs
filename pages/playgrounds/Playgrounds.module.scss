@@ -1,0 +1,52 @@
+@import "../../styles/shared.scss";
+
+.background {
+  @media screen and (min-width: 768px) {
+    background-image: url("../../public/svg/playgroundsBg.svg");
+    background-position: calc(50% + 20px) -60px;
+    background-size: 1100px 800px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  @media screen and (min-width: 1150px) {
+    background-size: auto;
+  }
+}
+
+.courts {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding-bottom: 19px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 24px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 30px;
+  }
+}
+
+.list {
+  padding: 0;
+
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    margin: -13px;
+  }
+}
+
+.listItem {
+  margin-bottom: 18px;
+
+  @media screen and (min-width: 768px) {
+    margin: 13px;
+  }
+}

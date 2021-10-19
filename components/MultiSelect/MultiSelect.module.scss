@@ -1,0 +1,35 @@
+@import "../../styles/shared.scss";
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #3599b8;
+}
+
+.wrapper {
+  max-width: 337px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 3px;
+}
+.filterType {
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: $color-secondary-darkGrey;
+}
+.formFilterType {
+  color: $color-primary-dark;
+}

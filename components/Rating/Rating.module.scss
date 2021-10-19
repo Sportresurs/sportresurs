@@ -1,0 +1,14 @@
+@import "../../styles/shared.scss";
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  margin-right: 7px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: 0.3px;
+}

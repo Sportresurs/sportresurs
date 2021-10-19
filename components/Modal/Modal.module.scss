@@ -1,0 +1,113 @@
+@import "styles/colors";
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 10;
+  padding: 85px 17px 17px;
+  background: $color-modal-darkened;
+  @media screen and (max-width: 950px) {
+    padding-top: 66px;
+    align-items: flex-start;
+  }
+}
+.modal {
+  display: flex;
+  width: 100%;
+  max-height: 100%;
+  position: relative;
+  overflow: hidden;
+  @media screen and (max-width: 950px) {
+    max-width: 100%;
+  }
+}
+.large {
+  border-radius: 3px;
+  max-width: 1080px;
+}
+.medium {
+  border-radius: 6px;
+  max-width: 628px;
+  @media screen and (max-width: 950px) {
+    max-width: 342px;
+  }
+}
+.small {
+  border-radius: 6px;
+  max-width: 440px;
+  @media screen and (max-width: 950px) {
+    max-width: 339px;
+    border-radius: 3px;
+  }
+}
+.modalContent {
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+.closeButton {
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  z-index: 3;
+  @media screen and (max-width: 950px) {
+    top: 17px;
+    right: 10px;
+  }
+}
+.circle {
+  @media screen and (max-width: 950px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+.enter {
+  background: rgba(0, 0, 0, 0);
+  .modal {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+.enterActive {
+  background: $color-modal-darkened;
+  transition: all 200ms;
+  .modal {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 200ms;
+  }
+}
+.exit {
+  .modal {
+    opacity: 1;
+    transition: all 200ms;
+  }
+}
+.exitActive {
+  background: rgba(0, 0, 0, 0);
+  .modal {
+    opacity: 0;
+    transform: scale(0.1);
+    transition: all 200ms;
+  }
+}

@@ -1,0 +1,266 @@
+@import "../../styles/shared.scss";
+
+.footer {
+  z-index: 5;
+  position: relative;
+  width: 100%;
+  background-color: $color-primary-dark;
+}
+
+.container {
+  @extend %container;
+  padding: 41px 58px;
+  width: auto;
+  display: grid;
+  grid-template-columns: 341px minmax(490px, auto);
+  grid-template-rows: repeat(2, 2fr) 20px;
+  justify-content: space-between;
+  grid-template-areas:
+    "logo courts "
+    "socials courts "
+    "legal legal ";
+
+  @media screen and (min-width: 320px) and (max-width: 374px) {
+    width: 320px;
+    padding: 12px 18px 25px 18px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 34px;
+    grid-template-areas:
+      "logo"
+      "courts"
+      "socials";
+  }
+
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 339px;
+    padding: 12px 0 25px 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 34px;
+    grid-template-areas:
+      "logo"
+      "courts"
+      "socials";
+  }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    padding: 25px 0;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px auto 40px auto;
+    grid-template-areas:
+      "logo"
+      "courts"
+      "socials"
+      "legal";
+  }
+}
+
+.logo {
+  grid-area: logo;
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+  }
+}
+
+.logoDesktop {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+  display: block;
+}
+.logoMobile {
+  @media screen and (max-width: 767px) {
+    display: block;
+    margin-bottom: 24px;
+  }
+  display: none;
+}
+
+.logoLink {
+  display: inline-block;
+}
+
+.footerSocials {
+  grid-area: socials;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+    margin-top: 25px;
+  }
+}
+
+.footerSocialsText {
+  margin-right: 25px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  color: $color-secondary-yellowish;
+}
+
+.footerSocialsList {
+  @extend %list;
+  display: flex;
+  align-items: center;
+}
+
+.footerSocialsItem {
+  margin-right: 19px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.footerSocialsItemLink {
+  display: inline-block;
+}
+
+.facebook:hover {
+  .socialIcon path {
+    transition: 0.2s;
+    fill: #00bc57;
+  }
+}
+
+.insta:hover {
+  .socialIcon path,
+  .socialIcon ellipse {
+    transition: 0.2s;
+    fill: #ffffff;
+  }
+}
+
+.flexWrapper {
+  grid-area: courts;
+  display: flex;
+  align-items: flex-start;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+  }
+}
+
+.footerCourts {
+  @media screen and (max-width: 767px) {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    margin-right: 80px;
+  }
+  @media screen and (min-width: 1000px) {
+    margin-right: 50px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-right: 130px;
+  }
+}
+
+.footerCourtsTitle {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: $color-accent-green;
+}
+
+.footerCourtsList {
+  @extend %list;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  @media screen and (min-width: 768px) {
+    width: 300px;
+    align-items: stretch;
+  }
+}
+
+.footerCourtsLink {
+  margin-right: 30px;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: $color-secondary-yellowish;
+  transition: 0.2s;
+
+  &:nth-child(n + 5) {
+    margin-right: 0;
+  }
+  &:hover,
+  &:focus {
+    color: $color-accent-blue;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    letter-spacing: -0.015em;
+  }
+}
+
+.footerContacts {
+  margin-bottom: 24px;
+  @media screen and (min-width: 1050px) {
+    margin-right: 50px;
+  }
+}
+
+.footerContactsTitle {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 15px;
+  color: $color-accent-yellow;
+}
+
+.footerContactsAddress {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: $color-secondary-yellowish;
+  text-transform: none;
+}
+
+.footerTelephone {
+  transition: 0.2s;
+  &:hover,
+  &:focus {
+    color: $color-accent-green;
+  }
+}
+
+.legal {
+  grid-area: legal;
+  justify-self: flex-start;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 26px;
+  text-align: center;
+  color: $color-primary-light;
+  opacity: 0.7;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    justify-self: center;
+    margin-top: 20px;
+  }
+}
+
+.legal a {
+  text-decoration: underline;
+  margin-left: 2px;
+}
