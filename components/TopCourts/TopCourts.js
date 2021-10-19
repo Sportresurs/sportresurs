@@ -13,7 +13,7 @@ export default function TopCourts({ courtList }) {
         <ul className={styles.list}>
           {size.width <= 1150 && (
             <Slider
-              slidesToShow={4}
+              slidesToShow={courtList.length}
               slidesToScroll={1}
               isInfinite={true}
               withArrows={false}
