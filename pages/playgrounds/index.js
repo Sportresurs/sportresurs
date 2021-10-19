@@ -11,7 +11,7 @@ export default function Playgrounds({ playgrounds }) {
     <div className={s.background}>
       <section className={s.courts}>
         <Grid>
-          <Filters setAreas={setFilteredPlaces} />
+          <Filters areas={playgrounds} setAreas={setFilteredPlaces} />
           <ul className={s.list}>
             {filteredPlaces.map((court) => (
               <li key={court.id} className={s.listItem}>
