@@ -9,16 +9,17 @@ import EditIcon from "../../public/svg/editIcon.svg";
 import AddAdminForm from "../AddAdminForm";
 import EditAdminForm from "../EditAdminForm";
 import useFetchData from "../../utils/hooks/useFetchData";
+import Spinner from "../Spinner";
 
 export default function AdminList() {
-  const [adminList] = useFetchData(
+  const [adminList, isLoading] = useFetchData(
     `${process.env.NEXT_PUBLIC_HOST}api/admin/get-admins`,
     []
   );
 
   const eAdminStatus = {
-    LOGGED: "logged",
-    NOTLOGGED: "notLoggedIn",
+    CONFIRMED: "confirmed",
+    PENDING: "pending",
     DELETED: "deleted",
   };
 
@@ -43,16 +44,20 @@ export default function AdminList() {
   }, []);
 
   function pickIcon(status) {
-    switch (status) {
-      case status === eAdminStatus.LOGGED:
-        return <Tick className={s.icon} />;
-      case status === eAdminStatus.NOTLOGGED:
-        return <QuestionMark className={s.icon} />;
-      case status === eAdminStatus.DELETED:
-        return <Dagger className={s.icon} />;
-      default:
-        return null;
-    }
+    if (status === eAdminStatus.CONFIRMED) return <Tick className={s.icon} />;
+    if (status === eAdminStatus.PENDING)
+      return <QuestionMark className={s.icon} />;
+    if (status === eAdminStatus.DELETED) return <Dagger className={s.icon} />;
+
+    return null;
+  }
+
+  if (isLoading) {
+    return (
+      <div className={s.loadingContainer}>
+        <Spinner size="50px" color="black" />
+      </div>
+    );
   }
 
   return (
