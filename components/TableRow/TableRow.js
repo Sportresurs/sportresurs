@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { useState } from "react";
 import Select from "../Select";
 import styles from "./TableRow.module.scss";
+import updateRequestData from "../../utils/updateRequestData";
 
 const cx = classNames.bind(styles);
 
@@ -18,8 +19,6 @@ export default function TableRow({
 }) {
   const [session] = useSession();
   const currentAdminEmail = session?.user.email;
-  // TODO: will be changed to session.user.mail
-  /* const testMail = "remenjuk2010@gmail.com"; */
 
   const [currentStatus, setCurrentStatus] = useState(status);
   const [currentEmail, setCurrentEmail] = useState(admin);
@@ -34,36 +33,22 @@ export default function TableRow({
     return formattedDate;
   };
 
-  const updateData = async (requestID, requestStatus, adminEmail) => {
-    await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        id: requestID,
-        status: requestStatus,
-        email: adminEmail,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
-
   const handleStatusChange = (e) => {
     setCurrentStatus(e.target.value);
 
     switch (e.target.value) {
       case "в процесі":
         setCurrentEmail(currentAdminEmail);
-        updateData(id, e.target.value, currentAdminEmail);
+        updateRequestData(id, e.target.value, currentAdminEmail);
 
         break;
       case "оброблено":
         setCurrentEmail(currentAdminEmail);
-        updateData(id, e.target.value, currentAdminEmail);
+        updateRequestData(id, e.target.value, currentAdminEmail);
         break;
       case "новий":
         setCurrentEmail(null);
-        updateData(id, e.target.value, null);
+        updateRequestData(id, e.target.value, null);
         break;
       default:
         setCurrentEmail(null);

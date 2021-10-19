@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "./LoginButton.module.scss";
 import AvatarIcon from "../../public/svg/avatarIcon.svg";
 import DeleteDialog from "../DeleteDialog";
+import getRequestsAmount from "../../utils/getRequestsAmount";
 
 const cx = classNames.bind(styles);
 
@@ -13,19 +14,8 @@ export default function LoginButton({ setIsAdminLoggedIn }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newRequestsAmount, setNewRequestsAmount] = useState(null);
 
-  async function getRequestsAmount() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
-      method: "GET",
-    });
-    const requests = await res.json();
-    const newRequests = requests.userRequests.filter(
-      (el) => el.status === "новий"
-    ).length;
-    setNewRequestsAmount(newRequests);
-  }
-
   useEffect(() => {
-    getRequestsAmount();
+    getRequestsAmount().then((data) => setNewRequestsAmount(data));
   }, [isMenuOpen]);
 
   const handleMenuClose = () => {
