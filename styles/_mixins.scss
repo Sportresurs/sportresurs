@@ -1,9 +1,0 @@
-@mixin for-size($range) {
-    $mobile: 375px;
-
-    @if $range==mobile {
-        @media (max-width: $mobile) {
-            @content;
-        }
-    }
-}
