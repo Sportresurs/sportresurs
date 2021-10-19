@@ -20,13 +20,12 @@ const validationSchema = Yup.object({
       validation.getErrorMessage("longitude")
     )
     .required(validation.getErrorMessage()),
-  area: Yup.string()
-    .matches(validation.areaValidation, validation.getErrorMessage("area"))
-    .required(validation.getErrorMessage()),
-  covering: Yup.string()
-    .max(30, validation.getErrorMessage("max", 30))
-    .required(validation.getErrorMessage()),
-  details: Yup.string().max(200, validation.getErrorMessage("max", 200)),
+  area: Yup.string().matches(
+    validation.areaValidation,
+    validation.getErrorMessage("area")
+  ),
+  coating: Yup.string().max(30, validation.getErrorMessage("max", 30)),
+  additional: Yup.string().max(200, validation.getErrorMessage("max", 200)),
   rating: Yup.string(),
 });
 

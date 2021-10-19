@@ -48,9 +48,37 @@ const districts = [
   { label: "Інший", value: "Інший" },
 ];
 
+const courtsType = [
+  "Спортивний",
+  "Дитячий",
+  "Баскетбольний",
+  "Тенісний",
+  "Футбольний",
+  "Стріт воркаут",
+  "Скейт-майданчик",
+  "Бігові доріжки",
+];
+
+const typeOptions = [
+  { label: "Спортивний", value: "Спортивний" },
+  { label: "Дитячо-спортивний", value: "Дитячо-спортивний" },
+];
+const accessOptions = [
+  { label: "Безкоштовний", value: "Безкоштовний" },
+  { label: "Платний", value: "Платний" },
+];
+const lightingOptions = [
+  { label: "Є", value: true },
+  { label: "Відсутнє", value: false },
+];
+
 export default {
   colorDescription,
   groundTypes,
   districts,
+  courtsType,
   courtsDistrict,
+  accessOptions,
+  typeOptions,
+  lightingOptions,
 };

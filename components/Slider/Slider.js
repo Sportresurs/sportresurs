@@ -144,7 +144,7 @@ SlickSlider.defaultProps = {
   isDots: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  slideIndex: 1,
+  slideIndex: 0,
   isInfinite: false,
   speed: 500,
   isLazyLoad: true,

@@ -108,7 +108,9 @@ Run `npm run jest` command to run all tests.
 
 This approach requires a valid email address (Gmail). <br />
 On your email account, you will need to give access to login from third-party applications [account.google](https://myaccount.google.com/lesssecureapps?) <br />
-Also, this approach has limitations (500 emails per day / at a time). <br />
+You also need to generate a 16-character "application password". You can do this by following the instructions [support.google](https://support.google.com/accounts/answer/185833?hl=ru&authuser=1). <br />
+`EMAIL_LOGIN` and `EMAIL_PASS` save in `.env` file. <br />
+This approach has limitations (500 emails per day / at a time). <br />
 If the mail got into the "SPAM" section, you need to indicate the sender as "verified". <br />
 After you indicate that this is a verified sender, email will stop getting into "SPAM". <br />
 
@@ -134,7 +136,7 @@ const handler = nextConnect()
   .use(checkAuthAdmin) // Here you can add middleware
   .get((req, res) => {
     res.status(200).json({ method: "GET" });
-  });
+  })
   .post((req, res) => {
     res.status(200).json({ method: "POST" });
   });

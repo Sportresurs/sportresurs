@@ -9,7 +9,7 @@ const chromaSubsampling = config.get("imageChromaSubsampling");
 const fit = config.get("imageFit");
 const withoutEnlargement = config.get("imageWithoutEnlargement");
 
-function compressImg(image) {
+function compressImage(image) {
   return sharp(image)
     .resize(width, height, {
       fit,
@@ -21,4 +21,4 @@ function compressImg(image) {
     .toBuffer();
 }
 
-module.exports = compressImg;
+module.exports = compressImage;

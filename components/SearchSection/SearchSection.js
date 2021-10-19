@@ -8,20 +8,27 @@ import PlacesAutocomplete, {
 import classNames from "classnames/bind";
 import { LVIV_COORDINATES } from "../../utils/constants";
 import { Context } from "../../context";
-import Button from "../Button/Button";
 import styles from "./SearchSection.module.scss";
 import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
 import Slider from "../Slider";
+import useWindowSize from "../../utils/hooks/findWindowSize";
 
 const cx = classNames.bind(styles);
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const districtsLink = [
+  { district: "Личаківський", color: "orange" },
+  { district: "Шевченківський", color: "green" },
+  { district: "Франківський", color: "blue" },
+  { district: "Залізничний", color: "lilac" },
+];
 
 function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
   const { handleCoordinates, handleFilterDistrict } = useContext(Context);
+  const size = useWindowSize();
 
   useEffect(() => window.google && setIsLoaded(true), []);
 
@@ -130,6 +137,8 @@ function SearchSection() {
                 </div>
                 <Link href="/map">
                   <a
+                    role="link"
+                    tabIndex={0}
                     className={cx("formBtn", {
                       disabled: !address,
                     })}
@@ -145,82 +154,61 @@ function SearchSection() {
             )}
           </form>
 
-          <ul className={styles.btnList}>
-            <Slider
-              arrayLength={4}
-              isDots={false}
-              slidesToShow={4}
-              slidesToScroll={1}
-              isInfinite={true}
-              isVariableWidth={true}
-              withArrows={false}
-              classNameBox={styles.sliderBox}
-              responsive={[
-                {
-                  breakpoint: 767,
-                  settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
+          <ul className={styles.linkList}>
+            {size.width <= 670 && (
+              <Slider
+                isDots={false}
+                slidesToShow={4}
+                slidesToScroll={1}
+                isInfinite={true}
+                isVariableWidth={true}
+                withArrows={false}
+                arrayLength={4}
+                classNameBox={styles.sliderBox}
+                responsive={[
+                  {
+                    breakpoint: 671,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    },
                   },
-                },
-                {
-                  breakpoint: 500,
-                  settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                  },
-                },
-              ]}
-            >
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="orange"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterDistrict}
-                  >
-                    Личаківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="green"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterDistrict}
-                  >
-                    Шевченківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="blue"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterDistrict}
-                  >
-                    Франківський
-                  </Button>
-                </Link>
-              </li>
-              <li className={styles.btnItem}>
-                <Link href="/map" passHref>
-                  <Button
-                    variant="lilac"
-                    size="medium"
-                    as="a"
-                    onClick={handleFilterDistrict}
-                  >
-                    Залізничний
-                  </Button>
-                </Link>
-              </li>
-            </Slider>
+                ]}
+              >
+                {districtsLink.map(({ district, color }) => (
+                  <li key={district} className={styles.linkItem}>
+                    <Link href="/map" passHref>
+                      <a
+                        role="link"
+                        tabIndex={0}
+                        className={cx("link", color)}
+                        onClick={handleFilterDistrict}
+                      >
+                        {district}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </Slider>
+            )}
+            {size.width >= 671 && (
+              <>
+                {districtsLink.map(({ district, color }) => (
+                  <li key={district} className={styles.linkItem}>
+                    <Link href="/map" passHref>
+                      <a
+                        role="link"
+                        tabIndex={0}
+                        className={cx("link", color)}
+                        onClick={handleFilterDistrict}
+                      >
+                        {district}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </>
+            )}
           </ul>
         </div>
       </section>
