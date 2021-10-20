@@ -80,10 +80,14 @@ export default function Map({
 }
 
 Map.propTypes = {
+  setBounds: PropTypes.func.isRequired,
   defaultCenter: PropTypes.object.isRequired,
+  searchPinCoords: PropTypes.object,
   defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
   childClicked: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setMarkerIndex: PropTypes.func,
+  setSliderOpen: PropTypes.func,
   apiKey: PropTypes.string.isRequired,
 };
