@@ -1,5 +1,5 @@
 async function getRequestsAmount() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/request`, {
     method: "GET",
   });
   const requests = await res.json();

@@ -1,5 +1,5 @@
 const updateRequestData = async (requestID, requestStatus, adminEmail) => {
-  await fetch(`${process.env.NEXT_PUBLIC_HOST}api/getRequests`, {
+  await fetch(`${process.env.NEXT_PUBLIC_HOST}api/request`, {
     method: "PATCH",
     body: JSON.stringify({
       id: requestID,
