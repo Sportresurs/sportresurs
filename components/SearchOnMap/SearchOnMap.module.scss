@@ -34,6 +34,8 @@
     overflow: hidden;
     white-space: nowrap;
 
+    appearance: none;
+
     @media screen and (max-width: 767px) {
         padding: 10px 36px 10px 44px;
         font-size: 14px;
