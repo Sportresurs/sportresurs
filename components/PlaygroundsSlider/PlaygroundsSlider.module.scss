@@ -1,4 +1,16 @@
 @import "styles/colors";
+.sliderBox :global(.slick-slider) {
+  :global(.slick-list) {
+    margin: 0 -15px;
+
+    :global(.slick-track) {
+      :global(.slick-slide) > div {
+        padding: 0 15px;
+      }
+    }
+  }
+}
+
 .sliderWrapper {
   width: 100%;
   margin: 0;

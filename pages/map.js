@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Script from "next/script";
 import classNames from "classnames";
 import Map from "../components/Map";
@@ -10,14 +10,13 @@ import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 import { Context } from "../context";
 import placesInBounds from "../utils/placesInBounds";
+import {
+  DEFAULT_CENTER,
+  DEFAULT_BOUNDS,
+  DEFAULT_ZOOM,
+} from "../utils/mapStartPositionData";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
-const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
-const DEFAULT_BOUNDS = {
-  sw: { lat: 49.83656742688311, lng: 24.02260123538207 },
-  ne: { lat: 49.84608810441344, lng: 24.04058276461791 },
-};
-const DEFAULT_ZOOM = 15;
 
 export default function MapPage({ playgrounds }) {
   const {
@@ -44,6 +43,11 @@ export default function MapPage({ playgrounds }) {
       setDistrictCenter(null);
     },
     []
+  );
+
+  const getPlaygroundsInBounds = useMemo(
+    () => placesInBounds(areas, bounds),
+    [bounds, areas]
   );
 
   const handleSliderShow = () => {
@@ -101,7 +105,7 @@ export default function MapPage({ playgrounds }) {
                       childClicked={childClicked}
                       setChildClicked={setChildClicked}
                       markerIndex={markerIndex}
-                      playgrounds={placesInBounds(areas, bounds)}
+                      playgrounds={getPlaygroundsInBounds}
                     />
                   </div>
                 </div>
@@ -109,7 +113,7 @@ export default function MapPage({ playgrounds }) {
               <div className={styles.scrollBox}>
                 <div className={styles.listWrapper}>
                   <PlaygroundsList
-                    playgrounds={placesInBounds(areas, bounds)}
+                    playgrounds={getPlaygroundsInBounds}
                     childClicked={childClicked}
                     setChildClicked={setChildClicked}
                   />
@@ -122,7 +126,7 @@ export default function MapPage({ playgrounds }) {
                 apiKey={API_KEY}
                 defaultZoom={zoom || DEFAULT_ZOOM}
                 defaultCenter={districtCenter || DEFAULT_CENTER}
-                places={placesInBounds(areas, bounds)}
+                places={getPlaygroundsInBounds}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
                 searchPinCoords={searchPinCoords}
