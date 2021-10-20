@@ -3,7 +3,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Request extends Model {
     static associate(models) {
-      this.belongsTo(models.User);
+      this.belongsTo(models.User, {
+        foreignKey: "admin",
+        otherKey: "id",
+      });
     }
   }
   Request.init(
