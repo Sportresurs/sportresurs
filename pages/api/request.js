@@ -5,15 +5,6 @@ import { sendRequest } from "../../utils/emailSender";
 import checkAuthAdmin from "../../middleware/checkAuthAdmin";
 
 const handler = nc()
-  .use(checkAuthAdmin)
-  .get(async (req, res) => {
-    try {
-      const userRequests = await Request.findAll();
-      res.status(200).json({ userRequests });
-    } catch (error) {
-      res.json(error);
-    }
-  })
   .post(async (req, res) => {
     try {
       const { name, phone, info } = req.body;
@@ -30,6 +21,14 @@ const handler = nc()
     }
   })
   .use(checkAuthAdmin)
+  .get(async (req, res) => {
+    try {
+      const userRequests = await Request.findAll();
+      res.status(200).json({ userRequests });
+    } catch (error) {
+      res.json(error);
+    }
+  })
   .patch(async (req, res) => {
     try {
       const { id, status, email } = req.body;
