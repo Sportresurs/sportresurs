@@ -21,6 +21,7 @@ const PlaygroundsSlider = ({
       isDots={false}
       arrayLength={playgrounds.length}
       slidesToScroll={1}
+      classNameBox={styles.sliderBox}
       classNameArrow={styles.customArrow}
     >
       {playgrounds.map((playground) => (
