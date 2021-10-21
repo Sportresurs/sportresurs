@@ -22,6 +22,12 @@ const districtsLink = [
   { district: "Франківський", color: "blue" },
   { district: "Залізничний", color: "lilac" },
 ];
+const mapBounds = {
+  north: 49.96325058667949,
+  south: 49.7223633490448,
+  east: 24.210497138916054,
+  west: 23.851724861084023,
+};
 
 function SearchSection() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -40,11 +46,24 @@ function SearchSection() {
     setAddress(value);
   };
 
+  const checkLatLng = (coords) => {
+    if (
+      coords.lat < mapBounds.south ||
+      coords.lat > mapBounds.north ||
+      coords.lng < mapBounds.west ||
+      coords.lng > mapBounds.east
+    ) {
+      setCoordinates(LVIV_COORDINATES);
+    } else {
+      setCoordinates(coords);
+    }
+  };
+
   const handleSelect = async (value) => {
     const result = await geocodeByAddress(value);
     const latLng = await getLatLng(result[0]);
     setAddress(value);
-    setCoordinates(latLng);
+    checkLatLng(latLng);
   };
 
   const searchOptions = () =>
@@ -53,7 +72,10 @@ function SearchSection() {
         LVIV_COORDINATES.lat,
         LVIV_COORDINATES.lng
       ),
-      radius: 30000,
+      bounds: {
+        ...mapBounds,
+      },
+      componentRestrictions: { country: "ua" },
       types: ["address"],
     };
 

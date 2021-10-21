@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/client";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import className from "classnames/bind";
@@ -96,6 +97,13 @@ export default function Header() {
 
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        ></meta>
+      </Head>
+
       <header className={styles.header}>
         <nav className={styles.nav}>
           <button className={styles.btnMenu} onClick={handleMenuActive}>

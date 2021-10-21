@@ -21,42 +21,32 @@ const options = {
 const cx = classNames.bind(styles);
 
 export default function Map({
+  setBounds,
   defaultZoom,
+  zoom,
   defaultCenter,
   places,
   setChildClicked,
   childClicked,
   apiKey,
-  onLoad,
-  onChange,
   searchPinCoords,
   setMarkerIndex,
   setSliderOpen,
 }) {
-  const handleApiLoaded = ({ map }) => {
-    if (onLoad) {
-      onLoad(map);
-    }
-  };
-  const handleChange = (e) => {
-    if (onChange) {
-      onChange(e);
-    }
-  };
-
   return (
     <div className={styles.mapWrapper}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: apiKey }}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
+        zoom={zoom}
         center={searchPinCoords}
         yesIWantToUseGoogleMapApiInternals
         options={options}
-        margin={[100, 100, 100, 100]}
-        onChange={handleChange}
-        onDrag={handleChange}
-        onGoogleApiLoaded={handleApiLoaded}
+        margin={[10, 10, 10, 10]}
+        onChange={(e) => {
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+        }}
         onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place, i) => {
@@ -92,12 +82,14 @@ export default function Map({
 }
 
 Map.propTypes = {
+  setBounds: PropTypes.func.isRequired,
   defaultCenter: PropTypes.object.isRequired,
+  searchPinCoords: PropTypes.object,
   defaultZomm: PropTypes.number,
   places: PropTypes.array.isRequired,
   setChildClicked: PropTypes.func,
   childClicked: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setMarkerIndex: PropTypes.func,
+  setSliderOpen: PropTypes.func,
   apiKey: PropTypes.string.isRequired,
-  onLoad: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };

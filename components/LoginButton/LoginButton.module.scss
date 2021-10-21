@@ -37,10 +37,12 @@
   color: $color-primary-light;
   background-color: $color-primary-dark;
   transition: 0.3s;
+  pointer-events: none;
 }
 
 .isMenuOpen {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .link {

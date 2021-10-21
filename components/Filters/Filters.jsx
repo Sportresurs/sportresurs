@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 import classNames from "classnames";
-import axios from "axios";
 import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
@@ -20,8 +19,8 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas, location, handleCoordinates }) => {
-  const { areas, filterData, filterFields, setFilterData } =
+const Filters = ({ areas, location, handleCoordinates, bounds }) => {
+  const { setAreas, filterData, filterFields, setFilterData } =
     useContext(Context);
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
@@ -48,12 +47,6 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
   };
 
   useEffect(() => {
-    if (!filters.array.length && filters.rating.value === 0) {
-      axios({
-        method: "GET",
-        url: `${process.env.NEXT_PUBLIC_HOST}api/areas`,
-      }).then(({ data }) => setAreas(data.areas));
-    }
     getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
     return () => {
       setFilterData({
@@ -62,7 +55,7 @@ const Filters = ({ setAreas, location, handleCoordinates }) => {
         rating: { value: 0 },
       });
     };
-  }, []);
+  }, [bounds]);
 
   const deleteTag = (tag) => {
     const newPurposeOfAreas = filters.purposeOfAreas.filter(

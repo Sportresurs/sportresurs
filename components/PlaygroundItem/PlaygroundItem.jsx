@@ -52,7 +52,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
           rating={playground.rating}
           color={color}
           address={playground.address}
-          courtNumber={playground.id}
+          courtNumber={playground.number}
           playground={playground}
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}

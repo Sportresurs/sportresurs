@@ -1,12 +1,5 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Script from "next/script";
-import throttle from "lodash.throttle";
 import classNames from "classnames";
 import Map from "../components/Map";
 import PlaygroundsSlider from "../components/PlaygroundsSlider";
@@ -16,60 +9,47 @@ import styles from "../styles/MapPage.module.scss";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 import { Context } from "../context";
+import placesInBounds from "../utils/placesInBounds";
+import {
+  DEFAULT_CENTER,
+  DEFAULT_BOUNDS,
+  DEFAULT_ZOOM,
+} from "../utils/mapStartPositionData";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
-const DEFAULT_CENTER = { lat: 49.841328, lng: 24.031592 };
-const DEFAULT_ZOOM = 15;
 
 export default function MapPage({ playgrounds }) {
-  const { coordinates, handleCoordinates } = useContext(Context);
+  const {
+    areas,
+    coordinates,
+    handleCoordinates,
+    zoom,
+    setZoom,
+    districtCenter,
+    setDistrictCenter,
+  } = useContext(Context);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchPinCoords, setSearchPinCoords] = useState(coordinates);
   const [childClicked, setChildClicked] = useState(null);
   const [markerIndex, setMarkerIndex] = useState(0);
   const [sliderOpen, setSliderOpen] = useState(true);
-  const [filteredPlaces, setFilteredPlaces] = useState(playgrounds);
+  const [bounds, setBounds] = useState(DEFAULT_BOUNDS);
 
   useEffect(() => window.google && setIsLoaded(true), []);
-
   useEffect(
     () => () => {
       handleCoordinates(null);
+      setDistrictCenter(null);
+      setZoom(null);
     },
     []
   );
 
-  const mapRef = useRef();
-  const filterPlaces = useCallback(() => {
-    if (!mapRef.current) {
-      return;
-    }
-
-    const bounds = mapRef.current.getBounds();
-    setFilteredPlaces(
-      playgrounds.filter((place) =>
-        bounds.contains({
-          lat: Number(place.latitude),
-          lng: Number(place.longitude),
-        })
-      )
-    );
-  }, [playgrounds]);
-
-  const filterPlacesThrottled = useRef(throttle(filterPlaces, 500));
-
-  const onMapLoaded = useCallback(
-    (map) => {
-      mapRef.current = map;
-      filterPlaces();
-    },
-    [filterPlaces]
+  const getPlaygroundsInBounds = useMemo(
+    () => placesInBounds(areas, bounds),
+    [bounds, areas]
   );
-
-  const onMapChanged = useCallback(() => {
-    filterPlacesThrottled.current();
-  }, []);
 
   const handleSliderShow = () => {
     setSliderOpen((prevState) => !prevState);
@@ -101,7 +81,8 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.sidebarWrapper}>
               <div className={styles.filterWrapper}>
                 <Filters
-                  setAreas={setFilteredPlaces}
+                  bounds={bounds}
+                  areas={playgrounds}
                   location="mapPage"
                   API_KEY={API_KEY}
                   handleCoordinates={setSearchPinCoords}
@@ -125,7 +106,7 @@ export default function MapPage({ playgrounds }) {
                       childClicked={childClicked}
                       setChildClicked={setChildClicked}
                       markerIndex={markerIndex}
-                      playgrounds={filteredPlaces}
+                      playgrounds={getPlaygroundsInBounds}
                     />
                   </div>
                 </div>
@@ -133,7 +114,7 @@ export default function MapPage({ playgrounds }) {
               <div className={styles.scrollBox}>
                 <div className={styles.listWrapper}>
                   <PlaygroundsList
-                    playgrounds={filteredPlaces}
+                    playgrounds={getPlaygroundsInBounds}
                     childClicked={childClicked}
                     setChildClicked={setChildClicked}
                   />
@@ -142,14 +123,14 @@ export default function MapPage({ playgrounds }) {
             </div>
             <div className={styles.mapWrapper}>
               <Map
+                setBounds={setBounds}
                 apiKey={API_KEY}
                 defaultZoom={DEFAULT_ZOOM}
-                defaultCenter={DEFAULT_CENTER}
-                places={filteredPlaces}
+                zoom={zoom}
+                defaultCenter={districtCenter || DEFAULT_CENTER}
+                places={getPlaygroundsInBounds}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
-                onLoad={onMapLoaded}
-                onChange={onMapChanged}
                 searchPinCoords={searchPinCoords}
                 setMarkerIndex={setMarkerIndex}
                 setSliderOpen={setSliderOpen}
