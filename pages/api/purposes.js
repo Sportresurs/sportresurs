@@ -1,10 +1,10 @@
 import { withSentry } from "@sentry/nextjs";
 import nextConnect from "next-connect";
-import { Area, Purpose } from "../../models/index";
+import { Purpose } from "../../models";
 
 const handler = nextConnect().get(async (req, res) => {
-  const areas = await Area.findAll({ include: Purpose });
-  return res.status(200).json({ areas });
+  const purpose = await Purpose.findAll();
+  res.status(200).json({ purpose });
 });
 
 export default withSentry(handler);

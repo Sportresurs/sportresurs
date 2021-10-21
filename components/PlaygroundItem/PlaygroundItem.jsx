@@ -8,7 +8,7 @@ import useWindowSize from "../../utils/hooks/findWindowSize";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
-import image from "../../public/img/playgroundPlaceholder.png";
+import placeholderImg from "../../public/img/placeholderImgCard.png";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -18,7 +18,6 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   ];
 
   const screenWidth = useWindowSize().width;
-
   useEffect(() => {
     if (isActive && screenWidth > 950) {
       // eslint-disable-next-line no-unused-expressions
@@ -32,8 +31,6 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const color = getDistrictColor(playground.district);
-  // eslint-disable-next-line no-param-reassign
-  playground.images = [image, image, image, image]; // temporary measure while waiting for DB with images, now it's doesn't exsist
 
   return (
     <div className={styles.wrapper} onClick={handleClick}>
@@ -41,7 +38,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.images[0]}
+            src={playground.images ? playground.images[0] : placeholderImg}
             alt=""
             layout="fill"
           />
@@ -55,7 +52,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
           rating={playground.rating}
           color={color}
           address={playground.address}
-          courtNumber={playground.courtNumber}
+          courtNumber={playground.id}
           playground={playground}
           showExtendedInfo={isActive}
           playgroundInfoFields={playgroundInfoFields}

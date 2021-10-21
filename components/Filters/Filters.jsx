@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import classNames from "classnames";
+import axios from "axios";
 import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
 import FilterIcon from "../../public/svg/filterIcon.svg";
 import FilterTag from "../FilterTag";
 import FilterWindow from "./FilterWindow";
 import SearchOnMap from "../SearchOnMap";
+import { Context } from "../../context";
 
 const FilterButton = ({ counter, changeStatus }) => {
   const wrapperIconClasses = classNames(styles.filterButton);
@@ -18,22 +20,49 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
+const Filters = ({ setAreas, location, handleCoordinates }) => {
+  const { areas, filterData, filterFields, setFilterData } =
+    useContext(Context);
   const [isOpen, changeStatus] = useState(false);
   const [filters, setFilters] = useState({
-    purposeOfAreas: [],
-    districts: [],
+    purposeOfAreas: filterData.purposeOfAreas,
+    districts: filterData.districts,
     rating: { value: 0 },
-    array: [],
+    array: [...filterData.purposeOfAreas, ...filterData.districts],
   });
 
-  // eslint-disable-next-line no-shadow
-  const getNewAreas = (filters) => {
-    // eslint-disable-next-line no-unused-vars
-    const normalizedValues = filters.map((item) => item.value);
-    // Exsample: const data = axios.post(URL_API, { filters: normalizedValues });
-    setAreas();
+  const getNewAreas = async (purposes, districts, rating) => {
+    const purposeValues = purposes.map((item) => item.value.toLowerCase());
+    const districtValues = districts.map((item) => item.value);
+    const data = areas.filter((area) => {
+      const arayPurposes = area.Purposes.map((item) => item.title);
+      return (
+        purposeValues.every((value) => arayPurposes.includes(value)) &&
+        (districtValues.length
+          ? districtValues.includes(area.district)
+          : true) &&
+        area.rating >= rating.value
+      );
+    });
+    return setAreas(data);
   };
+
+  useEffect(() => {
+    if (!filters.array.length && filters.rating.value === 0) {
+      axios({
+        method: "GET",
+        url: `${process.env.NEXT_PUBLIC_HOST}api/areas`,
+      }).then(({ data }) => setAreas(data.areas));
+    }
+    getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
+    return () => {
+      setFilterData({
+        purposeOfAreas: [],
+        districts: [],
+        rating: { value: 0 },
+      });
+    };
+  }, []);
 
   const deleteTag = (tag) => {
     const newPurposeOfAreas = filters.purposeOfAreas.filter(
@@ -50,7 +79,7 @@ const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
       rating: newRating,
       array: newArray,
     });
-    getNewAreas(newArray);
+    getNewAreas(newPurposeOfAreas, newDistricts, newRating);
   };
 
   return (
@@ -69,11 +98,11 @@ const Filters = ({ setAreas, location, handleCoordinates, API_KEY }) => {
             onToggle={changeStatus}
             handleCoordinates={handleCoordinates}
             numberOfFilters={filters.array.filter((item) => item.value).length}
-            API_KEY={API_KEY}
           />
         )}
         {isOpen && (
           <FilterWindow
+            filterFields={filterFields}
             getNewAreas={getNewAreas}
             filters={filters}
             counter={filters.array.filter((item) => item.value).length}
