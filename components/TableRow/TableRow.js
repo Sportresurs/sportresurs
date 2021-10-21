@@ -1,7 +1,9 @@
+import { useSession } from "next-auth/client";
 import classNames from "classnames/bind";
 import { useState } from "react";
 import Select from "../Select";
 import styles from "./TableRow.module.scss";
+import updateRequestData from "../../utils/updateRequestData";
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +17,8 @@ export default function TableRow({
   info,
   options,
 }) {
-  // TODO: will be changed to session.user.mail
-  const testMail = "remenjuk2010@gmail.com";
+  const [session] = useSession();
+  const currentAdminEmail = session?.user.email;
 
   const [currentStatus, setCurrentStatus] = useState(status);
   const [currentEmail, setCurrentEmail] = useState(admin);
@@ -36,16 +38,20 @@ export default function TableRow({
 
     switch (e.target.value) {
       case "в процесі":
-        setCurrentEmail(testMail);
+        setCurrentEmail(currentAdminEmail);
+        updateRequestData(id, e.target.value, currentAdminEmail);
+
         break;
       case "оброблено":
-        setCurrentEmail(testMail);
+        setCurrentEmail(currentAdminEmail);
+        updateRequestData(id, e.target.value, currentAdminEmail);
         break;
       case "новий":
-        setCurrentEmail("-");
+        setCurrentEmail(null);
+        updateRequestData(id, e.target.value, null);
         break;
       default:
-        setCurrentEmail("-");
+        setCurrentEmail(null);
     }
   };
 
@@ -53,7 +59,7 @@ export default function TableRow({
     <tr
       key={id}
       className={cx("tableRow", {
-        new: status === "новий",
+        new: currentStatus === "новий",
       })}
     >
       <td className={cx("tableCell", "number")}>{id}.</td>

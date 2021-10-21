@@ -5,19 +5,18 @@ import { useEffect, useState } from "react";
 import styles from "./LoginButton.module.scss";
 import AvatarIcon from "../../public/svg/avatarIcon.svg";
 import DeleteDialog from "../DeleteDialog";
+import getRequestsAmount from "../../utils/getRequestsAmount";
 
 const cx = classNames.bind(styles);
 
 export default function LoginButton({ setIsAdminLoggedIn }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [newRequestsAmount, setNewRequestsAmount] = useState(0);
+  const [newRequestsAmount, setNewRequestsAmount] = useState(null);
 
   useEffect(() => {
-    // fetch logic to get amount of new requests
-    // fake fetch
-    setNewRequestsAmount(5);
-  }, []);
+    getRequestsAmount().then((data) => setNewRequestsAmount(data));
+  }, [isMenuOpen]);
 
   const handleMenuClose = () => {
     setIsMenuOpen(!isMenuOpen);
