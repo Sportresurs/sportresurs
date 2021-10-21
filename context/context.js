@@ -54,6 +54,7 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         zoom,
+        setZoom,
         districtCenter,
         setDistrictCenter,
         coordinates,

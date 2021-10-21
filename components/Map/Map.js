@@ -23,6 +23,7 @@ const cx = classNames.bind(styles);
 export default function Map({
   setBounds,
   defaultZoom,
+  zoom,
   defaultCenter,
   places,
   setChildClicked,
@@ -38,6 +39,7 @@ export default function Map({
         bootstrapURLKeys={{ key: apiKey }}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
+        zoom={zoom}
         center={searchPinCoords}
         yesIWantToUseGoogleMapApiInternals
         options={options}

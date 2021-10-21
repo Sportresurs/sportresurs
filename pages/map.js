@@ -24,6 +24,7 @@ export default function MapPage({ playgrounds }) {
     coordinates,
     handleCoordinates,
     zoom,
+    setZoom,
     districtCenter,
     setDistrictCenter,
   } = useContext(Context);
@@ -36,11 +37,11 @@ export default function MapPage({ playgrounds }) {
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS);
 
   useEffect(() => window.google && setIsLoaded(true), []);
-
   useEffect(
     () => () => {
       handleCoordinates(null);
       setDistrictCenter(null);
+      setZoom(null);
     },
     []
   );
@@ -124,7 +125,8 @@ export default function MapPage({ playgrounds }) {
               <Map
                 setBounds={setBounds}
                 apiKey={API_KEY}
-                defaultZoom={zoom || DEFAULT_ZOOM}
+                defaultZoom={DEFAULT_ZOOM}
+                zoom={zoom}
                 defaultCenter={districtCenter || DEFAULT_CENTER}
                 places={getPlaygroundsInBounds}
                 childClicked={childClicked}
