@@ -2,8 +2,10 @@ import nc from "next-connect";
 import { withSentry, captureException } from "@sentry/nextjs";
 import { Request } from "../../models";
 import { sendRequest } from "../../utils/emailSender";
+import checkAuthAdmin from "../../middleware/checkAuthAdmin";
 
 const handler = nc()
+  .use(checkAuthAdmin)
   .get(async (req, res) => {
     try {
       const userRequests = await Request.findAll();
@@ -27,6 +29,7 @@ const handler = nc()
       captureException(err);
     }
   })
+  .use(checkAuthAdmin)
   .patch(async (req, res) => {
     try {
       const { id, status, email } = req.body;
