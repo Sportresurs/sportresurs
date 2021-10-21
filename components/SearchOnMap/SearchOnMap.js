@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
+import { Context } from "../../context";
 import styles from "./SearchOnMap.module.scss";
 import { LVIV_COORDINATES } from "../../utils/constants";
 import SearchIcon from "../../public/svg/searchIcon.svg";
@@ -16,6 +17,8 @@ const cx = classNames.bind(styles);
 const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({});
+
+  const { setZoom } = useContext(Context);
 
   const handleInputClear = () => {
     setAddress("");
@@ -34,6 +37,7 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setZoom(16);
     handleCoordinates(coordinates);
     handleInputClear();
   };
