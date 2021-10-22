@@ -24,6 +24,7 @@ export default function Map({
   setBounds,
   defaultZoom,
   zoom,
+  center,
   defaultCenter,
   places,
   setChildClicked,
@@ -32,6 +33,7 @@ export default function Map({
   searchPinCoords,
   setMarkerIndex,
   setSliderOpen,
+  isSearchPinShow,
 }) {
   return (
     <div className={styles.mapWrapper}>
@@ -40,7 +42,7 @@ export default function Map({
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         zoom={zoom}
-        center={searchPinCoords}
+        center={searchPinCoords || center}
         yesIWantToUseGoogleMapApiInternals
         options={options}
         margin={[10, 10, 10, 10]}
@@ -68,7 +70,7 @@ export default function Map({
             />
           );
         })}
-        {searchPinCoords && (
+        {searchPinCoords && isSearchPinShow && (
           <MapMarkerWrapper
             lat={Number(searchPinCoords.lat)}
             lng={Number(searchPinCoords.lng)}

@@ -20,6 +20,8 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Spo
 
 export default function MapPage({ playgrounds }) {
   const {
+    center,
+    setCenter,
     areas,
     coordinates,
     handleCoordinates,
@@ -27,6 +29,7 @@ export default function MapPage({ playgrounds }) {
     setZoom,
     districtCenter,
     setDistrictCenter,
+    isSearchPinShow,
   } = useContext(Context);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,7 +44,8 @@ export default function MapPage({ playgrounds }) {
     () => () => {
       handleCoordinates(null);
       setDistrictCenter(null);
-      setZoom(null);
+      setZoom(15);
+      setCenter(null);
     },
     []
   );
@@ -85,6 +89,7 @@ export default function MapPage({ playgrounds }) {
                   areas={playgrounds}
                   location="mapPage"
                   API_KEY={API_KEY}
+                  setSearchPinCoords={setSearchPinCoords}
                   handleCoordinates={setSearchPinCoords}
                 />
               </div>
@@ -127,11 +132,13 @@ export default function MapPage({ playgrounds }) {
                 apiKey={API_KEY}
                 defaultZoom={DEFAULT_ZOOM}
                 zoom={zoom}
-                defaultCenter={districtCenter || DEFAULT_CENTER}
+                center={districtCenter || center}
+                defaultCenter={DEFAULT_CENTER}
                 places={getPlaygroundsInBounds}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
                 searchPinCoords={searchPinCoords}
+                isSearchPinShow={isSearchPinShow}
                 setMarkerIndex={setMarkerIndex}
                 setSliderOpen={setSliderOpen}
               />
