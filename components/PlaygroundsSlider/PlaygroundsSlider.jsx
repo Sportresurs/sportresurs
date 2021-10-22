@@ -9,28 +9,32 @@ const PlaygroundsSlider = ({
   setChildClicked,
   childClicked,
 }) => (
-  <div className={styles.sliderWrapper}>
-    <Slider
-      childClicked={childClicked}
-      setChildClicked={setChildClicked}
-      slideIndex={markerIndex}
-      isModal={false}
-      slidesToShow={1}
-      withArrows={true}
-      isArrowColorBlack={true}
-      isDots={false}
-      arrayLength={playgrounds.length}
-      slidesToScroll={1}
-      classNameBox={styles.sliderBox}
-      classNameArrow={styles.customArrow}
-    >
-      {playgrounds.map((playground) => (
-        <div key={playground.id}>
-          <PlaygroundItem playground={playground} />
-        </div>
-      ))}
-    </Slider>
-  </div>
+  <>
+    {playgrounds.length > 0 && (
+      <div className={styles.sliderWrapper}>
+        <Slider
+          childClicked={childClicked}
+          setChildClicked={setChildClicked}
+          slideIndex={markerIndex}
+          isModal={false}
+          slidesToShow={1}
+          withArrows={true}
+          isArrowColorBlack={true}
+          isDots={false}
+          arrayLength={playgrounds.length}
+          slidesToScroll={1}
+          classNameBox={styles.sliderBox}
+          classNameArrow={styles.customArrow}
+        >
+          {playgrounds.map((playground) => (
+            <div key={playground.id}>
+              <PlaygroundItem playground={playground} />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    )}
+  </>
 );
 
 export default PlaygroundsSlider;
