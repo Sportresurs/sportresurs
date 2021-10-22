@@ -19,7 +19,13 @@ const FilterButton = ({ counter, changeStatus }) => {
   );
 };
 
-const Filters = ({ areas, location, handleCoordinates, bounds }) => {
+const Filters = ({
+  areas,
+  location,
+  handleCoordinates,
+  bounds,
+  setSearchPinCoords,
+}) => {
   const { setAreas, filterData, filterFields, setFilterData } =
     useContext(Context);
   const [isOpen, changeStatus] = useState(false);
@@ -95,6 +101,7 @@ const Filters = ({ areas, location, handleCoordinates, bounds }) => {
         )}
         {isOpen && (
           <FilterWindow
+            setSearchPinCoords={setSearchPinCoords}
             filterFields={filterFields}
             getNewAreas={getNewAreas}
             filters={filters}
