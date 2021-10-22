@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import Rating from "../Rating";
 import Button from "../Button";
 import MultiSelect from "../MultiSelect/MultiSelect";
 import styles from "./Filters.module.scss";
+import { Context } from "../../context";
 import CloseFilterWindowIcon from "../../public/svg/closeFilterWindow.svg";
 
 const CloseFilterWindow = ({ changeStatus }) => {
@@ -23,7 +24,9 @@ const FilterWindow = ({
   counter,
   setFilters,
   changeStatus,
+  setSearchPinCoords,
 }) => {
+  const { showFilteredDistrict, setIsSearchPinShow } = useContext(Context);
   const [purposeOfAreas, setPurposeOfAreas] = useState(filters.purposeOfAreas);
   const [districts, setDistricts] = useState(filters.districts);
   const [rating, setRating] = useState(filters.rating);
@@ -33,6 +36,9 @@ const FilterWindow = ({
   };
 
   const applyFilters = () => {
+    if (setSearchPinCoords) {
+      setSearchPinCoords(null);
+    }
     setFilters({
       purposeOfAreas,
       districts,
@@ -41,6 +47,10 @@ const FilterWindow = ({
     });
     changeStatus(false);
     getNewAreas(purposeOfAreas, districts, rating);
+    if (districts[0]) {
+      showFilteredDistrict(districts);
+    }
+    setIsSearchPinShow(false);
   };
 
   const classesButton = classNames(styles.buttonApply);

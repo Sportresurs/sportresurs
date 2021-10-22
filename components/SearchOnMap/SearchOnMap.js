@@ -24,7 +24,7 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({});
 
-  const { setZoom } = useContext(Context);
+  const { setZoom, setIsSearchPinShow } = useContext(Context);
 
   const handleInputClear = () => {
     setAddress("");
@@ -57,6 +57,7 @@ const SearchOnMap = ({ handleCoordinates, onToggle, numberOfFilters }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setZoom(16);
+    setIsSearchPinShow(true);
     handleCoordinates(coordinates);
     handleInputClear();
   };

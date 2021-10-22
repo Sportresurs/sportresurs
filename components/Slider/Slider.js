@@ -114,7 +114,9 @@ const SlickSlider = ({
     responsive,
     afterChange(current) {
       if (childClicked) {
-        return setChildClicked(Number(children[current].key));
+        return children.lenght
+          ? setChildClicked(Number(children[current].key))
+          : null;
       }
       return null;
     },
