@@ -9,11 +9,8 @@
   border-radius: 3px 3px 0 0;
   flex: 1 1 50%;
   max-width: 540px;
-  max-height: 688px;
-  @media screen and (max-width: 950px) {
-    max-width: 875px;
-    max-height: 1114px;
-    margin-bottom: 23px;
+  @media screen and (max-width: 768px) {
+    max-width: 326px;
   }
 }
 .bgImage {
@@ -34,6 +31,14 @@
   color: $color-primary-dark;
   margin: 0;
   padding-top: 12px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 32px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 950px) {
+    font-size: 34px;
+    line-height: 40px;
+  }
 }
 .street {
   margin: 0;
@@ -41,14 +46,27 @@
   line-height: 22px;
   letter-spacing: 0.3px;
   padding-bottom: 12px;
+
+  @media screen and (min-width: 769px) and (max-width: 950px) {
+    margin: 10px 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 .infoWrapper {
   padding-top: 38px;
+  @media screen and (min-width: 769px) and (max-width: 950px) {
+    padding-top: 10px;
+  }
 }
 .contactBtn {
   margin: 45px 0 0;
+  @media screen and (min-width: 769px) and (max-width: 950px) {
+    margin: 20px 0;
+  }
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 768px) {
   .wrapper {
     flex-direction: column;
     padding: 18px 12px 0;
@@ -76,43 +94,43 @@
   }
 }
 .sliderBox .dots.modalDots {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     position: absolute;
     bottom: -18px;
     height: 5px;
   }
 }
 .sliderBox .dots.modalDots ul {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     padding-left: 7px;
   }
 }
 .sliderBox .dots.modalDots ul li {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     margin-right: 15px;
   }
 }
 .sliderBox .dots.modalDots :global(li.slick-active) {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     margin-right: 8px;
     margin-left: -7px;
   }
 }
 .sliderBox .dots.modalDots ul li button {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     height: 5px;
     width: 5px;
     background: $color-primary-dark;
   }
   &:hover,
   &:focus {
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 768px) {
       background: $color-primary-dark;
     }
   }
 }
 .sliderBox .dots.modalDots :global(li.slick-active) button {
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 768px) {
     width: 20px;
     background-color: $color-primary-dark;
   }
