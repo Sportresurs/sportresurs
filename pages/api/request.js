@@ -23,9 +23,7 @@ const handler = nc()
   .use(checkAuthAdmin)
   .get(async (req, res) => {
     try {
-      const userRequests = await Request.findAll({
-        attributes: ["*"],
-      });
+      const userRequests = await Request.findAll({});
       res.status(200).json({ userRequests });
     } catch (error) {
       res.json(error);
