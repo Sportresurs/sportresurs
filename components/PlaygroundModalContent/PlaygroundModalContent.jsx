@@ -13,6 +13,8 @@ import AdminPlaygroundModal from "../AdminPlaygroundModal/AdminPlaygroundModal";
 import placeholderImage from "../../public/img/placeholderImgModal.png";
 import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
+import DeleteDialog from "../DeleteDialog";
+import axios from "axios";
 
 const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
@@ -40,14 +42,34 @@ const PlaygroundModalContent = ({ playground, color }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [session] = useSession();
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+  const [isVisibleDialog, setVisibleDialog] = useState(false);
+
+  const handleDeleteDialogOpen = () => {
+    setVisibleDialog(true);
+  };
+
+  const handleCancelDeleteDialog = () => {
+    setVisibleDialog(false);
+  };
+
+  const handleDeleteDialogClose = async () => {
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_HOST}/api/playground/delete-playground?id=${playground.id}`
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setVisibleDialog(false);
+      window.location.reload(false);
+    }
+  };
 
   useEffect(() => {
     if (session) {
       setIsAdmin(true);
     }
   }, [isAdmin, session]);
-
-  async function deletePlayground(id) {}
 
   return (
     <div className={styles.wrapper}>
@@ -93,7 +115,10 @@ const PlaygroundModalContent = ({ playground, color }) => {
               className={styles.icon}
               onClick={() => handleOpenModal()}
             />
-            <DeleteIcon className={styles.icon} />
+            <DeleteIcon
+              className={styles.icon}
+              onClick={() => handleDeleteDialogOpen()}
+            />
           </h1>
         ) : (
           <h1 className={styles.heading}>Майданчик № {playground.number}</h1>
@@ -110,6 +135,12 @@ const PlaygroundModalContent = ({ playground, color }) => {
         </div>
       </div>
       <AdminPlaygroundModal visible={isModalShown} onClose={handleCloseModal} />
+      <DeleteDialog
+        variant="deleteCourt"
+        visible={isVisibleDialog}
+        onClose={handleDeleteDialogClose}
+        onCancel={handleCancelDeleteDialog}
+      />
     </div>
   );
 };
