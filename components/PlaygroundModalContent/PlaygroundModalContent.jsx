@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import PropTypes from "prop-types";
 import Image from "next/image";
+import axios from "axios";
 import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
@@ -14,9 +15,8 @@ import placeholderImage from "../../public/img/placeholderImgModal.png";
 import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
 import DeleteDialog from "../DeleteDialog";
-import axios from "axios";
 
-const PlaygroundModalContent = ({ playground, color }) => {
+const PlaygroundModalContent = ({ playground, color, images }) => {
   const playgroundInfoFields = [
     { label: "Тип майданчика", value: playground.type },
     {
@@ -74,7 +74,7 @@ const PlaygroundModalContent = ({ playground, color }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        {playground.images ? (
+        {images ? (
           <Slider
             slidesToShow={1}
             slidesToScroll={1}
@@ -86,7 +86,7 @@ const PlaygroundModalContent = ({ playground, color }) => {
             isArrowColorBlack={false}
             arrayLength={playground.images.length}
           >
-            {playground.images.map((img, i) => (
+            {images.map((img, i) => (
               <Image
                 className={styles.bgImage}
                 src={img}
@@ -134,7 +134,12 @@ const PlaygroundModalContent = ({ playground, color }) => {
           <ContactUsButton shouldLockScreen={false} />
         </div>
       </div>
-      <AdminPlaygroundModal visible={isModalShown} onClose={handleCloseModal} />
+      <AdminPlaygroundModal
+        visible={isModalShown}
+        onClose={handleCloseModal}
+        area={playground}
+        images={images}
+      />
       <DeleteDialog
         variant="deleteCourt"
         visible={isVisibleDialog}
@@ -147,6 +152,8 @@ const PlaygroundModalContent = ({ playground, color }) => {
 
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
+  color: PropTypes.string,
+  images: PropTypes.array,
 };
 
 export default PlaygroundModalContent;
