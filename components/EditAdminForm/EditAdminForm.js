@@ -19,11 +19,11 @@ export default function EditAdminForm({ admin, cancel }) {
   const handleSubmit = async (values) => {
     // eslint-disable-next-line no-alert
     if (window.confirm("Прийняти зміни?")) {
-      window.location.reload(false);
       await axios.patch(
         `${process.env.NEXT_PUBLIC_HOST}api/admin/edit-admin?id=${admin.id}`,
         values
       );
+      window.location.reload(false);
     } else {
       cancel();
     }

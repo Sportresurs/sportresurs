@@ -8,11 +8,16 @@ import validation from "../../validationSchemas/AddAdminValidationSchema";
 
 export default function AddAdminForm() {
   const handleSubmit = async (values) => {
-    window.location.reload(false);
-    await axios.post(
-      `${process.env.NEXT_PUBLIC_HOST}api/admin/add-admin`,
-      values
-    );
+    try {
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_HOST}api/admin/add-admin`,
+        values
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      window.location.reload(false);
+    }
   };
   const getFormikErrorByField = (formik, fieldName) =>
     (formik.touched[fieldName] && formik.errors[fieldName]) || "";

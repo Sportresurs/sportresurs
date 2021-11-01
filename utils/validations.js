@@ -11,37 +11,26 @@ const validation = {
   emailValidation:
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   getErrorMessage(rule, option) {
-    let errorMessage = "";
     switch (rule) {
       case "name":
-        errorMessage = "Будь ласка, введіть валідне ім'я.";
-        break;
+        return "Будь ласка, введіть валідне ім'я.";
       case "phone":
-        errorMessage = "Введіть, будь ласка, номер у форматі +380XX XXX XX XX.";
-        break;
+        return "Введіть, будь ласка, номер у форматі +380XX XXX XX XX.";
       case "number":
-        errorMessage = "Будь ласка, введіть валідний номер.";
-        break;
+        return "Будь ласка, введіть валідний номер.";
       case "latitude":
-        errorMessage = "Будь ласка, введіть валідну широту.";
-        break;
+        return "Будь ласка, введіть валідну широту.";
       case "longitude":
-        errorMessage = "Будь ласка, введіть валідну довготу.";
-        break;
+        return "Будь ласка, введіть валідну довготу.";
       case "area":
-        errorMessage = "Будь ласка, введіть валідний метраж.";
-        break;
+        return "Будь ласка, введіть валідний метраж.";
       case "max":
-        errorMessage = `Кількість символів не повинно перевищувати ${option}.`;
-        break;
+        return `Кількість символів не повинно перевищувати ${option}.`;
       case "email":
-        errorMessage = "Будь ласка, введіть валідний email.";
-        break;
+        return "Будь ласка, введіть валідний email.";
       default:
-        errorMessage = "Заповніть, будь ласка, це поле.";
-        break;
+        return "Заповніть, будь ласка, це поле.";
     }
-    return errorMessage;
   },
 };
 export default validation;

@@ -10,6 +10,7 @@ import AddAdminForm from "../AddAdminForm";
 import EditAdminForm from "../EditAdminForm";
 import useFetchData from "../../utils/hooks/useFetchData";
 import Spinner from "../Spinner";
+import DeleteDialog from "../DeleteDialog";
 
 export default function AdminList() {
   const [adminList, isLoading] = useFetchData(
@@ -24,14 +25,26 @@ export default function AdminList() {
   };
 
   const [visible, setVisible] = useState({ isVisible: false, id: null });
+  const [adminToDelete, setAdminToDelete] = useState(null);
 
-  const handleDelete = async (id) => {
-    // eslint-disable-next-line no-alert
-    if (window.confirm("Видалити користувача зі списку адмінів?")) {
-      window.location.reload(false);
+  const handleSetAdminToDelete = (adminId) => {
+    setAdminToDelete(adminId);
+  };
+
+  const handleCancelAdminToDelete = () => {
+    setAdminToDelete(null);
+  };
+
+  const handleDelete = async () => {
+    try {
       await axios.patch(
-        `${process.env.NEXT_PUBLIC_HOST}api/admin/delete-admin?id=${id}`
+        `${process.env.NEXT_PUBLIC_HOST}api/admin/delete-admin?id=${adminToDelete}`
       );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setAdminToDelete(null);
+      window.location.reload(false);
     }
   };
 
@@ -71,7 +84,7 @@ export default function AdminList() {
             <button
               className={s.btnIcon}
               onClick={() => {
-                handleDelete(admin.id);
+                handleSetAdminToDelete(admin.id);
               }}
             >
               <DeleteIcon />
@@ -91,6 +104,12 @@ export default function AdminList() {
       ))}
       <h2 className={s.addAdminTitle}>Додати нового адмістратора</h2>
       <AddAdminForm />
+      <DeleteDialog
+        variant="deleteAdmin"
+        visible={adminToDelete}
+        onClose={handleDelete}
+        onCancel={handleCancelAdminToDelete}
+      />
     </div>
   );
 }
