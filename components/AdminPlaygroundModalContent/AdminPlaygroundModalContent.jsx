@@ -23,7 +23,7 @@ const AdminPlaygroundModalContent = ({
   images,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [files, setFiles] = useState(images ? images : []);
+  const [files, setFiles] = useState(images || []);
   const [onFocus, setOnFocus] = useState(false);
   const { data: purposesOptions = [], isLoading: isInitialDataLoading } =
     useAsyncData(playgroundService.getPurposes);
