@@ -13,8 +13,10 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendRequest = async (name, phoneNumber, details) => {
-  const users = await User.findAll({ attributes: ["email"] });
-  const emails = users.map((user) => user.dataValues.email);
+  const users = await User.findAll({ attributes: ["email", "status"] });
+  const emails = users
+    .filter((user) => user.dataValues.status !== "deleted")
+    .map((user) => user.dataValues.email);
   const EMAIL_TITLE = `${name}: звернення з сайту майданчиків через форму зворотнього зв'язку`;
   const message = `
     <p>Шановний адмін сайту Спортресурс,<br>

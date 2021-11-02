@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import classNames from "classnames/bind";
 import styles from "./Requests.module.scss";
 import data from "../../utils/testData/testRequestArr";
@@ -5,7 +7,15 @@ import TableRow from "../../components/TableRow";
 
 const cx = classNames.bind(styles);
 
-export default function Requests({ requests }) {
+export default function Requests() {
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_HOST}api/request`)
+      .then((res) => setRequests(res.data.userRequests));
+  }, []);
+
   return (
     <section className={styles.requests}>
       <div className={styles.container}>
@@ -53,16 +63,4 @@ export default function Requests({ requests }) {
       </div>
     </section>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/request`, {
-    method: "GET",
-  });
-  const requests = await res.json();
-  return {
-    props: {
-      requests: requests.userRequests,
-    },
-  };
 }

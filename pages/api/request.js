@@ -7,13 +7,13 @@ import checkAuthAdmin from "../../middleware/checkAuthAdmin";
 const handler = nc()
   .post(async (req, res) => {
     try {
-      const { name, phone, info } = req.body;
+      const { name, phone, details } = req.body;
       const newRequest = await Request.create({
         name,
         phone,
-        info,
+        details,
       });
-      sendRequest(name, phone, info);
+      sendRequest(name, phone, details);
       res.status(201).json(newRequest);
     } catch (err) {
       res.json(err);
@@ -23,7 +23,7 @@ const handler = nc()
   .use(checkAuthAdmin)
   .get(async (req, res) => {
     try {
-      const userRequests = await Request.findAll();
+      const userRequests = await Request.findAll({});
       res.status(200).json({ userRequests });
     } catch (error) {
       res.json(error);
