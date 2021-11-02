@@ -11,7 +11,7 @@ const handler = nc()
       await PurposeArea.destroy({ where: { area_id: id } });
       await Image.destroy({ where: { area_id: id } });
       await Area.destroy({ where: { id } });
-      return res.status(200).send("Area successfully deleted!");
+      res.status(200).send("Area successfully deleted!");
     } catch (err) {
       res.status(500).json(err);
       captureException(err);

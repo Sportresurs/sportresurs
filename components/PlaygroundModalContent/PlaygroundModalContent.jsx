@@ -57,8 +57,6 @@ const PlaygroundModalContent = ({ playground, color, images }) => {
       await axios.delete(
         `${process.env.NEXT_PUBLIC_HOST}/api/playground/delete-playground?id=${playground.id}`
       );
-    } catch (err) {
-      console.log(err);
     } finally {
       setVisibleDialog(false);
       window.location.reload(false);
