@@ -40,8 +40,6 @@ export default function AdminList() {
       await axios.patch(
         `${process.env.NEXT_PUBLIC_HOST}api/admin/delete-admin?id=${adminToDelete}`
       );
-    } catch (err) {
-      console.log(err);
     } finally {
       setAdminToDelete(null);
       window.location.reload(false);

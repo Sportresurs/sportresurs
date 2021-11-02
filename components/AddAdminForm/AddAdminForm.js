@@ -13,8 +13,6 @@ export default function AddAdminForm() {
         `${process.env.NEXT_PUBLIC_HOST}api/admin/add-admin`,
         values
       );
-    } catch (err) {
-      console.log(err);
     } finally {
       window.location.reload(false);
     }
