@@ -11,8 +11,6 @@
   z-index: 10;
   padding: 50px 40px;
   background: $color-modal-darkened;
-  @media screen and (max-width: 768px) {
-  }
 }
 .modal {
   display: flex;
@@ -20,28 +18,28 @@
   max-height: 100%;
   position: relative;
   overflow: hidden;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     max-width: 100%;
   }
 }
 .large {
   border-radius: 3px;
-  max-width: 870px;
-  @media screen and (max-width: 768px) {
+  max-width: 865px;
+  @media screen and (max-width: 767px) {
     max-width: 350px;
   }
 }
 .medium {
   border-radius: 6px;
   max-width: 628px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     max-width: 342px;
   }
 }
 .small {
   border-radius: 6px;
   max-width: 440px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     max-width: 339px;
     border-radius: 3px;
   }
@@ -59,13 +57,13 @@
   right: 20px;
   background: transparent;
   z-index: 3;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     top: 17px;
     right: 10px;
   }
 }
 .circle {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     justify-content: center;
     align-items: center;
