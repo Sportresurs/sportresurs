@@ -3,17 +3,11 @@ import Slider from "../Slider";
 import styles from "./PlaygroundsSlider.module.scss";
 import PlaygroundItem from "../PlaygroundItem";
 
-const PlaygroundsSlider = ({
-  playgrounds,
-  markerIndex,
-  setChildClicked,
-  childClicked,
-}) => (
+const PlaygroundsSlider = ({ playgrounds, markerIndex, setChildClicked }) => (
   <>
     {playgrounds.length > 0 && (
       <div className={styles.sliderWrapper}>
         <Slider
-          childClicked={childClicked}
           setChildClicked={setChildClicked}
           slideIndex={markerIndex}
           isModal={false}

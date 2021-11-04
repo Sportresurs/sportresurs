@@ -8,6 +8,17 @@
   background: #ffffff;
 }
 
+.loadingContainer {
+  min-height: 549px;
+  margin-top: 24px;
+  margin-bottom: 137px;
+  padding-bottom: 36px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .textContainer {
   width: 100%;
   margin-left: 36px;

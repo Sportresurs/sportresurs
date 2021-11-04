@@ -9,6 +9,11 @@ const playgroundService = {
       headers: { "Content-Type": "form/multipart" },
     });
   },
+  update(formData, id) {
+    return axios.patch(`/playground/edit-playground?id=${id}`, formData, {
+      headers: { "Content-Type": "form/multipart" },
+    });
+  },
 };
 
 export default playgroundService;
