@@ -108,7 +108,6 @@ export default function MapPage({ playgrounds }) {
                   </div>
                   <div className={sliderWrapperClass}>
                     <PlaygroundsSlider
-                      childClicked={childClicked}
                       setChildClicked={setChildClicked}
                       markerIndex={markerIndex}
                       playgrounds={getPlaygroundsInBounds}

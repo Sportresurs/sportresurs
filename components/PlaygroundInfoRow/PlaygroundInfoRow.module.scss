@@ -5,15 +5,18 @@
   line-height: 25.5px;
   letter-spacing: 0.3px;
   color: $color-primary-dark;
+  @media screen and (min-width: 768px) and (max-width: 950px) {
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0;
+  }
 }
 .label {
   text-transform: uppercase;
-  padding-bottom: 5px;
 }
-.listText{
+.listText {
   font-size: 10px;
   line-height: 15px;
   letter-spacing: 0.3px;
   color: $color-secondary-darkGrey;
 }
-
