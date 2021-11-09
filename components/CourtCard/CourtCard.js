@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
 import CourtCardInfo from "../CourtCardInfo";
@@ -15,12 +17,23 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     address = "Адреса не вказана",
     number = 0,
     rating = 3,
-    images,
   } = courtInfo;
+
+  const [images, setImages] = useState(null);
 
   const color = getDistrictColor(district);
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`)
+      .then(({ data }) => {
+        setImages(data);
+      });
+  }, []);
+
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
+  const picture = new Blob(images, { type: ["image/jpg", "image/png"] });
 
   return (
     <>
@@ -35,6 +48,8 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             alt="court"
             layout="fill"
           />
+          <img src={picture} alt="playground" />
+
           <p className={styles.address}>{address}</p>
         </div>
         <div className={styles.outer}>

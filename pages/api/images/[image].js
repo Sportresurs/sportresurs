@@ -9,7 +9,7 @@ const handler = nc().get(async (req, res) => {
   const imageId = imageName.split(".")[0];
   const image = await Image.findOne({
     where: {
-      id: imageId,
+      area_id: imageId,
     },
   });
   if (!image) {
