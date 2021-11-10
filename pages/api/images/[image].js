@@ -17,7 +17,7 @@ const handler = nc().get(async (req, res) => {
     return;
   }
   res.writeHead(200, {
-    "Content-Type": "image/jpeg",
+    "Content-Type": "image/jpg",
     "Cache-Control": `public, immutable, max-age=${MONTH_IN_SECONDS}`,
   });
   res.end(image.file);

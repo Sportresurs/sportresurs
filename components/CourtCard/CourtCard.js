@@ -27,13 +27,16 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     axios
       .get(`${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`)
       .then(({ data }) => {
-        setImages(data);
-      });
+        const blob = new Blob([data], {
+          type: "image/jpg",
+        });
+        const img = URL.createObjectURL(blob);
+        setImages(img);
+      })
+      .catch((err) => err);
   }, []);
-
+  
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
-
-  const picture = new Blob(images, { type: ["image/jpg", "image/png"] });
 
   return (
     <>
@@ -44,12 +47,11 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           </div>
           <Image
             className={styles.image}
-            src={images ? images[0] : placeholderImg}
+            src={images || placeholderImg}
             alt="court"
             layout="fill"
+            unoptimized={!!images}
           />
-          <img src={picture} alt="playground" />
-
           <p className={styles.address}>{address}</p>
         </div>
         <div className={styles.outer}>
