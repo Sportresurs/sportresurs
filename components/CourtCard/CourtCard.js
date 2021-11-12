@@ -19,7 +19,7 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     rating = 3,
   } = courtInfo;
 
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
 
   const color = getDistrictColor(district);
 
@@ -27,15 +27,26 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     axios
       .get(`${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`)
       .then(({ data }) => {
+        if (Array.isArray(data)) {
+          const linksList = [];
+          data.forEach((picture) => {
+            const blob = new Blob([picture], {
+              type: "image/jpg",
+            });
+            const img = URL.createObjectURL(blob);
+            linksList.push(img);
+          });
+          return setImages(linksList);
+        }
         const blob = new Blob([data], {
           type: "image/jpg",
         });
         const img = URL.createObjectURL(blob);
-        setImages(img);
+        return setImages([img]);
       })
       .catch((err) => err);
   }, []);
-  
+
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   return (
@@ -47,10 +58,10 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           </div>
           <Image
             className={styles.image}
-            src={images || placeholderImg}
+            src={images.length !== 0 ? images[0] : placeholderImg}
             alt="court"
             layout="fill"
-            unoptimized={!!images}
+            unoptimized={images ? true : false}
           />
           <p className={styles.address}>{address}</p>
         </div>
