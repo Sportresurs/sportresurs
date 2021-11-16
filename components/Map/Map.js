@@ -42,7 +42,10 @@ export default function Map({
           ...options,
           zoomControl: true,
           zoomControlOptions: {
-            position: maps.ControlPosition.TOP_RIGHT,
+            position: maps.ControlPosition.RIGHT_CENTER,
+          },
+          fullscreenControlOptions: {
+            position: maps.ControlPosition.RIGHT_CENTER,
           },
         })}
         bootstrapURLKeys={{ key: apiKey }}
