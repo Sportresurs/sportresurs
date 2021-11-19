@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
@@ -9,6 +9,7 @@ import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
 import placeholderImg from "../../public/img/placeholderImgCard.png";
+import getPicture from "../../utils/getImageFromDB";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -32,15 +33,26 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const color = getDistrictColor(playground.district);
 
+  const [isImage, setIsImage] = useState(false);
+
+  useEffect(() => {
+    getPicture(playground.id, setIsImage);
+  }, []);
+
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
             className={styles.bgImage}
-            src={playground.images ? playground.images[0] : placeholderImg}
+            src={
+              isImage
+                ? `${process.env.NEXT_PUBLIC_HOST}api/images/${playground.id}`
+                : placeholderImg
+            }
             alt=""
             layout="fill"
+            unoptimized={!!isImage}
           />
         </div>
       </div>

@@ -27,4 +27,10 @@ const SentryWebpackPluginOptions = {
   silent: true,
 };
 
+module.exports = {
+  images: {
+    domains: ["localhost"],
+  },
+};
+
 module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);

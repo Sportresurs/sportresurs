@@ -1,14 +1,15 @@
 import nc from "next-connect";
 import { withSentry } from "@sentry/nextjs";
-import { Image } from "../../../models";
+import { Image } from "../../../../models";
 
 const MONTH_IN_SECONDS = 2592000;
 
 const handler = nc().get(async (req, res) => {
   const { image: imageIdString } = req.query;
+  const idNumber = Number(imageIdString);
   const image = await Image.findOne({
     where: {
-      area_id: imageIdString,
+      id: idNumber,
     },
   });
   if (!image) {

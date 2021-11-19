@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
@@ -10,6 +9,7 @@ import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
 import placeholderImg from "../../public/img/placeholderImgCard.png";
+import getPicture from "../../utils/getImageFromDB";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -19,32 +19,12 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     rating = 3,
   } = courtInfo;
 
-  const [images, setImages] = useState([]);
-
   const color = getDistrictColor(district);
 
+  const [isImage, setIsImage] = useState(false);
+
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`)
-      .then(({ data }) => {
-        if (Array.isArray(data)) {
-          const linksList = [];
-          data.forEach((picture) => {
-            const blob = new Blob([picture], {
-              type: "image/jpg",
-            });
-            const img = URL.createObjectURL(blob);
-            linksList.push(img);
-          });
-          return setImages(linksList);
-        }
-        const blob = new Blob([data], {
-          type: "image/jpg",
-        });
-        const img = URL.createObjectURL(blob);
-        return setImages([img]);
-      })
-      .catch((err) => err);
+    getPicture(courtInfo.id, setIsImage);
   }, []);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
@@ -58,10 +38,14 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
           </div>
           <Image
             className={styles.image}
-            src={images.length !== 0 ? images[0] : placeholderImg}
+            src={
+              isImage
+                ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
+                : placeholderImg
+            }
             alt="court"
             layout="fill"
-            unoptimized={images ? true : false}
+            unoptimized={!!isImage}
           />
           <p className={styles.address}>{address}</p>
         </div>
