@@ -2,7 +2,6 @@
 
 .card {
   position: relative;
-  
 }
 
 .topList {
@@ -70,7 +69,7 @@
 
 .outer {
   position: absolute;
-  transform: translateY(20%);
+  transform: translateY(-100%);
   opacity: 0;
   height: 155px;
   width: 100%;
@@ -79,10 +78,11 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   background-color: $color-primary-light;
-  transition: 200ms;
+  transition: opacity 300ms;
+  pointer-events: none;
 
   .card:hover & {
-    transform: translateY(-100%);
     opacity: 1;
+    pointer-events: auto;
   }
 }
