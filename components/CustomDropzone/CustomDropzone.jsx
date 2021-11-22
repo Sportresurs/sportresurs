@@ -66,7 +66,15 @@ const CustomDropzone = ({ files, setFiles }) => {
         <div className={styles.sliderWrapper}>
           <Slider isModal={true} arrayLength={files.length}>
             {files.map((file) => (
-              <img key={file.id} src={file.url} alt="" />
+              <img
+                key={file.id}
+                src={
+                  file.url
+                    ? file.url
+                    : `${process.env.NEXT_PUBLIC_HOST}api/images/related/${file.id}`
+                }
+                alt={file.name}
+              />
             ))}
           </Slider>
         </div>
@@ -116,8 +124,12 @@ const CustomDropzone = ({ files, setFiles }) => {
                               <BasketIcon />
                             </div>
                             <img
-                              src={file.url}
-                              alt=""
+                              src={
+                                file.url
+                                  ? file.url
+                                  : `${process.env.NEXT_PUBLIC_HOST}api/images/related/${file.id}`
+                              }
+                              alt={file.name}
                               className={styles.image}
                             />
                           </div>

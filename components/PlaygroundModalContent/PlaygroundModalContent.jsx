@@ -79,7 +79,7 @@ const PlaygroundModalContent = ({ playground, color }) => {
       .then(({ data }) => {
         const imgIDs = [];
         data.forEach((el) => {
-          imgIDs.push(el.id);
+          imgIDs.push(el);
         });
 
         return imgIDs;
@@ -107,12 +107,12 @@ const PlaygroundModalContent = ({ playground, color }) => {
             isArrowColorBlack={false}
             arrayLength={images.length}
           >
-            {images.map((id, i) => (
+            {images.map(({ id, name }) => (
               <img
-                alt=""
+                alt={name}
                 src={`${process.env.NEXT_PUBLIC_HOST}api/images/related/${id}`}
                 className={styles.bgImage}
-                key={i}
+                key={id}
               />
             ))}
           </Slider>
@@ -159,7 +159,7 @@ const PlaygroundModalContent = ({ playground, color }) => {
         visible={isModalShown}
         onClose={handleCloseModal}
         area={playground}
-        /* images={images} */
+        images={images}
       />
       <DeleteDialog
         variant="deleteCourt"
