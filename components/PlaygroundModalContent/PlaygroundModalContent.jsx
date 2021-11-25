@@ -16,7 +16,7 @@ import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
 import DeleteDialog from "../DeleteDialog";
 
-const PlaygroundModalContent = ({ playground, color, images }) => {
+const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
     { label: "Тип майданчика", value: playground.type },
     {
@@ -69,10 +69,33 @@ const PlaygroundModalContent = ({ playground, color, images }) => {
     }
   }, [isAdmin, session]);
 
+  const [images, setImages] = useState([]);
+
+  function getRelatedImages(courtNumber) {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_HOST}api/images/images`, {
+        params: { id: courtNumber },
+      })
+      .then(({ data }) => {
+        const imgIDs = [];
+        data.forEach((el) => {
+          imgIDs.push(el);
+        });
+
+        return imgIDs;
+      })
+      .then((orderData) => setImages(orderData))
+      .catch((error) => error);
+  }
+
+  useEffect(() => {
+    getRelatedImages(playground.id);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        {images ? (
+        {images.length >= 1 && (
           <Slider
             slidesToShow={1}
             slidesToScroll={1}
@@ -82,19 +105,19 @@ const PlaygroundModalContent = ({ playground, color, images }) => {
             classNameDots={styles.dots}
             classNameDotsModal={styles.modalDots}
             isArrowColorBlack={false}
-            arrayLength={playground.images.length}
+            arrayLength={images.length}
           >
-            {images.map((img, i) => (
-              <Image
+            {images.map(({ id, name }) => (
+              <img
+                alt={name}
+                src={`${process.env.NEXT_PUBLIC_HOST}api/images/related/${id}`}
                 className={styles.bgImage}
-                src={img}
-                alt=""
-                layout="responsive"
-                key={i}
+                key={id}
               />
             ))}
           </Slider>
-        ) : (
+        )}
+        {images.length === 0 && (
           <Image
             src={placeholderImage}
             alt="placeholderImg"
@@ -151,7 +174,6 @@ const PlaygroundModalContent = ({ playground, color, images }) => {
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
   color: PropTypes.string,
-  images: PropTypes.array,
 };
 
 export default PlaygroundModalContent;

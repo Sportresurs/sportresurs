@@ -7,7 +7,7 @@ import CourtCardInfo from "../CourtCardInfo";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
-import placeholderImg from "../../public/img/placeholderImgCard.png";
+import handleImgError from "../../utils/handleImgError";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -15,12 +15,13 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
     address = "Адреса не вказана",
     number = 0,
     rating = 3,
-    images,
   } = courtInfo;
 
   const color = getDistrictColor(district);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
+  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
 
   return (
     <>
@@ -30,10 +31,12 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             <Tag text={district} color={color}></Tag>
           </div>
           <Image
+            onError={handleImgError}
             className={styles.image}
-            src={images ? images[0] : placeholderImg}
+            src={src}
             alt="court"
             layout="fill"
+            unoptimized={true}
           />
           <p className={styles.address}>{address}</p>
         </div>

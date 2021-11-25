@@ -21,9 +21,14 @@
   @media screen and (max-width: 767px) {
     max-width: 360px;
   }
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 }
 .bgImage {
   max-width: 100%;
+  max-height: 650px;
+  vertical-align: top;
 }
 
 .icon {
@@ -38,6 +43,9 @@
   flex: 1 1 50%;
   box-sizing: border-box;
   padding: 24px 24px 0;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 }
 .heading {
   font-size: 36px;
@@ -78,7 +86,7 @@
 }
 .contactBtn {
   margin: 20px 0 0;
-  @media screen and (min-width: 768px) and (max-width: 950px) {
+  @media screen and (min-width: 768px) {
     margin: 20px 0;
   }
 }
