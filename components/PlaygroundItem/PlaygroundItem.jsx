@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import CourtCardInfo from "../CourtCardInfo";
@@ -8,8 +8,7 @@ import useWindowSize from "../../utils/hooks/findWindowSize";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
-import placeholderImg from "../../public/img/placeholderImgCard.png";
-import getPicture from "../../utils/getImageFromDB";
+import handleImgError from "../../utils/handleImgError";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -33,26 +32,19 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const color = getDistrictColor(playground.district);
 
-  const [isImage, setIsImage] = useState(false);
-
-  useEffect(() => {
-    getPicture(playground.id, setIsImage);
-  }, []);
+  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${playground.id}`;
 
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
+            onError={handleImgError}
             className={styles.bgImage}
-            src={
-              isImage
-                ? `${process.env.NEXT_PUBLIC_HOST}api/images/${playground.id}`
-                : placeholderImg
-            }
+            src={src}
             alt=""
             layout="fill"
-            unoptimized={!!isImage}
+            unoptimized={true}
           />
         </div>
       </div>

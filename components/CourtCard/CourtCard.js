@@ -1,15 +1,13 @@
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
 import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
 import CourtCardInfo from "../CourtCardInfo";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
-import placeholderImg from "../../public/img/placeholderImgCard.png";
-import getPicture from "../../utils/getImageFromDB";
+import handleImgError from "../../utils/handleImgError";
 
 export default function CourtCard({ courtInfo, variant = "topList" }) {
   const {
@@ -21,13 +19,9 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
 
   const color = getDistrictColor(district);
 
-  const [isImage, setIsImage] = useState(false);
-
-  useEffect(() => {
-    getPicture(courtInfo.id, setIsImage);
-  }, []);
-
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
+  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
 
   return (
     <>
@@ -37,15 +31,12 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             <Tag text={district} color={color}></Tag>
           </div>
           <Image
+            onError={handleImgError}
             className={styles.image}
-            src={
-              isImage
-                ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
-                : placeholderImg
-            }
+            src={src}
             alt="court"
             layout="fill"
-            unoptimized={!!isImage}
+            unoptimized={true}
           />
           <p className={styles.address}>{address}</p>
         </div>
