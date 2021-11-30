@@ -41,11 +41,12 @@ const handler = nc()
       } = req.body;
       const { id } = req.query;
       const { images } = req.files;
-      const compressBlob = await filesToBlobs(images);
-      const purposeArray = purpose.split(",");
+      const normalizedImages = !images?.length ? [images] : images;
+      const compressBlob = await filesToBlobs(normalizedImages);
+      const purposeArray = purpose.split(",").filter((i) => i);
       const session = await getSession({ req });
       const user = await User.findOne({ where: { email: session.user.email } });
-      const newArea = await Area.update(
+      await Area.update(
         {
           number,
           district,
@@ -66,11 +67,12 @@ const handler = nc()
         { where: { id } },
         { include: Purpose }
       );
+      const newArea = await Area.findOne({ where: { id } });
       const purposeAreaItems = purposeArray.map((item) => ({
         purpose_id: item,
         area_id: newArea.dataValues.id,
       }));
-      const imageItems = images.map((img, index) => ({
+      const imageItems = normalizedImages.map((img, index) => ({
         file: compressBlob[index],
         name: img.name,
         filetype: img.type,
