@@ -2,10 +2,11 @@ const fs = require("fs").promises;
 const compressImage = require("./compress");
 
 function filesToBlobs(files) {
-  const readFilePromises = files.map((file) => fs.readFile(file.path));
-  return Promise.all(readFilePromises).then(
-    readFilePromises.map(async (img) => compressImage(img))
-  );
+  const readedFiles = files.map((file) => {
+    const data = fs.readFile(file.path).then((img) => compressImage(img));
+    return data;
+  });
+  return Promise.all(readedFiles);
 }
 
 export default filesToBlobs;
