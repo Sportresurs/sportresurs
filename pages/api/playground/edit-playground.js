@@ -40,10 +40,10 @@ const handler = nc()
         rating,
       } = req.body;
       const { id } = req.query;
-      const { images } = req.files;
-      const normalizedImages = !images?.length ? [images] : images;
-      const compressBlob = await filesToBlobs(normalizedImages);
-      const purposeArray = purpose.split(",").filter((i) => i);
+      const { images: imagesRaw } = req.files;
+      const images = !Array.isArray(imagesRaw) ? [imagesRaw] : imagesRaw;
+      const compressBlob = await filesToBlobs(images);
+      const purposeArray = purpose.split(",").filter(Boolean);
       const session = await getSession({ req });
       const user = await User.findOne({ where: { email: session.user.email } });
       await Area.update(
@@ -72,7 +72,7 @@ const handler = nc()
         purpose_id: item,
         area_id: newArea.dataValues.id,
       }));
-      const imageItems = normalizedImages.map((img, index) => ({
+      const imageItems = images.map((img, index) => ({
         file: compressBlob[index],
         name: img.name,
         filetype: img.type,
