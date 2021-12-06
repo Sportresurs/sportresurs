@@ -39,9 +39,10 @@ const handler = nc()
         additional,
         rating,
       } = req.body;
-      const { images } = req.files;
+      const { images: imagesRaw = [] } = req.files;
+      const images = Array.isArray(imagesRaw) ? imagesRaw : [imagesRaw];
       const compressBlob = await filesToBlobs(images);
-      const purposeArray = purpose.split(",");
+      const purposeArray = purpose.split(",").filter(Boolean);
       const session = await getSession({ req });
       const user = await User.findOne({ where: { email: session.user.email } });
       const newArea = await Area.create(
@@ -60,6 +61,7 @@ const handler = nc()
           light,
           additional,
           rating,
+          featured: false,
           created_by: user.id,
         },
         { include: Purpose }

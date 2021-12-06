@@ -40,7 +40,7 @@ const handler = nc()
         rating,
       } = req.body;
       const { id } = req.query;
-      const { images: imagesRaw } = req.files;
+      const { images: imagesRaw = [] } = req.files;
       const images = Array.isArray(imagesRaw) ? imagesRaw : [imagesRaw];
       const compressBlob = await filesToBlobs(images);
       const purposeArray = purpose.split(",").filter(Boolean);
