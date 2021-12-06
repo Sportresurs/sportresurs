@@ -8,6 +8,7 @@ import styles from "./CustomDropzone.module.scss";
 import EmptyImage from "../../public/svg/emptyImage.svg";
 import DefaultEmptyImage from "../../public/svg/defaultEmptyImage.svg";
 import BasketIcon from "../../public/svg/basketIcon.svg";
+import imageService from "../../api/imageService";
 
 const reorder = (files, startIndex, endIndex) => {
   const result = files;
@@ -46,6 +47,7 @@ const CustomDropzone = ({ files, setFiles }) => {
   );
   const handleImageDelete = (id) => {
     setFiles((prevState) => prevState.filter((file) => file.id !== id));
+    imageService.deleteImage(id);
   };
   const onDragEnd = (result) => {
     if (!result.destination) {
