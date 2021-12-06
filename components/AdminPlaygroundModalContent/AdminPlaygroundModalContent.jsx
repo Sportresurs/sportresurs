@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import styles from "./AdminPlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import Input from "../Input";
@@ -22,6 +23,7 @@ const AdminPlaygroundModalContent = ({
   area = null,
   images,
 }) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState(images || []);
   const [onFocus, setOnFocus] = useState(false);
@@ -66,6 +68,7 @@ const AdminPlaygroundModalContent = ({
     } finally {
       setIsLoading(false);
       onClose();
+      router.reload();
     }
   };
   const getFormikErrorByField = (formik, fieldName) =>
@@ -109,7 +112,10 @@ const AdminPlaygroundModalContent = ({
                       latitude: area.latitude,
                       longitude: area.longitude,
                       type: area.type,
-                      purpose: area.Purposes.map((purpose) => purpose.title),
+                      purpose: area.Purposes.map((purpose) => ({
+                        label: purpose.title,
+                        value: purpose.id,
+                      })),
                       size: area.size,
                       coating: area.coating,
                       access: area.access,
@@ -198,8 +204,8 @@ const AdminPlaygroundModalContent = ({
                       labelSize="smallLabel"
                       inputSize="form"
                       errorStyle="formErrorIcon"
-                      errorMessage={getFormikErrorByField(formik, `area`)}
-                      {...formik.getFieldProps("area")}
+                      errorMessage={getFormikErrorByField(formik, `size`)}
+                      {...formik.getFieldProps("size")}
                     />
                     <Input
                       className={styles.input}
