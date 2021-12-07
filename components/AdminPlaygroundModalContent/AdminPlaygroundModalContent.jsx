@@ -96,7 +96,7 @@ const AdminPlaygroundModalContent = ({
                       longitude: "",
                       type: options.typeOptions[0].value,
                       purpose: "",
-                      size: "",
+                      size: 0.0,
                       coating: "",
                       access: options.accessOptions[0].value,
                       openTime: "00:00",
