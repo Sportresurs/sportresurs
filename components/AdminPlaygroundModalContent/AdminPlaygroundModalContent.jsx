@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import styles from "./AdminPlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import Input from "../Input";
@@ -16,9 +17,15 @@ import playgroundService from "../../api/playgroundService";
 import WithLoader from "../WithLoader";
 import TimeInput from "../TimeInput";
 
-const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
+const AdminPlaygroundModalContent = ({
+  onClose,
+  onSuccess,
+  area = null,
+  images,
+}) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(images || []);
   const [onFocus, setOnFocus] = useState(false);
   const { data: purposesOptions = [], isLoading: isInitialDataLoading } =
     useAsyncData(playgroundService.getPurposes);
@@ -52,11 +59,16 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
       formData.append("images", file.file);
     });
     try {
-      await playgroundService.create(formData);
+      if (area != null) {
+        await playgroundService.update(formData, area.id);
+      } else {
+        await playgroundService.create(formData);
+      }
       onSuccess();
     } finally {
       setIsLoading(false);
       onClose();
+      router.reload();
     }
   };
   const getFormikErrorByField = (formik, fieldName) =>
@@ -74,23 +86,46 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
           <>
             <h1 className={styles.heading}>Майданчик № </h1>
             <Formik
-              initialValues={{
-                number: "",
-                district: options.districts[0].value,
-                address: "",
-                latitude: "",
-                longitude: "",
-                type: options.typeOptions[0].value,
-                purpose: [],
-                area: "",
-                coating: "",
-                access: options.accessOptions[0].value,
-                openTime: "00:00",
-                closeTime: "00:00",
-                light: options.lightingOptions[0].value,
-                additional: "",
-                rating: 0.0,
-              }}
+              initialValues={
+                !area
+                  ? {
+                      number: "",
+                      district: options.districts[0].value,
+                      address: "",
+                      latitude: "",
+                      longitude: "",
+                      type: options.typeOptions[0].value,
+                      purpose: "",
+                      size: 0.0,
+                      coating: "",
+                      access: options.accessOptions[0].value,
+                      openTime: "00:00",
+                      closeTime: "00:00",
+                      light: options.lightingOptions[0].value,
+                      additional: "",
+                      rating: 0.0,
+                    }
+                  : {
+                      number: area.number,
+                      district: area.district,
+                      address: area.address,
+                      latitude: area.latitude,
+                      longitude: area.longitude,
+                      type: area.type,
+                      purpose: area.Purposes.map((purpose) => ({
+                        label: purpose.title,
+                        value: purpose.id,
+                      })),
+                      size: area.size,
+                      coating: area.coating,
+                      access: area.access,
+                      openTime: area.open_time.substring(0, 5),
+                      closeTime: area.close_time.substring(0, 5),
+                      light: area.light,
+                      additional: area.additional,
+                      rating: area.rating,
+                    }
+              }
               validationSchema={validation}
               onSubmit={handleSubmit}
             >
@@ -169,8 +204,8 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
                       labelSize="smallLabel"
                       inputSize="form"
                       errorStyle="formErrorIcon"
-                      errorMessage={getFormikErrorByField(formik, `area`)}
-                      {...formik.getFieldProps("area")}
+                      errorMessage={getFormikErrorByField(formik, `size`)}
+                      {...formik.getFieldProps("size")}
                     />
                     <Input
                       className={styles.input}
@@ -246,6 +281,8 @@ const AdminPlaygroundModalContent = ({ onClose, onSuccess }) => {
 AdminPlaygroundModalContent.propTypes = {
   onClose: PropTypes.func,
   onSuccess: PropTypes.func,
+  area: PropTypes.object,
+  images: PropTypes.array,
 };
 
 export default AdminPlaygroundModalContent;

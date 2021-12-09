@@ -38,13 +38,22 @@ export default function Map({
   return (
     <div className={styles.mapWrapper}>
       <GoogleMapReact
+        options={(maps) => ({
+          ...options,
+          zoomControl: true,
+          zoomControlOptions: {
+            position: maps.ControlPosition.RIGHT_CENTER,
+          },
+          fullscreenControlOptions: {
+            position: maps.ControlPosition.RIGHT_CENTER,
+          },
+        })}
         bootstrapURLKeys={{ key: apiKey }}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         zoom={zoom}
         center={searchPinCoords || center}
         yesIWantToUseGoogleMapApiInternals
-        options={options}
         margin={[10, 10, 10, 10]}
         onChange={(e) => {
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });

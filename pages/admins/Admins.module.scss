@@ -1,0 +1,13 @@
+.background {
+  @media screen and (min-width: 768px) {
+    background-image: url("../../public/svg/playgroundsBg.svg");
+    background-position: calc(50% + 20px) -60px;
+    background-size: 1100px 800px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  @media screen and (min-width: 1150px) {
+    background-size: auto;
+  }
+}

@@ -8,7 +8,7 @@ import useWindowSize from "../../utils/hooks/findWindowSize";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
-import placeholderImg from "../../public/img/placeholderImgCard.png";
+import handleImgError from "../../utils/handleImgError";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
@@ -32,15 +32,19 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const color = getDistrictColor(playground.district);
 
+  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${playground.id}`;
+
   return (
     <div className={styles.wrapper} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
+            onError={handleImgError}
             className={styles.bgImage}
-            src={playground.images ? playground.images[0] : placeholderImg}
+            src={src}
             alt=""
             layout="fill"
+            unoptimized={true}
           />
         </div>
       </div>

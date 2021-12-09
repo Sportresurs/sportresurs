@@ -1,12 +1,12 @@
 import { withSentry, captureException } from "@sentry/nextjs";
 import nc from "next-connect";
 import { getSession } from "next-auth/client";
-import filesToBlobs from "../../utils/imageCompression/filesToBlobs";
-import { Area, User, Purpose, PurposeArea, Image } from "../../models";
-import checkAuthAdmin from "../../middleware/checkAuthAdmin";
-import withYupSchemeValidation from "../../middleware/withYupSchemeValidation";
-import formDataConvert from "../../middleware/formDataConvert";
-import validationSchema from "../../validationSchemas/AddCourtValidationSchema";
+import filesToBlobs from "../../../utils/imageCompression/filesToBlobs";
+import { Area, User, Purpose, PurposeArea, Image } from "../../../models";
+import checkAuthAdmin from "../../../middleware/checkAuthAdmin";
+import withYupSchemeValidation from "../../../middleware/withYupSchemeValidation";
+import formDataConvert from "../../../middleware/formDataConvert";
+import validationSchema from "../../../validationSchemas/AddCourtValidationSchema";
 
 export const config = {
   api: {
@@ -20,7 +20,7 @@ const handler = nc()
     checkAuthAdmin,
     withYupSchemeValidation(validationSchema)
   )
-  .post(async (req, res) => {
+  .patch(async (req, res) => {
     try {
       const {
         number,
@@ -39,13 +39,14 @@ const handler = nc()
         additional,
         rating,
       } = req.body;
+      const { id } = req.query;
       const { images: imagesRaw = [] } = req.files;
       const images = Array.isArray(imagesRaw) ? imagesRaw : [imagesRaw];
       const compressBlob = await filesToBlobs(images);
       const purposeArray = purpose.split(",").filter(Boolean);
       const session = await getSession({ req });
       const user = await User.findOne({ where: { email: session.user.email } });
-      const newArea = await Area.create(
+      await Area.update(
         {
           number,
           district,
@@ -61,11 +62,12 @@ const handler = nc()
           light,
           additional,
           rating,
-          featured: false,
           created_by: user.id,
         },
+        { where: { id } },
         { include: Purpose }
       );
+      const newArea = await Area.findOne({ where: { id } });
       const purposeAreaItems = purposeArray.map((item) => ({
         purpose_id: item,
         area_id: newArea.dataValues.id,

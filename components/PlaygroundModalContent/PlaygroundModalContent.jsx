@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/client";
 import PropTypes from "prop-types";
 import Image from "next/image";
+import axios from "axios";
 import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
 import Tag from "../Tag";
 import ContactUsButton from "../ContactUsButton";
 import Slider from "../Slider";
+import useModalHandlers from "../../utils/hooks/useModalHandlers";
+import AdminPlaygroundModal from "../AdminPlaygroundModal/AdminPlaygroundModal";
 import placeholderImage from "../../public/img/placeholderImgModal.png";
+import DeleteIcon from "../../public/svg/deleteIcon.svg";
+import EditIcon from "../../public/svg/editIcon.svg";
+import DeleteDialog from "../DeleteDialog";
 
 const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
@@ -31,10 +38,64 @@ const PlaygroundModalContent = ({ playground, color }) => {
     { label: "Освітлення", value: playground.light ? "є" : "немає" },
     { label: "Додатково", value: playground.additional },
   ];
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [session] = useSession();
+  const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+  const [isVisibleDialog, setVisibleDialog] = useState(false);
+
+  const handleDeleteDialogOpen = () => {
+    setVisibleDialog(true);
+  };
+
+  const handleCancelDeleteDialog = () => {
+    setVisibleDialog(false);
+  };
+
+  const handleDeleteDialogClose = async () => {
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_HOST}/api/playground/delete-playground?id=${playground.id}`
+      );
+    } finally {
+      setVisibleDialog(false);
+      window.location.reload(false);
+    }
+  };
+
+  useEffect(() => {
+    if (session) {
+      setIsAdmin(true);
+    }
+  }, [isAdmin, session]);
+
+  const [images, setImages] = useState([]);
+
+  function getRelatedImages(courtNumber) {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_HOST}api/images/images`, {
+        params: { id: courtNumber },
+      })
+      .then(({ data }) => {
+        const imgIDs = [];
+        data.forEach((el) => {
+          imgIDs.push(el);
+        });
+
+        return imgIDs;
+      })
+      .then((orderData) => setImages(orderData))
+      .catch((error) => error);
+  }
+
+  useEffect(() => {
+    getRelatedImages(playground.id);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageContainer}>
-        {playground.images ? (
+        {images.length >= 1 && (
           <Slider
             slidesToShow={1}
             slidesToScroll={1}
@@ -44,19 +105,19 @@ const PlaygroundModalContent = ({ playground, color }) => {
             classNameDots={styles.dots}
             classNameDotsModal={styles.modalDots}
             isArrowColorBlack={false}
-            arrayLength={playground.images.length}
+            arrayLength={images.length}
           >
-            {playground.images.map((img, i) => (
-              <Image
+            {images.map(({ id, name }) => (
+              <img
+                alt={name}
+                src={`${process.env.NEXT_PUBLIC_HOST}api/images/related/${id}`}
                 className={styles.bgImage}
-                src={img}
-                alt=""
-                layout="responsive"
-                key={i}
+                key={id}
               />
             ))}
           </Slider>
-        ) : (
+        )}
+        {images.length === 0 && (
           <Image
             src={placeholderImage}
             alt="placeholderImg"
@@ -68,8 +129,22 @@ const PlaygroundModalContent = ({ playground, color }) => {
         <div className={styles.tagBtn}>
           <Tag color={color} text={playground.district} />
         </div>
-        <h1 className={styles.heading}>Майданчик № {playground.number}</h1>
-        <p className={styles.street}>вул. {playground.address}</p>
+        {isAdmin ? (
+          <h1 className={styles.heading}>
+            Майданчик № {playground.number}
+            <EditIcon
+              className={styles.icon}
+              onClick={() => handleOpenModal()}
+            />
+            <DeleteIcon
+              className={styles.icon}
+              onClick={() => handleDeleteDialogOpen()}
+            />
+          </h1>
+        ) : (
+          <h1 className={styles.heading}>Майданчик № {playground.number}</h1>
+        )}
+        <p className={styles.street}>{playground.address}</p>
         <Ratings color={color} readOnly={true} value={playground.rating} />
         <div className={styles.infoWrapper}>
           {playgroundInfoFields.map(({ label, value }) => (
@@ -80,12 +155,25 @@ const PlaygroundModalContent = ({ playground, color }) => {
           <ContactUsButton shouldLockScreen={false} />
         </div>
       </div>
+      <AdminPlaygroundModal
+        visible={isModalShown}
+        onClose={handleCloseModal}
+        area={playground}
+        images={images}
+      />
+      <DeleteDialog
+        variant="deleteCourt"
+        visible={isVisibleDialog}
+        onClose={handleDeleteDialogClose}
+        onCancel={handleCancelDeleteDialog}
+      />
     </div>
   );
 };
 
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
+  color: PropTypes.string,
 };
 
 export default PlaygroundModalContent;

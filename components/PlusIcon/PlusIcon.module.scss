@@ -1,0 +1,31 @@
+@import "styles/colors";
+
+.wrapper {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: 1225px;
+  top: 94px;
+  border-radius: 50%;
+  background-color: $color-accent-purple;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+}
+
+.wrapper:active {
+  box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.plus {
+  color: $color-primary-light;
+  font-weight: 800;
+  min-height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  font-size: 36px;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+}

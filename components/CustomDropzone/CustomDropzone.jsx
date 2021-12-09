@@ -8,6 +8,7 @@ import styles from "./CustomDropzone.module.scss";
 import EmptyImage from "../../public/svg/emptyImage.svg";
 import DefaultEmptyImage from "../../public/svg/defaultEmptyImage.svg";
 import BasketIcon from "../../public/svg/basketIcon.svg";
+import imageService from "../../api/imageService";
 
 const reorder = (files, startIndex, endIndex) => {
   const result = files;
@@ -46,6 +47,7 @@ const CustomDropzone = ({ files, setFiles }) => {
   );
   const handleImageDelete = (id) => {
     setFiles((prevState) => prevState.filter((file) => file.id !== id));
+    imageService.deleteImage(id);
   };
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -66,7 +68,15 @@ const CustomDropzone = ({ files, setFiles }) => {
         <div className={styles.sliderWrapper}>
           <Slider isModal={true} arrayLength={files.length}>
             {files.map((file) => (
-              <img key={file.id} src={file.url} alt="" />
+              <img
+                key={file.id}
+                src={
+                  file.url
+                    ? file.url
+                    : `${process.env.NEXT_PUBLIC_HOST}api/images/related/${file.id}`
+                }
+                alt={file.name}
+              />
             ))}
           </Slider>
         </div>
@@ -116,8 +126,12 @@ const CustomDropzone = ({ files, setFiles }) => {
                               <BasketIcon />
                             </div>
                             <img
-                              src={file.url}
-                              alt=""
+                              src={
+                                file.url
+                                  ? file.url
+                                  : `${process.env.NEXT_PUBLIC_HOST}api/images/related/${file.id}`
+                              }
+                              alt={file.name}
                               className={styles.image}
                             />
                           </div>

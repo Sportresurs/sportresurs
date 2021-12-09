@@ -5,11 +5,10 @@ import { Image } from "../../../models";
 const MONTH_IN_SECONDS = 2592000;
 
 const handler = nc().get(async (req, res) => {
-  const { image: imageName } = req.query;
-  const imageId = imageName.split(".")[0];
+  const { image: imageIdString } = req.query;
   const image = await Image.findOne({
     where: {
-      id: imageId,
+      area_id: imageIdString,
     },
   });
   if (!image) {
@@ -17,7 +16,7 @@ const handler = nc().get(async (req, res) => {
     return;
   }
   res.writeHead(200, {
-    "Content-Type": "image/jpeg",
+    "Content-Type": "image/jpg",
     "Cache-Control": `public, immutable, max-age=${MONTH_IN_SECONDS}`,
   });
   res.end(image.file);
