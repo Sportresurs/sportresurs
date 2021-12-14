@@ -80,6 +80,7 @@ const handler = nc()
         area_id: newArea.dataValues.id,
       }));
       await Image.bulkCreate(imageItems);
+      await PurposeArea.destroy({ where: { area_id: newArea.dataValues.id } });
       await PurposeArea.bulkCreate(purposeAreaItems);
       res.status(201).json(newArea.toJSON());
     } catch (err) {
