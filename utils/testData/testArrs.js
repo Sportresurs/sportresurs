@@ -60,12 +60,12 @@ const courtsType = [
 ];
 
 const typeOptions = [
-  { label: "Спортивний", value: "Спортивний" },
-  { label: "Дитячо-спортивний", value: "Дитячо-спортивний" },
+  { label: "Спортивний", value: "спортивний" },
+  { label: "Дитячо-спортивний", value: "дитячо-спортивний" },
 ];
 const accessOptions = [
-  { label: "Безкоштовний", value: "Безкоштовний" },
-  { label: "Платний", value: "Платний" },
+  { label: "Безкоштовний", value: "безкоштовний" },
+  { label: "Платний", value: "платний" },
 ];
 const lightingOptions = [
   { label: "Є", value: true },
