@@ -93,9 +93,12 @@ export default function Footer() {
             <h3 className={styles.footerContactsTitle}>Контакти</h3>
             <address className={styles.footerContactsAddress}>
               <p>79008, Львів,</p>
-              <p>пл. Ринок, 1, каб. 516</p>
-              <a href="tel:+38012345678" className={styles.footerTelephone}>
-                +38012345678
+              <p>пл. Маланюка, 6</p>
+              <a href="tel:+380322546078" className={styles.footerTelephone}>
+                +380322546078
+              </a>
+              <a href="tel:+380972160985" className={styles.footerTelephone}>
+                +380972160985
               </a>
             </address>
           </div>
