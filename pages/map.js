@@ -16,7 +16,7 @@ import {
   DEFAULT_ZOOM,
 } from "../utils/mapStartPositionData";
 
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 export default function MapPage({ playgrounds }) {
   const {
@@ -72,7 +72,7 @@ export default function MapPage({ playgrounds }) {
     <>
       <Script
         type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}`}
         /* strategy="beforeInteractive" */
         onLoad={() => {
           setIsLoaded(true);
@@ -85,12 +85,11 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.sidebarWrapper}>
               <div className={styles.filterWrapper}>
                 <Filters
-                  bounds={bounds}
                   areas={playgrounds}
+                  bounds={bounds}
                   location="mapPage"
-                  API_KEY={API_KEY}
-                  setSearchPinCoords={setSearchPinCoords}
                   handleCoordinates={setSearchPinCoords}
+                  setSearchPinCoords={setSearchPinCoords}
                 />
               </div>
               <div className={sidebarWrapperClass}>
@@ -128,7 +127,7 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.mapWrapper}>
               <Map
                 setBounds={setBounds}
-                apiKey={API_KEY}
+                apiKey={GOOGLE_MAPS_API_KEY}
                 defaultZoom={DEFAULT_ZOOM}
                 zoom={zoom}
                 center={districtCenter || center}
