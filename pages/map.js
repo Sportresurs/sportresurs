@@ -9,7 +9,7 @@ import styles from "../styles/MapPage.module.scss";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 import { Context } from "../context";
-import placesInBounds from "../utils/placesInBounds";
+import getPlacesInBounds from "../utils/getPlacesInBounds";
 import {
   DEFAULT_CENTER,
   DEFAULT_BOUNDS,
@@ -50,9 +50,9 @@ export default function MapPage({ playgrounds }) {
     []
   );
 
-  const getPlaygroundsInBounds = useMemo(
-    () => placesInBounds(areas, bounds),
-    [bounds, areas]
+  const playgroundsInBounds = useMemo(
+    () => getPlacesInBounds(areas, bounds),
+    [areas, bounds]
   );
 
   const handleSliderShow = () => {
@@ -110,7 +110,7 @@ export default function MapPage({ playgrounds }) {
                     <PlaygroundsSlider
                       setChildClicked={setChildClicked}
                       markerIndex={markerIndex}
-                      playgrounds={getPlaygroundsInBounds}
+                      playgrounds={playgroundsInBounds}
                     />
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function MapPage({ playgrounds }) {
               <div className={styles.scrollBox}>
                 <div className={styles.listWrapper}>
                   <PlaygroundsList
-                    playgrounds={getPlaygroundsInBounds}
+                    playgrounds={playgroundsInBounds}
                     childClicked={childClicked}
                     setChildClicked={setChildClicked}
                   />
@@ -133,7 +133,7 @@ export default function MapPage({ playgrounds }) {
                 zoom={zoom}
                 center={districtCenter || center}
                 defaultCenter={DEFAULT_CENTER}
-                places={getPlaygroundsInBounds}
+                places={playgroundsInBounds}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
                 searchPinCoords={searchPinCoords}
