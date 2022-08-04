@@ -1,4 +1,5 @@
 const { withSentryConfig } = require("@sentry/nextjs");
+require('dotenv-safe').config({ allowEmptyValues: true });
 
 const moduleExports = {
   reactStrictMode: true,
@@ -20,6 +21,9 @@ const moduleExports = {
       ],
     });
     return config;
+  },
+  env: {
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
   },
 };
 
