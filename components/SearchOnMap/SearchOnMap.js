@@ -156,7 +156,6 @@ SearchOnMap.propTypes = {
   handleCoordinates: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   numberOfFilters: PropTypes.number.isRequired,
-  API_KEY: PropTypes.string.isRequired,
 };
 
 export default SearchOnMap;

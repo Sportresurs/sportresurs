@@ -9,14 +9,14 @@ import styles from "../styles/MapPage.module.scss";
 import PlaygroundImage from "../public/svg/mapBackground.svg";
 import HideMark from "../public/svg/hideSliderArrow.svg";
 import { Context } from "../context";
-import placesInBounds from "../utils/placesInBounds";
+import getPlacesInBounds from "../utils/getPlacesInBounds";
 import {
   DEFAULT_CENTER,
   DEFAULT_BOUNDS,
   DEFAULT_ZOOM,
 } from "../utils/mapStartPositionData";
 
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // !! should be replaced to Sportresource key
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
 export default function MapPage({ playgrounds }) {
   const {
@@ -50,9 +50,9 @@ export default function MapPage({ playgrounds }) {
     []
   );
 
-  const getPlaygroundsInBounds = useMemo(
-    () => placesInBounds(areas, bounds),
-    [bounds, areas]
+  const playgroundsInBounds = useMemo(
+    () => getPlacesInBounds(areas, bounds),
+    [areas, bounds]
   );
 
   const handleSliderShow = () => {
@@ -72,7 +72,7 @@ export default function MapPage({ playgrounds }) {
     <>
       <Script
         type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${API_KEY}`}
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}`}
         /* strategy="beforeInteractive" */
         onLoad={() => {
           setIsLoaded(true);
@@ -85,12 +85,11 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.sidebarWrapper}>
               <div className={styles.filterWrapper}>
                 <Filters
-                  bounds={bounds}
                   areas={playgrounds}
+                  bounds={bounds}
                   location="mapPage"
-                  API_KEY={API_KEY}
-                  setSearchPinCoords={setSearchPinCoords}
                   handleCoordinates={setSearchPinCoords}
+                  setSearchPinCoords={setSearchPinCoords}
                 />
               </div>
               <div className={sidebarWrapperClass}>
@@ -110,7 +109,7 @@ export default function MapPage({ playgrounds }) {
                     <PlaygroundsSlider
                       setChildClicked={setChildClicked}
                       markerIndex={markerIndex}
-                      playgrounds={getPlaygroundsInBounds}
+                      playgrounds={playgroundsInBounds}
                     />
                   </div>
                 </div>
@@ -118,7 +117,7 @@ export default function MapPage({ playgrounds }) {
               <div className={styles.scrollBox}>
                 <div className={styles.listWrapper}>
                   <PlaygroundsList
-                    playgrounds={getPlaygroundsInBounds}
+                    playgrounds={playgroundsInBounds}
                     childClicked={childClicked}
                     setChildClicked={setChildClicked}
                   />
@@ -128,12 +127,12 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.mapWrapper}>
               <Map
                 setBounds={setBounds}
-                apiKey={API_KEY}
+                apiKey={GOOGLE_MAPS_API_KEY}
                 defaultZoom={DEFAULT_ZOOM}
                 zoom={zoom}
                 center={districtCenter || center}
                 defaultCenter={DEFAULT_CENTER}
-                places={getPlaygroundsInBounds}
+                places={playgroundsInBounds}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
                 searchPinCoords={searchPinCoords}

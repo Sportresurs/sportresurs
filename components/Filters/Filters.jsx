@@ -21,9 +21,9 @@ const FilterButton = ({ counter, changeStatus }) => {
 
 const Filters = ({
   areas,
+  bounds,
   location,
   handleCoordinates,
-  bounds,
   setSearchPinCoords,
 }) => {
   const { setAreas, filterData, filterFields, setFilterData } =
