@@ -16,6 +16,7 @@
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
     "jsx-a11y/click-events-have-key-events": "off",
     "no-underscore-dangle": "off",
-    "jsx-a11y/anchor-is-valid": "off"
+    "jsx-a11y/anchor-is-valid": "off",
+    "prefer-destructuring": "warn"
   }
 }

@@ -2,11 +2,16 @@
   "name": "sportresurs",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "lint:ci": "next lint",
     "prepare": "husky install",
     "test": "jest --watch",
