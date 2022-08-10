@@ -24,9 +24,9 @@ jobs:
       NEXT_PUBLIC_HOST: http://localhost:3000/
       LIMIT_FB_POSTS:
       LIMIT_FB_POSTS_FOR_FRONT:
-      FB_CLIENT_ID:
-      FB_CLIENT_SECRET:
-      FB_ACCESS_TOKEN:
+      #FB_CLIENT_ID:
+      #FB_CLIENT_SECRET:
+      FB_LONG_LIVED_ACCESS_TOKEN:
     services:
       postgres:
         image: postgres
