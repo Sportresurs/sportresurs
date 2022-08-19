@@ -11,21 +11,16 @@ const colorDescription = [
 ];
 
 const groundTypes = [
-  { cirilicName: "гандбольний", latinName: "HandballCourt", color: "red" },
-  { cirilicName: "дитячий", latinName: "ChildCourt", color: "blue" },
-  {
-    cirilicName: "баскетбольний",
-    latinName: "BasketballCourt",
-    color: "orange",
-  },
-  { cirilicName: "тенісний", latinName: "TennisCourt", color: "lilac" },
-  { cirilicName: "футбольний", latinName: "FootballCourt", color: "green" },
-  {
-    cirilicName: "волейбольний",
-    latinName: "VolleyballCourt",
-    color: "yellow",
-  },
-  { cirilicName: "гімнастичний", latinName: "GymnasticCourt", color: "black" },
+  { cirilicName: "гандбольний", latinName: "HandballCourt" },
+  { cirilicName: "дитячий", latinName: "ChildCourt" },
+  { cirilicName: "баскетбольний", latinName: "BasketballCourt" },
+  { cirilicName: "тенісний", latinName: "TennisCourt" },
+  { cirilicName: "футбольний", latinName: "FootballCourt" },
+  { cirilicName: "волейбольний", latinName: "VolleyballCourt" },
+  { cirilicName: "гімнастичний", latinName: "GymnasticCourt" },
+  { cirilicName: "спортзал", latinName: "Gym" },
+  { cirilicName: "стадіон", latinName: "Stadium" },
+  { cirilicName: "басейн", latinName: "SwimmingPool" },
 ];
 
 const courtsDistrict = [
@@ -48,17 +43,6 @@ const districts = [
   { label: "Інший", value: "Інший" },
 ];
 
-const courtsType = [
-  "Спортивний",
-  "Дитячий",
-  "Баскетбольний",
-  "Тенісний",
-  "Футбольний",
-  "Стріт воркаут",
-  "Скейт-майданчик",
-  "Бігові доріжки",
-];
-
 const typeOptions = [
   { label: "Спортивний", value: "спортивний" },
   { label: "Дитячо-спортивний", value: "дитячо-спортивний" },
@@ -76,7 +60,6 @@ export default {
   colorDescription,
   groundTypes,
   districts,
-  courtsType,
   courtsDistrict,
   accessOptions,
   typeOptions,
