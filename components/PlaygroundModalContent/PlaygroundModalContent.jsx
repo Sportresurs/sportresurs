@@ -147,8 +147,8 @@ const PlaygroundModalContent = ({ playground, color }) => {
         <p className={styles.street}>{playground.address}</p>
         <Ratings color={color} readOnly={true} value={playground.rating} />
         <div className={styles.infoWrapper}>
-          {playgroundInfoFields.map(({ label, value }) => (
-            <PlaygroundInfoRow key={value} label={label} value={value} />
+          {playgroundInfoFields.map(({ label, value }, index) => (
+            <PlaygroundInfoRow key={index} label={label} value={value} />
           ))}
         </div>
         <div className={styles.contactBtn}>
