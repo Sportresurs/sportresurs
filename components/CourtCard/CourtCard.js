@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
@@ -9,7 +10,13 @@ import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import getDistrictColor from "../../utils/getDistrictColor";
 import handleImgError from "../../utils/handleImgError";
 
-export default function CourtCard({ courtInfo, variant = "topList" }) {
+export default function CourtCard({
+  courtInfo,
+  variant = "topList",
+  addHashToUrl,
+  removeHashFromUrl,
+  urlHash,
+}) {
   const {
     district = "Інший",
     address = "Адреса не вказана",
@@ -20,6 +27,14 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
   const color = getDistrictColor(district);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
+
+  useEffect(() => {
+    if (!isModalShown && urlHash && urlHash.slice(1) == number) { // eslint-disable-line
+      handleOpenModal();
+    } else if (isModalShown && urlHash && urlHash.slice(1) != number) { // eslint-disable-line
+      handleCloseModal();
+    }
+  }, [urlHash, isModalShown, number, handleOpenModal, handleCloseModal]);
 
   const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
 
@@ -46,14 +61,20 @@ export default function CourtCard({ courtInfo, variant = "topList" }) {
             address={address}
             color={color}
             rating={rating}
-            openModal={handleOpenModal}
+            openModal={() => {
+              addHashToUrl && addHashToUrl(); // eslint-disable-line
+              handleOpenModal();
+            }}
           />
         </div>
       </div>
       <PlaygroundModal
         color={color}
         visible={isModalShown}
-        onClose={handleCloseModal}
+        onClose={() => {
+          removeHashFromUrl && removeHashFromUrl(); // eslint-disable-line
+          handleCloseModal();
+        }}
         playground={courtInfo}
       />
     </>
@@ -77,4 +98,10 @@ CourtCard.propTypes = {
     rating: PropTypes.number.isRequired,
   }),
   variant: PropTypes.oneOf(["topList", "courtList"]),
+};
+
+CourtCard.defaultProps = {
+  addHashToUrl: null,
+  removeHashFromUrl: null,
+  urlHash: "",
 };
