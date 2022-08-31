@@ -15,7 +15,10 @@ import MapMarker from "../../public/svg/mapMarker.svg";
 import DefaultMarker from "../../public/svg/defaultMarker.svg";
 import Gym from "../../public/img/gym.png";
 import Stadium from "../../public/img/stadium.png";
-import SwimmingPool from "../../public/img/swimming-pool.png";
+import SwimmingPool from "../../public/img/swimming_pool.png";
+import SkatePark from "../../public/img/skate_park.png";
+import MartialArts from "../../public/img/martial_arts.png";
+import Workout from "../../public/img/workout.png";
 
 const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
   const courtIcons = {
@@ -31,6 +34,9 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
     Gym,
     Stadium,
     SwimmingPool,
+    SkatePark,
+    MartialArts,
+    Workout,
   };
 
   const districtToColor = {
@@ -86,6 +92,9 @@ Marker.propTypes = {
     "Gym",
     "Stadium",
     "SwimmingPool",
+    "SkatePark",
+    "MartialArts",
+    "Workout",
   ]).isRequired,
   district: PropTypes.oneOf([
     "Halitskyi",
