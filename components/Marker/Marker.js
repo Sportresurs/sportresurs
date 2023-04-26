@@ -37,8 +37,8 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
     SkatePark,
     MartialArts,
     Workout,
-    Inclusive: WithoutTypeCourt,
-    InclusiveElements: WithoutTypeCourt,
+    Inclusive,
+    InclusiveElements,
   };
 
   const districtToColor = {
