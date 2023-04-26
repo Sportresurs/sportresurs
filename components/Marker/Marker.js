@@ -37,6 +37,8 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
     SkatePark,
     MartialArts,
     Workout,
+    Inclusive: WithoutTypeCourt,
+    InclusiveElements: WithoutTypeCourt,
   };
 
   const districtToColor = {
@@ -95,6 +97,8 @@ Marker.propTypes = {
     "SkatePark",
     "MartialArts",
     "Workout",
+    "Inclusive",
+    "InclusiveElements",
   ]).isRequired,
   district: PropTypes.oneOf([
     "Halitskyi",

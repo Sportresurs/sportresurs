@@ -24,6 +24,8 @@ const groundTypes = [
   { cirilicName: "скейтпарк", latinName: "SkatePark" },
   { cirilicName: "єдиноборства", latinName: "MartialArts" },
   { cirilicName: "воркаут", latinName: "Workout" },
+  { cirilicName: "Інклюзивний", latinName: "Inclusive" },
+  { cirilicName: "З елементами інклюзії", latinName: "InclusiveElements" },
 ];
 
 const courtsDistrict = [
