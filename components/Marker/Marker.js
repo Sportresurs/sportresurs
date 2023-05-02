@@ -19,6 +19,8 @@ import SwimmingPool from "../../public/img/swimming_pool.png";
 import SkatePark from "../../public/img/skate_park.png";
 import MartialArts from "../../public/img/martial_arts.png";
 import Workout from "../../public/img/workout.png";
+import Inclusive from "../../public/img/inclusive.png";
+import InclusiveElements from "../../public/img/inclusive-elements.png";
 
 const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
   const courtIcons = {
@@ -37,8 +39,8 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
     SkatePark,
     MartialArts,
     Workout,
-    Inclusive: WithoutTypeCourt,
-    InclusiveElements: WithoutTypeCourt,
+    Inclusive,
+    InclusiveElements,
   };
 
   const districtToColor = {
