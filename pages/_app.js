@@ -7,6 +7,7 @@ import "../styles/base.scss";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
+  console.log("TEST DEPLOY", null);
 
   return (
     <>
