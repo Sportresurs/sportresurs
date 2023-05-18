@@ -16,7 +16,7 @@ import {
   DEFAULT_ZOOM,
 } from "../utils/mapStartPositionData";
 
-const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+const { GOOGLE_MAPS_API_KEY } = process.env;
 
 export default function MapPage({ playgrounds }) {
   const {
@@ -72,7 +72,7 @@ export default function MapPage({ playgrounds }) {
     <>
       <Script
         type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}`}
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}&language=UA&region=UA`}
         /* strategy="beforeInteractive" */
         onLoad={() => {
           setIsLoaded(true);

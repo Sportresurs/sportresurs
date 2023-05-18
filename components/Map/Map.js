@@ -48,7 +48,7 @@ export default function Map({
             position: maps.ControlPosition.RIGHT_CENTER,
           },
         })}
-        bootstrapURLKeys={{ key: apiKey }}
+        bootstrapURLKeys={{ key: apiKey, language: "ua", region: "ua" }}
         defaultCenter={defaultCenter}
         defaultZoom={defaultZoom}
         zoom={zoom}
