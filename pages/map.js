@@ -72,7 +72,7 @@ export default function MapPage({ playgrounds }) {
     <>
       <Script
         type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}&language=UA&region=UA`}
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}&language=uk&region=UA`}
         /* strategy="beforeInteractive" */
         onLoad={() => {
           setIsLoaded(true);
