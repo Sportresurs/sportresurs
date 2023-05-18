@@ -15,7 +15,7 @@ import Slider from "../Slider";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 
 const cx = classNames.bind(styles);
-const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+const { GOOGLE_MAPS_API_KEY } = process.env;
 const districtsLink = [
   { district: "Личаківський", color: "orange" },
   { district: "Шевченківський", color: "green" },
@@ -87,7 +87,7 @@ function SearchSection() {
     <>
       <Script
         type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}`}
+        src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}&language=UA&region=UA`}
         onLoad={() => {
           setIsLoaded(true);
         }}
