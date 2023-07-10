@@ -182,7 +182,7 @@ const AdminPlaygroundModalContent = ({
                     <Select
                       type="form"
                       options={options.typeOptions}
-                      label="Тип майданчика"
+                      label="Тип"
                       labelSize="smallLabel"
                       {...formik.getFieldProps("type")}
                     />

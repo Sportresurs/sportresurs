@@ -65,7 +65,7 @@ const FilterWindow = ({
       <div className={styles.filterBody}>
         <MultiSelect
           value={purposeOfAreas}
-          type="ПРИЗНАЧЕННЯ МАЙДАНЧИКА"
+          type="ПРИЗНАЧЕННЯ"
           data={filterFields.purposes.map((item) => ({
             value: item,
             label: item,

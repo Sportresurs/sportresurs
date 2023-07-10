@@ -18,7 +18,7 @@ import DeleteDialog from "../DeleteDialog";
 
 const PlaygroundModalContent = ({ playground, color }) => {
   const playgroundInfoFields = [
-    { label: "Тип майданчика", value: playground.type },
+    { label: "Тип", value: playground.type },
     {
       label: "Призначення",
       value: playground.Purposes.map((purpose, index, arr) =>

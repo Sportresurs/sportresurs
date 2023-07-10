@@ -86,7 +86,7 @@ const Filters = ({
       <div className={styles.wrapper}>
         {location === "playgrounds" ? (
           <>
-            <h1 className={styles.title}>Майданчики</h1>
+            <h1 className={styles.title}>Спортивна інфраструктура</h1>
             <FilterButton
               counter={filters.array.filter((item) => item.value).length}
               changeStatus={changeStatus}

@@ -18,7 +18,7 @@ export default function About() {
         <div className={s.descriptions}>
           <h2 className={s.about}>Про нас</h2>
           <h3 className={s.mission}>
-            Наша ціль - доступні майданчики для всіх
+            Наша ціль - доступна спортивна інфраструктура для всіх
           </h3>
           <p className={s.text}>
             ЛКП Спортресурс — це будівництво та реконструкція спортивної
