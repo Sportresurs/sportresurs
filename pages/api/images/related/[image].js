@@ -25,7 +25,7 @@ const handler = nc()
   })
   .delete(async (req, res) => {
     const { image: imageId } = req.query;
-    Image.destroy({
+    await Image.destroy({
       where: {
         id: imageId,
       },

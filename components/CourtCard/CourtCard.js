@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
+import placeholderImg from "../../public/img/placeholderImgCard.png";
 import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
 import CourtCardInfo from "../CourtCardInfo";
@@ -37,8 +38,9 @@ export default function CourtCard({
     }
   }, [urlHash, isModalShown, id, handleOpenModal, handleCloseModal]);
 
-  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
-
+  const src = courtInfo.has_poster
+    ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
+    : placeholderImg.src;
   return (
     <>
       <div className={classNames(styles.card, styles[variant])}>

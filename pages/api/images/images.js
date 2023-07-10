@@ -4,11 +4,10 @@ import { Image } from "../../../models";
 
 const handler = nc().get(async (req, res) => {
   const { id } = req.query;
-  const idNumber = Number(id);
 
   const images = await Image.findAll({
     where: {
-      area_id: idNumber,
+      area_id: Number(id),
     },
   });
 
