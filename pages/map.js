@@ -96,7 +96,7 @@ export default function MapPage({ playgrounds }) {
                 <div className={styles.sidebarContainer}>
                   <div className={styles.mobileHeaderWrapper}>
                     <h1 className={styles.wrapperHeading}>
-                      Майданчики поблизу
+                      Спортивна інфраструктура поблизу
                     </h1>
                     <div
                       className={iconWrapperClass}

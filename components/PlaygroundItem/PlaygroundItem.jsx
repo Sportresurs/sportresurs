@@ -12,7 +12,7 @@ import handleImgError from "../../utils/handleImgError";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   const playgroundInfoFields = [
-    { label: "Тип майданчика", field: "type" },
+    { label: "Тип", field: "type" },
     { label: "Графік", field: "opening" },
     { label: "Покриття", field: "covering" },
   ];

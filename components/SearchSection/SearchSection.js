@@ -94,7 +94,9 @@ function SearchSection() {
       />
       <section className={styles.section}>
         <div className={styles.box}>
-          <h2 className={styles.title}>Знайди свій ідеальний майданчик</h2>
+          <h2 className={styles.title}>
+            Знайди свій ідеальний спортивний майданчик
+          </h2>
 
           <form className={styles.form}>
             {!isLoaded && <div className={styles.boxPlug}></div>}
@@ -166,9 +168,7 @@ function SearchSection() {
                     })}
                     onClick={handleCoordinates(coordinates)}
                   >
-                    <span className={styles.formBtnContent}>
-                      Пошук майданчика
-                    </span>
+                    <span className={styles.formBtnContent}>Пошук</span>
                     <SearchIcon className={styles.formBtnIcon} />
                   </a>
                 </Link>

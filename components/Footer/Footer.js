@@ -76,7 +76,9 @@ export default function Footer() {
 
         <div className={styles.flexWrapper}>
           <div className={styles.footerCourts}>
-            <h3 className={styles.footerCourtsTitle}>Майданчики</h3>
+            <h3 className={styles.footerCourtsTitle}>
+              Спортивна інфраструктура
+            </h3>
 
             <ul className={styles.footerCourtsList}>
               {courtsLink.map((item) => (

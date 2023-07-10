@@ -136,7 +136,7 @@ export default function Header() {
                   })}
                 >
                   <Link href="/playgrounds">
-                    <a className={styles.navLink}>майданчики</a>
+                    <a className={styles.navLink}>Інфраструктура</a>
                   </Link>
                 </li>
                 <li

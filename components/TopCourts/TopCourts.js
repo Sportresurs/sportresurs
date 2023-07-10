@@ -8,7 +8,7 @@ export default function TopCourts({ courtList }) {
 
   return (
     <section className={styles.topCourts}>
-      <h2 className={styles.title}>Наші найкращі майданчики</h2>
+      <h2 className={styles.title}>Наші найкращі локації</h2>
       <div className={styles.wrapper}>
         <ul className={styles.list}>
           {size.width <= 1150 && (

@@ -35,7 +35,7 @@ const Filters = ({
     rating: { value: 0 },
     array: [...filterData.purposeOfAreas, ...filterData.districts],
   });
-
+  const toggleStatus = () => changeStatus((currentStatus) => !currentStatus);
   const getNewAreas = async (purposes, districts, rating) => {
     const purposeValues = purposes.map((item) => item.value.toLowerCase());
     const districtValues = districts.map((item) => item.value);
@@ -86,10 +86,10 @@ const Filters = ({
       <div className={styles.wrapper}>
         {location === "playgrounds" ? (
           <>
-            <h1 className={styles.title}>Майданчики</h1>
+            <h1 className={styles.title}>Спортивна інфраструктура</h1>
             <FilterButton
               counter={filters.array.filter((item) => item.value).length}
-              changeStatus={changeStatus}
+              changeStatus={toggleStatus}
             />
           </>
         ) : (
