@@ -9,6 +9,6 @@ export default function PlusIcon({ onClick }) {
   );
 }
 
-PlusIcon.PropTypes = {
+PlusIcon.propTypes = {
   onClick: PropTypes.func,
 };
