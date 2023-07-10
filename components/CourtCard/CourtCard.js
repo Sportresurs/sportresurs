@@ -20,6 +20,7 @@ export default function CourtCard({
   const {
     district = "Інший",
     address = "Адреса не вказана",
+    id = 0,
     number = 0,
     rating = 3,
   } = courtInfo;
@@ -29,12 +30,12 @@ export default function CourtCard({
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   useEffect(() => {
-    if (!isModalShown && urlHash && urlHash.slice(1) == number) { // eslint-disable-line
+    if (!isModalShown && urlHash && urlHash.slice(1) == id) { // eslint-disable-line
       handleOpenModal();
-    } else if (isModalShown && urlHash && urlHash.slice(1) != number) { // eslint-disable-line
+    } else if (isModalShown && urlHash && urlHash.slice(1) != id) { // eslint-disable-line
       handleCloseModal();
     }
-  }, [urlHash, isModalShown, number, handleOpenModal, handleCloseModal]);
+  }, [urlHash, isModalShown, id, handleOpenModal, handleCloseModal]);
 
   const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
 
@@ -94,6 +95,7 @@ CourtCard.propTypes = {
     ]).isRequired,
     address: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string,
     rating: PropTypes.number.isRequired,
   }),

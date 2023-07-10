@@ -46,9 +46,9 @@ export default function Playgrounds({ playgrounds }) {
                   variant="courtList"
                   urlHash={urlHash}
                   addHashToUrl={() => {
-                    setUrlHash(`#${court.number}`);
+                    setUrlHash(`#${court.id}`);
                     // eslint-disable-next-line
-                    router.push(`/playgrounds#${court.number}`, undefined, { shallow: true });
+                    router.push(`/playgrounds#${court.id}`, undefined, { shallow: true });
                   }}
                   removeHashFromUrl={() => {
                     setUrlHash("");
