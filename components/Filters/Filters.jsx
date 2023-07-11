@@ -18,7 +18,14 @@ const FilterButton = ({ counter, changeStatus }) => {
     </button>
   );
 };
-
+function getInitialStateFromContext(filterData) {
+  return {
+    purposeOfAreas: filterData.purposeOfAreas,
+    districts: filterData.districts,
+    rating: { value: 0 },
+    array: [...filterData.purposeOfAreas, ...filterData.districts],
+  };
+}
 const Filters = ({
   areas,
   bounds,
@@ -29,20 +36,18 @@ const Filters = ({
   const { setAreas, filterData, filterFields, setFilterData } =
     useContext(Context);
   const [isOpen, changeStatus] = useState(false);
-  const [filters, setFilters] = useState({
-    purposeOfAreas: filterData.purposeOfAreas,
-    districts: filterData.districts,
-    rating: { value: 0 },
-    array: [...filterData.purposeOfAreas, ...filterData.districts],
-  });
+  const [filters, setFilters] = useState(
+    getInitialStateFromContext(filterData)
+  );
+
   const toggleStatus = () => changeStatus((currentStatus) => !currentStatus);
   const getNewAreas = async (purposes, districts, rating) => {
     const purposeValues = purposes.map((item) => item.value.toLowerCase());
     const districtValues = districts.map((item) => item.value);
     const data = areas.filter((area) => {
-      const arayPurposes = area.Purposes.map((item) => item.title);
+      const areaPurposes = area.Purposes.map((item) => item.title);
       return (
-        purposeValues.every((value) => arayPurposes.includes(value)) &&
+        purposeValues.every((value) => areaPurposes.includes(value)) &&
         (districtValues.length
           ? districtValues.includes(area.district)
           : true) &&
@@ -51,7 +56,17 @@ const Filters = ({
     });
     return setAreas(data);
   };
-
+  useEffect(() => {
+    if (filterData) {
+      const newFilters = getInitialStateFromContext(filterData);
+      getNewAreas(
+        newFilters.purposeOfAreas,
+        newFilters.districts,
+        newFilters.rating
+      );
+      setFilters(newFilters);
+    }
+  }, [filterData]);
   useEffect(() => {
     getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
     return () => {
