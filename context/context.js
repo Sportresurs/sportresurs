@@ -57,14 +57,13 @@ const ContextProvider = ({ children }) => {
       districts: [{ label: e.target.textContent, value: e.target.textContent }],
     });
   };
-  const handleFilterPurpose = (e) => {
-    const label = e.target.textContent || "";
+  const handleFilterPurpose = ({ value, label }) => {
     setFilterData({
       districts: [],
       purposeOfAreas: [
         {
           label,
-          value: label.toLowerCase(),
+          value,
         },
       ],
     });

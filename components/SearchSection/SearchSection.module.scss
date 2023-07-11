@@ -38,7 +38,6 @@
 
 .form {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     margin-bottom: 30px;
 
@@ -51,7 +50,7 @@
     position: relative;
     width: 100%;
     margin-right: 30px;
-
+    max-width: 657px;
     @media screen and (max-width: 800px) {
         max-width: 750px;
         margin-right: 0;
@@ -67,7 +66,6 @@
 
 .input {
     width: 100%;
-    max-width: 657px;
     padding: 11px 36px 11px 18px;
 
     font-size: 12px;
@@ -89,7 +87,6 @@
     }
 
     @media screen and (max-width: 800px) {
-        max-width: 750px;
         padding: 11px 36px 11px 12px;
         margin-right: 0;
 

@@ -7,17 +7,18 @@ import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
 import { Context } from "../../context";
+import { changeGender, capitalize } from "../../utils/strings";
 
 const cx = classNames.bind(styles);
 
 const courtsLink = [
-  { link: "/playgrounds", name: "Волейбольний" },
-  { link: "/playgrounds", name: "Дитячий" },
-  { link: "/playgrounds", name: "Футбольний" },
-  { link: "/playgrounds", name: "Гімнастичний" },
-  { link: "/playgrounds", name: "Баскетбольний" },
-  { link: "/playgrounds", name: "Тенісний" },
-  { link: "/playgrounds", name: "Гандбольний" },
+  { link: "/playgrounds", name: "волейбольний" },
+  { link: "/playgrounds", name: "дитячий" },
+  { link: "/playgrounds", name: "футбольний" },
+  { link: "/playgrounds", name: "гімнастичний" },
+  { link: "/playgrounds", name: "баскетбольний" },
+  { link: "/playgrounds", name: "тенісний" },
+  { link: "/playgrounds", name: "гандбольний" },
 ];
 
 const socialLinks = [
@@ -32,9 +33,15 @@ const socialLinks = [
     icon: InstaIcon,
   },
 ];
-
 export default function Footer() {
   const { handleFilterPurpose } = useContext(Context);
+  const handleFilterClick = (ev) => {
+    const target = ev.currentTarget;
+    handleFilterPurpose({
+      value: target.dataset.id,
+      label: capitalize(target.dataset.id),
+    });
+  };
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -84,7 +91,9 @@ export default function Footer() {
               {courtsLink.map((item) => (
                 <li key={item.name} className={styles.footerCourtsLink}>
                   <Link href={item.link}>
-                    <a onClick={handleFilterPurpose}>{item.name}</a>
+                    <a data-id={item.name} onClick={handleFilterClick}>
+                      {changeGender(item.name)}
+                    </a>
                   </Link>
                 </li>
               ))}
