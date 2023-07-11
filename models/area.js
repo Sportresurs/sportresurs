@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       additional: DataTypes.TEXT,
       rating: DataTypes.FLOAT,
       featured: DataTypes.BOOLEAN,
+      has_poster: {
+        defaultValue: false,
+        type: DataTypes.BOOLEAN,
+      },
       updated_by: {
         type: DataTypes.INTEGER,
         references: {

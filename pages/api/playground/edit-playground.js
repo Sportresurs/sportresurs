@@ -61,6 +61,7 @@ const handler = nc()
           close_time: closeTime,
           light,
           additional,
+          has_poster: !!images.length,
           rating,
           created_by: user.id,
         },

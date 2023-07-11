@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import classNames from "classnames";
+import placeholderImg from "../../public/img/placeholderImgCard.png";
 import styles from "./CourtCard.module.scss";
 import Tag from "../Tag";
 import CourtCardInfo from "../CourtCardInfo";
@@ -20,6 +21,7 @@ export default function CourtCard({
   const {
     district = "Інший",
     address = "Адреса не вказана",
+    id = 0,
     number = 0,
     rating = 3,
   } = courtInfo;
@@ -29,15 +31,16 @@ export default function CourtCard({
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   useEffect(() => {
-    if (!isModalShown && urlHash && urlHash.slice(1) == number) { // eslint-disable-line
+    if (!isModalShown && urlHash && urlHash.slice(1) == id) { // eslint-disable-line
       handleOpenModal();
-    } else if (isModalShown && urlHash && urlHash.slice(1) != number) { // eslint-disable-line
+    } else if (isModalShown && urlHash && urlHash.slice(1) != id) { // eslint-disable-line
       handleCloseModal();
     }
-  }, [urlHash, isModalShown, number, handleOpenModal, handleCloseModal]);
+  }, [urlHash, isModalShown, id, handleOpenModal, handleCloseModal]);
 
-  const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`;
-
+  const src = courtInfo.has_poster
+    ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
+    : placeholderImg.src;
   return (
     <>
       <div className={classNames(styles.card, styles[variant])}>
@@ -94,6 +97,7 @@ CourtCard.propTypes = {
     ]).isRequired,
     address: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     image: PropTypes.string,
     rating: PropTypes.number.isRequired,
   }),
