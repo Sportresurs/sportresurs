@@ -58,6 +58,7 @@ const handler = nc()
           access,
           open_time: openTime,
           close_time: closeTime,
+          has_poster: !!images.length,
           light,
           additional,
           rating,
