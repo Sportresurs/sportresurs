@@ -1,0 +1,50 @@
+@import "../../styles/shared.scss";
+.inputBox {
+  position: relative;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+  background-color: $color-primary-light;
+  @media screen and (max-width: 800px) {
+    border: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+.input {
+  width: 100%;
+  padding: 11px 36px 11px 18px;
+  border: none;
+  font-size: 12px;
+  line-height: 1.66;
+  background: transparent;
+  outline: none;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &::placeholder {
+      color: $color-secondary-darkGrey;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+  }
+
+  @media screen and (max-width: 800px) {
+      padding: 11px 36px 11px 12px;
+      margin-right: 0;
+
+      font-size: 14px;
+      line-height: 1.43;
+  }
+}
+.clear {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: 700;
+  font-size: 20px;
+}

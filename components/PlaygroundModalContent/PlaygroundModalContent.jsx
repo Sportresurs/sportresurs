@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/client";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import axios from "axios";
@@ -15,8 +14,10 @@ import placeholderImage from "../../public/img/placeholderImgModal.png";
 import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
 import DeleteDialog from "../DeleteDialog";
+import useIsAdmin from "../../utils/hooks/useIsAdmin";
 
 const PlaygroundModalContent = ({ playground, color }) => {
+  const { isAdmin } = useIsAdmin();
   const playgroundInfoFields = [
     { label: "Тип", value: playground.type },
     {
@@ -39,8 +40,6 @@ const PlaygroundModalContent = ({ playground, color }) => {
     { label: "Додатково", value: playground.additional },
   ];
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [session] = useSession();
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const [isVisibleDialog, setVisibleDialog] = useState(false);
 
@@ -62,12 +61,6 @@ const PlaygroundModalContent = ({ playground, color }) => {
       window.location.reload(false);
     }
   };
-
-  useEffect(() => {
-    if (session) {
-      setIsAdmin(true);
-    }
-  }, [isAdmin, session]);
 
   const [images, setImages] = useState([]);
 

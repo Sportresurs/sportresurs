@@ -64,41 +64,6 @@
     border: none;
 }
 
-.input {
-    width: 100%;
-    padding: 11px 36px 11px 18px;
-
-    font-size: 12px;
-    line-height: 1.66;
-
-    border: 1px solid $color-secondary-mediumGrey;
-    border-radius: 3px;
-    background-color: $color-primary-light;
-    outline: none;
-
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-    &::placeholder {
-        color: $color-secondary-darkGrey;
-        font-weight: 400;
-        letter-spacing: 0.2px;
-    }
-
-    @media screen and (max-width: 800px) {
-        padding: 11px 36px 11px 12px;
-        margin-right: 0;
-
-        font-size: 14px;
-        line-height: 1.43;
-
-        border: none;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-}
-
 .fromBtnClose {
     @extend %button;
     position: absolute;

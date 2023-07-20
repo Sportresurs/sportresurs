@@ -13,6 +13,7 @@ import SearchIcon from "../../public/svg/searchIcon.svg";
 import Close from "../../public/svg/closeAutoCIcon.svg";
 import Slider from "../Slider";
 import useWindowSize from "../../utils/hooks/findWindowSize";
+import SearchInput from "../SearchInput";
 
 const cx = classNames.bind(styles);
 const { GOOGLE_MAPS_API_KEY } = process.env;
@@ -116,10 +117,9 @@ function SearchSection() {
                       getSuggestionItemProps,
                     }) => (
                       <div>
-                        <input
+                        <SearchInput
                           {...getInputProps({
                             placeholder: "Введіть назву вулиці",
-                            className: styles.input,
                           })}
                         />
                         {suggestions.length >= 1 && (

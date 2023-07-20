@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { Context } from "../../context";
 import s from "./Playgrounds.module.scss";
@@ -9,20 +8,14 @@ import Filters from "../../components/Filters";
 import PlusIcon from "../../components/PlusIcon/PlusIcon";
 import AdminPlaygroundModal from "../../components/AdminPlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
+import useIsAdmin from "../../utils/hooks/useIsAdmin";
 
 export default function Playgrounds({ playgrounds }) {
   const router = useRouter();
   const { areas } = useContext(Context);
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [session] = useSession();
+  const { isAdmin } = useIsAdmin();
   const [urlHash, setUrlHash] = useState("");
-
-  useEffect(() => {
-    if (session) {
-      setIsAdmin(true);
-    }
-  }, [isAdmin, session]);
 
   useEffect(() => {
     setUrlHash(window.location.hash);

@@ -107,3 +107,32 @@
     }
   }
 }
+
+.adminCardWrapper {
+  position: relative;
+}
+.adminDeleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  z-index: 1;
+  background: #fff;
+  border-radius: 99999px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+}
+.adminDeleteIcon {
+  width: 100%;
+  height: auto;
+  path {
+    fill: currentColor;
+  }
+}

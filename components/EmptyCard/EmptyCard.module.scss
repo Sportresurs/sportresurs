@@ -1,0 +1,18 @@
+@import "styles/colors";
+
+.card {
+  color: $color-accent-purple;
+  width: 257px;
+  height: 291px;
+  background-color: rgba($color-accent-purple, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid currentColor;
+  cursor: pointer;
+}
+.icon {
+  path {
+    fill: currentColor;
+  }
+}
