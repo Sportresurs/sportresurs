@@ -14,6 +14,18 @@ const playgroundService = {
       headers: { "Content-Type": "form/multipart" },
     });
   },
+  search(query) {
+    return axios
+      .get("/areas", {
+        params: {
+          query,
+        },
+      })
+      .then((res) => res.data);
+  },
+  patch(id, payload) {
+    return axios.patch(`/areas/${id}`, payload).then((res) => res.data);
+  },
 };
 
 export default playgroundService;
