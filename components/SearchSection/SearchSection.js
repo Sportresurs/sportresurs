@@ -22,6 +22,8 @@ const districtsLink = [
   { district: "Шевченківський", color: "green" },
   { district: "Франківський", color: "blue" },
   { district: "Залізничний", color: "lilac" },
+  { district: "Галицький", color: "red" },
+  { district: "Сихівський", color: "yellow" },
 ];
 const mapBounds = {
   north: 49.96325058667949,
@@ -180,12 +182,12 @@ function SearchSection() {
             {size.width <= 670 && (
               <Slider
                 isDots={false}
-                slidesToShow={4}
+                slidesToShow={districtsLink.length}
                 slidesToScroll={1}
                 isInfinite={true}
                 isVariableWidth={true}
                 withArrows={false}
-                arrayLength={4}
+                arrayLength={districtsLink.length}
                 classNameBox={styles.sliderBox}
                 responsive={[
                   {

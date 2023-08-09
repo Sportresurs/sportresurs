@@ -5,10 +5,6 @@
     padding-top: 30px;
 }
 
-.box {
-    max-width: 860px;
-}
-
 .title {
     display: block;
     margin-bottom: 32px;
@@ -210,6 +206,8 @@
     @extend %list;
     display: flex;
     flex-wrap: wrap;
+    gap: 30px;
+    max-width: 100vw;
 
     @media screen and (max-width: 670px) {
         max-width: 88vw;
@@ -220,7 +218,6 @@
 }
 
 .linkItem {
-    margin-right: 30px;
 
     &:last-child {
         margin-right: 0;
@@ -246,36 +243,45 @@
 
     &.orange {
         background-color: $color-accent-orange;
-    }
-    &.orange:hover {
-        background-color: $color-hover-orange;
+        &:hover {
+          background-color: $color-hover-orange;
+        }
     }
 
     &.green {
         background-color: $color-accent-green;
-    }
-
-    &.green:hover {
-        background-color: $color-hover-green;
+        &:hover {
+          background-color: $color-hover-green;
+        }
     }
 
     &.blue {
         background-color: $color-accent-blue;
-    }
-
-    &.blue:hover {
-        background-color: $color-hover-blue;
+        &:hover {
+          background-color: $color-hover-blue;
+        }
     }
 
     &.lilac {
         background-color: $color-accent-purple;
+        &:hover {
+          background-color: $color-hover-purple;
+        }
     }
 
-    &.lilac:hover {
-        background-color: $color-hover-purple;
+    &.red {
+        background-color: $color-accent-red;
+        &:hover {
+          background-color: $color-hover-red;
+        }
     }
 
-
+    &.yellow {
+        background-color: $color-accent-yellow;
+        &:hover {
+          background-color: $color-hover-yellow;
+        }
+    }
 }
 
 .sliderBox :global(.slick-slider) {
