@@ -86,7 +86,6 @@ export default function MapPage({ playgrounds }) {
               <div className={styles.filterWrapper}>
                 <Filters
                   areas={playgrounds}
-                  bounds={bounds}
                   location="mapPage"
                   handleCoordinates={setSearchPinCoords}
                   setSearchPinCoords={setSearchPinCoords}
