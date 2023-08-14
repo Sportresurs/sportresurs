@@ -1,4 +1,5 @@
-import { useState, useContext, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useContext, useEffect, useCallback } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
@@ -28,7 +29,6 @@ function getInitialStateFromContext(filterData) {
 }
 const Filters = ({
   areas,
-  bounds,
   location,
   handleCoordinates,
   setSearchPinCoords,
@@ -41,21 +41,26 @@ const Filters = ({
   );
 
   const toggleStatus = () => changeStatus((currentStatus) => !currentStatus);
-  const getNewAreas = async (purposes, districts, rating) => {
-    const purposeValues = purposes.map((item) => item.value.toLowerCase());
-    const districtValues = districts.map((item) => item.value);
-    const data = areas.filter((area) => {
-      const areaPurposes = area.Purposes.map((item) => item.title);
-      return (
-        purposeValues.every((value) => areaPurposes.includes(value)) &&
-        (districtValues.length
-          ? districtValues.includes(area.district)
-          : true) &&
-        area.rating >= rating.value
-      );
-    });
-    return setAreas(data);
-  };
+
+  const getNewAreas = useCallback(
+    (purposes, districts, rating) => {
+      const purposeValues = purposes.map((item) => item.value.toLowerCase());
+      const districtValues = districts.map((item) => item.value);
+      const data = areas.filter((area) => {
+        const areaPurposes = area.Purposes.map((item) => item.title);
+        return (
+          purposeValues.every((value) => areaPurposes.includes(value)) &&
+          (districtValues.length
+            ? districtValues.includes(area.district)
+            : true) &&
+          area.rating >= rating.value
+        );
+      });
+      return setAreas(data);
+    },
+    [areas, setAreas]
+  );
+
   useEffect(() => {
     if (filterData) {
       const newFilters = getInitialStateFromContext(filterData);
@@ -67,6 +72,7 @@ const Filters = ({
       setFilters(newFilters);
     }
   }, [filterData]);
+
   useEffect(() => {
     getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
     return () => {
@@ -76,7 +82,7 @@ const Filters = ({
         rating: { value: 0 },
       });
     };
-  }, [bounds]);
+  }, []);
 
   const deleteTag = (tag) => {
     const newPurposeOfAreas = filters.purposeOfAreas.filter(
