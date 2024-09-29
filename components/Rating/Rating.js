@@ -1,10 +1,9 @@
 import Rating from "@material-ui/lab/Rating";
 import StarBorderRoundedIcon from "@material-ui/icons/StarBorderRounded";
 import StarRoundedIcon from "@material-ui/icons/StarRounded";
-import { useMemo } from "react";
+
 import PropTypes from "prop-types";
 import s from "./Rating.module.scss";
-import dataCompare from "../../utils/testData/testArrs";
 
 // if you want to be able to change value dinamically send "readOnly" property with false,
 // in opposite case send true
