@@ -1,12 +1,23 @@
 import { Op, cast, where, col } from "sequelize";
 import { withSentry } from "@sentry/nextjs";
 import nextConnect from "next-connect";
-import { Area, Purpose } from "../../../models/index";
+import { Area, Purpose, District, Type } from "../../../models/index";
 
 const handler = nextConnect().get(async (req, res) => {
   const { query } = req.query;
   const areas = await Area.findAll({
-    include: Purpose,
+    include: [
+      {
+        model: Purpose,
+      },
+      {
+        model: District,
+      },
+      {
+        model: Type,
+        through: { attributes: [] },
+      },
+    ],
 
     where: {
       [Op.or]: [

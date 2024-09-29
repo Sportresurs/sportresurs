@@ -10,6 +10,7 @@ const PlaygroundInfoRow = ({ label, value, isList = false }) => {
   const labelStyleWrapper = classNames(styles.label, {
     [styles.listText]: isList,
   });
+
   return (
     <p className={textStyleWrapper}>
       <b className={labelStyleWrapper}>{label}:</b> {value}

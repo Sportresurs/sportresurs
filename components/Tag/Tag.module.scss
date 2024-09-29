@@ -1,37 +1,15 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
 
 .wrapper {
-    display: inline-block;
-    padding: 7.5px;
-    border-radius: 3px;
-
-    &.lilac {
-        background-color: $color-accent-purple;
-    }
-    &.red {
-        background-color: $color-accent-red;
-    }
-    &.blue {
-        background-color: $color-accent-blue;
-    }
-    &.yellow {
-        background-color: $color-accent-yellow;
-    }
-    &.orange {
-        background-color: $color-accent-orange;
-    }
-    &.green {
-        background-color: $color-accent-green;
-    }
-    &.black {
-        background-color: $color-primary-dark;
-    }
+  display: inline-block;
+  padding: 7.5px;
+  border-radius: 3px;
 }
 
 .content {
-    font-size: 9px;
-    font-weight: 600;
-    line-height: 1.22;
-    color: $color-primary-light;
-    user-select: none;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: $color-primary-light;
+  user-select: none;
 }

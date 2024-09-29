@@ -19,7 +19,12 @@ import useIsAdmin from "../../utils/hooks/useIsAdmin";
 const PlaygroundModalContent = ({ playground, color }) => {
   const { isAdmin } = useIsAdmin();
   const playgroundInfoFields = [
-    { label: "Тип", value: playground.type },
+    {
+      label: "Тип",
+      value:
+        playground.Types?.length &&
+        playground.Types.map((el) => el.name).join(","),
+    },
     {
       label: "Призначення",
       value: playground.Purposes.map((purpose, index, arr) =>

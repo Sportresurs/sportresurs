@@ -2,7 +2,7 @@ import data from "./testData/testArrs";
 
 export default function courtDataFinder(court) {
   function getDistrictLatinName() {
-    return data.courtsDistrict.find((el) => el.district === court.district)
+    return data.courtsDistrict.find((el) => el.district === court.District.name)
       .latinName;
   }
   function getTypeLatinName() {

@@ -13,30 +13,16 @@ export default function Ratings({
   value = 3.5,
   precision = 0.5,
   readOnly = false,
-  color = "black",
+  color = "#0000",
   onChange,
 }) {
-  // allow rating to use static colors which is used in Button and Tags
-  function colorFinder(colorToMatch) {
-    const matchedColor = dataCompare.colorDescription.find(
-      (item) => item.color === colorToMatch
-    );
-
-    if (!matchedColor) {
-      return { color: "#150223" };
-    }
-
-    return { color: matchedColor.hex };
-  }
-  const hexColor = useMemo(() => colorFinder(color), [color]);
-
   return (
     <div className={s.rating}>
-      <p className={s.value} style={hexColor}>
+      <p className={s.value} style={{ color }}>
         {Number(value).toFixed(1)}
       </p>
       <Rating
-        style={hexColor}
+        style={{ color }}
         className={s.rate}
         name="rating"
         value={Number(value)}
@@ -47,7 +33,7 @@ export default function Ratings({
         size={"small"}
         icon={<StarRoundedIcon fontSize="inherit" />}
         emptyIcon={
-          <StarBorderRoundedIcon fontSize="inherit" style={hexColor} />
+          <StarBorderRoundedIcon fontSize="inherit" style={{ color }} />
         }
       />
     </div>
@@ -58,14 +44,6 @@ Ratings.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   precision: PropTypes.number,
   readOnly: PropTypes.bool,
-  color: PropTypes.oneOf([
-    "orange",
-    "green",
-    "blue",
-    "lilac",
-    "black",
-    "red",
-    "yellow",
-  ]).isRequired,
+  color: PropTypes.string.isRequired,
   onChange: PropTypes.func,
 };

@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import districtCentrCoords from "../utils/districtCentrCoords";
 import districtInfo from "../utils/districtCentrCoords";
 
 const Context = createContext("");
@@ -50,8 +49,8 @@ const ContextProvider = ({ children }) => {
     setCenter(null);
   };
   const handleFilterDistrict = (e) => {
-    setZoom(districtCentrCoords[e.target.textContent].zoom);
-    setDistrictCenter(districtCentrCoords[e.target.textContent].coords);
+    setZoom(districtInfo[e.target.textContent].zoom);
+    setDistrictCenter(districtInfo[e.target.textContent].coords);
     setFilterData({
       purposeOfAreas: [],
       districts: [{ label: e.target.textContent, value: e.target.textContent }],

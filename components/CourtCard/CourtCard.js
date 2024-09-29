@@ -31,9 +31,11 @@ export default function CourtCard({
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
   useEffect(() => {
-    if (!isModalShown && urlHash && urlHash.slice(1) == id) { // eslint-disable-line
+    if (!isModalShown && urlHash && urlHash.slice(1) === id) {
+      // eslint-disable-line
       handleOpenModal();
-    } else if (isModalShown && urlHash && urlHash.slice(1) != id) { // eslint-disable-line
+    } else if (isModalShown && urlHash && urlHash.slice(1) !== id) {
+      // eslint-disable-line
       handleCloseModal();
     }
   }, [urlHash, isModalShown, id, handleOpenModal, handleCloseModal]);
@@ -86,15 +88,7 @@ export default function CourtCard({
 
 CourtCard.propTypes = {
   courtInfo: PropTypes.shape({
-    district: PropTypes.oneOf([
-      "Шевченківський",
-      "Франківський",
-      "Личаківський",
-      "Залізничний",
-      "Сихівський",
-      "Галицький",
-      "Інший",
-    ]).isRequired,
+    district: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
