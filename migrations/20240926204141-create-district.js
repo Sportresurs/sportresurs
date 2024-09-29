@@ -19,10 +19,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      color: {
+        type: Sequelize.STRING(7),
+        allowNull: true,
+      },
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable("districts");
   },
 };
