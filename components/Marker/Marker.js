@@ -2,68 +2,23 @@ import * as React from "react";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import styles from "./Marker.module.scss";
-import BasketballCourt from "../../public/img/basketballCourt.png";
-import TennisCourt from "../../public/img/tennisCourt.png";
-import ChildCourt from "../../public/img/childCourt.png";
-import FootballCourt from "../../public/img/footballCourt.png";
-import HandballCourt from "../../public/img/handballCourt.png";
-import VolleyballCourt from "../../public/img/volleyballCourt.png";
-import GymnasticCourt from "../../public/img/gymnasticCourt.png";
-import MultiSelectCourt from "../../public/img/multiSelectCourt.png";
-import WithoutTypeCourt from "../../public/img/withoutTypeCourt.png";
 import MapMarker from "../../public/svg/mapMarker.svg";
 import DefaultMarker from "../../public/svg/defaultMarker.svg";
-import Gym from "../../public/img/gym.png";
-import Stadium from "../../public/img/stadium.png";
-import SwimmingPool from "../../public/img/swimming_pool.png";
-import SkatePark from "../../public/img/skate_park.png";
-import MartialArts from "../../public/img/martial_arts.png";
-import Workout from "../../public/img/workout.png";
-import Inclusive from "../../public/img/inclusive.png";
+import selectIconPurpose from "./model/select-icon";
 
-const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
-  const courtIcons = {
-    BasketballCourt,
-    TennisCourt,
-    ChildCourt,
-    FootballCourt,
-    HandballCourt,
-    VolleyballCourt,
-    GymnasticCourt,
-    MultiSelectCourt,
-    WithoutTypeCourt,
-    Gym,
-    Stadium,
-    SwimmingPool,
-    SkatePark,
-    MartialArts,
-    Workout,
-    Inclusive,
-    InclusiveElements: Inclusive,
-  };
+const Marker = ({ courtPurpose, district, isCourtMarker }) => {
+  const groundIcon = selectIconPurpose(courtPurpose);
 
-  const districtToColor = {
-    Halitskyi: "red",
-    Zaliznychnyi: "lilac",
-    Lychakivskyi: "orange",
-    Sykhivskyi: "yellow",
-    Frankivskyi: "blue",
-    Shevchenkivskyi: "green",
-    Another: "black",
-  };
+  const { color } = district;
+
   return (
     <>
       {isCourtMarker ? (
         <button className={styles.btnMarker}>
-          <MapMarker className={styles[districtToColor[district]]} />
+          <MapMarker style={{ fill: color }} />
 
           <div className={styles.icon}>
-            <Image
-              src={courtIcons[typeOfCourt]}
-              alt={typeOfCourt}
-              width={20}
-              height={20}
-            />
+            <Image src={groundIcon} alt={"test"} width={20} height={20} />
           </div>
         </button>
       ) : (
@@ -76,40 +31,14 @@ const Marker = ({ typeOfCourt, district, isCourtMarker }) => {
 };
 
 Marker.defaultProps = {
-  typeOfCourt: "FootballCourt",
-  district: "Shevchenkivskyi",
+  courtPurpose: [{ title: "футбольний" }],
+  district: { name: "Шевченківський", color: "#d12421" },
   isCourtMarker: true,
 };
 
 Marker.propTypes = {
-  typeOfCourt: PropTypes.oneOf([
-    "GymnasticCourt",
-    "VolleyballCourt",
-    "ChildCourt",
-    "BasketballCourt",
-    "TennisCourt",
-    "FootballCourt",
-    "HandballCourt",
-    "MultiSelectCourt",
-    "WithoutTypeCourt",
-    "Gym",
-    "Stadium",
-    "SwimmingPool",
-    "SkatePark",
-    "MartialArts",
-    "Workout",
-    "Inclusive",
-    "InclusiveElements",
-  ]).isRequired,
-  district: PropTypes.oneOf([
-    "Halitskyi",
-    "Zaliznychnyi",
-    "Lychakivskyi",
-    "Sykhivskyi",
-    "Frankivskyi",
-    "Shevchenkivskyi",
-    "Another",
-  ]).isRequired,
+  courtPurpose: PropTypes.array.isRequired,
+  district: PropTypes.object.isRequired,
   isCourtMarker: PropTypes.oneOf([true, false]).isRequired,
 };
 

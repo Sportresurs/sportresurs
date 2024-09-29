@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Map.module.scss";
 import MapMarkerWrapper from "../MapMarkerWrapper";
-import courtDataFinder from "../../utils/courtDataFinder";
 
 const options = {
   minZoom: 11,
@@ -60,25 +59,22 @@ export default function Map({
         }}
         onChildClick={(child) => setChildClicked(child)}
       >
-        {places?.map((place, i) => {
-          const proprsToMarker = courtDataFinder(place);
-          return (
-            <MapMarkerWrapper
-              setSliderOpen={setSliderOpen}
-              setMarkerIndex={setMarkerIndex}
-              className={cx("markerWrapper", {
-                selected: Number(childClicked) === place.id,
-              })}
-              lat={Number(place.latitude)}
-              lng={Number(place.longitude)}
-              key={place.id}
-              typeOfCourt={proprsToMarker.type}
-              district={proprsToMarker.district}
-              isCourtMarker={true}
-              indexMarker={i}
-            />
-          );
-        })}
+        {places?.map((place, i) => (
+          <MapMarkerWrapper
+            setSliderOpen={setSliderOpen}
+            setMarkerIndex={setMarkerIndex}
+            className={cx("markerWrapper", {
+              selected: Number(childClicked) === place.id,
+            })}
+            lat={Number(place.latitude)}
+            lng={Number(place.longitude)}
+            key={place.id}
+            courtPurpose={place.Purposes}
+            district={place.District}
+            isCourtMarker={true}
+            indexMarker={i}
+          />
+        ))}
         {searchPinCoords && isSearchPinShow && (
           <MapMarkerWrapper
             lat={Number(searchPinCoords.lat)}

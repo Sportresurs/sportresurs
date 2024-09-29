@@ -43,6 +43,14 @@ const PlaygroundModalContent = ({ playground, color }) => {
     },
     { label: "Освітлення", value: playground.light ? "є" : "немає" },
     { label: "Додатково", value: playground.additional },
+    {
+      label: "Форма власності",
+      value: playground.ownership_form || "Не визначено",
+    },
+    {
+      label: "Інклюзивний",
+      value: playground.inclusiveness || "Не визначено",
+    },
   ];
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
@@ -69,26 +77,33 @@ const PlaygroundModalContent = ({ playground, color }) => {
 
   const [images, setImages] = useState([]);
 
-  function getRelatedImages(courtNumber) {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_HOST}api/images/images`, {
-        params: { id: courtNumber },
-      })
-      .then(({ data }) => {
-        const imgIDs = [];
-        data.forEach((el) => {
-          imgIDs.push(el);
-        });
-
-        return imgIDs;
-      })
-      .then((orderData) => setImages(orderData))
-      .catch((error) => error);
-  }
-
   useEffect(() => {
-    getRelatedImages(playground.id);
-  }, []);
+    let isMounted = true;
+
+    const fetchRelatedImages = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.NEXT_PUBLIC_HOST}api/images/images`,
+          {
+            params: { id: playground.id },
+          }
+        );
+        const imgIDs = data.map((el) => el);
+
+        if (isMounted) {
+          setImages(imgIDs);
+        }
+      } catch (error) {
+        throw new Error(`"Error fetching images:", ${error}`);
+      }
+    };
+
+    fetchRelatedImages();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [playground.id]);
 
   return (
     <div className={styles.wrapper}>

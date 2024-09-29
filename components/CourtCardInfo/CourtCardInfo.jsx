@@ -57,7 +57,7 @@ const CourtCardInfo = ({
           ))}
         </div>
       ) : null}
-      <Button size="small" variant={color} onClick={openModal}>
+      <Button size="small" color={color} onClick={openModal}>
         Детальніше
       </Button>
     </>

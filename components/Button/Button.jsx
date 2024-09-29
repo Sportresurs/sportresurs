@@ -6,7 +6,7 @@ import Spinner from "../Spinner";
 
 const Button = ({
   children,
-  variant,
+  color,
   size,
   className,
   isLoading,
@@ -15,7 +15,6 @@ const Button = ({
 }) => {
   const combinedClassName = classNames(
     styles.button,
-    styles[variant],
     styles[size],
     {
       [styles.loading]: isLoading,
@@ -23,30 +22,25 @@ const Button = ({
     className
   );
   return (
-    <RootComponent className={combinedClassName} {...rest}>
+    <RootComponent
+      style={{ backgroundColor: color }}
+      className={combinedClassName}
+      {...rest}
+    >
       {isLoading ? <Spinner /> : children}
     </RootComponent>
   );
 };
 
 Button.defaultProps = {
-  variant: "orange",
+  color: "#d12421",
   size: "medium",
   as: "button",
 };
 
 Button.propTypes = {
   as: PropTypes.oneOf(["a", "button"]).isRequired,
-  variant: PropTypes.oneOf([
-    "orange",
-    "green",
-    "blue",
-    "lilac",
-    "black",
-    "white",
-    "red",
-    "yellow",
-  ]).isRequired,
+  color: PropTypes.string.isRequired,
   size: PropTypes.oneOf([
     "mobile",
     "small",

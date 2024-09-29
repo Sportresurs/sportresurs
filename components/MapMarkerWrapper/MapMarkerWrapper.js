@@ -4,8 +4,8 @@ export default function MapMarkerWrapper({
   lat,
   lng,
   key,
-  typeOfCourt,
-  district,
+  courtPurpose = [],
+  district = {},
   className,
   isCourtMarker,
   setMarkerIndex,
@@ -31,7 +31,7 @@ export default function MapMarkerWrapper({
       tabIndex={0}
     >
       <Marker
-        typeOfCourt={typeOfCourt}
+        courtPurpose={courtPurpose}
         district={district}
         isCourtMarker={isCourtMarker}
       />

@@ -8,7 +8,7 @@ import Tag from "../Tag";
 import CourtCardInfo from "../CourtCardInfo";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
-import getDistrictColor from "../../utils/getDistrictColor";
+
 import handleImgError from "../../utils/handleImgError";
 
 export default function CourtCard({
@@ -19,14 +19,14 @@ export default function CourtCard({
   urlHash,
 }) {
   const {
-    district = "Інший",
+    District,
     address = "Адреса не вказана",
     id = 0,
     number = 0,
     rating = 3,
   } = courtInfo;
 
-  const color = getDistrictColor(district);
+  const { color = "#000000", name = "Інший" } = District;
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
 
@@ -48,7 +48,7 @@ export default function CourtCard({
       <div className={classNames(styles.card, styles[variant])}>
         <div className={styles.inner}>
           <div className={styles.district}>
-            <Tag text={district} color={color}></Tag>
+            <Tag text={name} color={color}></Tag>
           </div>
           <Image
             onError={handleImgError}
@@ -88,7 +88,7 @@ export default function CourtCard({
 
 CourtCard.propTypes = {
   courtInfo: PropTypes.shape({
-    district: PropTypes.string.isRequired,
+    district: PropTypes.object.isRequired,
     address: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
