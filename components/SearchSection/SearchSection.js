@@ -17,14 +17,7 @@ import SearchInput from "../SearchInput";
 
 const cx = classNames.bind(styles);
 const { GOOGLE_MAPS_API_KEY } = process.env;
-const districtsLink = [
-  { district: "Личаківський", color: "orange" },
-  { district: "Шевченківський", color: "green" },
-  { district: "Франківський", color: "blue" },
-  { district: "Залізничний", color: "lilac" },
-  { district: "Галицький", color: "red" },
-  { district: "Сихівський", color: "yellow" },
-];
+
 const mapBounds = {
   north: 49.96325058667949,
   south: 49.7223633490448,
@@ -32,7 +25,7 @@ const mapBounds = {
   west: 23.851724861084023,
 };
 
-function SearchSection() {
+function SearchSection({ districts = [] }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState(null);
@@ -182,12 +175,12 @@ function SearchSection() {
             {size.width <= 670 && (
               <Slider
                 isDots={false}
-                slidesToShow={districtsLink.length}
+                slidesToShow={districts.length}
                 slidesToScroll={1}
                 isInfinite={true}
                 isVariableWidth={true}
                 withArrows={false}
-                arrayLength={districtsLink.length}
+                arrayLength={districts.length}
                 classNameBox={styles.sliderBox}
                 responsive={[
                   {
@@ -199,16 +192,17 @@ function SearchSection() {
                   },
                 ]}
               >
-                {districtsLink.map(({ district, color }) => (
-                  <li key={district} className={styles.linkItem}>
+                {districts.map(({ name, color }) => (
+                  <li key={name} className={styles.linkItem}>
                     <Link href="/map" passHref>
                       <a
                         role="link"
                         tabIndex={0}
-                        className={cx("link", color)}
+                        style={{ backgroundColor: color }}
+                        className={cx("link")}
                         onClick={handleFilterDistrict}
                       >
-                        {district}
+                        {name}
                       </a>
                     </Link>
                   </li>
@@ -217,16 +211,17 @@ function SearchSection() {
             )}
             {size.width >= 671 && (
               <>
-                {districtsLink.map(({ district, color }) => (
-                  <li key={district} className={styles.linkItem}>
+                {districts.map(({ name, color }) => (
+                  <li key={name} className={styles.linkItem}>
                     <Link href="/map" passHref>
                       <a
                         role="link"
                         tabIndex={0}
-                        className={cx("link", color)}
+                        style={{ backgroundColor: color }}
+                        className={cx("link")}
                         onClick={handleFilterDistrict}
                       >
-                        {district}
+                        {name}
                       </a>
                     </Link>
                   </li>

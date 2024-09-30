@@ -1,47 +1,47 @@
 @import "../../styles/shared.scss";
 
 .btnMarker {
-    @extend %button;
-    position: relative;
-    display: block;
+  @extend %button;
+  position: relative;
+  display: block;
 
-    & svg {
-        display: block;
-    }
+  & svg {
+    display: block;
+  }
 }
 
 .lilac path:nth-child(2) {
-    fill: $color-accent-purple;
+  fill: $color-accent-purple;
 }
 
 .red path:nth-child(2) {
-    fill: $color-accent-red;
+  fill: $color-accent-red;
 }
 
 .blue path:nth-child(2) {
-    fill: $color-accent-blue;
+  fill: $color-accent-blue;
 }
 
 .yellow path:nth-child(2) {
-    fill: $color-accent-yellow;
+  fill: $color-accent-yellow;
 }
 
 .orange path:nth-child(2) {
-    fill: $color-accent-orange;
+  fill: $color-accent-orange;
 }
 
 .green path:nth-child(2) {
-    fill: $color-accent-green;
+  fill: $color-accent-green;
 }
 
 .black path:nth-child(2) {
-    fill: $color-primary-dark;
+  fill: $color-primary-dark;
 }
 
 .icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -4px;
 }

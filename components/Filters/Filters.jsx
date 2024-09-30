@@ -45,13 +45,13 @@ const Filters = ({
   const getNewAreas = useCallback(
     (purposes, districts, rating) => {
       const purposeValues = purposes.map((item) => item.value.toLowerCase());
-      const districtValues = districts.map((item) => item.value);
+      const districtValues = districts.map((item) => item.name);
       const data = areas.filter((area) => {
         const areaPurposes = area.Purposes.map((item) => item.title);
         return (
           purposeValues.every((value) => areaPurposes.includes(value)) &&
           (districtValues.length
-            ? districtValues.includes(area.district)
+            ? districtValues.includes(area.District)
             : true) &&
           area.rating >= rating.value
         );
@@ -64,6 +64,7 @@ const Filters = ({
   useEffect(() => {
     if (filterData) {
       const newFilters = getInitialStateFromContext(filterData);
+
       getNewAreas(
         newFilters.purposeOfAreas,
         newFilters.districts,

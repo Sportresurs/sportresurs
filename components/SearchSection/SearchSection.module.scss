@@ -1,318 +1,272 @@
 @import "../../styles/shared.scss";
 
 .section {
-    width: 100%;
-    padding-top: 30px;
+  width: 100%;
+  padding-top: 30px;
 }
 
 .title {
-    display: block;
-    margin-bottom: 32px;
-    
-    color: $color-primary-dark;
-    font-weight: 800;
-    font-size: 44px;
-    line-height: 1.27;
-    letter-spacing: 0.2px;
+  display: block;
+  margin-bottom: 32px;
 
-    @media screen and (max-width: 1150px) {
-        font-size: 24px;
-        line-height: 1.5;
-    }
+  color: $color-primary-dark;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 1.27;
+  letter-spacing: 0.2px;
 
-    @media screen and (max-width: 646px) {
-        font-size: 18px;
-        line-height: 2.08;
-    }
+  @media screen and (max-width: 1150px) {
+    font-size: 24px;
+    line-height: 1.5;
+  }
 
-    @media screen and (max-width: 400px) {
-        font-size: 17px;
-        line-height: 1.5;
-        letter-spacing: 0;
-    }
+  @media screen and (max-width: 646px) {
+    font-size: 18px;
+    line-height: 2.08;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 17px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
 }
 
 .form {
-    display: flex;
-    width: 100%;
-    margin-bottom: 30px;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
 
-    @media screen and (max-width: 800px) {
-        margin-bottom: 18px;
-    }
+  @media screen and (max-width: 800px) {
+    margin-bottom: 18px;
+  }
 }
 
 .inputBox {
-    position: relative;
-    width: 100%;
-    margin-right: 30px;
-    max-width: 657px;
-    @media screen and (max-width: 800px) {
-        max-width: 750px;
-        margin-right: 0;
-    }
+  position: relative;
+  width: 100%;
+  margin-right: 30px;
+  max-width: 657px;
+  @media screen and (max-width: 800px) {
+    max-width: 750px;
+    margin-right: 0;
+  }
 }
 
 .boxPlug {
-    width: 100%;
-    height: 42px;
-    background-color: transparent;
-    border: none;
+  width: 100%;
+  height: 42px;
+  background-color: transparent;
+  border: none;
 }
 
 .fromBtnClose {
-    @extend %button;
-    position: absolute;
-    top: 15px;
-    right: 12px;
+  @extend %button;
+  position: absolute;
+  top: 15px;
+  right: 12px;
 }
 
 .fromBtnCloseIcon {
-    display: block;
+  display: block;
 }
 
 .formBtn {
-    display: inline-block;
-    padding: 12px 18px;
-    white-space: nowrap;
+  display: inline-block;
+  padding: 12px 18px;
+  white-space: nowrap;
 
-    background-color: $color-primary-dark;
-    border-radius: 3px;
-    transition: background-color 200ms;
+  background-color: $color-primary-dark;
+  border-radius: 3px;
+  transition: background-color 200ms;
 
-    @media screen and (min-width: 801px) {
-        &:hover {
-            padding: 11px 17px;
-            background-color: $color-primary-light;
-            border: 1px solid $color-primary-dark;
-        }
+  @media screen and (min-width: 801px) {
+    &:hover {
+      padding: 11px 17px;
+      background-color: $color-primary-light;
+      border: 1px solid $color-primary-dark;
     }
+  }
 
-    @media screen and (max-width: 800px) {
-        max-width: 42px;
-        padding: 10px;
-        border-radius: 0px 3px 3px 0px;
-    }
+  @media screen and (max-width: 800px) {
+    max-width: 42px;
+    padding: 10px;
+    border-radius: 0px 3px 3px 0px;
+  }
 
-    &.disabled {
-        pointer-events: none;
-        cursor: pointer;
-    }
+  &.disabled {
+    pointer-events: none;
+    cursor: pointer;
+  }
 }
 
 .formBtnContent {
-    display: inline-block;
-    color: $color-primary-light;
-    font-size: 14px;
-    line-height: 1.29;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    transition: color 200ms;
+  display: inline-block;
+  color: $color-primary-light;
+  font-size: 14px;
+  line-height: 1.29;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: color 200ms;
 
-    .formBtn:hover & {
-        color: $color-primary-dark;
-    }
+  .formBtn:hover & {
+    color: $color-primary-dark;
+  }
 
-    @media screen and (max-width: 800px) {
-        display: none;
-    }
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .formBtnIcon {
-    display: block;
+  display: block;
 
-    .formBtn &>path {
-        transition: all 200ms;
-    }
+  .formBtn & > path {
+    transition: all 200ms;
+  }
 
-    .formBtn:hover &>path {
-        fill: $color-accent-green;
-    }
+  .formBtn:hover & > path {
+    fill: $color-accent-green;
+  }
 
-    @media screen and (min-width: 801px) {
-        display: none;
-    }
+  @media screen and (min-width: 801px) {
+    display: none;
+  }
 }
 
 .autocomplete {
-    display: block;
-    position: absolute;
-    top: 43px;
-    width: 100%;
-    max-height: 251px;
+  display: block;
+  position: absolute;
+  top: 43px;
+  width: 100%;
+  max-height: 251px;
 
-    background-color: $color-primary-light;
-    border: 1px solid $color-secondary-mediumGrey;
-    border-radius: 3px;
+  background-color: $color-primary-light;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
 
-    z-index: 3;
+  z-index: 3;
 
-    @media screen and (max-width: 800px) {
-        top: 42px;
-    }
+  @media screen and (max-width: 800px) {
+    top: 42px;
+  }
 }
 
 .autocompleteItem {
-    display: flex;
-    flex-direction: column;
-    padding: 6px 12px 6px 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 12px 6px 18px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition: all 200ms;
+  transition: all 200ms;
+
+  &:first-child {
+    padding: 12px 12px 6px 18px;
+  }
+
+  &.hover {
+    background-color: rgba($color-secondary-lightGrey, 0.3);
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 6px 12px;
 
     &:first-child {
-        padding: 12px 12px 6px 18px;
+      padding: 12px 12px 6px 12px;
     }
-
-    &.hover {
-        background-color: rgba($color-secondary-lightGrey, 0.3);
-    }
-
-    @media screen and (max-width: 800px) {
-        padding: 6px 12px;
-
-        &:first-child {
-            padding: 12px 12px 6px 12px;
-        }
-    }
+  }
 }
 
-
 .autocompleteMainText {
-    margin-bottom: 3px;
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-    color: $color-primary-dark;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  margin-bottom: 3px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: $color-primary-dark;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .autocompleteSecondaryText {
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 0.2px;
-    color: $color-secondary-darkGrey;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: $color-secondary-darkGrey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .linkList {
-    @extend %list;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 100vw;
+  @extend %list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 100vw;
 
-    @media screen and (max-width: 670px) {
-        max-width: 88vw;
-    }
-    @media screen and (max-width: 600px) {
-        max-width: 90vw;
-    }
+  @media screen and (max-width: 670px) {
+    max-width: 88vw;
+  }
+  @media screen and (max-width: 600px) {
+    max-width: 90vw;
+  }
 }
 
 .linkItem {
+  &:last-child {
+    margin-right: 0;
+  }
 
-    &:last-child {
-        margin-right: 0;
-    }
-
-    @media screen and (max-width: 800px) {
-        margin-right: 12px;
-    }
+  @media screen and (max-width: 800px) {
+    margin-right: 12px;
+  }
 }
 
 .link {
-    display: inline-block;
-    padding: 12px 18px;
+  display: inline-block;
+  padding: 12px 18px;
 
-    font-size: 14px;
-    line-height: 1.29;
-    font-weight: 700;
-    color: $color-primary-light;
-    letter-spacing: 0.3px;
+  font-size: 14px;
+  line-height: 1.29;
+  font-weight: 700;
+  color: $color-primary-light;
+  letter-spacing: 0.3px;
 
-    border-radius: 3px;
-    transition: background-color 200ms;
-
-    &.orange {
-        background-color: $color-accent-orange;
-        &:hover {
-          background-color: $color-hover-orange;
-        }
-    }
-
-    &.green {
-        background-color: $color-accent-green;
-        &:hover {
-          background-color: $color-hover-green;
-        }
-    }
-
-    &.blue {
-        background-color: $color-accent-blue;
-        &:hover {
-          background-color: $color-hover-blue;
-        }
-    }
-
-    &.lilac {
-        background-color: $color-accent-purple;
-        &:hover {
-          background-color: $color-hover-purple;
-        }
-    }
-
-    &.red {
-        background-color: $color-accent-red;
-        &:hover {
-          background-color: $color-hover-red;
-        }
-    }
-
-    &.yellow {
-        background-color: $color-accent-yellow;
-        &:hover {
-          background-color: $color-hover-yellow;
-        }
-    }
+  border-radius: 3px;
+  transition: background-color 200ms;
 }
 
 .sliderBox :global(.slick-slider) {
-
-    :global(.slick-list) {
-
-        @media screen and (min-width: 627px) and (max-width: 670px) {
-            width: 594px;  
-        }
-        @media screen and (max-width: 626px) {
-            width: 107.8%;
-        }
-        @media screen and (max-width: 600px) {
-            width: 106.8%;
-        }
-        @media screen and (max-width: 500px) {
-            width: 107%;
-        }
-        @media screen and (max-width: 424px) {
-            width: 107.2%;
-        }
-        @media screen and (max-width: 374px) {
-            width: 107.5%;
-        }
-        
-        margin: 0 -6px;
-
-        :global(.slick-track) {
-            :global(.slick-slide)>div {
-                padding: 0 6px;
-            }
-        }
+  :global(.slick-list) {
+    @media screen and (min-width: 627px) and (max-width: 670px) {
+      width: 594px;
     }
+    @media screen and (max-width: 626px) {
+      width: 107.8%;
+    }
+    @media screen and (max-width: 600px) {
+      width: 106.8%;
+    }
+    @media screen and (max-width: 500px) {
+      width: 107%;
+    }
+    @media screen and (max-width: 424px) {
+      width: 107.2%;
+    }
+    @media screen and (max-width: 374px) {
+      width: 107.5%;
+    }
+
+    margin: 0 -6px;
+
+    :global(.slick-track) {
+      :global(.slick-slide) > div {
+        padding: 0 6px;
+      }
+    }
+  }
 }

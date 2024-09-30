@@ -7,7 +7,7 @@ import Tag from "../Tag";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 import PlaygroundModal from "../PlaygroundModal";
 import useModalHandlers from "../../utils/hooks/useModalHandlers";
-import getDistrictColor from "../../utils/getDistrictColor";
+
 import handleImgError from "../../utils/handleImgError";
 
 const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
@@ -16,6 +16,11 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
     { label: "Графік", field: "opening" },
     { label: "Покриття", field: "covering" },
   ];
+
+  const { color, name } = playground?.District || {
+    color: "#f2ba4c",
+    name: "Інший",
+  };
 
   const screenWidth = useWindowSize().width;
   useEffect(() => {
@@ -30,7 +35,6 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
   }, [screenWidth, isActive, refProp]);
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
-  const color = getDistrictColor(playground.district);
 
   const src = `${process.env.NEXT_PUBLIC_HOST}api/images/${playground.id}`;
 
@@ -50,7 +54,7 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={color} text={playground.district} />
+          <Tag color={color} text={name} />
         </div>
         <CourtCardInfo
           rating={playground.rating}
@@ -65,7 +69,6 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
         />
       </div>
       <PlaygroundModal
-        color={color}
         visible={isModalShown}
         onClose={handleCloseModal}
         playground={playground}

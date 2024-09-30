@@ -1,26 +1,29 @@
-"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("area_types", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      email: {
+      area_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "areas",
+          key: "id",
+        },
+        onDelete: "CASCADE",
         allowNull: false,
-        type: Sequelize.STRING,
       },
-      role: {
+      type_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "types",
+          key: "id",
+        },
+        onDelete: "CASCADE",
         allowNull: false,
-        type: Sequelize.ENUM("super_admin", "admin"),
-        defaultValue: "admin",
-      },
-      status: {
-        allowNull: false,
-        type: Sequelize.ENUM("confirmed", "pending", "deleted"),
-        defaultValue: "pending",
       },
       created_at: {
         allowNull: false,
@@ -32,7 +35,8 @@ module.exports = {
       },
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("users");
+
+  down: async (queryInterface) => {
+    await queryInterface.dropTable("area_types");
   },
 };

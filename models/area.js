@@ -8,22 +8,20 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "area_id",
         otherKey: "purpose_id",
       });
+
+      this.belongsTo(models.District, { foreignKey: "district_id" });
+
+      this.belongsToMany(models.Type, {
+        through: models.AreaType,
+        foreignKey: "area_id",
+        otherKey: "type_id",
+      });
     }
   }
   Area.init(
     {
       number: DataTypes.INTEGER,
-      district: DataTypes.ENUM(
-        "Галицький",
-        "Шевченківський",
-        "Франківський",
-        "Залізничний",
-        "Сихівський",
-        "Личаківський",
-        "Інший"
-      ),
       address: DataTypes.STRING,
-      type: DataTypes.ENUM("спортивний", "дитячо-спортивний", "інший"),
       longitude: DataTypes.DECIMAL(10, 8),
       latitude: DataTypes.DECIMAL(10, 8),
       size: DataTypes.FLOAT,
@@ -35,9 +33,28 @@ module.exports = (sequelize, DataTypes) => {
       additional: DataTypes.TEXT,
       rating: DataTypes.FLOAT,
       featured: DataTypes.BOOLEAN,
+      ownership_form: {
+        type: DataTypes.ENUM("Шкільна", "Приватна", "Комунальна"),
+        allowNull: true,
+      },
+      inclusiveness: {
+        type: DataTypes.ENUM(
+          "Інклюзивний",
+          "З елементами інклюзії",
+          "Не інклюзивний"
+        ),
+        allowNull: true,
+      },
       has_poster: {
         defaultValue: false,
         type: DataTypes.BOOLEAN,
+      },
+      district_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "District",
+          key: "id",
+        },
       },
       updated_by: {
         type: DataTypes.INTEGER,

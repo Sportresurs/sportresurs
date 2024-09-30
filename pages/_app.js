@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
 import { Provider } from "next-auth/client";
 import Head from "next/head";
+
 import Layout from "../components/layout";
 import Error from "../components/Error";
 import { ContextProvider } from "../context";
