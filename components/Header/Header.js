@@ -115,7 +115,12 @@ export default function Header() {
             <div className={styles.unbroken}>
               <Link href="https://unbroken.org.ua/">
                 <a target="_blank" rel="noopener noreferrer">
-                  <Image src={Unbroken} alt="Unbroken" />
+                  <Image
+                    src={Unbroken}
+                    alt="Unbroken"
+                    width={100}
+                    height={40}
+                  />
                 </a>
               </Link>
             </div>
