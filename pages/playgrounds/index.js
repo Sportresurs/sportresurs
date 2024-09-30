@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
 import { Context } from "../../context";
 import s from "./Playgrounds.module.scss";
 import CourtCard from "../../components/CourtCard";
@@ -11,19 +10,9 @@ import useModalHandlers from "../../utils/hooks/useModalHandlers";
 import useIsAdmin from "../../utils/hooks/useIsAdmin";
 
 export default function Playgrounds({ playgrounds }) {
-  const router = useRouter();
   const { areas } = useContext(Context);
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const { isAdmin } = useIsAdmin();
-  const [urlHash, setUrlHash] = useState("");
-
-  useEffect(() => {
-    setUrlHash(window.location.hash);
-    const handleHashChange = () => setUrlHash(window.location.hash);
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
 
   return (
     <div className={s.background}>
@@ -37,14 +26,7 @@ export default function Playgrounds({ playgrounds }) {
                 <CourtCard
                   courtInfo={court}
                   variant="courtList"
-                  urlHash={urlHash}
-                  addHashToUrl={() => {
-                    router.push(`/playground/${court.id}`);
-                  }}
-                  removeHashFromUrl={() => {
-                    setUrlHash("");
-                    router.push("/playgrounds", undefined, { shallow: true });
-                  }}
+                  isModal={false}
                 />
               </li>
             ))}

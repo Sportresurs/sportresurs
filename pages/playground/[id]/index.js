@@ -10,7 +10,7 @@ const PlaygroundDetails = ({ playground, error }) => {
   }
 
   const { area } = playground;
-  const { color = "#f2ba4c" } = area.District;
+  const { color } = area?.District || { color: "#f2ba4c" };
 
   return (
     <div className={style.courts}>
@@ -19,7 +19,6 @@ const PlaygroundDetails = ({ playground, error }) => {
   );
 };
 
-// Fetch playground data server-side
 export async function getServerSideProps(context) {
   const { id } = context.params;
 

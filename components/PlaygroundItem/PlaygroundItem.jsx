@@ -17,6 +17,11 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
     { label: "Покриття", field: "covering" },
   ];
 
+  const { color, name } = playground?.District || {
+    color: "#f2ba4c",
+    name: "Інший",
+  };
+
   const screenWidth = useWindowSize().width;
   useEffect(() => {
     if (isActive && screenWidth > 950) {
@@ -49,11 +54,11 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={playground?.District?.color} text={playground.district} />
+          <Tag color={color} text={name} />
         </div>
         <CourtCardInfo
           rating={playground.rating}
-          color={playground?.District?.color}
+          color={color}
           address={playground.address}
           courtNumber={playground.number}
           playground={playground}
@@ -64,7 +69,6 @@ const PlaygroundItem = ({ playground, isActive, handleClick, refProp }) => {
         />
       </div>
       <PlaygroundModal
-        color={playground?.District?.color}
         visible={isModalShown}
         onClose={handleCloseModal}
         playground={playground}

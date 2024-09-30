@@ -16,20 +16,20 @@ import EditIcon from "../../public/svg/editIcon.svg";
 import DeleteDialog from "../DeleteDialog";
 import useIsAdmin from "../../utils/hooks/useIsAdmin";
 
-const PlaygroundModalContent = ({ playground, color }) => {
+const PlaygroundModalContent = ({ playground }) => {
   const { isAdmin } = useIsAdmin();
   const playgroundInfoFields = [
     {
       label: "Тип",
-      value:
-        playground.Types?.length &&
-        playground.Types.map((el) => el.name).join(","),
+      value: playground.Types?.length
+        ? playground.Types.map((el) => el.name).join(",")
+        : "не визначено",
     },
     {
       label: "Призначення",
-      value: playground.Purposes.map((purpose, index, arr) =>
-        index === arr.length - 1 ? purpose.title : `${purpose.title}, `
-      ),
+      value: playground.Purposes.length
+        ? playground.Purposes.map((el) => el.title).join(",")
+        : "не визначено",
     },
     { label: "Метраж", value: playground.size },
     { label: "Покриття", value: playground.coating },
@@ -42,7 +42,6 @@ const PlaygroundModalContent = ({ playground, color }) => {
       )} - ${playground.close_time.substring(0, 5)}`,
     },
     { label: "Освітлення", value: playground.light ? "є" : "немає" },
-    { label: "Додатково", value: playground.additional },
     {
       label: "Форма власності",
       value: playground.ownership_form || "Не визначено",
@@ -51,10 +50,16 @@ const PlaygroundModalContent = ({ playground, color }) => {
       label: "Інклюзивний",
       value: playground.inclusiveness || "Не визначено",
     },
+    { label: "Додатково", value: playground.additional },
   ];
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
   const [isVisibleDialog, setVisibleDialog] = useState(false);
+
+  const { color, name: districtName } = playground?.District || {
+    color: "#f2ba4c",
+    districtName: "Another",
+  };
 
   const handleDeleteDialogOpen = () => {
     setVisibleDialog(true);
@@ -140,7 +145,7 @@ const PlaygroundModalContent = ({ playground, color }) => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.tagBtn}>
-          <Tag color={color} text={playground.district} />
+          <Tag color={color} text={districtName} />
         </div>
         {isAdmin ? (
           <h1 className={styles.heading}>
@@ -186,7 +191,6 @@ const PlaygroundModalContent = ({ playground, color }) => {
 
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
-  color: PropTypes.string,
 };
 
 export default PlaygroundModalContent;
