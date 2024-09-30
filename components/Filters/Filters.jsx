@@ -45,17 +45,18 @@ const Filters = ({
   const getNewAreas = useCallback(
     (purposes, districts, rating) => {
       const purposeValues = purposes.map((item) => item.value.toLowerCase());
-      const districtValues = districts.map((item) => item.name);
+      const districtValues = districts.map((item) => item.value);
       const data = areas.filter((area) => {
         const areaPurposes = area.Purposes.map((item) => item.title);
         return (
           purposeValues.every((value) => areaPurposes.includes(value)) &&
           (districtValues.length
-            ? districtValues.includes(area.District)
+            ? districtValues.includes(area.District?.name || null)
             : true) &&
           area.rating >= rating.value
         );
       });
+
       return setAreas(data);
     },
     [areas, setAreas]

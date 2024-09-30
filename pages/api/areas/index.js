@@ -5,6 +5,7 @@ import { Area, Purpose, District, Type } from "../../../models/index";
 
 const handler = nextConnect().get(async (req, res) => {
   const { query } = req.query;
+
   const areas = await Area.findAll({
     include: [
       {

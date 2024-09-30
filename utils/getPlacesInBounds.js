@@ -1,5 +1,4 @@
 export default function getPlacesInBounds(places, bounds) {
-  console.log(places);
   if (bounds.sw.lng < bounds.ne.lng && bounds.sw.lat < bounds.ne.lat) {
     return places.filter(
       (place) =>
