@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import className from "classnames/bind";
+import Image from "next/dist/client/image";
 import IconBtnMenu from "../../public/svg/btnMenu.svg";
 import IconLogoHead from "../../public/svg/logoHead.svg";
 import styles from "./Header.module.scss";
@@ -11,6 +12,7 @@ import ContactUsButton from "../ContactUsButton";
 import LoginButton from "../LoginButton";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 import setHeightOfHeader from "../../utils/findHeightOfHeader";
+import Unbroken from "../../public/img/unbroken.png";
 
 const cx = className.bind(styles);
 
@@ -109,16 +111,26 @@ export default function Header() {
           <button className={styles.btnMenu} onClick={handleMenuActive}>
             <IconBtnMenu />
           </button>
-          <Link href="/">
-            <a
-              role="link"
-              tabIndex={0}
-              className={styles.navLogo}
-              onClick={handleMenuActiveFalse}
-            >
-              <IconLogoHead />
-            </a>
-          </Link>
+          <div className={styles.logWrapper}>
+            <div className={styles.unbroken}>
+              <Link href="https://unbroken.org.ua/">
+                <a target="_blank" rel="noopener noreferrer">
+                  <Image src={Unbroken} alt="Unbroken" />
+                </a>
+              </Link>
+            </div>
+
+            <Link href="/">
+              <a
+                role="link"
+                tabIndex={0}
+                className={styles.navLogo}
+                onClick={handleMenuActiveFalse}
+              >
+                <IconLogoHead />
+              </a>
+            </Link>
+          </div>
 
           <div
             role="button"
