@@ -68,6 +68,30 @@ export default function LoginButton({ setIsAdminLoggedIn }) {
               )}
             </a>
           </Link>
+          <Link href="/districts">
+            <a onClick={handleMenuClose} className={styles.link}>
+              Райони{" "}
+              {newRequestsAmount > 0 && (
+                <span className={styles.amount}>{newRequestsAmount}</span>
+              )}
+            </a>
+          </Link>
+          <Link href="/purposes">
+            <a onClick={handleMenuClose} className={styles.link}>
+              Призначення{" "}
+              {newRequestsAmount > 0 && (
+                <span className={styles.amount}>{newRequestsAmount}</span>
+              )}
+            </a>
+          </Link>
+          <Link href="/types">
+            <a onClick={handleMenuClose} className={styles.link}>
+              Типи{" "}
+              {newRequestsAmount > 0 && (
+                <span className={styles.amount}>{newRequestsAmount}</span>
+              )}
+            </a>
+          </Link>
           <Link href="">
             <a onClick={handleOpenDialog} className={styles.link}>
               Вийти

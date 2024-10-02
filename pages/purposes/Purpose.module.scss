@@ -1,0 +1,30 @@
+.districtContentWrapper {
+  padding: 20px;
+}
+
+.wrapFrom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.deleteText {
+  margin-bottom: 20px;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 20px;
+}
