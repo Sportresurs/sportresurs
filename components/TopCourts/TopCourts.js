@@ -30,6 +30,7 @@ function CourtCardWrapper({ court, isAdmin, onAdd, onDelete }) {
   const { isLoading, requestData } = useAsyncData(playgroundService.patch, {
     runOnMount: false,
   });
+
   const handleSave = async (selected) => {
     handleCloseModal();
     const { area } = await requestData(selected, {
