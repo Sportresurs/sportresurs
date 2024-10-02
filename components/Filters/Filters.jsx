@@ -45,9 +45,12 @@ const Filters = ({
   const getNewAreas = useCallback(
     (purposes, districts, rating) => {
       const purposeValues = purposes.map((item) => item.value.toLowerCase());
+
       const districtValues = districts.map((item) => item.value);
       const data = areas.filter((area) => {
-        const areaPurposes = area.Purposes.map((item) => item.title);
+        const areaPurposes = area.Purposes.map((item) =>
+          item.title.toLowerCase()
+        );
         return (
           purposeValues.every((value) => areaPurposes.includes(value)) &&
           (districtValues.length

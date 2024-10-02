@@ -27,7 +27,7 @@ const PlaygroundModalContent = ({ playground }) => {
     },
     {
       label: "Призначення",
-      value: playground.Purposes.length
+      value: playground.Purposes?.length
         ? playground.Purposes.map((el) => el.title).join(",")
         : "не визначено",
     },
