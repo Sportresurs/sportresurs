@@ -1,0 +1,52 @@
+.tableContainer {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.colorInput {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.buttonWrapper {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.75px;
+  color: white;
+  cursor: pointer;
+  font-style: normal;
+  display: inline-block;
+  transition: all 200ms;
+  background-color: black;
+  padding: 10px;
+}
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}

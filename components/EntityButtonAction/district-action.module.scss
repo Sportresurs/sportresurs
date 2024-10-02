@@ -1,0 +1,10 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.linksWrapper > *:not(:last-child) {
+  margin-right: 10px;
+}

@@ -1,20 +1,20 @@
 import { withSentry } from "@sentry/nextjs";
 import nextConnect from "next-connect";
-import { District } from "../../../models/index";
+import { Purpose } from "../../../models/index";
 import checkAuthAdmin from "../../../middleware/checkAuthAdmin";
 
 const handler = nextConnect()
   .get(async (req, res) => {
-    const districts = await District.findAll();
+    const purposes = await Purpose.findAll();
 
-    res.status(200).json({ districts });
+    res.status(200).json({ purposes });
   })
   .use(checkAuthAdmin)
   .post(async (req, res) => {
-    const createdDistrict = await District.create({
+    const createdPurpose = await Purpose.create({
       ...req.body,
     });
-    res.status(201).json(createdDistrict);
+    res.status(201).json(createdPurpose);
   });
 
 export default withSentry(handler);
