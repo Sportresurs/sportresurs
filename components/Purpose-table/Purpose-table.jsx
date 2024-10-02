@@ -10,7 +10,7 @@ import styles from "./PurposeTable.module.scss";
 const PurposeTable = ({ purposes, selectedRows, setSelectedRows }) => {
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 7,
   });
 
   const table = useReactTable({
