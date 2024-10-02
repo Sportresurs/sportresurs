@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       additional: DataTypes.TEXT,
       rating: DataTypes.FLOAT,
       featured: DataTypes.BOOLEAN,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       ownership_form: {
         type: DataTypes.ENUM("Шкільна", "Приватна", "Комунальна"),
         allowNull: true,

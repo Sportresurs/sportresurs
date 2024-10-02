@@ -25,9 +25,9 @@ const playground = {
 };
 
 const CourtCardInfo = ({
-  courtNumber,
   address,
   rating,
+  title,
   color,
   showExtendedInfo,
   playgroundInfoFields,
@@ -40,8 +40,8 @@ const CourtCardInfo = ({
 
   return (
     <>
-      <p className={styles.courtNumber}>майданчик №{courtNumber}</p>
-      <p className={addressStyleWrapper}>{address}</p>
+      <p className={styles.courtNumber}>{title || address}</p>
+      {title && <p className={addressStyleWrapper}>{address}</p>}
       <div className={styles.ratingOuter}>
         <Rating readOnly={true} value={rating} color={color} />
       </div>
@@ -57,7 +57,12 @@ const CourtCardInfo = ({
           ))}
         </div>
       ) : null}
-      <Button size="small" color={color} onClick={openModal}>
+      <Button
+        size="small"
+        color={color}
+        onClick={openModal}
+        className={classNames({ [styles.space]: !title })}
+      >
         Детальніше
       </Button>
     </>
@@ -68,7 +73,7 @@ CourtCardInfo.propTypes = {
   playground: PropTypes.object,
   playgroundInfoFields: PropTypes.arrayOf(PropTypes.object),
   showExtendedInfo: PropTypes.bool,
-  courtNumber: PropTypes.number,
+  title: PropTypes.string,
   address: PropTypes.string,
   rating: PropTypes.number,
   color: PropTypes.string,

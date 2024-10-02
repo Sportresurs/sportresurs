@@ -16,7 +16,7 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
     District,
     address = "Адреса не вказана",
     id,
-    number = 0,
+    title = "",
     rating = 3,
   } = courtInfo;
 
@@ -57,7 +57,7 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
         </div>
         <div className={styles.outer}>
           <CourtCardInfo
-            courtNumber={number}
+            title={title}
             address={address}
             color={color}
             rating={rating}

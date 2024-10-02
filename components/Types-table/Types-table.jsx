@@ -10,7 +10,7 @@ import styles from "./TypesTable.module.scss";
 const TypesTable = ({ types, selectedRows, setSelectedRows }) => {
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 7,
   });
 
   const table = useReactTable({
