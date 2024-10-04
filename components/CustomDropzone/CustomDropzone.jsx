@@ -64,9 +64,9 @@ const CustomDropzone = ({ files, setFiles }) => {
 
   return (
     <div>
-      {files.length > 0 ? (
+      {files?.length > 0 ? (
         <div className={styles.sliderWrapper}>
-          <Slider isModal={true} arrayLength={files.length}>
+          <Slider isModal={true} arrayLength={files?.length}>
             {files.map((file) => (
               <img
                 key={file.id}
@@ -92,7 +92,7 @@ const CustomDropzone = ({ files, setFiles }) => {
           <input {...getInputProps()} />
           <AddImage />
         </div>
-        {files.length > 0 ? (
+        {files?.length > 0 ? (
           <div className={styles.scrollBox}>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId="droppable" direction="horizontal">

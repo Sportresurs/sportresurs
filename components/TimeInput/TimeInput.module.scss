@@ -1,18 +1,22 @@
 @import "styles/colors";
+
 .timeWrapper {
   max-width: 492px;
   margin-bottom: 12px;
   height: 42px;
-  padding: 11px 13.5px 12px 10px;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  padding: 10px;
   background-color: $color-primary-light;
   border: 1px solid $color-secondary-mediumGrey;
   border-radius: 3px;
   position: relative;
 }
+
 .timeWrapperFocus {
   border: 1px solid $color-form-blue;
 }
+
 .timeLabel {
   font-size: 10px;
   line-height: 13px;
@@ -21,28 +25,28 @@
   color: $color-primary-dark;
   margin-bottom: 5px;
 }
-.open {
-  margin-right: -30px;
-  border: none;
-  &:focus {
-    outline: none;
-    border: none;
-  }
-}
+
+.open,
 .close {
-  border: none;
-  padding-left: 5px;
-  &:focus {
-    outline: none;
-    border: none;
-  }
-}
-.clockClose {
-  height: 30px;
-  width: 45px;
+  width: 110px;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+  padding: 5px;
   background-color: white;
-  position: absolute;
-  top: 0;
-  left: 125px;
-  z-index: 2;
+  font-size: 14px;
+  color: $color-primary-dark;
+}
+
+.open {
+  margin-right: 10px;
+}
+
+.close {
+  margin-left: 10px;
+}
+
+.open:focus,
+.close:focus {
+  outline: none;
+  border-color: $color-form-blue;
 }

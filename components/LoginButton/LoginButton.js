@@ -78,7 +78,7 @@ export default function LoginButton({ setIsAdminLoggedIn }) {
           </Link>
           <Link href="/purposes">
             <a onClick={handleMenuClose} className={styles.link}>
-              Призначення{" "}
+              Види спорту{" "}
               {newRequestsAmount > 0 && (
                 <span className={styles.amount}>{newRequestsAmount}</span>
               )}

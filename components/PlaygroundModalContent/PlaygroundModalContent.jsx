@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 import styles from "./PlaygroundModalContent.module.scss";
 import Ratings from "../Rating";
 import PlaygroundInfoRow from "../PlaygroundInfoRow";
@@ -18,6 +19,7 @@ import useIsAdmin from "../../utils/hooks/useIsAdmin";
 
 const PlaygroundModalContent = ({ playground }) => {
   const { isAdmin } = useIsAdmin();
+  const router = useRouter();
   const playgroundInfoFields = [
     {
       label: "Тип",
@@ -26,14 +28,14 @@ const PlaygroundModalContent = ({ playground }) => {
         : "не визначено",
     },
     {
-      label: "Призначення",
+      label: "Види спорту",
       value: playground.Purposes?.length
         ? playground.Purposes.map((el) => el.title).join(",")
         : "не визначено",
     },
-    { label: "Метраж", value: playground.size },
-    { label: "Покриття", value: playground.coating },
-    { label: "Доступ", value: playground.access },
+    { label: "Метраж", value: playground.size || "Не визначено" },
+    { label: "Покриття", value: playground.coating || "Не визначено" },
+    { label: "Доступ", value: playground.access || "Не визначено" },
     {
       label: "Час роботи",
       value: `${playground.open_time.substring(
@@ -50,7 +52,7 @@ const PlaygroundModalContent = ({ playground }) => {
       label: "Інклюзивний",
       value: playground.inclusiveness || "Не визначено",
     },
-    { label: "Додатково", value: playground.additional },
+    { label: "Додатково", value: playground.additional || "Не визначено" },
   ];
 
   const [isModalShown, handleOpenModal, handleCloseModal] = useModalHandlers();
@@ -76,7 +78,7 @@ const PlaygroundModalContent = ({ playground }) => {
       );
     } finally {
       setVisibleDialog(false);
-      window.location.reload(false);
+      router.push("/playgrounds");
     }
   };
 

@@ -43,12 +43,27 @@ const handler = nextConnect()
   .use(checkAuthAdmin)
   .patch(async (req, res) => {
     const { id } = req.query;
+    const { Types, Purposes, ...otherFields } = req.body;
+
     const updatedResult = await Area.update(
       {
-        ...req.body,
+        ...otherFields,
       },
       { where: { id }, returning: true }
     );
+
+    const area = await Area.findByPk(id);
+
+    if (Types && Types.length) {
+      const typeIds = Types.map((el) => el.value);
+      await area.setTypes(typeIds);
+    }
+
+    if (Purposes && Purposes.length) {
+      const purposeIds = Purposes.map((el) => el.value);
+      await area.setPurposes(purposeIds);
+    }
+
     res.status(200).json({ area: updatedResult[1]?.[0] });
   });
 
