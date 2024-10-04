@@ -3,6 +3,8 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Area extends Model {
     static associate(models) {
+      this.hasMany(models.Image, { foreignKey: "area_id", as: "images" });
+
       this.belongsToMany(models.Purpose, {
         through: models.PurposeArea,
         foreignKey: "area_id",

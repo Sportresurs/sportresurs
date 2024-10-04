@@ -31,7 +31,7 @@
     "convict": "^5.2.1",
     "css-loader": "^6.2.0",
     "dotenv-safe": "^8.2.0",
-    "formidable": "^1.2.2",
+    "formidable": "^3.5.1",
     "formik": "^2.2.9",
     "google-map-react": "^2.1.10",
     "lodash-es": "^4.17.21",

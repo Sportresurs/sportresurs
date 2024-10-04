@@ -13,6 +13,7 @@ const TimeInput = ({
   const wrapperTimeContainerStyles = classNames(styles.timeWrapper, {
     [styles.timeWrapperFocus]: onFocus,
   });
+
   return (
     <>
       <p className={styles.timeLabel}>{label}</p>
@@ -28,7 +29,8 @@ const TimeInput = ({
           className={styles.open}
           {...openFormikProps}
         />
-        <nobr> -</nobr>
+        <nobr> - </nobr>
+
         <input
           type="time"
           min="00:00"
@@ -36,7 +38,6 @@ const TimeInput = ({
           className={styles.close}
           {...closeFormikProps}
         />
-        <div className={styles.clockClose} />
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import * as Yup from "yup";
 import validation from "../utils/validations";
 
 const validationSchema = Yup.object({
+  title: Yup.string().required(validation.getErrorMessage()),
   number: Yup.string()
     .matches(validation.numberValidation, validation.getErrorMessage("number"))
     .required(validation.getErrorMessage()),
