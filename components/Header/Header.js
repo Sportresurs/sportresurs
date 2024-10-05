@@ -216,6 +216,15 @@ export default function Header() {
                     </a>
                   </Link>
                 </li>
+                <li
+                  className={cx("navItem", {
+                    active: router.pathname === "/unbroken",
+                  })}
+                >
+                  <Link href="/unbroken">
+                    <a className={styles.navLinkLatin}>unbroken</a>
+                  </Link>
+                </li>
               </ul>
               {isAdminLoggedIn ? (
                 <LoginButton setIsAdminLoggedIn={setIsAdminLoggedIn} />

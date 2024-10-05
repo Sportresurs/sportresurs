@@ -208,6 +208,10 @@
     color: $color-accent-red;
   }
 
+  &:nth-child(6):hover {
+    color: $color-accent-yellow;
+  }
+
   @media screen and (min-width: 821px) and (max-width: 1023px) {
     &:first-child {
       margin-right: 20px;
@@ -249,6 +253,41 @@
   font-size: 16px;
   line-height: 1.125;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  @media screen and (min-width: 821px) and (max-width: 1023px) {
+    padding-top: 19px;
+    padding-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.258;
+  }
+
+  @media screen and (min-width: 426px) and (max-width: 820px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.258;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    font-size: 14px;
+    line-height: 1.258;
+  }
+}
+
+.navLinkLatin {
+  display: inline-block;
+  padding-top: 23px;
+  padding-bottom: 23px;
+
+  font-size: 16px;
+  line-height: 1.125;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 

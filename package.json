@@ -49,6 +49,7 @@
     "react-dropzone": "^11.4.0",
     "react-gesture-responder": "^2.1.0",
     "react-magic-slider-dots": "^1.2.2",
+    "react-paginate": "^8.2.0",
     "react-places-autocomplete": "^7.3.0",
     "react-scrollable-anchor": "^0.6.1",
     "react-select": "^4.3.1",
