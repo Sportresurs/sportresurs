@@ -74,6 +74,7 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
             handleCloseModal();
           }}
           playground={courtInfo}
+          isModal={isModal}
         />
       )}
     </>

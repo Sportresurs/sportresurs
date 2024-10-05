@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import Script from "next/script";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import Map from "../components/Map";
 import PlaygroundsSlider from "../components/PlaygroundsSlider";
 import PlaygroundsList from "../components/PlaygroundsList";
@@ -18,11 +19,10 @@ import {
 
 const { GOOGLE_MAPS_API_KEY } = process.env;
 
-export default function MapPage({ playgrounds }) {
+export default function MapPage({ areas }) {
   const {
     center,
     setCenter,
-    areas,
     coordinates,
     handleCoordinates,
     zoom,
@@ -38,6 +38,7 @@ export default function MapPage({ playgrounds }) {
   const [markerIndex, setMarkerIndex] = useState(0);
   const [sliderOpen, setSliderOpen] = useState(true);
   const [bounds, setBounds] = useState(DEFAULT_BOUNDS);
+  const router = useRouter();
 
   useEffect(() => window.google && setIsLoaded(true), []);
   useEffect(
@@ -85,10 +86,10 @@ export default function MapPage({ playgrounds }) {
             <div className={styles.sidebarWrapper}>
               <div className={styles.filterWrapper}>
                 <Filters
-                  areas={playgrounds}
                   location="mapPage"
                   handleCoordinates={setSearchPinCoords}
                   setSearchPinCoords={setSearchPinCoords}
+                  router={router}
                 />
               </div>
               <div className={sidebarWrapperClass}>
@@ -147,12 +148,30 @@ export default function MapPage({ playgrounds }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/areas`);
-  const data = await res.json();
-  return {
-    props: {
-      playgrounds: data.areas,
-    },
-  };
+export async function getServerSideProps(context) {
+  try {
+    const {
+      purposeOfAreas = null,
+      districts = null,
+      rating = null,
+    } = context.query;
+
+    const url = new URL(`${process.env.NEXT_PUBLIC_HOST}api/areas/all`);
+
+    if (purposeOfAreas) url.searchParams.set("purposeOfAreas", purposeOfAreas);
+    if (districts) url.searchParams.set("districts", districts);
+    if (rating) url.searchParams.set("rating", rating);
+
+    const AreasResponse = await fetch(url.toString());
+
+    const data = await AreasResponse.json();
+
+    return {
+      props: {
+        ...data,
+      },
+    };
+  } catch (error) {
+    throw new Error(`Problem fetch page content ${error}`);
+  }
 }
