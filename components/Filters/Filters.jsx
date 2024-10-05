@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import styles from "./Filters.module.scss";
@@ -7,7 +7,7 @@ import FilterIcon from "../../public/svg/filterIcon.svg";
 import FilterTag from "../FilterTag";
 import FilterWindow from "./FilterWindow";
 import SearchOnMap from "../SearchOnMap";
-import { Context } from "../../context";
+import axiosInstance from "../../api/axiosInstance";
 
 const FilterButton = ({ counter, changeStatus }) => {
   const wrapperIconClasses = classNames(styles.filterButton);
@@ -19,74 +19,105 @@ const FilterButton = ({ counter, changeStatus }) => {
     </button>
   );
 };
-function getInitialStateFromContext(filterData) {
-  return {
-    purposeOfAreas: filterData.purposeOfAreas,
-    districts: filterData.districts,
-    rating: { value: 0 },
-    array: [...filterData.purposeOfAreas, ...filterData.districts],
-  };
-}
+
 const Filters = ({
-  areas,
   location,
   handleCoordinates,
   setSearchPinCoords,
+  router,
 }) => {
-  const { setAreas, filterData, filterFields, setFilterData } =
-    useContext(Context);
+  const [filterFields, setFilterFields] = useState({
+    purposes: [],
+    districts: [],
+  });
   const [isOpen, changeStatus] = useState(false);
-  const [filters, setFilters] = useState(
-    getInitialStateFromContext(filterData)
-  );
+  const [filters, setFilters] = useState({
+    purposeOfAreas: [],
+    districts: [],
+    rating: { value: 0 },
+    array: [],
+  });
+
+  useEffect(() => {
+    const query = { ...router.query };
+
+    if (query.purposeOfAreas) {
+      const purposeValues = query.purposeOfAreas
+        .split(",")
+        .map((el) => ({ value: el, label: el }));
+
+      setFilters((prev) => ({
+        ...prev,
+        purposeOfAreas: purposeValues,
+        array: [...prev.array, ...purposeValues],
+      }));
+    }
+
+    if (query.rating) {
+      setFilters((prev) => ({
+        ...prev,
+        rating: { value: Number(query.rating) },
+        array: [...prev.array, { value: Number(query.rating) }],
+      }));
+    }
+
+    if (query.districts) {
+      const districtsValue = query.districts
+        .split(",")
+        .map((el) => ({ value: el, label: el }));
+      setFilters((prev) => ({
+        ...prev,
+        districts: districtsValue,
+        array: [...prev.array, ...districtsValue],
+      }));
+    }
+  }, []);
+
+  const handleFiltersQuerySearchParams = ({
+    purposeOfAreas,
+    districts,
+    rating,
+  }) => {
+    const query = { ...router.query };
+
+    if (purposeOfAreas && purposeOfAreas.length) {
+      query.purposeOfAreas = purposeOfAreas.map((el) => el.value).join(",");
+    } else {
+      delete query.purposeOfAreas;
+    }
+
+    if (districts && districts.length) {
+      query.districts = districts.map((el) => el.value).join(",");
+    } else {
+      delete query.districts;
+    }
+
+    if (rating && rating.value) {
+      query.rating = rating.value;
+    } else {
+      delete query.rating;
+    }
+
+    router.push({
+      pathname: router.pathname,
+      query,
+    });
+  };
 
   const toggleStatus = () => changeStatus((currentStatus) => !currentStatus);
 
-  const getNewAreas = useCallback(
-    (purposes, districts, rating) => {
-      const purposeValues = purposes.map((item) => item.value.toLowerCase());
+  const getFiltersOptions = async () => {
+    const { data } = await axiosInstance.get("/areas/filter-fields");
 
-      const districtValues = districts.map((item) => item.value);
-      const data = areas.filter((area) => {
-        const areaPurposes = area.Purposes.map((item) =>
-          item.title.toLowerCase()
-        );
-        return (
-          purposeValues.every((value) => areaPurposes.includes(value)) &&
-          (districtValues.length
-            ? districtValues.includes(area.District?.name || null)
-            : true) &&
-          area.rating >= rating.value
-        );
-      });
-
-      return setAreas(data);
-    },
-    [areas, setAreas]
-  );
+    setFilterFields(data);
+  };
 
   useEffect(() => {
-    if (filterData) {
-      const newFilters = getInitialStateFromContext(filterData);
-
-      getNewAreas(
-        newFilters.purposeOfAreas,
-        newFilters.districts,
-        newFilters.rating
-      );
-      setFilters(newFilters);
+    try {
+      getFiltersOptions();
+    } catch (error) {
+      throw new Error(error);
     }
-  }, [filterData]);
-
-  useEffect(() => {
-    getNewAreas(filters.purposeOfAreas, filters.districts, filters.rating);
-    return () => {
-      setFilterData({
-        purposeOfAreas: [],
-        districts: [],
-        rating: { value: 0 },
-      });
-    };
   }, []);
 
   const deleteTag = (tag) => {
@@ -104,7 +135,12 @@ const Filters = ({
       rating: newRating,
       array: newArray,
     });
-    getNewAreas(newPurposeOfAreas, newDistricts, newRating);
+
+    handleFiltersQuerySearchParams({
+      purposeOfAreas: newPurposeOfAreas,
+      districts: newDistricts,
+      rating: newRating,
+    });
   };
 
   return (
@@ -129,11 +165,11 @@ const Filters = ({
           <FilterWindow
             setSearchPinCoords={setSearchPinCoords}
             filterFields={filterFields}
-            getNewAreas={getNewAreas}
             filters={filters}
             counter={filters.array.filter((item) => item.value).length}
             setFilters={setFilters}
             changeStatus={changeStatus}
+            handleQueryParams={handleFiltersQuerySearchParams}
           />
         )}
       </div>
@@ -149,11 +185,6 @@ const Filters = ({
       </div>
     </div>
   );
-};
-
-FilterButton.propTypes = {
-  counter: PropTypes.number,
-  changeStatus: PropTypes.func,
 };
 
 Filters.defaultProps = {

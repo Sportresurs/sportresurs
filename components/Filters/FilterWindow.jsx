@@ -19,12 +19,12 @@ const CloseFilterWindow = ({ changeStatus }) => {
 
 const FilterWindow = ({
   filterFields,
-  getNewAreas,
   filters,
   counter,
   setFilters,
   changeStatus,
   setSearchPinCoords,
+  handleQueryParams,
 }) => {
   const { showFilteredDistrict, setIsSearchPinShow } = useContext(Context);
   const [purposeOfAreas, setPurposeOfAreas] = useState(filters.purposeOfAreas);
@@ -45,8 +45,10 @@ const FilterWindow = ({
       rating,
       array: [...purposeOfAreas, ...districts, rating],
     });
+
+    handleQueryParams({ purposeOfAreas, districts, rating });
+
     changeStatus(false);
-    getNewAreas(purposeOfAreas, districts, rating);
     if (districts[0]) {
       showFilteredDistrict(districts);
     }

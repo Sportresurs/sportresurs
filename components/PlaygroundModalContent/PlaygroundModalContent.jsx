@@ -16,8 +16,9 @@ import DeleteIcon from "../../public/svg/deleteIcon.svg";
 import EditIcon from "../../public/svg/editIcon.svg";
 import DeleteDialog from "../DeleteDialog";
 import useIsAdmin from "../../utils/hooks/useIsAdmin";
+import Button from "../Button";
 
-const PlaygroundModalContent = ({ playground }) => {
+const PlaygroundModalContent = ({ playground, isModal }) => {
   const { isAdmin } = useIsAdmin();
   const router = useRouter();
   const playgroundInfoFields = [
@@ -175,8 +176,15 @@ const PlaygroundModalContent = ({ playground }) => {
             <PlaygroundInfoRow key={index} label={label} value={value} />
           ))}
         </div>
-        <div className={styles.contactBtn}>
-          <ContactUsButton shouldLockScreen={false} />
+        <div className={styles.buttonWrap}>
+          <div className={styles.contactBtn}>
+            <ContactUsButton shouldLockScreen={false} />
+          </div>
+          {!isModal && (
+            <div>
+              <Button onClick={() => router.back()}>Назад</Button>
+            </div>
+          )}
         </div>
       </div>
       <AdminPlaygroundModal
