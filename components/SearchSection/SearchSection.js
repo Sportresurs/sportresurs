@@ -161,7 +161,7 @@ function SearchSection({ districts = [] }) {
                     className={cx("formBtn", {
                       disabled: !address,
                     })}
-                    onClick={handleCoordinates(coordinates)}
+                    onClick={() => handleCoordinates(coordinates)}
                   >
                     <span className={styles.formBtnContent}>Пошук</span>
                     <SearchIcon className={styles.formBtnIcon} />
@@ -194,7 +194,7 @@ function SearchSection({ districts = [] }) {
               >
                 {districts.map(({ name, color }) => (
                   <li key={name} className={styles.linkItem}>
-                    <Link href="/map" passHref>
+                    <Link href={`/map?districts=${name}`} passHref>
                       <a
                         role="link"
                         tabIndex={0}
@@ -213,7 +213,7 @@ function SearchSection({ districts = [] }) {
               <>
                 {districts.map(({ name, color }) => (
                   <li key={name} className={styles.linkItem}>
-                    <Link href="/map" passHref>
+                    <Link href={`/map?districts=${name}`} passHref>
                       <a
                         role="link"
                         tabIndex={0}

@@ -1,6 +1,8 @@
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
+import Supercluster from "supercluster";
+import { useEffect, useState, useRef } from "react";
 import styles from "./Map.module.scss";
 import MapMarkerWrapper from "../MapMarkerWrapper";
 
@@ -23,6 +25,7 @@ export default function Map({
   setBounds,
   defaultZoom,
   zoom,
+  setZoom,
   center,
   defaultCenter,
   places,
@@ -34,6 +37,48 @@ export default function Map({
   setSliderOpen,
   isSearchPinShow,
 }) {
+  const [clusters, setClusters] = useState([]);
+
+  const superclusterRef = useRef(null);
+
+  const updateClusters = () => {
+    if (superclusterRef.current) {
+      const bounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+      };
+      const cluster = superclusterRef.current.getClusters(
+        [bounds.west, bounds.south, bounds.east, bounds.north],
+        zoom
+      );
+      setClusters(cluster);
+    }
+  };
+
+  useEffect(() => {
+    const index = new Supercluster({
+      radius: 50,
+      minZoom: 11,
+      maxZoom: 16,
+    });
+
+    const points = places.map((place) => ({
+      type: "Feature",
+      properties: { cluster: false, placeId: place.id, ...place },
+      geometry: {
+        type: "Point",
+        coordinates: [Number(place.longitude), Number(place.latitude)],
+      },
+    }));
+
+    index.load(points);
+    superclusterRef.current = index;
+    updateClusters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [places, zoom, center]);
+
   return (
     <div className={styles.mapWrapper}>
       <GoogleMapReact
@@ -56,25 +101,71 @@ export default function Map({
         margin={[10, 10, 10, 10]}
         onChange={(e) => {
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+          updateClusters();
+
+          setZoom(e.zoom);
         }}
         onChildClick={(child) => setChildClicked(child)}
       >
-        {places?.map((place, i) => (
-          <MapMarkerWrapper
-            setSliderOpen={setSliderOpen}
-            setMarkerIndex={setMarkerIndex}
-            className={cx("markerWrapper", {
-              selected: Number(childClicked) === place.id,
-            })}
-            lat={Number(place.latitude)}
-            lng={Number(place.longitude)}
-            key={place.id}
-            courtPurpose={place.Purposes}
-            district={place.District}
-            isCourtMarker={true}
-            indexMarker={i}
-          />
-        ))}
+        {clusters.map((cluster, i) => {
+          const [longitude, latitude] = cluster.geometry.coordinates;
+          const { cluster: isCluster, point_count: pointCount } =
+            cluster.properties;
+
+          if (isCluster && pointCount >= 2) {
+            return (
+              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+              <div
+                key={i}
+                lat={latitude}
+                lng={longitude}
+                className={cx("clusterMarker")}
+                style={{
+                  width: `${10 + (pointCount / places.length) * 40}px`,
+                  height: `${10 + (pointCount / places.length) * 40}px`,
+                  backgroundColor: "rgba(0, 123, 255, 0.7)",
+                  borderRadius: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white",
+                  fontSize: "16px",
+                }}
+                onClick={() => {
+                  const expansionZoom = Math.min(
+                    superclusterRef.current.getClusterExpansionZoom(cluster.id),
+                    20
+                  );
+                  setBounds({
+                    ne: { lat: expansionZoom + 0.1, lng: expansionZoom + 0.1 },
+                    sw: { lat: expansionZoom - 0.1, lng: expansionZoom - 0.1 },
+                  });
+                }}
+              >
+                {pointCount}
+              </div>
+            );
+          }
+          return (
+            <MapMarkerWrapper
+              setSliderOpen={setSliderOpen}
+              setMarkerIndex={setMarkerIndex}
+              className={cx("markerWrapper", {
+                selected: Number(childClicked) === cluster.properties.placeId,
+              })}
+              lat={latitude}
+              lng={longitude}
+              key={cluster.properties.placeId}
+              courtPurpose={cluster.properties.Purposes}
+              district={cluster.properties.District}
+              isUnbroken={cluster.properties.Types.find(
+                (el) => el.name === "Unbroken Sport"
+              )}
+              isCourtMarker={true}
+              indexMarker={i}
+            />
+          );
+        })}
         {searchPinCoords && isSearchPinShow && (
           <MapMarkerWrapper
             lat={Number(searchPinCoords.lat)}

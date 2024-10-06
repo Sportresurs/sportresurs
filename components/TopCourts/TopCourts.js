@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import styles from "./TopCourts.module.scss";
 import CourtCard from "../CourtCard";
 import Slider from "../Slider";
@@ -79,10 +80,12 @@ function CourtCardWrapper({ court, isAdmin, onAdd, onDelete }) {
   return <CourtCard courtInfo={court} />;
 }
 export default function TopCourts({ courtList }) {
+  const router = useRouter();
   const size = useWindowSize();
   const [list, setList] = useState(courtList);
   const onAdd = (playground) => {
     setList((currentList) => [...currentList, playground]);
+    router.reload();
   };
   const onDelete = (id) => {
     setList((currentList) => currentList.filter((pl) => pl.id !== id));

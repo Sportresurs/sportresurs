@@ -20,6 +20,7 @@ const PlaygroundsList = ({ playgrounds, childClicked, setChildClicked }) => {
 
   useEffect(() => {
     setChildClicked(activeItemId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeItemId]);
 
   useEffect(() => {

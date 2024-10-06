@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import Script from "next/script";
 import classNames from "classnames";
@@ -46,8 +47,9 @@ export default function MapPage({ areas }) {
       handleCoordinates(null);
       setDistrictCenter(null);
       setZoom(15);
-      setCenter(null);
+      setCenter({ lat: 49.841328, lng: 24.031592 });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -74,7 +76,9 @@ export default function MapPage({ areas }) {
       <Script
         type="text/javascript"
         src={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}&language=uk&region=UA`}
-        /* strategy="beforeInteractive" */
+        strategy="lazyOnload"
+        async
+        defer
         onLoad={() => {
           setIsLoaded(true);
         }}
@@ -132,13 +136,14 @@ export default function MapPage({ areas }) {
                 zoom={zoom}
                 center={districtCenter || center}
                 defaultCenter={DEFAULT_CENTER}
-                places={playgroundsInBounds}
+                places={areas}
                 childClicked={childClicked}
                 setChildClicked={setChildClicked}
                 searchPinCoords={searchPinCoords}
                 isSearchPinShow={isSearchPinShow}
                 setMarkerIndex={setMarkerIndex}
                 setSliderOpen={setSliderOpen}
+                setZoom={setZoom}
               />
             </div>
           </div>

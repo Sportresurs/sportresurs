@@ -18,7 +18,7 @@ import DeleteDialog from "../DeleteDialog";
 import useIsAdmin from "../../utils/hooks/useIsAdmin";
 import Button from "../Button";
 
-const PlaygroundModalContent = ({ playground, isModal }) => {
+const PlaygroundModalContent = ({ playground, isModal = true }) => {
   const { isAdmin } = useIsAdmin();
   const router = useRouter();
   const playgroundInfoFields = [
