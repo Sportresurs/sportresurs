@@ -5,8 +5,14 @@ import styles from "./Marker.module.scss";
 import MapMarker from "../../public/svg/mapMarker.svg";
 import DefaultMarker from "../../public/svg/defaultMarker.svg";
 import selectIconPurpose from "./model/select-icon";
+import UnbrokenDark from "../../public/svg/dark-unbroken.svg";
 
-const Marker = ({ courtPurpose, district, isCourtMarker }) => {
+const Marker = ({
+  courtPurpose,
+  district,
+  isCourtMarker,
+  isUnbroken = false,
+}) => {
   const groundIcon = selectIconPurpose(courtPurpose);
 
   const { color } = district;
@@ -14,13 +20,16 @@ const Marker = ({ courtPurpose, district, isCourtMarker }) => {
   return (
     <>
       {isCourtMarker ? (
-        <button className={styles.btnMarker}>
-          <MapMarker style={{ fill: color }} />
+        <>
+          {isUnbroken && <UnbrokenDark />}
+          <button className={styles.btnMarker}>
+            <MapMarker style={{ fill: color }} />
 
-          <div className={styles.icon}>
-            <Image src={groundIcon} alt={"test"} width={20} height={20} />
-          </div>
-        </button>
+            <div className={styles.icon}>
+              <Image src={groundIcon} alt="PIN" width={20} height={20} />
+            </div>
+          </button>
+        </>
       ) : (
         <button className={styles.btnMarker}>
           <DefaultMarker />

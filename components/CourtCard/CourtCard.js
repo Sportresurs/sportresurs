@@ -83,7 +83,7 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
 
 CourtCard.propTypes = {
   courtInfo: PropTypes.shape({
-    district: PropTypes.object.isRequired,
+    District: PropTypes.object.isRequired,
     address: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,

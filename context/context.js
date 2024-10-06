@@ -6,9 +6,9 @@ const Context = createContext("");
 const ContextProvider = ({ children }) => {
   const [coordinates, setCoordinates] = useState(null);
   const [districtCenter, setDistrictCenter] = useState(null);
-  const [zoom, setZoom] = useState(null);
+  const [zoom, setZoom] = useState(15);
 
-  const [center, setCenter] = useState(null);
+  const [center, setCenter] = useState({ lat: 49.841328, lng: 24.031592 });
   const [isSearchPinShow, setIsSearchPinShow] = useState(false);
 
   const showFilteredDistrict = (districts) => {
@@ -21,10 +21,15 @@ const ContextProvider = ({ children }) => {
     setZoom(districtInfo.multi.zoom);
   };
 
+  const handleFilterDistrict = (e) => {
+    setZoom(districtInfo[e.target.textContent].zoom);
+    setDistrictCenter(districtInfo[e.target.textContent].coords);
+  };
+
   const handleCoordinates = (value) => {
     setCoordinates(value);
     setIsSearchPinShow(true);
-    setCenter(null);
+    setCenter(value);
   };
 
   return (
@@ -42,6 +47,7 @@ const ContextProvider = ({ children }) => {
         coordinates,
         handleCoordinates,
         showFilteredDistrict,
+        handleFilterDistrict,
       }}
     >
       {children}

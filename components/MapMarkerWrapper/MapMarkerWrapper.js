@@ -12,6 +12,7 @@ export default function MapMarkerWrapper({
   indexMarker,
   setSliderOpen,
   isClickable = true,
+  isUnbroken,
 }) {
   const index = indexMarker;
   return (
@@ -34,6 +35,7 @@ export default function MapMarkerWrapper({
         courtPurpose={courtPurpose}
         district={district}
         isCourtMarker={isCourtMarker}
+        isUnbroken={isUnbroken}
       />
     </div>
   );
