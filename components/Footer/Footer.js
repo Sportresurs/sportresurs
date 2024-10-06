@@ -1,25 +1,15 @@
 import Link from "next/link";
 import classNames from "classnames/bind";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
-import { Context } from "../../context";
-import { changeGender, capitalize } from "../../utils/strings";
+
+import axiosInstance from "../../api/axiosInstance";
 
 const cx = classNames.bind(styles);
-
-const courtsLink = [
-  { link: "/playgrounds", name: "волейбольний" },
-  { link: "/playgrounds", name: "дитячий" },
-  { link: "/playgrounds", name: "футбольний" },
-  { link: "/playgrounds", name: "гімнастичний" },
-  { link: "/playgrounds", name: "баскетбольний" },
-  { link: "/playgrounds", name: "тенісний" },
-  { link: "/playgrounds", name: "гандбольний" },
-];
 
 const socialLinks = [
   {
@@ -34,14 +24,14 @@ const socialLinks = [
   },
 ];
 export default function Footer() {
-  const { handleFilterPurpose } = useContext(Context);
-  const handleFilterClick = (ev) => {
-    const target = ev.currentTarget;
-    handleFilterPurpose({
-      value: target.dataset.id,
-      label: capitalize(target.dataset.id),
+  const [types, setTypes] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get("/purpose").then((res) => {
+      setTypes(res.data.purposes.slice(0, 9));
     });
-  };
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -88,12 +78,10 @@ export default function Footer() {
             </h3>
 
             <ul className={styles.footerCourtsList}>
-              {courtsLink.map((item) => (
-                <li key={item.name} className={styles.footerCourtsLink}>
-                  <Link href={item.link}>
-                    <a data-id={item.name} onClick={handleFilterClick}>
-                      {changeGender(item.name)}
-                    </a>
+              {types?.map((item) => (
+                <li key={item.title} className={styles.footerCourtsLink}>
+                  <Link href={`/playgrounds?purposeOfAreas=${item.title}`}>
+                    <a data-id={item.title}>{item.title}</a>
                   </Link>
                 </li>
               ))}
