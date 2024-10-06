@@ -43,6 +43,7 @@ const Modal = ({
         window.removeEventListener("keydown", handleWindowKeydown);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, handleClose]);
   const handleContentClick = (e) => {
     e.stopPropagation();

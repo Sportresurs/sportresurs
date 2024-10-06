@@ -14,7 +14,7 @@ const PlaygroundDetails = ({ playground, error }) => {
 
   return (
     <div className={style.courts}>
-      <PlaygroundModalContent playground={area} color={color} />
+      <PlaygroundModalContent playground={area} color={color} isModal={false} />
     </div>
   );
 };

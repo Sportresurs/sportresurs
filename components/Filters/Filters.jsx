@@ -98,6 +98,8 @@ const Filters = ({
       delete query.rating;
     }
 
+    query.page = 1;
+
     router.push({
       pathname: router.pathname,
       query,

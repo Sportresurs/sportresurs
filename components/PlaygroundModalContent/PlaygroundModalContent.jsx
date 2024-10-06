@@ -205,6 +205,7 @@ const PlaygroundModalContent = ({ playground, isModal = true }) => {
 
 PlaygroundModalContent.propTypes = {
   playground: PropTypes.object,
+  isModal: PropTypes.bool,
 };
 
 export default PlaygroundModalContent;
