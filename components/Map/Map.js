@@ -42,7 +42,7 @@ export default function Map({
   const superclusterRef = useRef(null);
 
   const updateClusters = () => {
-    if (superclusterRef.current) {
+    if (superclusterRef.current && places.length > 0) {
       const bounds = {
         north: center.lat + 0.1,
         south: center.lat - 0.1,
@@ -101,9 +101,7 @@ export default function Map({
         margin={[10, 10, 10, 10]}
         onChange={(e) => {
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
-          updateClusters();
-
-          setZoom(e.zoom);
+          if (e.zoom !== zoom) setZoom(e.zoom);
         }}
         onChildClick={(child) => setChildClicked(child)}
       >
@@ -116,13 +114,13 @@ export default function Map({
             return (
               // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <div
-                key={i}
+                key={`cluster-${cluster.id}`}
                 lat={latitude}
                 lng={longitude}
                 className={cx("clusterMarker")}
                 style={{
-                  width: `${10 + (pointCount / places.length) * 40}px`,
-                  height: `${10 + (pointCount / places.length) * 40}px`,
+                  width: `${Math.min(40 + pointCount * 5, 100)}px`,
+                  height: `${Math.min(40 + pointCount * 5, 100)}px`,
                   backgroundColor: "rgba(0, 123, 255, 0.7)",
                   borderRadius: "50%",
                   display: "flex",
