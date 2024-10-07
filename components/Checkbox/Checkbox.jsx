@@ -16,7 +16,7 @@ const Checkbox = ({ text, state, changeState }) => {
   return (
     <div className={styles.wrapper}>
       <button onClick={handler} className={checkboxClassName}>
-        {text}
+        <p className={styles.text}>{text}</p>
       </button>
     </div>
   );

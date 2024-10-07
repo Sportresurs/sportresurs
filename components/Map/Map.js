@@ -157,7 +157,7 @@ export default function Map({
               courtPurpose={cluster.properties.Purposes}
               district={cluster.properties.District}
               isUnbroken={cluster.properties.Types.find(
-                (el) => el.name === "Unbroken Sport"
+                (el) => el.name === "Unbroken Sport" || el.name === "Unbroken"
               )}
               isCourtMarker={true}
               indexMarker={i}

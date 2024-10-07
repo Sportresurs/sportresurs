@@ -11,7 +11,7 @@ export default function Unbroken({ areas, currentPage, totalPages }) {
     if (router.query.type !== "Unbroken Sport") {
       router.push({
         pathname: router.pathname,
-        query: { ...router.query, type: "Unbroken Sport" },
+        query: { ...router.query, type: "Unbroken Sport,Unbroken" },
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

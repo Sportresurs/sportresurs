@@ -8,7 +8,7 @@ const handler = nextConnect().get(async (req, res) => {
   const page = req.query.page ? parseInt(req.query.page, 10) : null;
   const offset = (page - 1) * limit;
 
-  const typeFilter = req.query.type;
+  const typeFilter = req.query.type ? req.query.type.split(",") : null;
   const purposeFilter = req.query.purposeOfAreas
     ? req.query.purposeOfAreas.split(",")
     : null;
@@ -22,6 +22,7 @@ const handler = nextConnect().get(async (req, res) => {
     include: [],
     distinct: true,
     where: {},
+    order: [[District, "id", "ASC"]],
   };
 
   if (page && limit) {
@@ -55,7 +56,7 @@ const handler = nextConnect().get(async (req, res) => {
     params.include.push({
       model: Type,
       through: { attributes: [] },
-      where: { name: typeFilter },
+      where: { name: { [Op.in]: typeFilter } },
     });
   } else {
     params.include.push({
