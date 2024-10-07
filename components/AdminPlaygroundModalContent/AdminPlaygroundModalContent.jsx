@@ -75,30 +75,18 @@ const AdminPlaygroundModalContent = ({ onClose, area = null, images }) => {
                     errorMessage={getFormikErrorByField(formik, "title")}
                     {...formik.getFieldProps("title")}
                   />
-                  <Input
-                    className={styles.input}
-                    label="Номер майданчику"
-                    labelSize="smallLabel"
-                    inputSize="form"
-                    errorStyle="formErrorIcon"
-                    errorMessage={getFormikErrorByField(formik, `number`)}
-                    {...formik.getFieldProps("number")}
-                  />
                   <Select
                     type="form"
                     options={initialData.districtsOptions}
+                    onChange={(e) =>
+                      formik.setFieldValue(
+                        "district_id",
+                        Number(e.target.value)
+                      )
+                    }
                     label="Район"
                     labelSize="smallLabel"
-                    {...formik.getFieldProps("district")}
-                  />
-                  <Input
-                    className={styles.input}
-                    label="Адреса"
-                    labelSize="smallLabel"
-                    inputSize="form"
-                    errorStyle="formErrorIcon"
-                    errorMessage={getFormikErrorByField(formik, "address")}
-                    {...formik.getFieldProps("address")}
+                    {...formik.getFieldProps("district_id")}
                   />
                   <GoogleMapPicker formik={formik} />
                   <MultiSelect

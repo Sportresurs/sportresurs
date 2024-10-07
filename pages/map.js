@@ -100,7 +100,7 @@ export default function MapPage({ areas }) {
                 <div className={styles.sidebarContainer}>
                   <div className={styles.mobileHeaderWrapper}>
                     <h1 className={styles.wrapperHeading}>
-                      Спортивна інфраструктура поблизу
+                      Спортивна та дитяча інфраструктура поблизу
                     </h1>
                     <div
                       className={iconWrapperClass}

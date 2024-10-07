@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Area.init(
     {
-      number: DataTypes.INTEGER,
+      number: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       address: DataTypes.STRING,
       longitude: DataTypes.DECIMAL(10, 8),
       latitude: DataTypes.DECIMAL(10, 8),

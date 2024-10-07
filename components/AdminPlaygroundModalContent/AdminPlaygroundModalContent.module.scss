@@ -55,3 +55,58 @@
   width: 100%;
   margin-bottom: 20px;
 }
+
+.autocomplete {
+  display: block;
+  position: absolute;
+  top: 307px;
+  width: 100%;
+  max-height: 251px;
+
+  background-color: $color-primary-light;
+  border: 1px solid $color-secondary-mediumGrey;
+  border-radius: 3px;
+
+  z-index: 3;
+}
+
+.autocompleteItem {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 12px;
+
+  cursor: pointer;
+
+  transition: all 200ms;
+
+  &:first-child {
+    padding: 12px 12px 6px 12px;
+  }
+
+  &.hover {
+    background-color: rgba($color-secondary-lightGrey, 0.3);
+  }
+}
+
+.autocompleteMainText {
+  margin-bottom: 3px;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: $color-primary-dark;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.autocompleteSecondaryText {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: $color-secondary-darkGrey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

@@ -9,7 +9,6 @@ const setInitialValues = ({
   if (!area) {
     return {
       title: "",
-      number: "",
       address: "",
       latitude: "",
       longitude: "",
@@ -31,7 +30,6 @@ const setInitialValues = ({
 
   return {
     title: area.title,
-    number: area.number,
     address: area.address,
     latitude: area.latitude,
     longitude: area.longitude,

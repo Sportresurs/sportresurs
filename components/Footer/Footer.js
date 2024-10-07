@@ -74,7 +74,7 @@ export default function Footer() {
         <div className={styles.flexWrapper}>
           <div className={styles.footerCourts}>
             <h3 className={styles.footerCourtsTitle}>
-              Спортивна інфраструктура
+              Спортивна та дитяча інфраструктура
             </h3>
 
             <ul className={styles.footerCourtsList}>

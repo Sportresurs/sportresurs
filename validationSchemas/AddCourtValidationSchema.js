@@ -3,12 +3,7 @@ import validation from "../utils/validations";
 
 const validationSchema = Yup.object({
   title: Yup.string().required(validation.getErrorMessage()),
-  number: Yup.string()
-    .matches(validation.numberValidation, validation.getErrorMessage("number"))
-    .required(validation.getErrorMessage()),
-  address: Yup.string()
-    .max(30, validation.getErrorMessage("max", 30))
-    .required(validation.getErrorMessage()),
+  address: Yup.string().required("Адреса обов'язкова"),
   latitude: Yup.string()
     .matches(
       validation.latitudeValidation,
