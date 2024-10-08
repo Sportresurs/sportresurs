@@ -114,19 +114,14 @@ export default function MapPage({ areas }) {
                   router={router}
                 />
               </div>
-              <div className={styles.checkWrap}>
-                <Checkbox
-                  text="Показати лише UNBROKEN"
-                  state={isChecked}
-                  changeState={setCheckBox}
-                />
-              </div>
+
               <div className={sidebarWrapperClass}>
                 <div className={styles.sidebarContainer}>
                   <div className={styles.mobileHeaderWrapper}>
                     <h1 className={styles.wrapperHeading}>
                       Спортивна та дитяча інфраструктура поблизу
                     </h1>
+
                     <div
                       className={iconWrapperClass}
                       onClick={handleSliderShow}
@@ -134,6 +129,15 @@ export default function MapPage({ areas }) {
                       <HideMark />
                     </div>
                   </div>
+                  <div className={styles.checkWrap}>
+                    <Checkbox
+                      text="Показати лише UNBROKEN"
+                      state={isChecked}
+                      changeState={setCheckBox}
+                      checkBoxStyleDefault
+                    />
+                  </div>
+
                   <div className={sliderWrapperClass}>
                     <PlaygroundsSlider
                       setChildClicked={setChildClicked}

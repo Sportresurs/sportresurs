@@ -106,11 +106,12 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 18px;
+
     width: 100%;
   }
   .wrapperHeading {
     margin-left: 0;
+    margin-bottom: 10px;
   }
   .hideIcon {
     display: flex;
@@ -145,5 +146,5 @@
 }
 
 .checkWrap {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
