@@ -22,7 +22,7 @@ const handler = nextConnect().get(async (req, res) => {
     include: [],
     distinct: true,
     where: {},
-    order: [[District, "id", "ASC"]],
+    order: [],
   };
 
   if (page && limit) {
@@ -50,6 +50,7 @@ const handler = nextConnect().get(async (req, res) => {
     params.include.push({
       model: District,
     });
+    params.order.push([District, "id", "ASC"]);
   }
 
   if (typeFilter) {
