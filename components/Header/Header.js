@@ -13,6 +13,7 @@ import LoginButton from "../LoginButton";
 import useWindowSize from "../../utils/hooks/findWindowSize";
 import setHeightOfHeader from "../../utils/findHeightOfHeader";
 import Unbroken from "../../public/img/unbroken.png";
+import MilitarySport from "../../public/img/lviv-military.png";
 
 const cx = className.bind(styles);
 
@@ -225,6 +226,18 @@ export default function Header() {
                     <a className={styles.navLinkLatin}>unbroken</a>
                   </Link>
                 </li>
+                <div className={styles.unbroken}>
+                  <Link href="https://lvivmilitarysports.svit.site/">
+                    <a target="_blank" rel="noopener noreferrer">
+                      <Image
+                        src={MilitarySport}
+                        alt="LvivMilitarySport"
+                        width={100}
+                        height={40}
+                      />
+                    </a>
+                  </Link>
+                </div>
               </ul>
               {isAdminLoggedIn ? (
                 <LoginButton setIsAdminLoggedIn={setIsAdminLoggedIn} />
