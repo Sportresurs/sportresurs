@@ -251,6 +251,9 @@
   text-align: center;
   color: $color-primary-light;
   opacity: 0.7;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
 
   @media screen and (max-width: 767px) {
     display: none;
@@ -265,4 +268,8 @@
 .legal a {
   text-decoration: underline;
   margin-left: 2px;
+}
+
+.keenText {
+  margin-right: 5px;
 }

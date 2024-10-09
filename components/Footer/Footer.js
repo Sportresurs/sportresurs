@@ -1,13 +1,14 @@
 import Link from "next/link";
 import classNames from "classnames/bind";
 import { useEffect, useState } from "react";
+import Image from "next/dist/client/image";
 import styles from "./Footer.module.scss";
 import Logo from "../../public/svg/logo.svg";
 import LogoMobile from "../../public/svg/logoMobile.svg";
 import FacebookIcon from "../../public/svg/facebook.svg";
 import InstaIcon from "../../public/svg/insta.svg";
-
 import axiosInstance from "../../api/axiosInstance";
+import keenLogo from "../../public/img/keen-logo.png";
 
 const cx = classNames.bind(styles);
 
@@ -104,12 +105,12 @@ export default function Footer() {
         </div>
 
         <div className={styles.legal}>
-          <p>
+          <p className={styles.keenText}>
             @2021. Усі права захищені. Сайт розроблено
-            <a href="https://keenethics.com/" target="_blank" rel="noreferrer">
-              KeenEthics
-            </a>
           </p>
+          <a href="https://keenethics.com/" target="_blank" rel="noreferrer">
+            <Image src={keenLogo} width={150} height={40} alt="keen-logo" />
+          </a>
         </div>
       </div>
     </footer>
