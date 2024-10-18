@@ -102,7 +102,9 @@ const PlaygroundModalContent = ({ playground, isModal = true }) => {
           setImages(imgIDs);
         }
       } catch (error) {
-        throw new Error(`"Error fetching images:", ${error}`);
+        if (isMounted) {
+          setImages([]);
+        }
       }
     };
 
