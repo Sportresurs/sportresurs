@@ -1,10 +1,10 @@
+import Smile from "../../../public/img/smiley-icon.png";
 import BasketballCourt from "../../../public/img/basketballCourt.png";
 import TennisCourt from "../../../public/img/tennisCourt.png";
 import FootballCourt from "../../../public/img/footballCourt.png";
 import HandballCourt from "../../../public/img/handballCourt.png";
 import VolleyballCourt from "../../../public/img/volleyballCourt.png";
 import GymnasticCourt from "../../../public/img/gymnasticCourt.png";
-import WithoutTypeCourt from "../../../public/img/withoutTypeCourt.png";
 import SwimmingPool from "../../../public/img/swimming_pool.png";
 import SkatePark from "../../../public/img/skate_park.png";
 import MartialArts from "../../../public/img/martial_arts.png";
@@ -31,7 +31,7 @@ const selectIconPurpose = (courtPurpose) => {
       петанк: Petank,
       флорбол: Florball,
       бадмінтон: Badminton,
-    }[courtPurpose[0]?.title.toLowerCase()] || WithoutTypeCourt;
+    }[courtPurpose[0]?.title.toLowerCase()] || Smile;
 
   return icon;
 };
