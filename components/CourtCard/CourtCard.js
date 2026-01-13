@@ -33,7 +33,8 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
     }
   };
 
-  const src = courtInfo.imageCount > 0
+  const hasImage = courtInfo.has_poster || (courtInfo.imageCount && courtInfo.imageCount > 0);
+  const src = hasImage
     ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
     : placeholderImg.src;
 
