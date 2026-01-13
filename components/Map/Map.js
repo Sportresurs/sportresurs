@@ -42,7 +42,7 @@ export default function Map({
   const superclusterRef = useRef(null);
 
   const updateClusters = () => {
-    if (superclusterRef.current && places.length > 0) {
+    if (superclusterRef.current && places.length > 0 && center) {
       const bounds = {
         north: center.lat + 0.1,
         south: center.lat - 0.1,

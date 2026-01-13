@@ -1,9 +1,20 @@
 const { withSentryConfig } = require("@sentry/nextjs");
-require('dotenv-safe').config({ allowEmptyValues: true });
+require("dotenv-safe").config({ allowEmptyValues: true });
 
 const moduleExports = {
   reactStrictMode: true,
+
+  images: {
+    domains: ["localhost"],
+  },
+
+  env: {
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+  },
+
   webpack(config) {
+    config.output.hashFunction = "xxhash64";
+
     config.module.rules.push({
       test: /\.svg$/,
       issuer: /\.(js|jsx)$/,
@@ -22,19 +33,10 @@ const moduleExports = {
     });
     return config;
   },
-  env: {
-    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
-  },
 };
 
 const SentryWebpackPluginOptions = {
   silent: true,
-};
-
-module.exports = {
-  images: {
-    domains: ["localhost"],
-  },
 };
 
 module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
