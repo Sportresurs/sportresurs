@@ -1,7 +1,7 @@
 import { withSentry } from "@sentry/nextjs";
 import nextConnect from "next-connect";
 import { Op } from "sequelize";
-import { Area, Purpose, District, Type } from "../../../models/index";
+import { Area, Purpose, District, Type, Image } from "../../../models/index";
 
 const handler = nextConnect().get(async (req, res) => {
   const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
@@ -77,8 +77,19 @@ const handler = nextConnect().get(async (req, res) => {
       return res.status(404).json({ error: "Area not found" });
     }
 
+    const areasWithImageCount = await Promise.all(
+      areas.map(async (area) => {
+        const areaJson = area.toJSON();
+        const imageCount = await Image.count({ where: { area_id: area.id } });
+        return {
+          ...areaJson,
+          imageCount,
+        };
+      })
+    );
+
     return res.status(200).json({
-      areas,
+      areas: areasWithImageCount,
       totalItems: count,
       currentPage: page,
       totalPages: Math.ceil(count / limit),

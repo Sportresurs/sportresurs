@@ -80,7 +80,7 @@ export default function Map({
   }, [places, zoom, center]);
 
   return (
-    <div className={styles.mapWrapper}>
+    <div className={styles.mapWrapper} suppressHydrationWarning>
       <GoogleMapReact
         options={(maps) => ({
           ...options,
