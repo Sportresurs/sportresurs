@@ -16,8 +16,8 @@ const Marker = ({ lat, lng, onDragEnd }) => {
 
   return (
     <div
-      lat={lat}
-      lng={lng}
+      data-lat={lat}
+      data-lng={lng}
       draggable={true}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}

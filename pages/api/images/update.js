@@ -56,6 +56,7 @@ const handler = nextConnect()
 
       return res.status(200).json({ createdImages });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error("Image update error:", error);
       return res.status(500).json({ error: error.message });
     }

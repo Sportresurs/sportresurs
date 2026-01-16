@@ -112,12 +112,14 @@ export default function Map({
 
           if (isCluster && pointCount >= 2) {
             return (
-              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <div
                 key={`cluster-${cluster.id}`}
+                // eslint-disable-next-line react/no-unknown-property
                 lat={latitude}
+                // eslint-disable-next-line react/no-unknown-property
                 lng={longitude}
                 className={cx("clusterMarker")}
+                suppressHydrationWarning
                 style={{
                   width: `${Math.min(40 + pointCount * 5, 100)}px`,
                   height: `${Math.min(40 + pointCount * 5, 100)}px`,

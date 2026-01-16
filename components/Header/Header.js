@@ -172,7 +172,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToAboutUs"
+                      data-anchor="navigateToAboutUs"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor
@@ -189,7 +189,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToNews"
+                      data-anchor="navigateToNews"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor
@@ -206,7 +206,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToContacts"
+                      data-anchor="navigateToContacts"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor

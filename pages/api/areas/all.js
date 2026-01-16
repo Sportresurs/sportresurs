@@ -1,6 +1,6 @@
 import { withSentry } from "@sentry/nextjs";
 import nextConnect from "next-connect";
-import { Op } from "sequelize";
+import { Op, fn, col } from "sequelize";
 import { Area, Purpose, District, Type, Image } from "../../../models/index";
 
 const handler = nextConnect().get(async (req, res) => {
@@ -79,10 +79,7 @@ const handler = nextConnect().get(async (req, res) => {
 
     // Отримуємо кількість картинок для всіх areas одним запитом
     const imageCountByAreaId = await Image.findAll({
-      attributes: [
-        "area_id",
-        [require("sequelize").fn("COUNT", require("sequelize").col("id")), "count"],
-      ],
+      attributes: ["area_id", [fn("COUNT", col("id")), "count"]],
       where: {
         area_id: areas.map((area) => area.id),
       },

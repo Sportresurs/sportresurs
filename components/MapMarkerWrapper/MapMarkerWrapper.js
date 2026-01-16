@@ -17,6 +17,10 @@ export default function MapMarkerWrapper({
   const index = indexMarker;
   return (
     <div
+      // eslint-disable-next-line react/no-unknown-property
+      lat={lat}
+      // eslint-disable-next-line react/no-unknown-property
+      lng={lng}
       onClick={() => {
         if (isClickable) {
           setSliderOpen(true);
@@ -24,12 +28,11 @@ export default function MapMarkerWrapper({
         }
         return null;
       }}
-      lat={lat}
-      lng={lng}
       key={key}
       className={className}
       role="button"
       tabIndex={0}
+      suppressHydrationWarning
     >
       <Marker
         courtPurpose={courtPurpose}
