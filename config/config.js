@@ -1,6 +1,8 @@
-require("dotenv-safe").config({
-  allowEmptyValues: true,
-});
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv-safe").config({
+    allowEmptyValues: true,
+  });
+}
 
 module.exports = {
   development: {
