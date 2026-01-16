@@ -23,22 +23,26 @@ const handler = nextConnect()
         });
       });
 
-      if ((!data.files && !data.files.images.length) || !data.fields) {
+      if (!data.files || !data.files.images || !data.fields) {
         return res
           .status(400)
           .json({ error: "No images uploaded or required data is missing" });
       }
 
+      // Formidable може повернути один файл як об'єкт, або масив файлів
+      const images = Array.isArray(data.files.images)
+        ? data.files.images
+        : [data.files.images];
+
       const createdImages = await Promise.all(
-        data.files.images.map(async (file) => {
+        images.map(async (file, index) => {
           const fileData = await fs.readFile(file.filepath);
-          const i = 0;
-          Image.create({
+          return Image.create({
             name: file.originalFilename,
             filetype: file.mimetype,
             file: fileData,
             area_id: Number(data.fields.area_id[0]),
-            order: i + 1,
+            order: index + 1,
             created_at: new Date(),
             updated_at: new Date(),
           });
@@ -47,6 +51,7 @@ const handler = nextConnect()
 
       return res.status(201).json({ createdImages });
     } catch (error) {
+      console.error("Image upload error:", error);
       return res.status(500).json({ error: error.message });
     }
   });
