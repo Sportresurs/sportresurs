@@ -77,16 +77,30 @@ const handler = nextConnect().get(async (req, res) => {
       return res.status(404).json({ error: "Area not found" });
     }
 
-    const areasWithImageCount = await Promise.all(
-      areas.map(async (area) => {
-        const areaJson = area.toJSON();
-        const imageCount = await Image.count({ where: { area_id: area.id } });
-        return {
-          ...areaJson,
-          imageCount,
-        };
-      })
-    );
+    // Отримуємо кількість картинок для всіх areas одним запитом
+    const imageCountByAreaId = await Image.findAll({
+      attributes: [
+        "area_id",
+        [require("sequelize").fn("COUNT", require("sequelize").col("id")), "count"],
+      ],
+      where: {
+        area_id: areas.map((area) => area.id),
+      },
+      group: ["area_id"],
+      raw: true,
+    });
+
+    // Конвертуємо результат в map для швидкого пошуку
+    const countMap = imageCountByAreaId.reduce((acc, item) => {
+      acc[item.area_id] = parseInt(item.count, 10);
+      return acc;
+    }, {});
+
+    // Додаємо imageCount до кожної area
+    const areasWithImageCount = areas.map((area) => ({
+      ...area.toJSON(),
+      imageCount: countMap[area.id] || 0,
+    }));
 
     return res.status(200).json({
       areas: areasWithImageCount,
