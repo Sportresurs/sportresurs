@@ -55,7 +55,7 @@ export default function Header() {
   const handleScrollToAnchor = (e) => {
     e.preventDefault();
 
-    const anchor = document.getElementById(e.target.attributes.anchor.value);
+    const anchor = document.getElementById(e.target.dataset.anchor);
     if (anchor) {
       const y =
         anchor.getBoundingClientRect().top +
@@ -71,7 +71,7 @@ export default function Header() {
 
     router.push({
       pathname: "/",
-      query: { anchorName: e.target.attributes.anchor.value },
+      query: { anchorName: e.target.dataset.anchor },
     });
   };
 
@@ -172,7 +172,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToAboutUs"
+                      data-anchor="navigateToAboutUs"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor
@@ -189,7 +189,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToNews"
+                      data-anchor="navigateToNews"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor
@@ -206,7 +206,7 @@ export default function Header() {
                       role="link"
                       tabIndex={0}
                       className={styles.navLink}
-                      anchor="navigateToContacts"
+                      data-anchor="navigateToContacts"
                       onClick={
                         router.route === "/"
                           ? handleScrollToAnchor

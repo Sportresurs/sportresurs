@@ -32,7 +32,10 @@ export default function CourtCard({ courtInfo, variant = "topList", isModal }) {
       router.push(`/playground/${id}`);
     }
   };
-  const src = courtInfo.has_poster
+
+  const hasImage =
+    courtInfo.has_poster || (courtInfo.imageCount && courtInfo.imageCount > 0);
+  const src = hasImage
     ? `${process.env.NEXT_PUBLIC_HOST}api/images/${courtInfo.id}`
     : placeholderImg.src;
 
@@ -86,7 +89,7 @@ CourtCard.propTypes = {
   courtInfo: PropTypes.shape({
     District: PropTypes.object.isRequired,
     address: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
+    number: PropTypes.number,
     id: PropTypes.number.isRequired,
     image: PropTypes.string,
     rating: PropTypes.number.isRequired,

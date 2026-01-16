@@ -42,7 +42,7 @@ export default function Map({
   const superclusterRef = useRef(null);
 
   const updateClusters = () => {
-    if (superclusterRef.current && places.length > 0) {
+    if (superclusterRef.current && places.length > 0 && center) {
       const bounds = {
         north: center.lat + 0.1,
         south: center.lat - 0.1,
@@ -80,7 +80,7 @@ export default function Map({
   }, [places, zoom, center]);
 
   return (
-    <div className={styles.mapWrapper}>
+    <div className={styles.mapWrapper} suppressHydrationWarning>
       <GoogleMapReact
         options={(maps) => ({
           ...options,
@@ -112,12 +112,14 @@ export default function Map({
 
           if (isCluster && pointCount >= 2) {
             return (
-              // eslint-disable-next-line jsx-a11y/no-static-element-interactions
               <div
                 key={`cluster-${cluster.id}`}
+                // eslint-disable-next-line react/no-unknown-property
                 lat={latitude}
+                // eslint-disable-next-line react/no-unknown-property
                 lng={longitude}
                 className={cx("clusterMarker")}
+                suppressHydrationWarning
                 style={{
                   width: `${Math.min(40 + pointCount * 5, 100)}px`,
                   height: `${Math.min(40 + pointCount * 5, 100)}px`,

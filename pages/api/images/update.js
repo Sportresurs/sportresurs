@@ -23,11 +23,15 @@ const handler = nextConnect()
         });
       });
 
-      if ((!data.files && !data.files.images.length) || !data.fields) {
+      if (!data.files || !data.files.images || !data.fields) {
         return res
           .status(400)
           .json({ error: "No images uploaded or required data is missing" });
       }
+
+      const images = Array.isArray(data.files.images)
+        ? data.files.images
+        : [data.files.images];
 
       // eslint-disable-next-line camelcase
       const area_id = Number(data.fields.area_id[0]);
@@ -35,9 +39,9 @@ const handler = nextConnect()
       let i = lastOrder + 1;
 
       const createdImages = await Promise.all(
-        data.files.images.map(async (file) => {
+        images.map(async (file) => {
           const fileData = await fs.readFile(file.filepath);
-          Image.create({
+          return Image.create({
             file: fileData,
             name: file.originalFilename,
             filetype: file.mimetype,
@@ -52,6 +56,8 @@ const handler = nextConnect()
 
       return res.status(200).json({ createdImages });
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error("Image update error:", error);
       return res.status(500).json({ error: error.message });
     }
   });
