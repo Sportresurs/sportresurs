@@ -55,7 +55,7 @@ export default function Header() {
   const handleScrollToAnchor = (e) => {
     e.preventDefault();
 
-    const anchor = document.getElementById(e.target.attributes.anchor.value);
+    const anchor = document.getElementById(e.target.dataset.anchor);
     if (anchor) {
       const y =
         anchor.getBoundingClientRect().top +
@@ -71,7 +71,7 @@ export default function Header() {
 
     router.push({
       pathname: "/",
-      query: { anchorName: e.target.attributes.anchor.value },
+      query: { anchorName: e.target.dataset.anchor },
     });
   };
 
