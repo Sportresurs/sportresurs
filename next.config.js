@@ -1,5 +1,8 @@
 const { withSentryConfig } = require("@sentry/nextjs");
-require("dotenv-safe").config({ allowEmptyValues: true });
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv-safe").config({ allowEmptyValues: true });
+}
 
 const moduleExports = {
   reactStrictMode: true,
