@@ -8,7 +8,6 @@ function RouteGuard({ children }) {
 
   useEffect(() => {
     if (loading) return;
-    
     if (!session) {
       router.push("/login");
     }

@@ -10,19 +10,14 @@ const handler = nc()
     try {
       const { email } = req.body;
       const candidate = await User.findOne({ where: { email } });
-      
       if (candidate) {
         if (candidate.status === "deleted") {
-          await User.update(
-            { status: "pending" },
-            { where: { email } }
-          );
+          await User.update({ status: "pending" }, { where: { email } });
           sendInviteAdmin(email);
           return res.status(200).send("Admin reactivated!");
         }
         return res.status(409).send("This email is already in use!");
       }
-      
       await User.create({ email, role: "admin", status: "pending" });
       sendInviteAdmin(email);
       return res.status(200).send("Admin added!");
