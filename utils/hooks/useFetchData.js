@@ -8,21 +8,30 @@ export default function useFetchData(url, defaultValue) {
 
   useEffect(() => {
     if (!url) return;
+    let isMounted = true;
     setIsLoading(true);
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const resData = await response.json();
-        setData(resData);
-        setIsLoading(false);
+        if (isMounted) {
+          setData(resData);
+          setIsLoading(false);
+        }
       } catch (err) {
-        captureException(err);
-        setErrorMsg(err.message);
-        setIsLoading(false);
+        if (isMounted) {
+          captureException(err);
+          setErrorMsg(err.message);
+          setIsLoading(false);
+        }
       }
     };
 
     fetchData();
+    
+    return () => {
+      isMounted = false;
+    };
   }, [url]);
 
   return [data, isLoading, errorMsg];

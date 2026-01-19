@@ -4,13 +4,19 @@ import { useSession } from "next-auth/client";
 
 function RouteGuard({ children }) {
   const router = useRouter();
-  const [session] = useSession();
+  const [session, loading] = useSession();
 
   useEffect(() => {
+    if (loading) return;
+    
     if (!session) {
       router.push("/login");
     }
-  }, []);
+  }, [session, loading, router]);
+
+  if (loading) {
+    return null;
+  }
 
   return children;
 }
